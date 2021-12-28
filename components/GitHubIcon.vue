@@ -27,7 +27,7 @@ const { color } = withDefaults(defineProps<{ color?: string }>(), {
 @use "~/assets/styles/mixins" as *;
 
 .github-icon {
-  @include size(clamp(40px, 15vw, 80px));
+  @include size(clamp(30px, 10vw, 50px));
   margin: 3vh 5vw;
 }
 </style>
