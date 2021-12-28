@@ -22,9 +22,19 @@ main {
   min-height: 100vh;
   color: var(--clr-text);
   background: linear-gradient(
-    63.18deg,
-    var(--clr-gradient-1) 2.08%,
-    var(--clr-gradient-2) 24.48%
+    65deg,
+    var(--clr-gradient-1) 0%,
+    var(--clr-gradient-2) 25%
   );
+}
+
+@media screen and (max-width: 600px) {
+  main {
+    background: linear-gradient(
+      30deg,
+      var(--clr-gradient-1) 0%,
+      var(--clr-gradient-2) 40%
+    );
+  }
 }
 </style>

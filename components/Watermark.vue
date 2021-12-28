@@ -15,7 +15,7 @@
   width: 100%;
 
   font-family: var(--fnt-watermark);
-  opacity: 0.05;
+  opacity: 0.03;
   font-size: 20vw;
   padding: 0 5vw;
 
