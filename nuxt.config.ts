@@ -2,17 +2,13 @@ import { defineNuxtConfig } from "nuxt3";
 
 export default defineNuxtConfig({
   head: {
-    link: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      {
-        rel: "preconnect",
-        href: "https://fonts.gstatic.com",
-        crossOriginIsolated: true,
-      },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap",
-      },
-    ],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
+
+  css: [
+    "/assets/styles/reset/index.scss",
+    "/assets/styles/core/index.scss",
+    "/assets/styles/variables/index.scss",
+    "/assets/styles/base/index.scss",
+  ],
 });

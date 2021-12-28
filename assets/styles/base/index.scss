@@ -1,0 +1,30 @@
+::selection {
+  background: var(--clr-primary);
+  color: var(--clr-text);
+}
+
+body {
+  font-family: var(--fnt-main);
+  overflow: hidden;
+}
+
+a {
+  color: var(--clr-text);
+  text-decoration: none;
+
+  &.underlined {
+    background: linear-gradient(
+      90deg,
+      var(--clr-link-gradient-1) 0%,
+      var(--clr-link-gradient-2) 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% 0.4rem;
+    background-position: 0 80%;
+    transition: all 200ms ease-in-out;
+
+    &:hover {
+      background-size: 100% 90%;
+    }
+  }
+}

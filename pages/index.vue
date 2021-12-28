@@ -1,60 +1,30 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 useMeta({
-  title: "Omar Eloui | Web developer",
+  title: "omar eloui | web developer",
 });
 </script>
 
 <template>
-  <div>
-    <h1>🚧 Work in progress</h1>
-
-    <article>
-      <p>
-        This portfolio belongs to Omar Eloui. It's currently under development.
-      </p>
-      <p>
-        You can reach the author on
-        <a href="tel:+0201119447500">phone</a> or
-        <a href="mailto:omareloui@hotmail.com">email</a>.
-      </p>
-    </article>
-  </div>
+  <main>
+    <Logo />
+    <Watermark />
+    <LandingHeading />
+    <ContactBlock />
+    <GitHubLink />
+  </main>
 </template>
 
-<style lang="scss">
-:root {
-  --clr-link: #5079eb;
-  --fnt-main: "IBM Plex Sans", sans-serif;
-}
-
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: var(--fnt-main);
+<style lang="scss" scoped>
+main {
+  padding: 0.1px;
+  overflow: hidden;
 
   min-height: 100vh;
-  text-align: center;
-  padding: 20vh 20px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-
-  overflow: hidden;
-}
-
-article {
-  font-size: 20px;
-}
-
-a {
-  color: var(--clr-link);
-  text-decoration: none;
+  color: var(--clr-text);
+  background: linear-gradient(
+    63.18deg,
+    var(--clr-gradient-1) 2.08%,
+    var(--clr-gradient-2) 24.48%
+  );
 }
 </style>

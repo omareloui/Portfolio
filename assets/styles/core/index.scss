@@ -1,0 +1,17 @@
+$font-dir: "/fonts";
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap");
+
+@font-face {
+  font-family: "Monument Extended";
+  src: url("#{$font-dir}/MonumentExtended/Regular.otf");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Monument Extended";
+  src: url("#{$font-dir}/MonumentExtended/Ultrabold.otf");
+  font-style: normal;
+  font-weight: bold;
+}

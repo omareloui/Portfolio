@@ -1,0 +1,14 @@
+@mixin size($args...) {
+  @debug $args;
+  @debug #{length($args)};
+
+  @if length($args) == 2 {
+    width: nth($args, 1);
+    height: nth($args, 2);
+  }
+
+  @if length($args) == 1 {
+    width: $args;
+    height: $args;
+  }
+}
