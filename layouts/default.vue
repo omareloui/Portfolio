@@ -5,8 +5,8 @@ const layout = ref(null as null | HTMLElement);
 
 let destroy = () => {};
 
-onMounted(init);
-onUnmounted(destroy);
+// onMounted(init);
+// onUnmounted(destroy);
 
 function init() {
   const { destroy: destroyEvents } = emitCursorActivateEvents(
@@ -19,6 +19,14 @@ function init() {
 <template>
   <div ref="layout">
     <slot></slot>
-    <Cursor />
+    <!-- <Cursor /> -->
   </div>
 </template>
+
+<style lang="scss">
+// *,
+// *::after,
+// *::before {
+//   cursor: none;
+// }
+</style>

@@ -42,10 +42,12 @@ function updateCursorLocation() {
 }
 
 function updateCursorLayout() {
+  const cursorEl = cursor.value;
+  if (!cursorEl) return;
+
   const { x, y } = state;
   const createTran = (value: number) => `calc(${value}px - 50%)`;
   const tran = [x.prev, y.prev].map(createTran).join(", ");
-  const cursorEl = cursor.value as HTMLElement;
 
   let scale = 1;
   let opacity = 1;
