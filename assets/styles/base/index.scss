@@ -3,6 +3,12 @@
   color: var(--clr-text);
 }
 
+*,
+*::after,
+*::before {
+  cursor: none;
+}
+
 body {
   font-family: var(--fnt-main);
   overflow: hidden;

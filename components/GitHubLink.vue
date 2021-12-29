@@ -7,11 +7,15 @@
 </template>
 
 <style lang="scss" scoped>
-@use "~/assets/styles/mixins" as *;
+@use "~~/assets/styles/mixins" as *;
 
 .github {
   position: absolute;
   bottom: 0;
   right: 0;
+
+  a {
+    display: block;
+  }
 }
 </style>
