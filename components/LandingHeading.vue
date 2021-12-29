@@ -1,5 +1,5 @@
 <template>
-  <h1>under maintenance.</h1>
+  <h1>under maintenance</h1>
 </template>
 
 <style lang="scss" scoped>

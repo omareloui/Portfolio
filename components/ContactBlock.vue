@@ -23,7 +23,7 @@
     width: fit-content;
 
     font-size: clamp(20px, 6vw, 25px);
-    font-weight: 400;
+    font-weight: 700;
     text-align: center;
   }
 }
