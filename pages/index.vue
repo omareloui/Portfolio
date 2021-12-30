@@ -1,13 +1,13 @@
 <script setup lang="ts">
 useMeta({
-  title: "omar eloui | web developer",
+  title: "Omar Eloui | Web Developer",
 });
 </script>
 
 <template>
   <main>
-    <Logo />
     <Watermark />
+    <Logo />
     <LandingHeading />
     <ContactBlock />
     <GitHubLink />

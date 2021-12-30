@@ -9,22 +9,30 @@ body {
 }
 
 a {
+  --link-gradient: linear-gradient(
+    to right,
+    var(--clr-link-gradient-1),
+    var(--clr-link-gradient-2)
+  );
+
   color: var(--clr-text);
   text-decoration: none;
 
   &.underlined {
-    background: linear-gradient(
-      90deg,
-      var(--clr-link-gradient-1) 0%,
-      var(--clr-link-gradient-2) 100%
-    );
+    background: var(--link-gradient);
+
     background-repeat: no-repeat;
     background-size: 100% 0.4rem;
     background-position: 0 80%;
-    transition: all 200ms ease-in-out;
+    transition: background 200ms ease-in-out;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-size: 100% 90%;
+    }
+
+    &:focus {
+      outline: none;
     }
   }
 }

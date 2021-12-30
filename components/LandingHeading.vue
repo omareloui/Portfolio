@@ -4,6 +4,7 @@
 
 <style lang="scss" scoped>
 h1 {
+  isolation: isolate;
   font-size: clamp(40px, 10vw, 96px);
   font-weight: 900;
   line-height: 120%;
