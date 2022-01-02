@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LineBreak from "~~/components/LineBreak.vue";
 useMeta({
   title: "Omar Eloui | Web Developer",
 });
@@ -7,6 +8,7 @@ useMeta({
 <template>
   <main>
     <AboutSection />
+    <LineBreak />
   </main>
 </template>
 
