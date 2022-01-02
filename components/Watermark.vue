@@ -16,7 +16,7 @@
 
   font-family: var(--fnt-watermark);
   font-weight: bold;
-  color: var(--clr-primary);
+  color: var(--clr-secondary);
   opacity: 0.3;
   font-size: 20vw;
   padding: 0 5vw;
