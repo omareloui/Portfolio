@@ -3,8 +3,11 @@
 </template>
 
 <style lang="scss" scoped>
+@use "~~/assets/styles/mixins" as *;
+
 p {
-  font-weight: 500;
+  @include text-regular;
+  padding: 0.6rem 0;
   font-size: 1.2rem;
 }
 </style>

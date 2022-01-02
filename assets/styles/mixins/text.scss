@@ -1,6 +1,34 @@
+@use "sass:list";
+
 @mixin text-gradient {
   width: fit-content;
   background: var(--clr-primary-gradient);
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@mixin text-weight($weight) {
+  $weights: normal regular bold "black";
+
+  @if not list.index($weights, $weight) {
+    @error "Weight #{$weight} isn't valid.";
+  }
+
+  font-weight: var(--fnt-weight-#{$weight});
+}
+
+@mixin text-regular {
+  @include text-weight(regular);
+}
+
+@mixin text-normal {
+  @include text-weight(normal);
+}
+
+@mixin text-bold {
+  @include text-weight(bold);
+}
+
+@mixin text-black {
+  @include text-weight("black");
 }

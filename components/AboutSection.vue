@@ -1,6 +1,7 @@
 <template>
   <Container>
     <SectionHeading>About Me</SectionHeading>
+    <SectionSubheading>More on what I can do</SectionSubheading>
     <article>
       <Paragraph>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
