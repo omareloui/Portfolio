@@ -1,6 +1,6 @@
 <template>
   <Container>
-    <HeadingSection>About Me</HeadingSection>
+    <SectionHeading>About Me</SectionHeading>
     <article>
       <Paragraph>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
