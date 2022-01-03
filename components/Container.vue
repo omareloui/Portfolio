@@ -1,7 +1,13 @@
+<script setup lang="ts">
+const { tag } = withDefaults(defineProps<{ tag: string }>(), {
+  tag: "div",
+});
+</script>
+
 <template>
-  <div class="container">
+  <component :is="tag" class="container">
     <slot></slot>
-  </div>
+  </component>
 </template>
 
 <style lang="scss" scoped>

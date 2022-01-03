@@ -8,6 +8,7 @@
 .heading-section {
   font-size: 3rem;
   line-height: 3.3rem;
+  @include text-black;
   @include text-gradient;
 }
 </style>

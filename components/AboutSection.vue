@@ -1,5 +1,5 @@
 <template>
-  <Container>
+  <SectionContainer>
     <SectionHeading>About Me</SectionHeading>
     <SectionSubheading>More on what I can do</SectionSubheading>
     <article>
@@ -10,5 +10,5 @@
         deleniti?
       </Paragraph>
     </article>
-  </Container>
+  </SectionContainer>
 </template>
