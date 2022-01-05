@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { margin } = withDefaults(
   defineProps<{
-    margin: string;
+    margin?: string;
   }>(),
   {
     margin: "10px",

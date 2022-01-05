@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { tag } = withDefaults(defineProps<{ tag: string }>(), {
+const { tag } = withDefaults(defineProps<{ tag?: string }>(), {
   tag: "div",
 });
 </script>
