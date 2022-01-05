@@ -10,5 +10,8 @@
 
   margin-top: var(--v-space);
   margin-bottom: var(--v-space);
+
+  padding-top: 0.1px;
+  padding-bottom: 0.1px;
 }
 </style>
