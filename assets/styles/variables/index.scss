@@ -1,3 +1,5 @@
+@use "../mixins/media-query" as mq;
+
 :root {
   --clr-primary: #5216d1;
   --clr-secondary: #9d11f4;
@@ -26,4 +28,6 @@
   --fnt-weight-regular: 500;
   --fnt-weight-bold: 700;
   --fnt-weight-black: 900;
+
+  @include mq.screens;
 }
