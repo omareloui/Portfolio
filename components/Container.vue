@@ -12,7 +12,7 @@ const { tag } = withDefaults(defineProps<{ tag?: string }>(), {
 
 <style lang="scss" scoped>
 .container {
-  --container-width: 700px;
+  --container-width: var(--screen-tablet);
   --container-padding: 10px;
 
   max-width: var(--container-width);

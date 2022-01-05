@@ -10,5 +10,10 @@
   line-height: 3.3rem;
   @include text-black;
   @include text-gradient;
+
+  @include st-tablet {
+    text-align: center;
+    margin: auto;
+  }
 }
 </style>

@@ -11,5 +11,9 @@
   font-size: 1rem;
   font-style: italic;
   @include text-bold;
+
+  @include st-tablet {
+    text-align: center;
+  }
 }
 </style>
