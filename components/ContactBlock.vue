@@ -15,7 +15,7 @@
 
   .contact {
     background: #14141433;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(5px);
     border-radius: 20px;
     padding: 2rem 3rem;
     margin: auto;
