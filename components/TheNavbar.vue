@@ -63,7 +63,7 @@ function removeShadow() {
   ::v-deep(.container) {
     display: flex;
     align-items: center;
-    height: 75px;
+    height: var(--nav-height);
   }
 
   &--scrolled {

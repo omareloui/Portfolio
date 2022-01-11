@@ -33,4 +33,6 @@
   --fnt-weight-black: 900;
 
   @include mq.screens;
+
+  --nav-height: 75px;
 }
