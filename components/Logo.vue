@@ -1,7 +1,12 @@
 <script setup lang="ts">
-const { color } = withDefaults(defineProps<{ color?: string }>(), {
-  color: "var(--clr-text)",
-});
+const { color, width, height } = withDefaults(
+  defineProps<{ color?: string; width?: string; height?: string }>(),
+  {
+    color: "var(--clr-text-light)",
+    width: "clamp(60px, 20vw, 80px)",
+    height: "clamp(37.5px, 15vw, 50px)",
+  }
+);
 </script>
 
 <template>
@@ -44,7 +49,7 @@ const { color } = withDefaults(defineProps<{ color?: string }>(), {
 
 .logo {
   isolation: isolate;
-  @include size(clamp(60px, 25vw, 150px));
-  margin: 3vh 5vw;
+  width: v-bind(width);
+  height: v-bind(height);
 }
 </style>

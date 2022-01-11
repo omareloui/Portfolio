@@ -5,12 +5,13 @@ useMeta({
 </script>
 
 <template>
-  <HeroSection />
-  <main>
-    <ProjectsSection />
-    <AboutSection />
-    <LineBreak />
-  </main>
+  <div>
+    <TheNavbar />
+    <HeroSection />
+    <main>
+      <ProjectsSection />
+      <AboutSection />
+      <LineBreak />
+    </main>
+  </div>
 </template>
-
-<style lang="scss" scoped></style>
