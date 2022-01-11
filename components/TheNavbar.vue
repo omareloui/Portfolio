@@ -56,7 +56,7 @@ function removeShadow() {
   top: 0;
 
   background: linear-gradient(
-    15deg,
+    10deg,
     var(--clr-primary) 80%,
     var(--clr-secondary) 100%
   );
