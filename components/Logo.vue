@@ -43,6 +43,7 @@ const { color } = withDefaults(defineProps<{ color?: string }>(), {
 @use "~/assets/styles/mixins" as *;
 
 .logo {
+  isolation: isolate;
   @include size(clamp(60px, 25vw, 150px));
   margin: 3vh 5vw;
 }

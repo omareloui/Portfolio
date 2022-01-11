@@ -7,7 +7,7 @@
 
 <style lang="scss" scoped>
 .watermark {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -17,7 +17,7 @@
   font-family: var(--fnt-watermark);
   font-weight: bold;
   color: var(--clr-secondary);
-  opacity: 0.3;
+  opacity: 0.1;
   font-size: 20vw;
   padding: 0 5vw;
 
