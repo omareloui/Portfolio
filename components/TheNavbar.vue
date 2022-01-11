@@ -55,7 +55,11 @@ function removeShadow() {
   position: sticky;
   top: 0;
 
-  background: var(--clr-primary);
+  background: linear-gradient(
+    15deg,
+    var(--clr-primary) 80%,
+    var(--clr-secondary) 100%
+  );
   color: var(--clr-text-light);
 
   transition: all ease-in-out 200ms;
