@@ -27,7 +27,7 @@ const {} = withDefaults(
 .grid {
   display: grid;
   grid-template-columns: repeat(v-bind(columnsOnDesktop), 1fr);
-  gap: 10px;
+  gap: v-bind(gap);
 
   @include st-tablet {
     grid-template-columns: repeat(v-bind(columnsOnTablet), 1fr);

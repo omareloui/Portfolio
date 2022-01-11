@@ -9,6 +9,12 @@ const { level } = defineProps<{ level: string }>();
 <style lang="scss" scoped>
 @use "~~/assets/styles/mixins" as *;
 
+h1 {
+  @include text-bold;
+  font-size: clamp(4rem, 15vw, 6rem);
+  line-height: 110%;
+}
+
 .heading {
   @include st-tablet {
     text-align: center;

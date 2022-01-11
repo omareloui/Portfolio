@@ -5,6 +5,7 @@ useMeta({
 </script>
 
 <template>
+  <HeroSection />
   <main>
     <ProjectsSection />
     <AboutSection />
