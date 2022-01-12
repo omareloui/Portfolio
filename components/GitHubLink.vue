@@ -1,21 +1,7 @@
 <template>
-  <div class="github">
-    <a href="https://github.com/omareloui" target="_blank">
+  <div>
+    <TheLink to="https://github.com/omareloui" new-tab>
       <GitHubIcon />
-    </a>
+    </TheLink>
   </div>
 </template>
-
-<style lang="scss" scoped>
-@use "~~/assets/styles/mixins" as *;
-
-.github {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-
-  a {
-    display: block;
-  }
-}
-</style>
