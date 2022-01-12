@@ -8,7 +8,7 @@
 p {
   @include text-regular;
   padding: 0.6rem 0;
-  font-size: 1.2rem;
+  font-size: var(--fnt-size-normal);
 
   @include st-tablet {
     text-align: center;

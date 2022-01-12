@@ -12,6 +12,7 @@ useMeta({
       <ProjectsSection />
       <AboutSection />
       <LineBreak />
+      <ContactSection />
     </main>
   </div>
 </template>

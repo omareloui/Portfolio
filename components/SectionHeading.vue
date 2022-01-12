@@ -6,7 +6,7 @@
 @use "~~/assets/styles/mixins" as *;
 
 .heading-section {
-  font-size: 3rem;
+  font-size: var(--fnt-size-section-heading);
   line-height: 3.3rem;
   @include text-black;
   @include text-gradient;

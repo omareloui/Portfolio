@@ -2,9 +2,11 @@
 const { margin } = withDefaults(
   defineProps<{
     margin?: string;
+    height?: string;
   }>(),
   {
     margin: "10px",
+    height: "5px",
   }
 );
 </script>
@@ -19,7 +21,7 @@ const { margin } = withDefaults(
 hr {
   border: none;
   background: var(--clr-primary-gradient);
-  height: 3px;
+  height: v-bind(height);
   border-radius: 1px;
   margin: v-bind(margin) 0;
 }

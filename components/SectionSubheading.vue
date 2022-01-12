@@ -8,7 +8,7 @@
 .subheading {
   display: block;
   color: var(--clr-text-dark-1);
-  font-size: 1rem;
+  font-size: var(--fnt-size-section-subheading);
   font-style: italic;
   @include text-bold;
 

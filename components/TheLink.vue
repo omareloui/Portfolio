@@ -1,15 +1,17 @@
 <script setup lang="ts">
-const { to, underlined, cta } = withDefaults(
+const { to, underlined, cta, gradient } = withDefaults(
   defineProps<{
     to: string;
     underlined?: boolean;
     cta?: boolean;
     large?: boolean;
+    gradient?: boolean;
   }>(),
   {
     large: false,
     underlined: false,
     cta: false,
+    gradient: false,
   }
 );
 </script>
@@ -21,6 +23,7 @@ const { to, underlined, cta } = withDefaults(
       'link--underlined': underlined,
       'link--cta': cta,
       'link--large': large,
+      'link--gradient': gradient,
     }"
   >
     <span class="link__content">
@@ -64,13 +67,19 @@ a {
     }
 
     &--large {
-      font-size: clamp(1.2rem, 6vw, 1.5rem);
-      @include text-black;
+      font-size: var(--fnt-size-link-large);
+      @include text-bold;
+    }
+
+    &--gradient {
+      background: var(--clr-primary-gradient);
+      border-radius: 999px;
+      padding: 0.2rem 0.8rem;
+      color: var(--clr-text-light);
     }
 
     &--cta {
       background: var(--clr-text-light);
-      color: black;
       padding: 0.2rem 0.8rem;
       border-radius: 999px;
       .link__content {
@@ -78,7 +87,9 @@ a {
       }
     }
   }
-  &.link--cta.link--large {
+
+  &.link--cta.link--large,
+  &.link--gradient.link--large {
     padding: 0.5rem 1.2rem;
   }
 }

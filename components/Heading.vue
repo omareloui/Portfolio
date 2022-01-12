@@ -11,7 +11,7 @@ const { level } = defineProps<{ level: string }>();
 
 h1 {
   @include text-bold;
-  font-size: clamp(4rem, 15vw, 6rem);
+  font-size: var(--fnt-size-heading);
   line-height: 110%;
 }
 
