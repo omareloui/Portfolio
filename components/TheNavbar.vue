@@ -3,6 +3,9 @@ onMounted(init);
 onUnmounted(removeTrackScroll);
 
 const isScrolled = ref(false);
+const isBlurred = ref(false);
+
+const navHeight = 75;
 
 function trackScroll() {
   addEventListener("scroll", handleScroll);
@@ -18,21 +21,35 @@ function removeTrackScroll() {
 }
 
 function handleScroll() {
-  if (!scrollY) removeShadow();
-  else addShadow();
+  if (scrollY >= navHeight) blur();
+  else unBlur();
+
+  if (!scrollY) markAsNotScrolled();
+  else markAsScrolled();
 }
 
-function addShadow() {
+function markAsScrolled() {
   isScrolled.value = true;
 }
 
-function removeShadow() {
+function markAsNotScrolled() {
   isScrolled.value = false;
+}
+
+function blur() {
+  isBlurred.value = true;
+}
+
+function unBlur() {
+  isBlurred.value = false;
 }
 </script>
 
 <template>
-  <div class="navbar" :class="{ 'navbar--scrolled': isScrolled }">
+  <div
+    class="navbar"
+    :class="{ 'navbar--scrolled': isScrolled, 'navbar--blurred': isBlurred }"
+  >
     <Container>
       <Logo />
       <div class="gap"></div>
@@ -71,7 +88,16 @@ function removeShadow() {
   }
 
   &--scrolled {
-    box-shadow: var(--clr-text-light) 0px 0px 12px -4px;
+    box-shadow: #ebebeb4f 0 0 4px 0px;
+  }
+
+  &--blurred {
+    background: linear-gradient(
+      10deg,
+      rgba(var(--clr-primary-rgb), 0.8) 80%,
+      rgba(var(--clr-secondary-rgb), 0.8) 100%
+    );
+    backdrop-filter: blur(6px);
   }
 
   .gap {
@@ -85,8 +111,9 @@ function removeShadow() {
 
       display: flex;
       gap: 20px;
-      place-items: center;
-      text-align: center;
+      justify-content: flex-end;
+      align-items: center;
+      text-align: right;
 
       li {
         min-width: 90px;
