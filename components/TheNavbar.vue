@@ -8,6 +8,8 @@ const isOpen = ref(false);
 const isScrolled = ref(false);
 const isBlurred = ref(false);
 
+const navbar = ref(null as null | HTMLElement);
+
 const navLinks = [
   { text: "Portfolio", link: "#!" },
   { text: "About Me", link: "#!" },
@@ -23,6 +25,7 @@ function init() {
 
   trackScroll();
   trackResize();
+  trackClicks();
 }
 
 function trackResize() {
@@ -31,6 +34,10 @@ function trackResize() {
 
 function trackScroll() {
   addEventListener("scroll", onScroll);
+}
+
+function trackClicks() {
+  addEventListener("pointerdown", onClick);
 }
 
 function onResize() {
@@ -49,6 +56,12 @@ function onScroll() {
 
   if (!scrollY) markAsNotScrolled();
   else markAsScrolled();
+}
+
+function onClick(e: PointerEvent) {
+  if (!navbar.value) return;
+  const path = e.composedPath();
+  if (!path.includes(navbar.value)) closeNav();
 }
 
 function markAsScrolled() {
@@ -71,14 +84,20 @@ function toggleNav() {
   isOpen.value = !isOpen.value;
 }
 
+function closeNav() {
+  isOpen.value = false;
+}
+
 function removeEvents() {
   removeEventListener("scroll", onScroll);
   removeEventListener("resize", onResize);
+  removeEventListener("pointerdown", onClick);
 }
 </script>
 
 <template>
   <div
+    ref="navbar"
     class="navbar"
     :class="{
       'navbar--desktop': !isMobile,
