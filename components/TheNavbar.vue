@@ -1,28 +1,51 @@
 <script setup lang="ts">
 onMounted(init);
-onUnmounted(removeTrackScroll);
+onUnmounted(removeEvents);
+
+const isMobile = ref(false);
+const isOpen = ref(false);
 
 const isScrolled = ref(false);
 const isBlurred = ref(false);
 
-const navHeight = 75;
+const navLinks = [
+  { text: "Portfolio", link: "#!" },
+  { text: "About Me", link: "#!" },
+  { text: "Contact", link: "#!" },
+];
 
-function trackScroll() {
-  addEventListener("scroll", handleScroll);
-}
+const navHeight = 75;
+const navHeightOnMobile = 50;
 
 function init() {
-  handleScroll();
+  onScroll();
+  onResize();
+
   trackScroll();
+  trackResize();
 }
 
-function removeTrackScroll() {
-  removeEventListener("scroll", handleScroll);
+function trackResize() {
+  addEventListener("resize", onResize);
 }
 
-function handleScroll() {
-  if (scrollY >= navHeight) blur();
-  else unBlur();
+function trackScroll() {
+  addEventListener("scroll", onScroll);
+}
+
+function onResize() {
+  if (innerWidth <= 480) isMobile.value = true;
+  else isMobile.value = false;
+}
+
+function onScroll() {
+  if (!isMobile.value) {
+    if (scrollY >= navHeight) blur();
+    else unBlur();
+  } else {
+    if (scrollY >= navHeightOnMobile) blur();
+    else unBlur();
+  }
 
   if (!scrollY) markAsNotScrolled();
   else markAsScrolled();
@@ -43,21 +66,45 @@ function blur() {
 function unBlur() {
   isBlurred.value = false;
 }
+
+function toggleNav() {
+  isOpen.value = !isOpen.value;
+}
+
+function removeEvents() {
+  removeEventListener("scroll", onScroll);
+  removeEventListener("resize", onResize);
+}
 </script>
 
 <template>
   <div
     class="navbar"
-    :class="{ 'navbar--scrolled': isScrolled, 'navbar--blurred': isBlurred }"
+    :class="{
+      'navbar--desktop': !isMobile,
+      'navbar--mobile': isMobile,
+      'navbar--scrolled': isScrolled,
+      'navbar--blurred': isBlurred,
+      'navbar--is-open': isMobile && isOpen,
+    }"
   >
     <Container>
-      <Logo />
-      <div class="gap"></div>
+      <Logo class="logo" />
+
+      <div class="gap" v-if="!isMobile"></div>
+
+      <BurgerButton
+        v-if="isMobile"
+        :is-open="isOpen"
+        @click="toggleNav"
+        class="toggle-button"
+      />
+
       <nav>
         <ul>
-          <li><TheLink to="#!">Portfolio</TheLink></li>
-          <li><TheLink to="#!">About me</TheLink></li>
-          <li><TheLink to="#!">Contact</TheLink></li>
+          <li v-for="(link, index) in navLinks" :key="index">
+            <TheLink :to="link.link">{{ link.text }}</TheLink>
+          </li>
         </ul>
       </nav>
     </Container>
@@ -81,12 +128,6 @@ function unBlur() {
 
   transition: all ease-in-out 200ms;
 
-  ::v-deep(.container) {
-    display: flex;
-    align-items: center;
-    height: var(--nav-height);
-  }
-
   &--scrolled {
     box-shadow: #ebebeb4f 0 0 4px 0px;
   }
@@ -100,10 +141,6 @@ function unBlur() {
     backdrop-filter: blur(6px);
   }
 
-  .gap {
-    flex-grow: 1;
-  }
-
   nav {
     ul {
       list-style: none;
@@ -111,12 +148,80 @@ function unBlur() {
 
       display: flex;
       gap: 20px;
-      justify-content: flex-end;
-      align-items: center;
-      text-align: right;
 
       li {
         min-width: 90px;
+      }
+    }
+  }
+
+  &--desktop {
+    ::v-deep(.container) {
+      display: flex;
+      align-items: center;
+      height: var(--nav-height);
+    }
+
+    .gap {
+      flex-grow: 1;
+    }
+
+    nav {
+      ul {
+        justify-content: flex-end;
+        align-items: center;
+        text-align: right;
+      }
+    }
+  }
+
+  &--mobile {
+    height: var(--nav-height-on-mobile);
+
+    ::v-deep(.container) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &.navbar--scrolled {
+      box-shadow: none;
+    }
+
+    .toggle-button {
+      position: absolute;
+      top: 50%;
+      right: var(--container-padding);
+      transform: translate(-50%, -50%);
+    }
+
+    nav {
+      opacity: 0;
+      transform: translateY(-100%);
+      pointer-events: none;
+      user-select: none;
+      transition: all 200ms ease-in-out;
+
+      padding: 0.8rem;
+      width: 100vw;
+
+      background: rgba(var(--clr-primary-rgb), 0.9);
+      backdrop-filter: blur(6px);
+
+      ul {
+        flex-direction: column;
+        place-items: center;
+        text-align: center;
+      }
+    }
+
+    &.navbar--is-open {
+      nav {
+        pointer-events: all;
+        user-select: all;
+
+        transform: translateY(0);
+        opacity: 1;
       }
     }
   }

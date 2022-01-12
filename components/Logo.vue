@@ -3,8 +3,6 @@ const { color, width, height } = withDefaults(
   defineProps<{ color?: string; width?: string; height?: string }>(),
   {
     color: "var(--clr-text-light)",
-    width: "clamp(60px, 20vw, 80px)",
-    height: "clamp(37.5px, 15vw, 50px)",
   }
 );
 </script>
@@ -48,8 +46,19 @@ const { color, width, height } = withDefaults(
 @use "~/assets/styles/mixins" as *;
 
 .logo {
-  isolation: isolate;
-  width: v-bind(width);
-  height: v-bind(height);
+  display: flex;
+  place-items: center;
+
+  svg {
+    @include size(clamp(60px, 20vw, 80px), clamp(37.5px, 15vw, 50px));
+  }
+
+  @include st-mobile {
+    height: var(--nav-height-on-mobile);
+
+    svg {
+      @include size(45px, 28.125px);
+    }
+  }
 }
 </style>
