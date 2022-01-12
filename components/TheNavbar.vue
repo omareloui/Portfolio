@@ -151,7 +151,7 @@ function removeEvents() {
     box-shadow: #ebebeb4f 0 0 4px 0px;
   }
 
-  &--blurred {
+  &:not(.navbar--mobile).navbar--blurred {
     background: linear-gradient(
       10deg,
       rgba(var(--clr-primary-rgb), 0.8) 80%,
@@ -203,10 +203,6 @@ function removeEvents() {
       align-items: center;
     }
 
-    &.navbar--scrolled {
-      box-shadow: none;
-    }
-
     .toggle-button {
       position: absolute;
       top: 50%;
@@ -221,16 +217,36 @@ function removeEvents() {
       user-select: none;
       transition: all 200ms ease-in-out;
 
-      padding: 0.8rem;
-      width: 100vw;
+      width: 80%;
+      padding: 1.2rem;
+      margin-top: 10px;
 
-      background: rgba(var(--clr-primary-rgb), 0.9);
+      background: linear-gradient(
+        45deg,
+        rgba(var(--clr-primary-rgb), 0.8),
+        rgba(var(--clr-secondary-rgb), 0.8)
+      );
       backdrop-filter: blur(6px);
+
+      border-radius: 10px;
+
+      box-shadow: 0 0 14px 2px rgba(var(--clr-primary-rgb), 0.6);
 
       ul {
         flex-direction: column;
         place-items: center;
         text-align: center;
+
+        li {
+          border-radius: 5px;
+          width: 100%;
+          transition: all ease-in-out 200ms;
+          padding: 0.4rem 0;
+
+          &:hover {
+            background: var(--clr-primary);
+          }
+        }
       }
     }
 
