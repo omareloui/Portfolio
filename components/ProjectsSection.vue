@@ -1,5 +1,5 @@
 <template>
-  <SectionContainer>
+  <SectionContainer id="projects">
     <SectionHeading>Projects</SectionHeading>
     <SectionSubheading>Selected work</SectionSubheading>
 

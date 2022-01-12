@@ -1,14 +1,24 @@
+@use "~~/assets/styles/mixins" as m;
+
 ::selection {
   background: var(--clr-selection);
   color: var(--clr-text-light);
 }
 
+html {
+  --scroll-extra-padding: 5px;
+
+  scroll-padding-top: calc(var(--nav-height) + var(--scroll-extra-padding));
+  scroll-behavior: smooth;
+
+  @include m.st-mobile {
+    scroll-padding: calc(
+      var(--nav-height-on-mobile) + var(--scroll-extra-padding)
+    );
+  }
+}
+
 body {
   font-family: var(--fnt-main);
   overflow-x: hidden;
-}
-
-a {
-  color: currentColor;
-  text-decoration: none;
 }

@@ -1,5 +1,5 @@
 <template>
-  <SectionContainer>
+  <SectionContainer id="about">
     <SectionHeading>About Me</SectionHeading>
     <SectionSubheading>More on what I can do</SectionSubheading>
     <article>

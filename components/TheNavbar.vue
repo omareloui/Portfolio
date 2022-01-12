@@ -11,9 +11,9 @@ const isBlurred = ref(false);
 const navbar = ref(null as null | HTMLElement);
 
 const navLinks = [
-  { text: "Portfolio", link: "#!" },
-  { text: "About Me", link: "#!" },
-  { text: "Contact", link: "#!" },
+  { text: "Portfolio", link: "#projects" },
+  { text: "About Me", link: "#about" },
+  { text: "Contact", link: "#contact" },
 ];
 
 const navHeight = 75;
@@ -121,7 +121,7 @@ function removeEvents() {
 
       <nav>
         <ul>
-          <li v-for="(link, index) in navLinks" :key="index">
+          <li v-for="(link, index) in navLinks" :key="index" @click="closeNav">
             <TheLink :to="link.link">{{ link.text }}</TheLink>
           </li>
         </ul>
@@ -242,6 +242,8 @@ function removeEvents() {
           width: 100%;
           transition: all ease-in-out 200ms;
           padding: 0.4rem 0;
+
+          user-select: none;
 
           &:hover {
             background: var(--clr-primary);

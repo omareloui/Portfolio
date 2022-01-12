@@ -49,6 +49,9 @@ const { to, underlined, cta, gradient } = withDefaults(
   display: inline-block;
   max-width: fit-content;
 
+  color: currentColor;
+  text-decoration: none;
+
   @include text-bold;
 
   &--underlined {

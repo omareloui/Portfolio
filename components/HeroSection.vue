@@ -16,8 +16,8 @@
         </Paragraph>
 
         <Grid :columns-on-desktop="2" gap="20px" class="links">
-          <TheLink to="#!" cta large>see my work</TheLink>
-          <TheLink to="#!" large>what I can do</TheLink>
+          <TheLink to="#projects" cta large>see my work</TheLink>
+          <TheLink to="#about" large>what I can do</TheLink>
         </Grid>
       </div>
     </SectionContainer>

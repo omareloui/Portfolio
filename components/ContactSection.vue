@@ -1,5 +1,5 @@
 <template>
-  <SectionContainer>
+  <SectionContainer id="contact">
     <SectionHeading>Need a developer?</SectionHeading>
 
     <div class="section-body">
