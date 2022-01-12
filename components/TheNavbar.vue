@@ -245,6 +245,11 @@ function removeEvents() {
 
           user-select: none;
 
+          ::v-deep(a) {
+            width: 100%;
+            max-width: 100%;
+          }
+
           &:hover {
             background: var(--clr-primary);
           }
