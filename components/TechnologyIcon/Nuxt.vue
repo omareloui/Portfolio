@@ -1,0 +1,25 @@
+<template>
+  <TechnologyIcon title="Nuxt">
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      width="32px"
+      height="21.4px"
+      viewBox="0 0 32 21.4"
+      style="enable-background: new 0 0 32 21.4"
+      xml:space="preserve"
+    >
+      <path
+        fill="#90ccb2"
+        d="M14.1,1.2c-0.9-1.5-3.1-1.5-4,0L0.3,18c-0.9,1.5,0.2,3.5,2,3.5H10c-0.8-0.7-1.1-1.8-0.5-2.8l7.4-12.7L14.1,1.2z"
+      />
+      <path
+        fill="#55b578"
+        d="M20.3,4.8c0.7-1.3,2.6-1.3,3.3,0l8.1,13.7c0.7,1.3-0.2,2.8-1.7,2.8H13.9c-1.5,0-2.4-1.6-1.7-2.8 C12.2,18.6,20.3,4.8,20.3,4.8z"
+      />
+    </svg>
+  </TechnologyIcon>
+</template>

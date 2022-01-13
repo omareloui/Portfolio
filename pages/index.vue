@@ -11,6 +11,7 @@ useMeta({
     <HeroSection />
     <main>
       <ProjectsSection />
+      <TechnologiesSection />
       <AboutSection />
       <LineBreak />
       <ContactSection />

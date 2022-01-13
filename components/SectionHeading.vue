@@ -7,7 +7,7 @@
 
 .heading-section {
   font-size: var(--fnt-size-section-heading);
-  line-height: 3.3rem;
+  line-height: 3.8rem;
   @include text-black;
   @include text-gradient;
 
