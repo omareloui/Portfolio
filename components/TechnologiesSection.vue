@@ -7,7 +7,7 @@ const icons = [
   "Sass",
   "TypeScript",
   "Lit",
-  "TaliWindCss",
+  "TailWindCss",
   "Vue",
   "Nuxt",
   "ThreeJs",
