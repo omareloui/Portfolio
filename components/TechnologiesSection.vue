@@ -31,6 +31,7 @@ const icons = [
   "Netlify",
   "Heroku",
   "VSCode",
+  "Vim",
   "Illustrator",
   "Figma",
 ];
