@@ -23,7 +23,11 @@ const { title, showTitle } = withDefaults(
 @use "~~/assets/styles/mixins" as *;
 
 .technology {
-  --icon-size: 60px;
+  --icon-size: 50px;
+
+  @include st-mobile {
+    --icon-size: 35px;
+  }
 
   background: var(--clr-light);
   padding: 0.5rem;
