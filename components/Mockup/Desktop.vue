@@ -48,7 +48,6 @@ const { image, alt, width } = withDefaults(
 
     overflow: hidden;
 
-    background: #121212;
     border: 1.5px solid #444444;
     border-radius: 8.5px 8.5px 0px 0px;
   }
