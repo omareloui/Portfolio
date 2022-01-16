@@ -49,13 +49,13 @@ const { color, width, height } = withDefaults(
   display: flex;
   place-items: center;
 
+  height: var(--nav-height);
+
   svg {
     @include size(clamp(60px, 20vw, 80px), clamp(37.5px, 15vw, 50px));
   }
 
   @include st-mobile {
-    height: var(--nav-height-on-mobile);
-
     svg {
       @include size(45px, 28.125px);
     }

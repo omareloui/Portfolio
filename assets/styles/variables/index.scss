@@ -48,5 +48,8 @@
   @include mq.screens;
 
   --nav-height: 75px;
-  --nav-height-on-mobile: 50px;
+
+  @include mq.st-mobile {
+    --nav-height: 50px;
+  }
 }

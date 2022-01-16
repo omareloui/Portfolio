@@ -144,6 +144,7 @@ function removeEvents() {
     var(--clr-secondary) 100%
   );
   color: var(--clr-text-light);
+  height: var(--nav-height);
 
   transition: all ease-in-out 200ms;
 
@@ -178,7 +179,6 @@ function removeEvents() {
     ::v-deep(.container) {
       display: flex;
       align-items: center;
-      height: var(--nav-height);
     }
 
     .gap {
@@ -195,8 +195,6 @@ function removeEvents() {
   }
 
   &--mobile {
-    height: var(--nav-height-on-mobile);
-
     ::v-deep(.container) {
       display: flex;
       flex-direction: column;
