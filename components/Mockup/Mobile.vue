@@ -91,33 +91,17 @@ const { width } = withDefaults(defineProps<{ width?: string }>(), {
 
 .mobile-mockup {
   position: relative;
-  // @include size(285px, 578.91px);
-  // @include ratio-size(285px, 1/2.032);
   @include ratio-size(v-bind(width), 1/2.032);
-  // max-width: 100%;
-
-  // TODO: to remove after creation
-  // margin: 20px auto;
-  // background: #ccc;
-  // &,
-  // * {
-  //   outline: red 0.1px solid;
-  // }
 
   .screen {
     @include center;
-    // @include size(272px, 564.62px);
-    // @include ratio-size(272px, 1/2.0782);
     @include ratio-size(95.44%, 1/2.0782);
 
     background: #000000;
     border-radius: 13.97% / 6.73%;
 
     &__body {
-      // @include size(251px, 542.83px);
-      // @include ratio-size(251px, 1/2.17);
       @include ratio-size(92.276%, 1/2.17);
-
       @include center;
       overflow: hidden;
       border-radius: 10.358% / 4.793%;
@@ -125,16 +109,11 @@ const { width } = withDefaults(defineProps<{ width?: string }>(), {
 
     &__sensors {
       @include center-h;
-      // @include size(136px, 31px);
-      // @include ratio-size(136px, 1/0.228);
       @include ratio-size(50%, 1/0.228);
-
       background: #000000;
       border-radius: 0 0 8.823% 8.823% / 0 0 38.709% 38.709%;
 
       .speaker {
-        // @include size(30.35px, 5.45px);
-        // @include ratio-size(30.35px, 1/0.1795);
         @include ratio-size(22.316%, 1/0.1795);
 
         position: absolute;
@@ -149,17 +128,13 @@ const { width } = withDefaults(defineProps<{ width?: string }>(), {
         &__inside {
           position: absolute;
           @include size(100%);
-
           box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.48);
         }
 
         &__border {
-          // --border-width: 1px;
-          --border-width: 3.3%; // FIXME: won't work with "border" property some places;
-
+          --border-width: 3.3%; // TODO: won't work with "border" property some places;
           position: absolute;
           @include size(100%);
-
           background: #161616;
           background-clip: padding-box;
           border: solid var(--border-width) transparent;
@@ -181,9 +156,7 @@ const { width } = withDefaults(defineProps<{ width?: string }>(), {
       }
 
       .camera {
-        // @include size(10.9px);
         @include ratio-size(8%, 1);
-
         position: absolute;
         top: 50% + 5%;
         right: 25.73%;
@@ -246,19 +219,9 @@ const { width } = withDefaults(defineProps<{ width?: string }>(), {
   }
 
   .screen-outline {
-    // --border-width: 2px;
-    --border-width: 0.71882%; // FIXME: won't work with "border" property
-
+    --border-width: 0.71882%; // TODO: won't work with "border" property
     @include center;
-
-    // @include size(
-    //   calc(278.23px + var(--border-width)),
-    //   calc(570.58px + var(--border-width))
-    // );
-    // @include ratio-size(calc(278.23px + var(--border-width)), 1/2.05);
     @include ratio-size(calc(96.92% + var(--border-width)), 1/2.05);
-
-    // border-radius: 40px;
     border-radius: 14.376% / 7.01%;
 
     background: #050505;
@@ -283,13 +246,9 @@ const { width } = withDefaults(defineProps<{ width?: string }>(), {
     }
 
     .medial-stripes {
-      // parent: 278.27px, 569.58px
-
       &__stripe {
         position: absolute;
-        // @include size(6.62px, 5.45px);
         @include ratio-size(2.3789%, 1/0.8232);
-
         background: linear-gradient(
           90deg,
           #8f8f8f 42.01%,
@@ -298,26 +257,19 @@ const { width } = withDefaults(defineProps<{ width?: string }>(), {
         );
 
         &--top {
-          // right: 60px;
-          // top: -4px;
           right: 21.562%;
           top: -0.6%;
-
           transform: rotate(90deg);
         }
 
         &--bottom {
-          // left: 50px;
-          // bottom: -4px;
           left: 17.97%;
           bottom: -0.6%;
-
           transform: rotate(270deg);
         }
 
         @each $side in right left {
           &--#{$side} {
-            // #{$side}: -4.4px;
             #{$side}: -1%;
 
             @if $side == right {
@@ -325,12 +277,10 @@ const { width } = withDefaults(defineProps<{ width?: string }>(), {
             }
 
             &-1 {
-              // top: 48px;
               top: 8.43%;
             }
 
             &-2 {
-              // bottom: 48px;
               bottom: 8.43%;
             }
           }
@@ -339,65 +289,40 @@ const { width } = withDefaults(defineProps<{ width?: string }>(), {
     }
 
     .side-buttons {
-      // parent: 278.27px, 569.58px
-
       &__button {
         position: absolute;
-
-        // width: 2px;
         width: 0.72%;
-
         background: #353432;
 
         @each $side in right left {
           &--#{$side} {
-            // #{$side}: calc(-2.3px - var(--border-width));
             #{$side}: calc(-0.75% - var(--border-width));
           }
         }
 
         &--left {
-          // border-radius: 0.8px 0px 0px 0.8px;
-
           &-1 {
-            // top: 90px;
             top: 15.8%;
-
-            // height: 23px;
             height: 4%;
-
             border-radius: 40% 0 0 40% / 3.5% 0 0 3.5%;
           }
 
           &-2 {
-            // top: 131px;
             top: 23%;
-
-            // height: 43px;
             height: 7.5%;
-
             border-radius: 40% 0 0 40% / 1.8% 0 0 1.8%;
           }
 
           &-3 {
-            // top: 184px;
             top: 32.3%;
-
-            // height: 43px;
             height: 7.5%;
-
             border-radius: 40% 0 0 40% / 1.8% 0 0 1.8%;
           }
         }
 
         &--right {
-          // border-radius: 0px 0.8px 0.8px 0px;
           border-radius: 0 40% 40% 0 / 0 1.17% 1.17% 0;
-
-          // top: 146px;
           top: 25.63%;
-
-          // height: 68px;
           height: 11.939%;
         }
       }
