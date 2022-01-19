@@ -9,3 +9,8 @@
     height: $args;
   }
 }
+
+@mixin ratio-size($width, $ratio) {
+  width: $width;
+  aspect-ratio: $ratio;
+}
