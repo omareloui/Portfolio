@@ -1,8 +1,5 @@
 <script setup lang="ts">
-const { image, alt, width } = withDefaults(
-  defineProps<{ image: string; alt: string; width?: string }>(),
-  { width: "100%" }
-);
+const { image, alt } = defineProps<{ image: string; alt: string }>();
 </script>
 
 <template>
@@ -19,7 +16,7 @@ const { image, alt, width } = withDefaults(
 @use "~~/assets/styles/mixins" as *;
 
 .desktop-mockup {
-  --width: v-bind(width);
+  --width: 100%;
 
   &__outside {
     --padding: max(1.3%, 8px);

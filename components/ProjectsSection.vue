@@ -24,13 +24,18 @@
         mockup-styles="width: max(162%, 400px)"
       />
 
-      <!-- <ProjectPreview
+      <ProjectPreview
         description=""
         role="full thing"
         hex-color="#5F6DF2"
         title="LemmeIn"
+        logo="Alsun"
+        mockup="Mobile"
+        mockup-image="/images/projects/alsun.png"
+        mockup-alt="Lemme In's preview image"
+        mockup-styles="width: 44%"
       />
- -->
+
       <!-- <ProjectPreview
         description=""
         role="full thing"

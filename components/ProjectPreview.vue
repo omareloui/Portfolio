@@ -63,6 +63,8 @@ const {
   padding: 3rem 2rem;
   border-radius: 20px;
 
+  height: min-content;
+
   &--light-text {
     color: var(--clr-text-light);
   }

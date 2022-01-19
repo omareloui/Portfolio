@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const { width } = withDefaults(defineProps<{ width?: string }>(), {
-  width: "285px",
-});
+const { image, alt } = defineProps<{ image: string; alt: string }>();
 </script>
 
 <template>
@@ -69,7 +67,7 @@ const { width } = withDefaults(defineProps<{ width?: string }>(), {
 
     <div class="screen">
       <div class="screen__body">
-        <div class="image" style="background: ivory; height: 100%"></div>
+        <img class="screen__image" :src="image" :alt="alt" />
       </div>
 
       <div class="screen__sensors">
@@ -91,7 +89,7 @@ const { width } = withDefaults(defineProps<{ width?: string }>(), {
 
 .mobile-mockup {
   position: relative;
-  @include ratio-size(v-bind(width), 1/2.032);
+  @include ratio-size(285px, 1/2.032);
 
   .screen {
     @include center;
@@ -105,6 +103,11 @@ const { width } = withDefaults(defineProps<{ width?: string }>(), {
       @include center;
       overflow: hidden;
       border-radius: 10.358% / 4.793%;
+    }
+
+    &__image {
+      @include size(100%);
+      object-fit: cover;
     }
 
     &__sensors {
