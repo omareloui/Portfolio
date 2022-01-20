@@ -16,14 +16,12 @@ const { image, alt } = defineProps<{ image: string; alt: string }>();
 @use "~~/assets/styles/mixins" as *;
 
 .desktop-mockup {
-  --width: 100%;
-
   &__outside {
     --padding: max(1.3%, 8px);
     --padding-bottom: max(3%, 12px);
 
     aspect-ratio: 9/5;
-    width: var(--width);
+    width: 100%;
     max-width: 100%;
 
     padding: var(--padding) var(--padding) var(--padding-bottom);
@@ -52,6 +50,7 @@ const { image, alt } = defineProps<{ image: string; alt: string }>();
   &__image {
     @include size(100%);
     object-fit: cover;
+    border-radius: 8px 8px 0 0;
   }
 }
 </style>

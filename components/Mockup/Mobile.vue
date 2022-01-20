@@ -85,21 +85,22 @@ const { image, alt } = defineProps<{ image: string; alt: string }>();
 </template>
 
 <style lang="scss" scoped>
+@use "sass:math";
 @use "~~/assets/styles/mixins" as *;
 
 .mobile-mockup {
   position: relative;
-  @include ratio-size(285px, 1/2.032);
+  @include ratio-size(285px, math.div(1, 2.032));
 
   .screen {
     @include center;
-    @include ratio-size(95.44%, 1/2.0782);
+    @include ratio-size(95.44%, math.div(1, 2.0782));
 
     background: #000000;
     border-radius: 13.97% / 6.73%;
 
     &__body {
-      @include ratio-size(92.276%, 1/2.17);
+      @include ratio-size(92.276%, math.div(1, 2.17));
       @include center;
       overflow: hidden;
       border-radius: 10.358% / 4.793%;
@@ -112,12 +113,12 @@ const { image, alt } = defineProps<{ image: string; alt: string }>();
 
     &__sensors {
       @include center-h;
-      @include ratio-size(50%, 1/0.228);
+      @include ratio-size(50%, math.div(1, 0.228));
       background: #000000;
       border-radius: 0 0 8.823% 8.823% / 0 0 38.709% 38.709%;
 
       .speaker {
-        @include ratio-size(22.316%, 1/0.1795);
+        @include ratio-size(22.316%, math.div(1, 0.1795));
 
         position: absolute;
         left: 50%;
@@ -224,7 +225,7 @@ const { image, alt } = defineProps<{ image: string; alt: string }>();
   .screen-outline {
     --border-width: 0.71882%; // TODO: won't work with "border" property
     @include center;
-    @include ratio-size(calc(96.92% + var(--border-width)), 1/2.05);
+    @include ratio-size(calc(96.92% + var(--border-width)), math.div(1, 2.05));
     border-radius: 14.376% / 7.01%;
 
     background: #050505;
@@ -251,7 +252,7 @@ const { image, alt } = defineProps<{ image: string; alt: string }>();
     .medial-stripes {
       &__stripe {
         position: absolute;
-        @include ratio-size(2.3789%, 1/0.8232);
+        @include ratio-size(2.3789%, math.div(1, 0.8232));
         background: linear-gradient(
           90deg,
           #8f8f8f 42.01%,
