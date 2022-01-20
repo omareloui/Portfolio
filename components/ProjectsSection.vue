@@ -4,18 +4,35 @@
     <SectionSubheading>Selected work</SectionSubheading>
 
     <Grid class="projects" :columns-on-desktop="2" gap="30px">
-      <!-- <ProjectPreview
-        description="testing the description"
-        role="full thing"
-        hex-color="#262e2d"
-        title="Odin Leather Store"
-        light-text
-      />
- -->
       <ProjectPreview
         description=""
         role="full thing"
-        hex-color="#FFEE58"
+        hex-color="#262e2d"
+        title="Odin Leather Store"
+        logo="Odin"
+        mockup="Desktop"
+        mockup-image="/images/projects/alsun.png"
+        mockup-alt="Odin's preview image"
+        mockup-styles="width: max(162%, 400px)"
+        light-text
+      />
+
+      <ProjectPreview
+        description=""
+        role="full thing"
+        hex-color="#5f6df2"
+        title="LemmeIn"
+        logo="LemmeIn"
+        mockup="Mobile"
+        mockup-image="/images/projects/alsun.png"
+        mockup-alt="Lemme In's preview image"
+        mockup-styles="width: 44%"
+      />
+
+      <ProjectPreview
+        description=""
+        role="full thing"
+        hex-color="#ffee58"
         title="Alsun Yearbook"
         logo="Alsun"
         mockup="Desktop"
@@ -27,21 +44,14 @@
       <ProjectPreview
         description=""
         role="full thing"
-        hex-color="#5F6DF2"
-        title="LemmeIn"
-        logo="Alsun"
+        hex-color="#ed244e"
+        title="Gemini"
+        logo="Gemini"
         mockup="Mobile"
         mockup-image="/images/projects/alsun.png"
-        mockup-alt="Lemme In's preview image"
+        mockup-alt="Gemini's preview image"
         mockup-styles="width: 44%"
       />
-
-      <!-- <ProjectPreview
-        description=""
-        role="full thing"
-        hex-color="#ED244E"
-        title="Gemini"
-      /> -->
     </Grid>
   </SectionContainer>
 </template>
