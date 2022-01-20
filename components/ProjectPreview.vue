@@ -85,11 +85,10 @@ const {
   }
 
   &__logo {
-    position: absolute;
-    inset: 0;
-    margin: auto;
-
+    @include center;
     @include size(80%);
+
+    opacity: 0.2;
   }
 }
 </style>
