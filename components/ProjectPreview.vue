@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type Mockup = "Desktop" | "Mobile";
+import type { ProjectPreviewProps, Mockup } from "~~/@types";
 
 interface Props {
   title: string;
@@ -12,17 +12,11 @@ interface Props {
 
   logo: string;
 
-  mockup: Mockup | Mockup[];
-  mockupImage: string | string[];
-  mockupStyles: string | string[];
+  mockup: Mockup[];
+  mockupImage: string[];
+  mockupStyles: string[];
 
   mockupsStyles?: string;
-}
-
-interface MockInfo {
-  mockup: Mockup;
-  image: string;
-  styles: string;
 }
 
 const {
@@ -36,33 +30,25 @@ const {
   mockup,
   mockupImage,
   mockupStyles,
+  mockupsStyles,
 } = withDefaults(defineProps<Props>(), {
   lightText: false,
   height: "min-content",
 });
 
-const mockupsInfo = [] as MockInfo[];
+const emit = defineEmits(["show-no-link-popup"]);
 
-function setMockups() {
-  const mocks = typeof mockup === "string" ? [mockup] : mockup;
-  const images = typeof mockupImage === "string" ? [mockupImage] : mockupImage;
-  const styles =
-    typeof mockupStyles === "string" ? [mockupStyles] : mockupStyles;
-
-  for (const [i, mock] of mocks.entries()) {
-    mockupsInfo.push({
-      mockup: mock,
-      image: images[i],
-      styles: styles[i],
-    });
-  }
+interface MockInfo {
+  mockup: Mockup;
+  image: string;
+  styles: string;
 }
 
-function showToAddLinkSoon() {
-  console.log("TODO:");
-}
-
-setMockups();
+const mockupsInfo = mockup.map((mockup, i) => ({
+  mockup,
+  image: mockupImage[i],
+  styles: mockupStyles[i],
+})) as MockInfo[];
 </script>
 
 <template>
@@ -72,7 +58,7 @@ setMockups();
     :href="link"
     class="project-preview"
     :class="{ 'project-preview--light-text': lightText }"
-    @click="!link && showToAddLinkSoon()"
+    @click="!link && emit('show-no-link-popup')"
   >
     <component v-if="logo" class="project-preview__logo" :is="`Logo${logo}`" />
 

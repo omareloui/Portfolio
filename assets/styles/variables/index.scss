@@ -17,6 +17,11 @@
     var(--clr-primary),
     var(--clr-secondary)
   );
+  --clr-primary-gradient-opacified: linear-gradient(
+    to right,
+    rgb(var(--clr-primary-rgb), 0.4),
+    rgb(var(--clr-secondary-rgb), 0.4)
+  );
 
   --clr-link-gradient-1: #07effd;
   --clr-link-gradient-2: #005fff;
