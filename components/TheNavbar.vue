@@ -119,13 +119,19 @@ function removeEvents() {
         class="toggle-button"
       />
 
-      <nav>
-        <ul>
-          <li v-for="(link, index) in navLinks" :key="index" @click="closeNav">
-            <TheLink :to="link.link">{{ link.text }}</TheLink>
-          </li>
-        </ul>
-      </nav>
+      <Teleport :disabled="!isMobile" to=".navbar">
+        <nav>
+          <ul>
+            <li
+              v-for="(link, index) in navLinks"
+              :key="index"
+              @click="closeNav"
+            >
+              <TheLink :to="link.link">{{ link.text }}</TheLink>
+            </li>
+          </ul>
+        </nav>
+      </Teleport>
     </Container>
   </div>
 </template>
@@ -149,7 +155,7 @@ function removeEvents() {
   transition: all ease-in-out 200ms;
 
   &--scrolled {
-    box-shadow: #ebebeb4f 0 0 4px 0px;
+    box-shadow: #7534ffbd 0 0 15px 2px;
   }
 
   &:not(.navbar--mobile).navbar--blurred {
@@ -196,21 +202,20 @@ function removeEvents() {
 
   &--mobile {
     ::v-deep(.container) {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: grid;
+      grid-template-columns: 1fr 50px;
+      place-items: center;
     }
 
-    .toggle-button {
-      position: absolute;
-      top: 50%;
-      right: var(--container-padding);
-      transform: translate(-50%, -50%);
+    .logo {
+      transform: translateX(25px);
     }
 
     nav {
+      @include center-h;
+      position: absolute;
       opacity: 0;
-      transform: translateY(-100%);
+      transform: translate(-50%, -150%);
       pointer-events: none;
       user-select: none;
       transition: all 200ms ease-in-out;
@@ -260,7 +265,7 @@ function removeEvents() {
         pointer-events: all;
         user-select: all;
 
-        transform: translateY(0);
+        transform: translate(-50%, var(--nav-height));
         opacity: 1;
       }
     }

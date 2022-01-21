@@ -38,7 +38,6 @@ header {
   color: var(--clr-text-light);
 
   padding-bottom: 3vh;
-  padding-top: 3vh;
 
   .subtitle,
   .hi {
