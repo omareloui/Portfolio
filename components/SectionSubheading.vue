@@ -1,5 +1,7 @@
 <template>
-  <div class="subheading" role="doc-subtitle"><slot></slot></div>
+  <div class="subheading" role="doc-subtitle" aria-roledescription="subtitle">
+    <slot></slot>
+  </div>
 </template>
 
 <style lang="scss" scoped>

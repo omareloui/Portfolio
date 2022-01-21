@@ -109,6 +109,7 @@ const { image, alt } = defineProps<{ image: string; alt: string }>();
     &__image {
       @include size(100%);
       object-fit: cover;
+      object-position: top center;
     }
 
     &__sensors {
