@@ -9,15 +9,13 @@
         <Heading level="h1">I build stuff for the web</Heading>
         <Paragraph class="subtitle">and design when it comes to it</Paragraph>
         <Paragraph class="body">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate
-          dolorem consequatur provident non eaque, commodi unde corrupti,
-          architecto culpa pariatur nam eos quam? In, a tempore eos laborum
-          sequi adipisci.
+          I'll help you deliver the story you have to the world through web
+          applications.
         </Paragraph>
 
         <Grid :columns-on-desktop="2" gap="20px" class="links">
           <TheLink to="#projects" cta large>see my work</TheLink>
-          <TheLink to="#about" large>what I can do</TheLink>
+          <TheLink to="#capabilities" large>what I can do</TheLink>
         </Grid>
       </div>
     </SectionContainer>

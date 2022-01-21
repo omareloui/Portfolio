@@ -12,7 +12,7 @@ const navbar = ref(null as null | HTMLElement);
 
 const navLinks = [
   { text: "Portfolio", link: "#projects" },
-  { text: "About Me", link: "#about" },
+  { text: "Capabilities", link: "#capabilities" },
   { text: "Contact", link: "#contact" },
 ];
 
@@ -174,10 +174,6 @@ function removeEvents() {
 
       display: flex;
       gap: 20px;
-
-      li {
-        min-width: 90px;
-      }
     }
   }
 
