@@ -37,6 +37,34 @@ const projects = [
       "width: 60%; position: absolute; top: 125%; right: -18%; transform: translateY(-100%);",
     ],
   },
+  // {
+  //   role: "full thing",
+  //   hexColor: "#262e2d",
+  //   title: "Odin Leather Store",
+  //   logo: "Odin",
+  //   mockup: "Desktop",
+  //   mockupImage: "/images/projects/alsun.png",
+  //   mockupStyles: "width: max(162%, 400px)",
+  //   lightText: true,
+  // },
+  // {
+  //   role: "full thing",
+  //   hexColor: "#ed244e",
+  //   title: "Gemini",
+  //   logo: "Gemini",
+  //   mockup: "Mobile",
+  //   mockupImage: "/images/projects/alsun.png",
+  //   mockupStyles: "width: 44%",
+  // },
+  //
+  // TODO:
+  // {
+  //   role: "full thing",
+  //   hexColor: "#ffffff",
+  //   title: "Najeh's Portfolio",
+  //   logo: "Najeh",
+  //   mockup: "Desktop",
+  // },
 ] as ProjectPreviewProps[];
 </script>
 
@@ -52,46 +80,15 @@ const projects = [
         v-bind="project"
         @show-no-link-popup="isProjectLinkAvailablePopupShown = true"
       />
-
-      <!-- <ProjectPreview
-        role="full thing"
-        hex-color="#262e2d"
-        title="Odin Leather Store"
-        logo="Odin"
-        mockup="Desktop"
-        mockup-image="/images/projects/alsun.png"
-        mockup-styles="width: max(162%, 400px)"
-        light-text
-      /> -->
-
-      <!-- <ProjectPreview
-        role="full thing"
-        hex-color="#ed244e"
-        title="Gemini"
-        logo="Gemini"
-        mockup="Mobile"
-        mockup-image="/images/projects/alsun.png"
-        mockup-styles="width: 44%"
-      /> -->
-
-      <!-- TODO: -->
-      <!--
-        <ProjectPreview
-        role="full thing"
-        hex-color="#ffffff"
-        title="Najeh's Portfolio"
-        logo="Najeh"
-        mockup="Desktop"
-      /> -->
     </Grid>
+  </SectionContainer>
 
-    <!-- <teleport to="body">
+  <Transition name="fade">
     <ProjectNotAvailablePopup
       v-if="isProjectLinkAvailablePopupShown"
       @close="isProjectLinkAvailablePopupShown = false"
     />
-  </teleport> -->
-  </SectionContainer>
+  </Transition>
 </template>
 
 <style lang="scss" scoped>

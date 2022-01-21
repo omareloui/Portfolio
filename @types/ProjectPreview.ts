@@ -7,8 +7,6 @@ export interface ProjectPreviewProps {
   hexColor: string;
   lightText?: boolean;
 
-  height?: string;
-
   logo: string;
 
   mockup: Mockup[];
