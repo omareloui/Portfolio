@@ -29,11 +29,15 @@
   --clr-light: #ffffff;
   --clr-light-2: #e0e0e0;
 
-  --clr-text: #131313;
+  --clr-dark: #131313;
+  --clr-dark-rgb: 19, 19, 19;
+
+  --clr-text: var(--clr-dark);
   --clr-text-dark-1: #595959;
 
   --clr-text-light: #f2f2f2;
   --clr-text-light-2: #f2f2f299;
+  --clr-text-light-rgb: 242, 242, 242;
 
   --fnt-main: "Poppins", sans-serif;
   --fnt-watermark: "Monument Extended", sans-serif;

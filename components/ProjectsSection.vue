@@ -7,7 +7,7 @@ const projects = [
   {
     title: "Alsun Yearbook",
     link: "https://alsun.herokuapp.com",
-    role: "full thing",
+    role: "Responsible for the full application",
     hexColor: "#ffee58",
     logo: "Alsun",
     mockup: ["Desktop"],
@@ -16,7 +16,7 @@ const projects = [
   },
   {
     title: "LemmeIn",
-    role: "full thing",
+    role: "Responsible for the full application",
     hexColor: "#5f6df2",
     logo: "LemmeIn",
     mockup: ["Mobile", "Mobile"],
@@ -38,7 +38,7 @@ const projects = [
     ],
   },
   // {
-  //   role: "full thing",
+  //   role: "Responsible for the full application",
   //   hexColor: "#262e2d",
   //   title: "Odin Leather Store",
   //   logo: "Odin",
@@ -48,7 +48,7 @@ const projects = [
   //   lightText: true,
   // },
   // {
-  //   role: "full thing",
+  //   role: "Responsible for the full application",
   //   hexColor: "#ed244e",
   //   title: "Gemini",
   //   logo: "Gemini",
@@ -59,7 +59,7 @@ const projects = [
   //
   // TODO:
   // {
-  //   role: "full thing",
+  //   role: "Responsible for the full application",
   //   hexColor: "#ffffff",
   //   title: "Najeh's Portfolio",
   //   logo: "Najeh",

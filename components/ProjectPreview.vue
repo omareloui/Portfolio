@@ -93,6 +93,7 @@ const mockupsInfo = mockup.map((mockup, i) => ({
   background: v-bind(hexColor);
   color: var(--clr-text);
   text-decoration: none;
+  box-shadow: 0 0 1.5rem rgba(var(--clr-dark-rgb), 0.4);
 
   padding: 3rem 2rem;
   border-radius: 20px;
