@@ -161,8 +161,8 @@ function removeEvents() {
   &:not(.navbar--mobile).navbar--blurred {
     background: linear-gradient(
       10deg,
-      rgba(var(--clr-primary-rgb), 0.8) 80%,
-      rgba(var(--clr-secondary-rgb), 0.8) 100%
+      rgba(var(--clr-primary-rgb), 0.5) 80%,
+      rgba(var(--clr-secondary-rgb), 0.5) 100%
     );
     backdrop-filter: blur(6px);
   }
