@@ -60,11 +60,14 @@ const { to, underlined, cta, gradient } = withDefaults(
     background-repeat: no-repeat;
     background-size: 100% 0.4rem;
     background-position: 0 80%;
-    transition: background 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+
+    font-weight: var(--fnt-weight-normal);
 
     &:hover,
     &:focus {
       background-size: 100% 90%;
+      color: var(--clr-text-light);
     }
 
     &:focus {

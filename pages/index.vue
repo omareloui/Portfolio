@@ -13,7 +13,7 @@ useMeta({
       <ProjectsSection />
       <CapabilitiesSection />
       <TechnologiesSection />
-      <!-- <AboutSection /> -->
+      <AboutSection />
       <LineBreak />
       <ContactSection />
       <SocialMediaSection />

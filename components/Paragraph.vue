@@ -1,3 +1,9 @@
+<script setup lang="ts">
+const { padding } = withDefaults(defineProps<{ padding?: string }>(), {
+  padding: "0.6rem 0",
+});
+</script>
+
 <template>
   <p><slot></slot></p>
 </template>
@@ -7,7 +13,8 @@
 
 p {
   @include text-regular;
-  padding: 0.6rem 0;
+
+  padding: v-bind(padding);
   font-size: var(--fnt-size-normal);
 
   @include st-tablet {

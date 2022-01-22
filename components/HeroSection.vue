@@ -3,14 +3,14 @@
     <Watermark />
     <SectionContainer no-margin-top>
       <div class="content">
-        <Paragraph class="hi"
-          >Hi there <span class="emoji">👋</span>, I'm Omar.</Paragraph
-        >
+        <Paragraph class="hi">
+          Hi there <span class="emoji">👋</span>, I'm Omar.
+        </Paragraph>
         <Heading level="h1">I build stuff for the web</Heading>
-        <Paragraph class="subtitle">and design when it comes to it</Paragraph>
+        <Paragraph class="subtitle">and design, sometimes</Paragraph>
         <Paragraph class="body">
           I'll help you deliver the story you have to the world through web
-          applications.
+          applications
         </Paragraph>
 
         <Grid :columns-on-desktop="2" gap="20px" class="links">
