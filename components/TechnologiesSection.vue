@@ -22,6 +22,7 @@ const icons = [
   "MongoDB",
   "MySQL",
   "JWT",
+  "RestAPI",
   "GraphQL",
   "NPM",
   "PNPM",
