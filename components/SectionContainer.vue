@@ -5,7 +5,7 @@ const { gap, noMarginBottom, noMarginTop } = withDefaults(
     noMarginBottom?: boolean;
     gap?: string;
   }>(),
-  { noMarginBottom: false, noMarginTop: false, gap: "30px" }
+  { noMarginBottom: false, noMarginTop: false, gap: "50px" }
 );
 </script>
 

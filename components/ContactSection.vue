@@ -1,6 +1,6 @@
 <template>
   <SectionContainer id="contact">
-    <SectionHeading>Need a developer?</SectionHeading>
+    <SectionHeading left-on-tablet>Need a developer?</SectionHeading>
 
     <div class="section-body">
       <div class="section-body__left">

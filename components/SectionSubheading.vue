@@ -12,10 +12,8 @@
   color: var(--clr-text-dark-1);
   font-size: var(--fnt-size-section-subheading);
   font-style: italic;
-  @include text-bold;
+  text-align: center;
 
-  @include st-tablet {
-    text-align: center;
-  }
+  @include text-bold;
 }
 </style>

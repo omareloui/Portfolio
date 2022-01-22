@@ -1,5 +1,19 @@
+<script setup lang="ts">
+const { leftOnTablet } = withDefaults(
+  defineProps<{ leftOnTablet?: boolean }>(),
+  {
+    leftOnTablet: false,
+  }
+);
+</script>
+
 <template>
-  <h2 class="heading-section"><slot></slot></h2>
+  <h2
+    class="heading-section"
+    :class="{ 'heading-section--left-on-desktop': leftOnTablet }"
+  >
+    <slot></slot>
+  </h2>
 </template>
 
 <style lang="scss" scoped>
@@ -8,12 +22,17 @@
 .heading-section {
   font-size: var(--fnt-size-section-heading);
   line-height: 3.8rem;
+  text-align: center;
   @include text-black;
   @include text-gradient;
 
-  @include st-tablet {
-    text-align: center;
-    margin: auto;
+  margin: auto;
+
+  &--left-on-desktop {
+    @include lt-tablet {
+      text-align: left;
+      margin: unset;
+    }
   }
 }
 </style>
