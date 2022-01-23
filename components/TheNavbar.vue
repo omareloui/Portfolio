@@ -107,32 +107,34 @@ function removeEvents() {
       'navbar--is-open': isMobile && isOpen,
     }"
   >
-    <Container>
-      <Logo class="logo" />
+    <div class="content">
+      <Container>
+        <Logo class="logo" />
 
-      <div class="gap" v-if="!isMobile"></div>
+        <div class="gap" v-if="!isMobile"></div>
 
-      <BurgerButton
-        v-if="isMobile"
-        :is-open="isOpen"
-        @click="toggleNav"
-        class="toggle-button"
-      />
+        <BurgerButton
+          v-if="isMobile"
+          :is-open="isOpen"
+          @click="toggleNav"
+          class="toggle-button"
+        />
 
-      <Teleport :disabled="!isMobile" to=".navbar">
-        <nav>
-          <ul>
-            <li
-              v-for="(link, index) in navLinks"
-              :key="index"
-              @click="closeNav"
-            >
-              <TheLink :to="link.link">{{ link.text }}</TheLink>
-            </li>
-          </ul>
-        </nav>
-      </Teleport>
-    </Container>
+        <Teleport :disabled="!isMobile" to=".navbar">
+          <nav>
+            <ul>
+              <li
+                v-for="(link, index) in navLinks"
+                :key="index"
+                @click="closeNav"
+              >
+                <TheLink :to="link.link">{{ link.text }}</TheLink>
+              </li>
+            </ul>
+          </nav>
+        </Teleport>
+      </Container>
+    </div>
   </div>
 </template>
 
@@ -144,11 +146,6 @@ function removeEvents() {
   position: sticky;
   top: 0;
 
-  background: linear-gradient(
-    10deg,
-    var(--clr-primary) 80%,
-    var(--clr-secondary) 100%
-  );
   color: var(--clr-text-light);
   height: var(--nav-height);
 
@@ -158,7 +155,16 @@ function removeEvents() {
     box-shadow: #7534ffbd 0 0 15px 2px;
   }
 
-  &:not(.navbar--mobile).navbar--blurred {
+  .content {
+    height: 100%;
+    background: linear-gradient(
+      10deg,
+      var(--clr-primary) 80%,
+      var(--clr-secondary) 100%
+    );
+  }
+
+  &.navbar--blurred .content {
     background: linear-gradient(
       10deg,
       rgba(var(--clr-primary-rgb), 0.5) 80%,
@@ -222,8 +228,8 @@ function removeEvents() {
 
       background: linear-gradient(
         45deg,
-        rgba(var(--clr-primary-rgb), 0.8),
-        rgba(var(--clr-secondary-rgb), 0.8)
+        rgba(var(--clr-primary-rgb), 0.9),
+        rgba(var(--clr-secondary-rgb), 0.5)
       );
       backdrop-filter: blur(6px);
 
