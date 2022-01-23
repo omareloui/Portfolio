@@ -15,6 +15,17 @@ const projects = [
     mockupStyles: ["width: max(162%, 400px)"],
   },
   {
+    title: "Najeh's Portfolio",
+    link: "https://najeh.netlify.app",
+    role: "Responsible for the full application",
+    hexColor: "#121212",
+    logo: "Najeh",
+    lightText: true,
+    mockup: ["Desktop"],
+    mockupImage: ["/images/projects/najeh.png"],
+    mockupStyles: ["width: max(162%, 400px)"],
+  },
+  {
     title: "LemmeIn",
     role: "Responsible for the full application",
     hexColor: "#5f6df2",
@@ -57,14 +68,6 @@ const projects = [
   //   mockupStyles: "width: 44%",
   // },
   //
-  // TODO:
-  // {
-  //   role: "Responsible for the full application",
-  //   hexColor: "#ffffff",
-  //   title: "Najeh's Portfolio",
-  //   logo: "Najeh",
-  //   mockup: "Desktop",
-  // },
 ] as ProjectPreviewProps[];
 </script>
 
