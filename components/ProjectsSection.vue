@@ -12,7 +12,7 @@ const projects = [
     logo: "Alsun",
     mockup: ["Desktop"],
     mockupImage: ["/images/projects/alsun.png"],
-    mockupStyles: ["width: max(162%, 400px)"],
+    mockupStyles: ["width: max(130%, 400px)"],
   },
   {
     title: "Najeh's Portfolio",
@@ -23,7 +23,7 @@ const projects = [
     lightText: true,
     mockup: ["Desktop"],
     mockupImage: ["/images/projects/najeh.png"],
-    mockupStyles: ["width: max(162%, 400px)"],
+    mockupStyles: ["width: max(130%, 400px)"],
   },
   {
     title: "LemmeIn",
