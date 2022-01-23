@@ -5,43 +5,23 @@
 
     <div class="capabilities-body">
       <div class="capability">
-        <span class="capability__emoji">😍</span>
-        <h3 class="capability__heading">UX/UI Design</h3>
-        <ul class="capability__body">
-          <li>User Experience Design</li>
-          <li>Rapid Prototyping</li>
-          <li>Usability Testing</li>
-          <li>UX Reviews</li>
-          <li>Interaction Design</li>
-          <li>Customer journeys</li>
-        </ul>
-      </div>
-
-      <div class="capability">
-        <span class="capability__emoji">🎨</span>
-        <h3 class="capability__heading">Product Design</h3>
-        <ul class="capability__body">
-          <li>User Interface Design</li>
-          <li>Visual Design</li>
-          <li>Visual Identities</li>
-          <li>Design Systems</li>
-          <li>Responsive & Mobile Websites</li>
-          <li>Modular Grid Systems</li>
-          <li>Brand guidelines</li>
-        </ul>
-      </div>
-
-      <div class="capability">
-        <span class="capability__emoji">👨🏼‍💻</span>
+        <span class="capability__indicator">01.</span>
         <h3 class="capability__heading">Development</h3>
-        <ul class="capability__body">
-          <li>Front-end development</li>
-          <li>Responsive & Mobile Websites</li>
-          <li>Mobile apps</li>
-          <li>Animations</li>
-          <li>SaaS applications</li>
-          <li>Platform solutions</li>
-        </ul>
+        <div class="capability__body">
+          I love working on complex web applications and delivering easy to use,
+          beautiful product. I can develop new products from the ground up, or
+          adapt and customize existing application.
+        </div>
+      </div>
+
+      <div class="capability">
+        <span class="capability__indicator">02.</span>
+        <h3 class="capability__heading">Design</h3>
+        <div class="capability__body">
+          I design user-centric, modern interfaces for digital products or
+          services which helps transfers the brand's strengths and visual assets
+          to a product's interface.
+        </div>
       </div>
     </div>
   </SectionContainer>
@@ -52,10 +32,8 @@
 
 .capabilities-body {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-
-  margin-top: 20px;
 
   text-align: center;
 
@@ -64,11 +42,28 @@
   }
 
   .capability {
-    &__emoji {
-      font-size: 2rem;
+    position: relative;
+    margin-top: 60px;
+    @include st-tablet {
+      margin-top: 45px;
+    }
 
-      @include st-mobile {
-        font-size: 1.8rem;
+    &__indicator {
+      z-index: -1;
+      position: absolute;
+      inset: -90px auto auto 0;
+
+      font-size: 8rem;
+      font-weight: var(--fnt-weight-black);
+
+      opacity: 0.2;
+      color: var(--clr-primary);
+
+      @include st-tablet {
+        font-size: 5rem;
+        top: -65px;
+        left: 50%;
+        transform: translateX(-160px);
       }
     }
 
@@ -82,9 +77,6 @@
     }
 
     &__body {
-      list-style: none;
-
-      margin: 0;
       padding: 0.6rem 0;
 
       @include text-regular;
