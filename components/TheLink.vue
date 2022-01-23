@@ -62,7 +62,7 @@ const { to, underlined, cta, gradient } = withDefaults(
     background-position: 0 80%;
     transition: all 200ms ease-in-out;
 
-    font-weight: var(--fnt-weight-normal);
+    font-weight: var(--fnt-weight-regular);
 
     &:hover,
     &:focus {

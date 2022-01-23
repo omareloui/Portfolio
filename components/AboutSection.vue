@@ -13,26 +13,26 @@
 
         <Paragraph padding="0.1rem 0"> -->
           My interest in web development started back in 2017, when I started to
-          build programs and applications to help me automate stuff I do
-          regularly or solve problems in my day-to-day life with code. Since
-          then I started sharpening my skills to start working as a freelancer.
+          build scripts and applications to help me automate tasks I do
+          regularly or solve problems in my day-to-day life. Since then and I
+          started sharpening my skills to start working as a freelancer.
         </Paragraph>
 
-        <Paragraph padding="0.1rem 0">
+        <!-- <Paragraph padding="0.1rem 0">
           I'm excited to make the leap and continue refining my skills with the
           right company.
-        </Paragraph>
+        </Paragraph> -->
 
-        <Paragraph padding="0.8rem 0 0"
-          >Other than developing I enjoy leather work, you can check my
-          Instagram
+        <Paragraph>
+          Other than developing I enjoy leather work, you can check my leather
+          work Instagram
           <TheLink
             underlined
             to="https://instagram.com/odinleatherstore"
             new-tab
             >@odinleatherstore</TheLink
-          >.</Paragraph
-        >
+          >.
+        </Paragraph>
       </article>
     </div>
   </SectionContainer>
@@ -43,7 +43,7 @@
 
 #about {
   .body {
-    --image-size: min(30vw, 500px);
+    --image-size: min(30vw, 350px);
 
     display: grid;
     grid-template-columns: 1fr var(--image-size);
@@ -63,31 +63,47 @@
     }
 
     .image-wrapper {
+      --border-width: 5px;
+
       position: relative;
       grid-area: image;
-      @include size(var(--image-size));
+
+      border: solid var(--border-width) transparent;
       border-radius: 30px;
-      overflow: hidden;
+
+      width: calc(var(--image-size) - (var(--border-width) * 2));
+      aspect-ratio: 1;
 
       @include st-tablet {
-        width: 100%;
-        height: 100%;
+        --image-size: 80%;
       }
 
       img {
-        display: block;
         object-fit: cover;
-        border-radius: 30px;
+        border-radius: 28px;
+        @include center;
         @include size(100%);
       }
 
-      &::after {
+      &::after,
+      &::before {
         content: "";
         position: absolute;
         inset: 0;
-        @include size(100%);
+      }
+
+      &::before {
+        z-index: -1;
+        margin: calc(var(--border-width) * -1);
+        background: var(--clr-primary-gradient);
         border-radius: inherit;
+      }
+
+      &::after {
         background: rgb(var(--clr-primary-rgb), 0.25);
+        border-radius: 28px;
+        @include center;
+        @include size(100%);
       }
     }
   }
