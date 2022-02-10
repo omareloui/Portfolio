@@ -1,14 +1,15 @@
 <script setup lang="ts">
-const { color, width, height } = withDefaults(
-  defineProps<{ color?: string; width?: string; height?: string }>(),
-  {
-    color: "var(--clr-text-light)",
-  }
-);
+const { color } = withDefaults(defineProps<{ color?: string }>(), {
+  color: "var(--clr-text-light)",
+});
+
+function scrollToTop() {
+  scrollTo(0, 0);
+}
 </script>
 
 <template>
-  <div class="logo">
+  <div class="logo" @click="scrollToTop">
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -48,8 +49,9 @@ const { color, width, height } = withDefaults(
 .logo {
   display: flex;
   place-items: center;
-
   height: var(--nav-height);
+
+  cursor: pointer;
 
   svg {
     @include size(clamp(60px, 20vw, 80px), clamp(37.5px, 15vw, 50px));
