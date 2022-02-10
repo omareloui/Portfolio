@@ -32,7 +32,6 @@ header {
   position: relative;
   background: var(--bg);
   width: 100%;
-  min-height: calc(100vh - var(--nav-height));
   color: var(--clr-text-light);
 
   padding-bottom: 3vh;
@@ -44,6 +43,16 @@ header {
 
   .hi {
     font-size: clamp(1.2rem, 10vw, 1.8rem);
+  }
+
+  ::v-deep(section.container) {
+    display: grid;
+    align-items: center;
+    min-height: calc(100vh - var(--nav-height));
+
+    @include st-tablet {
+      min-height: fit-content;
+    }
   }
 
   .content {
