@@ -1,7 +1,7 @@
 <template>
   <header>
     <Watermark />
-    <SectionContainer no-margin-top>
+    <SectionContainer no-margin-top no-margin-bottom>
       <div class="content">
         <Paragraph class="hi">
           Hi there <span class="emoji">👋</span>, I'm Omar.
@@ -34,7 +34,7 @@ header {
   width: 100%;
   color: var(--clr-text-light);
 
-  padding-bottom: 3vh;
+  padding-bottom: 6vh;
 
   .subtitle,
   .hi {
