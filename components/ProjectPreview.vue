@@ -52,8 +52,8 @@ const mockupsInfo = mockup.map((mockup, i) => ({
 </script>
 
 <template>
-  <component
-    :is="link ? 'a' : 'div'"
+  <ClickableElement
+    :tag="link ? 'a' : 'div'"
     :target="(link && '_blank') || undefined"
     :href="link"
     class="project-preview"
@@ -77,7 +77,7 @@ const mockupsInfo = mockup.map((mockup, i) => ({
         :alt="`${title}'s project preview image.`"
       />
     </div>
-  </component>
+  </ClickableElement>
 </template>
 
 <style lang="scss" scoped>
@@ -99,8 +99,6 @@ const mockupsInfo = mockup.map((mockup, i) => ({
   border-radius: 20px;
 
   height: var(--height);
-
-  cursor: pointer;
 
   transition: transform ease-in-out 200ms;
 

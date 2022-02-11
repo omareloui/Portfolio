@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { activatecursor, deactivatecursor } from "~~/assets/events";
+
 const { to, underlined, cta, gradient } = withDefaults(
   defineProps<{
     to: string;
@@ -16,10 +18,18 @@ const { to, underlined, cta, gradient } = withDefaults(
     gradient: false,
   }
 );
+
+function onMouseEnter() {
+  dispatchEvent(activatecursor);
+}
+
+function onMouseLeave() {
+  dispatchEvent(deactivatecursor);
+}
 </script>
 
 <template>
-  <a
+  <LinkBase
     :href="to"
     class="link"
     :class="{
@@ -29,11 +39,13 @@ const { to, underlined, cta, gradient } = withDefaults(
       'link--gradient': gradient,
     }"
     :target="newTab ? '_blank' : undefined"
+    @mouseenter="onMouseEnter"
+    @mouseleave="onMouseLeave"
   >
     <span class="link__content">
       <slot></slot>
     </span>
-  </a>
+  </LinkBase>
 </template>
 
 <style lang="scss" scoped>

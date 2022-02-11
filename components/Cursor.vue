@@ -112,15 +112,15 @@ function onResize() {
 function initEvents() {
   addEventListener("mousemove", onMouseMove);
   addEventListener("resize", onResize);
-  // addEventListener("activatecursor", onActivateCursor);
-  // addEventListener("deactivatecursor", onDeactivateCursor);
+  addEventListener("activatecursor", onActivateCursor);
+  addEventListener("deactivatecursor", onDeactivateCursor);
 }
 
 function removeEvents() {
   removeEventListener("mousemove", onMouseMove);
   removeEventListener("resize", onResize);
-  // removeEventListener("activatecursor", onActivateCursor);
-  // removeEventListener("deactivatecursor", onDeactivateCursor);
+  removeEventListener("activatecursor", onActivateCursor);
+  removeEventListener("deactivatecursor", onDeactivateCursor);
 }
 
 function destroy() {

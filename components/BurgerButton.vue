@@ -4,7 +4,7 @@ const emit = defineEmits(["click"]);
 </script>
 
 <template>
-  <button
+  <ButtonBase
     class="burger"
     :class="{ 'burger--open': isOpen }"
     @click="emit('click')"
@@ -12,7 +12,7 @@ const emit = defineEmits(["click"]);
     <span class="burger__line burger__line--1"></span>
     <span class="burger__line burger__line--2"></span>
     <span class="burger__line burger__line--3"></span>
-  </button>
+  </ButtonBase>
 </template>
 
 <style lang="scss" scoped>
@@ -26,7 +26,6 @@ const emit = defineEmits(["click"]);
 
   background: none;
   border: none;
-  cursor: pointer;
   @include size(25px, calc(var(--line-height) * 3 + var(--gap) * 2));
 
   &:hover {
