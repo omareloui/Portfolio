@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { activatecursor, deactivatecursor } from "~~/assets/events";
+const activatecursor = new Event("activatecursor");
+const deactivatecursor = new Event("deactivatecursor");
 
 const { tag } = defineProps<{ tag: string }>();
 
