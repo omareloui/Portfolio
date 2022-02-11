@@ -9,7 +9,7 @@ function scrollToTop() {
 </script>
 
 <template>
-  <div class="logo" @click="scrollToTop">
+  <ClickableElement tag="div" class="logo" @click="scrollToTop">
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +40,7 @@ function scrollToTop() {
 		s7.5,3.1,7.9,7.2H14.6z"
       />
     </svg>
-  </div>
+  </ClickableElement>
 </template>
 
 <style lang="scss" scoped>
@@ -50,8 +50,6 @@ function scrollToTop() {
   display: flex;
   place-items: center;
   height: var(--nav-height);
-
-  cursor: pointer;
 
   svg {
     @include size(clamp(60px, 20vw, 80px), clamp(37.5px, 15vw, 50px));

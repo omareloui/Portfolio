@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { useMath } from "~~/composables/useMath";
 
-import { checkIfTouchScreen } from "~~/assets/utils";
-
 const math = useMath();
 
 const el = ref(null as null | HTMLElement);
@@ -25,8 +23,6 @@ const cursorState = {
 };
 
 function init() {
-  if (checkIfTouchScreen()) return;
-
   location.x = innerWidth / 2;
   location.y = innerHeight / 2;
 
