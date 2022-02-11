@@ -13,6 +13,10 @@ html {
   scroll-behavior: smooth;
 }
 
+* {
+  cursor: none;
+}
+
 body {
   font-family: var(--fnt-main);
   overflow-x: hidden;
