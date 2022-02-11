@@ -30,9 +30,9 @@ function destroy() {
     <div class="project-not-available__body" ref="body">
       <h2 class="heading">The link isn't available yet</h2>
       This project isn't live yet. The link will be provided soon enough.
-      <button class="close-button" @click="close">
+      <ButtonBase class="close-button" @click="close">
         <span class="close-button__content"> Okay </span>
-      </button>
+      </ButtonBase>
     </div>
   </div>
 </template>
@@ -80,7 +80,6 @@ function destroy() {
   }
 
   .close-button {
-    cursor: pointer;
     border: none;
     border-radius: 999px;
     background: var(--clr-text-light);
