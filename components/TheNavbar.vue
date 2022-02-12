@@ -207,6 +207,10 @@ function removeEvents() {
       display: grid;
       grid-template-columns: 1fr 50px;
       place-items: center;
+
+      nav {
+        display: none;
+      }
     }
 
     .logo {
