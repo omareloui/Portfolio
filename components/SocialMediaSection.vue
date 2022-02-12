@@ -2,6 +2,7 @@
   <Container class="social-media">
     <GitHubLink />
     <LinkedInLink />
+    <TelegramLink />
   </Container>
 </template>
 
