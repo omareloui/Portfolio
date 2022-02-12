@@ -157,19 +157,12 @@ function removeEvents() {
 
   .content {
     height: 100%;
-    background: linear-gradient(
-      10deg,
-      var(--clr-primary) 80%,
-      var(--clr-secondary) 100%
-    );
+    background: var(--clr-primary);
   }
 
   &.navbar--blurred .content {
-    background: linear-gradient(
-      10deg,
-      rgba(var(--clr-primary-rgb), 0.5) 80%,
-      rgba(var(--clr-secondary-rgb), 0.5) 100%
-    );
+    background: rgba(var(--clr-primary-rgb), 0.5);
+
     backdrop-filter: blur(6px);
   }
 
