@@ -120,21 +120,28 @@ function removeEvents() {
           class="toggle-button"
         />
 
-        <Teleport to=".navbar" :disabled="!isMobile">
-          <nav>
-            <ul>
-              <li
-                v-for="(link, index) in navLinks"
-                :key="index"
-                @click="closeNav"
-              >
-                <TheLink :to="link.link">{{ link.text }}</TheLink>
-              </li>
-            </ul>
-          </nav>
-        </Teleport>
+        <!-- <Teleport to=".navbar" :disabled="!isMobile"> -->
+        <nav v-if="!isMobile">
+          <ul>
+            <li
+              v-for="(link, index) in navLinks"
+              :key="index"
+              @click="closeNav"
+            >
+              <TheLink :to="link.link">{{ link.text }}</TheLink>
+            </li>
+          </ul>
+        </nav>
+        <!-- </Teleport> -->
       </Container>
     </div>
+    <nav v-if="isMobile">
+      <ul>
+        <li v-for="(link, index) in navLinks" :key="index" @click="closeNav">
+          <TheLink :to="link.link">{{ link.text }}</TheLink>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -264,7 +271,7 @@ function removeEvents() {
         pointer-events: all;
         user-select: all;
 
-        transform: translate(-50%, var(--nav-height));
+        transform: translate(-50%, 0);
         opacity: 1;
       }
     }
