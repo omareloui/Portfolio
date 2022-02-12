@@ -36,6 +36,9 @@ header {
 
   padding-bottom: 6vh;
 
+  padding-top: var(--nav-height);
+  margin-top: calc(var(--nav-height) * -1);
+
   .subtitle,
   .hi {
     color: var(--clr-text-light-2);

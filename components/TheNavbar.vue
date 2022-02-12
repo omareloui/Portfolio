@@ -141,11 +141,11 @@ function removeEvents() {
   .content {
     height: 100%;
     background: var(--clr-primary);
+    transition: background 200ms ease-in-out;
   }
 
   &.navbar--blurred .content {
     background: rgba(var(--clr-primary-rgb), 0.5);
-
     backdrop-filter: blur(6px);
   }
 
