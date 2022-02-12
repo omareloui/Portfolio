@@ -120,7 +120,7 @@ function removeEvents() {
           class="toggle-button"
         />
 
-        <Teleport :disabled="!isMobile" to=".navbar">
+        <!-- <Teleport :disabled="!isMobile" to=".navbar">
           <nav>
             <ul>
               <li
@@ -132,7 +132,7 @@ function removeEvents() {
               </li>
             </ul>
           </nav>
-        </Teleport>
+        </Teleport> -->
       </Container>
     </div>
   </div>
