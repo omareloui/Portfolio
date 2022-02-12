@@ -10,12 +10,6 @@ const isBlurred = ref(false);
 
 const navbar = ref(null as null | HTMLElement);
 
-const navLinks = [
-  { text: "Portfolio", link: "#projects" },
-  { text: "Capabilities", link: "#capabilities" },
-  { text: "Contact", link: "#contact" },
-];
-
 const navHeight = 75;
 const navHeightOnMobile = 50;
 
@@ -111,37 +105,19 @@ function removeEvents() {
       <Container>
         <Logo class="logo" />
 
-        <div class="gap" v-if="!isMobile"></div>
+        <div class="gap"></div>
 
         <BurgerButton
-          v-if="isMobile"
           :is-open="isOpen"
           @click="toggleNav"
           class="toggle-button"
         />
 
-        <!-- <Teleport to=".navbar" :disabled="!isMobile"> -->
-        <nav v-if="!isMobile">
-          <ul>
-            <li
-              v-for="(link, index) in navLinks"
-              :key="index"
-              @click="closeNav"
-            >
-              <TheLink :to="link.link">{{ link.text }}</TheLink>
-            </li>
-          </ul>
-        </nav>
-        <!-- </Teleport> -->
+        <TheNavLinks />
       </Container>
     </div>
-    <nav v-if="isMobile">
-      <ul>
-        <li v-for="(link, index) in navLinks" :key="index" @click="closeNav">
-          <TheLink :to="link.link">{{ link.text }}</TheLink>
-        </li>
-      </ul>
-    </nav>
+
+    <TheNavLinks @close-nav="closeNav" />
   </div>
 </template>
 
@@ -173,16 +149,6 @@ function removeEvents() {
     backdrop-filter: blur(6px);
   }
 
-  nav {
-    ul {
-      list-style: none;
-      margin: 0;
-
-      display: flex;
-      gap: 20px;
-    }
-  }
-
   &--desktop {
     ::v-deep(.container) {
       display: flex;
@@ -193,12 +159,20 @@ function removeEvents() {
       flex-grow: 1;
     }
 
+    .toggle-button {
+      display: none;
+    }
+
     nav {
       ul {
         justify-content: flex-end;
         align-items: center;
         text-align: right;
       }
+    }
+
+    > nav {
+      display: none;
     }
   }
 
@@ -221,7 +195,11 @@ function removeEvents() {
       display: none;
     }
 
-    nav {
+    .toggle-button {
+      display: block;
+    }
+
+    ::v-deep(nav) {
       @include center-h;
       position: absolute;
       opacity: 0;
