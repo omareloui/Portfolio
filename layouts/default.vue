@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <slot></slot>
-    <Cursor />
-  </div>
+  <!-- <div> -->
+  <slot></slot>
+  <!-- <Cursor />
+  </div> -->
 </template>

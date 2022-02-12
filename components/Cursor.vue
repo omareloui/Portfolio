@@ -142,6 +142,12 @@ onBeforeUnmount(destroy);
   </span>
 </template>
 
+<style lang="scss">
+* {
+  // cursor: none;
+}
+</style>
+
 <style scoped lang="scss">
 @use "~~/assets/styles/mixins" as *;
 
