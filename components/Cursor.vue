@@ -142,9 +142,9 @@ onBeforeUnmount(destroy);
   </span>
 </template>
 
-<style lang="scss">
+<style>
 * {
-  // cursor: none;
+  cursor: none;
 }
 </style>
 
