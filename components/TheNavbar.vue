@@ -206,6 +206,10 @@ function removeEvents() {
       transform: translateX(25px);
     }
 
+    .gap {
+      display: none;
+    }
+
     nav {
       @include center-h;
       position: absolute;
