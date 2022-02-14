@@ -18,6 +18,7 @@ onMounted(removeLoader);
 <template>
   <transition name="loader">
     <div class="loader" v-if="!isLoaded">
+      <LogoIcon class="loader__logo" />
       <div class="loader__spinner"></div>
     </div>
   </transition>
@@ -35,7 +36,10 @@ onMounted(removeLoader);
   display: grid;
   place-items: center;
 
-  color: var(--clr-light);
+  &__logo {
+    @include center;
+    opacity: 0.03;
+  }
 
   &__spinner {
     @include size(min(30vw, 200px));
