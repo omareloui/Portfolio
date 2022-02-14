@@ -18,7 +18,7 @@ onMounted(removeLoader);
 <template>
   <transition name="loader">
     <div class="loader" v-if="!isLoaded">
-      <div class="loader__body">Loading</div>
+      <div class="loader__spinner"></div>
     </div>
   </transition>
 </template>
@@ -37,35 +37,31 @@ onMounted(removeLoader);
 
   color: var(--clr-light);
 
-  &__body {
-    color: var(--clr-light);
+  &__spinner {
+    @include size(min(30vw, 200px));
+    border: 5px solid var(--clr-light);
+    border-radius: 50%;
+    display: inline-block;
     position: relative;
-    font-size: 3rem;
-    &::after {
+    animation: rotation 1s linear infinite;
+
+    &:after {
       content: "";
-      width: 5px;
-      height: 5px;
-      background: currentColor;
-      position: absolute;
-      bottom: 10px;
-      right: -5px;
-      animation: loader 1s linear infinite;
+      @include center;
+      @include size(min(calc(30vw - 20px), calc(200px - 20px)));
+      border-radius: 50%;
+      border: 5px solid transparent;
+      border-bottom-color: var(--clr-secondary);
     }
   }
 }
 
-@keyframes loader {
+@keyframes rotation {
   0% {
-    box-shadow: 10px 0 rgba(var(--clr-light-rgb), 0),
-      20px 0 rgba(var(--clr-light-rgb), 0);
-  }
-  50% {
-    box-shadow: 10px 0 rgba(var(--clr-light-rgb), 1),
-      20px 0 rgba(var(--clr-light-rgb), 0);
+    transform: rotate(0deg);
   }
   100% {
-    box-shadow: 10px 0 rgba(var(--clr-light-rgb), 1),
-      20px 0 rgba(var(--clr-light-rgb), 1);
+    transform: rotate(360deg);
   }
 }
 </style>
