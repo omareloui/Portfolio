@@ -7,6 +7,9 @@ const isLoaded = ref(false);
 async function removeLoader() {
   await sleep(1000);
   isLoaded.value = true;
+  useMeta({
+    bodyAttrs: { style: "--body-y-overflow: auto" },
+  });
 }
 
 onMounted(removeLoader);
