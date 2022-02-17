@@ -6,12 +6,8 @@ const isMobile = ref(false);
 const isOpen = ref(false);
 
 const isScrolled = ref(false);
-const isBlurred = ref(false);
 
 const navbar = ref(null as null | HTMLElement);
-
-const navHeight = 75;
-const navHeightOnMobile = 50;
 
 function init() {
   onScroll();
@@ -40,14 +36,6 @@ function onResize() {
 }
 
 function onScroll() {
-  if (!isMobile.value) {
-    if (scrollY >= navHeight) blur();
-    else unBlur();
-  } else {
-    if (scrollY >= navHeightOnMobile) blur();
-    else unBlur();
-  }
-
   if (!scrollY) markAsNotScrolled();
   else markAsScrolled();
 }
@@ -64,14 +52,6 @@ function markAsScrolled() {
 
 function markAsNotScrolled() {
   isScrolled.value = false;
-}
-
-function blur() {
-  isBlurred.value = true;
-}
-
-function unBlur() {
-  isBlurred.value = false;
 }
 
 function toggleNav() {
@@ -97,7 +77,6 @@ function removeEvents() {
       'navbar--desktop': !isMobile,
       'navbar--mobile': isMobile,
       'navbar--scrolled': isScrolled,
-      'navbar--blurred': isBlurred,
       'navbar--is-open': isMobile && isOpen,
     }"
   >
@@ -140,13 +119,9 @@ function removeEvents() {
 
   .content {
     height: 100%;
-    background: var(--clr-primary);
-    transition: background 200ms ease-in-out;
-  }
-
-  &.navbar--blurred .content {
     background: rgba(var(--clr-primary-rgb), 0.5);
     backdrop-filter: blur(6px);
+    transition: background 200ms ease-in-out;
   }
 
   &--desktop {
