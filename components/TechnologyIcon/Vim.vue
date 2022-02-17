@@ -1,5 +1,5 @@
 <template>
-  <TechnologyIcon title="Vim">
+  <TechnologyIcon title="Vim" category="Development Tool" stack="Other">
     <!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In  -->
     <svg
       version="1.1"

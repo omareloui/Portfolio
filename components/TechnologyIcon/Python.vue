@@ -1,5 +1,5 @@
 <template>
-  <TechnologyIcon title="Python">
+  <TechnologyIcon title="Python" category="Language" stack="Back-End">
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"

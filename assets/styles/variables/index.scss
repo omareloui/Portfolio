@@ -57,6 +57,7 @@
   --fnt-size-normal: 1.2rem;
   --fnt-size-link-large: clamp(1.3rem, 5vw, 1.4rem);
   --fnt-size-small: clamp(0.8rem, 3vw, 1rem);
+  --fnt-size-x-small: 0.7rem;
 
   @include mq.screens;
 

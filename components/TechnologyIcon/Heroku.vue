@@ -1,5 +1,5 @@
 <template>
-  <TechnologyIcon title="Heroku">
+  <TechnologyIcon title="Heroku" category="Cloud Service" stack="DevOps">
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"

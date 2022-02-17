@@ -1,10 +1,35 @@
 <script setup lang="ts">
-const { title, showTitle } = withDefaults(
-  defineProps<{ title: string; showTitle?: boolean }>(),
-  {
-    showTitle: false,
-  }
-);
+type TechnologyCategory =
+  | "Development Tool"
+  | "Framework"
+  | "Language"
+  | "Preprocessor"
+  | "Test Framework"
+  | "Version Control System"
+  | "VSC Cloud Hosting Service"
+  | "Run Time For JS"
+  | "Cloud Service"
+  | "Design Tool"
+  | "API"
+  | "Auth System"
+  | "DataBase"
+  | "Package Manger"
+  | "3D Development"
+  | "PWA"
+  | "Superset";
+
+type TechnologyStack =
+  | "Front-End"
+  | "Back-End"
+  | "Front and Back Ends"
+  | "DevOps"
+  | "Other";
+
+const { title, category, stack } = defineProps<{
+  title: string;
+  category: TechnologyCategory;
+  stack: TechnologyStack;
+}>();
 </script>
 
 <template>
@@ -13,7 +38,11 @@ const { title, showTitle } = withDefaults(
       <slot></slot>
     </div>
 
-    <span class="technology__title" v-if="showTitle">
+    <span
+      class="technology__title"
+      :data-category="category"
+      :data-stack="stack"
+    >
       {{ title }}
     </span>
   </div>
@@ -23,18 +52,16 @@ const { title, showTitle } = withDefaults(
 @use "~~/assets/styles/mixins" as *;
 
 .technology {
-  --icon-size: 50px;
-
-  @include st-mobile {
-    --icon-size: 35px;
-  }
+  --icon-size: 70px;
 
   background: var(--clr-light);
-  padding: 0.5rem;
   border-radius: 5px;
+  padding: 0.2rem;
+  margin: 0.5rem;
 
   &__icon {
     @include size(var(--icon-size));
+    padding: 0.5rem 0.7rem 0;
 
     ::v-deep(svg) {
       @include size(100%);
@@ -50,7 +77,7 @@ const { title, showTitle } = withDefaults(
     margin-top: 5px;
 
     font-family: var(--fnt-main);
-    font-size: var(--fnt-size-small);
+    font-size: var(--fnt-size-x-small);
     font-weight: var(--fnt-weight-regular);
 
     text-overflow: ellipsis;

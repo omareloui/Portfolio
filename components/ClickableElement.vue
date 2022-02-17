@@ -4,7 +4,10 @@ const deactivatecursor = new Event("deactivatecursor");
 
 const { tag } = defineProps<{ tag: string }>();
 
-const emit = defineEmits(["click", "dblclick"]);
+const emit = defineEmits<{
+  (e: "click", event: PointerEvent): void;
+  (e: "dblclick", event: PointerEvent): void;
+}>();
 
 function onMouseEnter() {
   dispatchEvent(activatecursor);
@@ -18,11 +21,11 @@ function onMouseLeave() {
 <template>
   <component
     :is="tag"
-    @click="emit('click')"
-    @dblclick="emit('dblclick')"
+    @click="emit('click', $event)"
+    @dblclick="emit('dblclick', $event)"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
-    tabindex="0"
+    :tabindex="tag.match(/^(a|button)$/) ? undefined : '0'"
     ><slot></slot
   ></component>
 </template>

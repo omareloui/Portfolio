@@ -1,5 +1,9 @@
 <template>
-  <TechnologyIcon title="Adobe Illustrator">
+  <TechnologyIcon
+    title="Adobe Illustrator"
+    category="Design Tool"
+    stack="Other"
+  >
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"

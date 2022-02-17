@@ -1,5 +1,5 @@
 <template>
-  <TechnologyIcon title="GraphQL">
+  <TechnologyIcon title="GraphQL" category="API" stack="Front and Back Ends">
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"

@@ -1,5 +1,5 @@
 <template>
-  <TechnologyIcon title="PWA">
+  <TechnologyIcon title="PWA" category="PWA" stack="Front-End">
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"

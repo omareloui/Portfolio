@@ -1,5 +1,9 @@
 <template>
-  <TechnologyIcon title="JWT">
+  <TechnologyIcon
+    title="JWT"
+    category="Auth System"
+    stack="Front and Back Ends"
+  >
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
