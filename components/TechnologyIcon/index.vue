@@ -54,7 +54,7 @@ const { title, category, stack } = defineProps<{
 .technology {
   --icon-size: 70px;
 
-  background: var(--clr-light);
+  background: var(--clr-body);
   border-radius: 5px;
   padding: 0.2rem;
   margin: 0.5rem;

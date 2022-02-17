@@ -6,9 +6,10 @@ const camelCaseToTitle = useCamelCaseToTitle();
 const icons = useTechnologies();
 const bubbleEl = ref(null as null | HTMLElement);
 
-const filterOptions = ["all", "frontEnd", "backEnd", "tools", "other"];
 type FilterOption = typeof filterOptions[number];
-const currentFilter = ref("all" as FilterOption);
+
+const filterOptions = ["frontEnd", "backEnd", "tools", "other"];
+const currentFilter = ref("frontEnd" as FilterOption);
 
 let iso;
 
@@ -34,16 +35,23 @@ function getTitleEl(parent: HTMLElement) {
   return parent.querySelector(".technology__title") as HTMLDivElement;
 }
 
-async function filterTechnologies(e: PointerEvent) {
+function filterTechnologiesOnClick(e: PointerEvent) {
   const el = e.target as HTMLElement;
   const filterMode = el.dataset.filter;
+  filterTechnologies(filterMode);
+}
 
-  iso.arrange({ filter: filterFunctions[filterMode] });
-  currentFilter.value = filterMode;
+async function filterTechnologies(mode = currentFilter.value) {
+  iso.arrange({ filter: filterFunctions[mode] });
+  currentFilter.value = mode;
 
   await nextTick();
 
   moveBubble();
+}
+
+function getComputedStyleValue(el: HTMLElement, property: string) {
+  return parseFloat(getComputedStyle(el, null).getPropertyValue(property));
 }
 
 function moveBubble(currentElement?: HTMLElement) {
@@ -52,9 +60,21 @@ function moveBubble(currentElement?: HTMLElement) {
     currentElement = document.querySelector(
       ".filter-buttons__button--current"
     ) as HTMLElement;
-  const currentBoundingBox = currentElement.getBoundingClientRect();
 
-  bubbleEl.value.style.left = `${currentBoundingBox.left - 20}px`;
+  const currentBoundingBox = currentElement.getBoundingClientRect();
+  const containerEl = document.querySelector(
+    "section.technologies-section"
+  ) as HTMLElement;
+
+  const containerPaddingLeft = getComputedStyleValue(
+    containerEl,
+    "padding-left"
+  );
+  const containerMarginLeft = getComputedStyleValue(containerEl, "margin-left");
+
+  bubbleEl.value.style.left = `${
+    currentBoundingBox.left - (containerPaddingLeft + containerMarginLeft)
+  }px`;
   bubbleEl.value.style.width = `${currentBoundingBox.width}px`;
   bubbleEl.value.style.height = `${currentBoundingBox.height}px`;
 }
@@ -83,7 +103,7 @@ async function init() {
     sortBy: ["original-order"],
   });
   initEvents();
-  moveBubble();
+  filterTechnologies();
 }
 
 onMounted(init);
@@ -91,7 +111,7 @@ onUnmounted(destroy);
 </script>
 
 <template>
-  <SectionContainer>
+  <SectionContainer class="technologies-section">
     <SectionHeading>Technologies I use</SectionHeading>
     <SectionSubheading>
       For those who know what they're looking for
@@ -107,7 +127,7 @@ onUnmounted(destroy);
         :class="{
           'filter-buttons__button--current': filterOption === currentFilter,
         }"
-        @click="filterTechnologies"
+        @click="filterTechnologiesOnClick"
         :data-filter="filterOption"
         >{{ camelCaseToTitle(filterOption) }}</ButtonBase
       >
@@ -130,19 +150,25 @@ onUnmounted(destroy);
   margin: 15px 0 0;
   background: var(--clr-primary-gradient);
   border-radius: 10px;
+
+  box-shadow: 5px 5px 10px rgb(var(--clr-primary-rgb), 0.2);
 }
 
 .filter-buttons {
   position: relative;
 
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+
+  min-width: 300px;
 
   margin: 20px 0;
   padding: 10px 20px;
   border-radius: 9999px;
   background: var(--clr-light);
+
+  box-shadow: 2px 2px 8px rgb(var(--clr-primary-rgb), 0.2);
 
   &__current-bubble {
     z-index: 1;
@@ -161,9 +187,11 @@ onUnmounted(destroy);
     font-weight: var(--fnt-weight-bold);
 
     background: transparent;
-    padding: 20px 30px;
+    padding: 20px 0;
     border: none;
     border-radius: 9999px;
+
+    white-space: nowrap;
 
     width: 100%;
 
@@ -174,7 +202,7 @@ onUnmounted(destroy);
     }
 
     @include st-mobile {
-      padding: 5px 8px;
+      padding: 10px 8px;
       font-size: var(--fnt-size-x-small);
     }
   }
