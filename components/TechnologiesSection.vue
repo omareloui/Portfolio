@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { useTechnologies } from "~~/composables/useTechnologies";
+import { useCamelCaseToTitle } from "~~/composables/useCamelCaseToTitle";
+
+const camelCaseToTitle = useCamelCaseToTitle();
 const icons = useTechnologies();
+const bubbleEl = ref(null as null | HTMLElement);
 
 const filterOptions = ["all", "frontEnd", "backEnd", "tools", "other"];
 type FilterOption = typeof filterOptions[number];
@@ -30,10 +34,41 @@ function getTitleEl(parent: HTMLElement) {
   return parent.querySelector(".technology__title") as HTMLDivElement;
 }
 
-function filterTechnologies(e: PointerEvent) {
-  const filterMode = (e.target as HTMLElement).dataset.filter;
+async function filterTechnologies(e: PointerEvent) {
+  const el = e.target as HTMLElement;
+  const filterMode = el.dataset.filter;
+
   iso.arrange({ filter: filterFunctions[filterMode] });
   currentFilter.value = filterMode;
+
+  await nextTick();
+
+  moveBubble();
+}
+
+function moveBubble(currentElement?: HTMLElement) {
+  if (!bubbleEl.value) return;
+  if (!currentElement)
+    currentElement = document.querySelector(
+      ".filter-buttons__button--current"
+    ) as HTMLElement;
+  const currentBoundingBox = currentElement.getBoundingClientRect();
+
+  bubbleEl.value.style.left = `${currentBoundingBox.left - 20}px`;
+  bubbleEl.value.style.width = `${currentBoundingBox.width}px`;
+  bubbleEl.value.style.height = `${currentBoundingBox.height}px`;
+}
+
+function initEvents() {
+  addEventListener("resize", onResize);
+}
+
+function destroy() {
+  removeEventListener("resize", onResize);
+}
+
+function onResize() {
+  moveBubble();
 }
 
 async function init() {
@@ -47,9 +82,12 @@ async function init() {
     },
     sortBy: ["original-order"],
   });
+  initEvents();
+  moveBubble();
 }
 
 onMounted(init);
+onUnmounted(destroy);
 </script>
 
 <template>
@@ -60,7 +98,7 @@ onMounted(init);
     </SectionSubheading>
 
     <div class="filter-buttons">
-      <span class="filter-buttons__current-bubble"></span>
+      <span class="filter-buttons__current-bubble" ref="bubbleEl"></span>
 
       <ButtonBase
         v-for="(filterOption, index) in filterOptions"
@@ -71,7 +109,7 @@ onMounted(init);
         }"
         @click="filterTechnologies"
         :data-filter="filterOption"
-        >{{ filterOption }}</ButtonBase
+        >{{ camelCaseToTitle(filterOption) }}</ButtonBase
       >
     </div>
 
@@ -95,29 +133,25 @@ onMounted(init);
 }
 
 .filter-buttons {
-  --btn-height: 75%;
-
   position: relative;
-
-  // display: flex;
-  // justify-content: space-around;
 
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+
   margin: 20px 0;
-  padding: 0 20px;
+  padding: 10px 20px;
   border-radius: 9999px;
-  background: var(--clr-light-2);
+  background: var(--clr-light);
 
   &__current-bubble {
     z-index: 1;
     @include center-v;
-    left: 20px;
-
-    @include size(150px, var(--btn-height));
 
     background: var(--clr-primary-gradient);
     border-radius: 9999px;
+
+    transition: all 200ms ease-in-out;
   }
 
   &__button {
@@ -126,16 +160,22 @@ onMounted(init);
     font-family: var(--fnt-main);
     font-weight: var(--fnt-weight-bold);
 
-    height: var(--btn-height);
-
     background: transparent;
-    padding: 30px;
+    padding: 20px 30px;
     border: none;
+    border-radius: 9999px;
+
+    width: 100%;
 
     transition: color 200ms ease-in-out;
 
     &--current {
       color: var(--clr-light);
+    }
+
+    @include st-mobile {
+      padding: 5px 8px;
+      font-size: var(--fnt-size-x-small);
     }
   }
 }
