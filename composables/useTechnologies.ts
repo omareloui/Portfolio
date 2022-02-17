@@ -1,37 +1,54 @@
 export const useTechnologies = () => [
-  "Html",
-  "Css",
-  "JavaScript",
-  "Pug",
-  "Sass",
   "TypeScript",
-  "Lit",
-  "TailWindCss",
-  "Vue",
+  "JavaScript",
+
+  // Front end
   "Nuxt",
+  "Vue",
+
+  "Html",
+  "Pug",
+  "Css",
+  "Sass",
+
+  "MarkDown",
+
+  "Lit",
+
   "ThreeJs",
   "P5Js",
   "WebGL",
-  "Jest",
+
+  "TailWindCss",
+
   "PWA",
-  "MarkDown",
+
+  // Back end
   "Node",
   "Deno",
   "Python",
   "MongoDB",
   "MySQL",
+
+  // Both
   "JWT",
   "RestAPI",
   "GraphQL",
-  "NPM",
-  "PNPM",
+
+  "Jest",
+
+  // Other
   "Git",
   "GitHub",
+  "NPM",
+  "PNPM",
   "DigitalOcean",
   "Netlify",
   "Heroku",
-  "VSCode",
+
+  // Tools
   "Vim",
-  "Illustrator",
+  "VSCode",
   "Figma",
+  "Illustrator",
 ];
