@@ -177,7 +177,7 @@ onUnmounted(destroy);
     background: var(--clr-primary-gradient);
     border-radius: 9999px;
 
-    transition: all 200ms ease-in-out;
+    transition: all 500ms ease-in-out;
   }
 
   &__button {
