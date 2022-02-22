@@ -16,7 +16,7 @@ let iso;
 const filterFunctions = {
   all: (item: HTMLElement) => !!item,
   tools: (item: HTMLElement) =>
-    !!getTitleEl(item).dataset.category.match("Tool"),
+    !!getTitleEl(item).dataset.category.match(/^(Design|Development) Tool$/),
   frontEnd: (item: HTMLElement) =>
     !!getTitleEl(item).dataset.stack.match(/^(Front-End|Front and Back Ends)$/),
   backEnd: (item: HTMLElement) =>
@@ -168,7 +168,7 @@ onUnmounted(destroy);
   border-radius: 9999px;
   background: var(--clr-light);
 
-  box-shadow: 2px 2px 8px rgb(var(--clr-primary-rgb), 0.2);
+  box-shadow: 2px 2px 8px rgb(var(--clr-dark-rgb), 0.2);
 
   &__current-bubble {
     z-index: 1;
@@ -177,7 +177,7 @@ onUnmounted(destroy);
     background: var(--clr-primary-gradient);
     border-radius: 9999px;
 
-    transition: all 500ms ease-in-out;
+    transition: all 300ms ease-in-out;
   }
 
   &__button {

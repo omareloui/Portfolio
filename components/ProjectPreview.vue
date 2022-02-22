@@ -1,136 +1,134 @@
 <script setup lang="ts">
-import type { ProjectPreviewProps, Mockup } from "~~/@types";
-
 interface Props {
   title: string;
+  description: string;
   link?: string;
-  role: string;
-  hexColor: string;
-  lightText?: boolean;
-
-  height?: string;
-
-  logo: string;
-
-  mockup: Mockup[];
-  mockupImage: string[];
-  mockupStyles: string[];
-
-  mockupsStyles?: string;
-}
-
-const {
-  title,
-  link,
-  role,
-  hexColor,
-  lightText,
-  height,
-  logo,
-  mockup,
-  mockupImage,
-  mockupStyles,
-  mockupsStyles,
-} = withDefaults(defineProps<Props>(), {
-  lightText: false,
-  height: "min-content",
-});
-
-const emit = defineEmits(["show-no-link-popup"]);
-
-interface MockInfo {
-  mockup: Mockup;
+  github?: string;
   image: string;
-  styles: string;
+  technologies: Set<string>;
 }
 
-const mockupsInfo = mockup.map((mockup, i) => ({
-  mockup,
-  image: mockupImage[i],
-  styles: mockupStyles[i],
-})) as MockInfo[];
+defineProps<Props>();
 </script>
 
 <template>
-  <ClickableElement
-    :tag="link ? 'a' : 'div'"
-    :target="(link && '_blank') || undefined"
-    :href="link"
-    class="project-preview"
-    :class="{ 'project-preview--light-text': lightText }"
-    @click="!link && emit('show-no-link-popup')"
-  >
-    <component v-if="logo" class="project-preview__logo" :is="`Logo${logo}`" />
+  <div class="project-preview">
+    <div class="project-preview__content">
+      <h3 class="project-preview__title">{{ title }}</h3>
 
-    <small class="project-preview__role">{{ role }}</small>
-    <h3 class="project-preview__title">{{ title }}</h3>
+      <div class="project-preview__description">{{ description }}</div>
 
-    <div class="project-preview__mockups" :style="mockupsStyles">
-      <component
-        v-if="mockupsInfo.length"
-        v-for="(mockup, index) of mockupsInfo"
-        :key="index"
-        class="project-preview__mockup"
-        :is="`Mockup${mockup.mockup}`"
-        :image="mockup.image"
-        :style="mockup.styles"
-        :alt="`${title}'s project preview image.`"
+      <div class="project-preview__links" v-if="link || github">
+        <TheLink v-if="link" :to="link" new-tab>Live site</TheLink>
+        <TheLink v-if="github" :to="github" new-tab>GitHub</TheLink>
+      </div>
+
+      <LineBreak
+        margin="20px"
+        color="rgb(var(--clr-dark-rgb), 0.1)"
+        height="1px"
       />
+
+      <div class="project-preview__technologies">
+        <component
+          class="technology"
+          v-for="tech of technologies"
+          :key="tech"
+          :is="`TechnologyIcon${tech}`"
+          hide-title
+          no-background
+          size="30px"
+        />
+      </div>
     </div>
-  </ClickableElement>
+
+    <MockupDesktop
+      class="project-preview__mockup"
+      :image="image"
+      :alt="`${title}'s project preview image.`"
+    />
+  </div>
 </template>
 
 <style lang="scss" scoped>
 @use "~~/assets/styles/mixins" as *;
 
 .project-preview {
-  --height: v-bind(height);
-
   position: relative;
   overflow: hidden;
   display: block;
 
-  background: v-bind(hexColor);
+  background: var(--clr-light);
   color: var(--clr-text);
+
   text-decoration: none;
-  box-shadow: 0 0 1.5rem rgba(var(--clr-dark-rgb), 0.4);
+  box-shadow: 0.1rem 0.1rem 0.3rem rgba(var(--clr-dark-rgb), 0.2);
 
   padding: 3rem 2rem;
   border-radius: 20px;
 
-  height: var(--height);
-
   transition: transform ease-in-out 200ms;
 
-  &:hover {
-    transform: scale(1.02);
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  grid-template-areas: "content mockup";
+  gap: 20px;
+
+  &__content {
+    grid-area: content;
   }
 
-  &--light-text {
-    color: var(--clr-text-light);
-  }
-
-  &__title,
-  &__role,
-  &__mockups {
-    isolation: isolate;
+  &__mockup {
+    grid-area: mockup;
+    // align-self: center;
   }
 
   &__title {
     font-size: 2.5rem;
+    color: var(--clr-primary);
+    line-height: 110%;
   }
 
-  &__mockups {
-    position: relative;
-    height: 100%;
-    margin-top: 20px;
+  &__title,
+  &__description {
+    margin-bottom: 10px;
   }
 
-  &__logo {
-    @include center;
-    @include size(80%);
+  &__links {
+    > ::v-deep(* > *) {
+      text-decoration: underline;
+      color: var(--clr-secondary);
+    }
 
-    opacity: 0.2;
+    > :not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  &__technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    place-items: center;
+  }
+
+  @include st-tablet {
+    grid-template-columns: 1fr;
+    grid-template-areas: "mockup" "content";
+    padding: 2rem 1.2rem;
+
+    &__title,
+    &__description,
+    &__links {
+      text-align: center;
+    }
+
+    &__technologies {
+      margin-left: auto;
+      margin-right: auto;
+      width: fit-content;
+      justify-content: center;
+    }
   }
 }
 </style>

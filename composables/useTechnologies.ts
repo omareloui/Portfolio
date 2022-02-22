@@ -1,10 +1,10 @@
 export const useTechnologies = () => [
-  "TypeScript",
-  "JavaScript",
-
   // Front end
   "Nuxt",
   "Vue",
+
+  "TypeScript",
+  "JavaScript",
 
   "Html",
   "Pug",
@@ -21,6 +21,7 @@ export const useTechnologies = () => [
 
   "TailWindCss",
 
+  "Vite",
   "PWA",
 
   // Back end

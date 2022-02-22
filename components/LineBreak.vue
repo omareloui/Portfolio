@@ -1,12 +1,16 @@
 <script lang="ts" setup>
-const { margin } = withDefaults(
+withDefaults(
   defineProps<{
     margin?: string;
     height?: string;
+    color?: string;
+    borderRadius?: string;
   }>(),
   {
     margin: "10px",
     height: "5px",
+    borderRadius: "1px",
+    color: "var(--clr-primary-gradient)",
   }
 );
 </script>
@@ -20,9 +24,9 @@ const { margin } = withDefaults(
 <style lang="scss" scoped>
 hr {
   border: none;
-  background: var(--clr-primary-gradient);
+  background: v-bind(color);
   height: v-bind(height);
-  border-radius: 1px;
+  border-radius: v-bind(borderRadius);
   margin: v-bind(margin) 0;
 }
 </style>
