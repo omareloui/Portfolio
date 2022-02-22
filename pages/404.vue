@@ -34,7 +34,8 @@
   }
 
   &__logo {
-    width: 70px;
+    width: clamp(60px, 20vw, 100px);
+    place-self: center;
   }
 
   &__body {
@@ -44,7 +45,7 @@
 
   h1 {
     font-size: var(--fnt-size-heading);
-    line-height: 110%;
+    line-height: 120%;
     margin-bottom: 20px;
   }
 
