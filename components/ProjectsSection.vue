@@ -26,6 +26,8 @@ const projects = [
       "JWT",
 
       "Figma",
+
+      "Heroku",
     ]),
   },
   {
@@ -45,7 +47,10 @@ const projects = [
       "TypeScript",
       "Sass",
       "Html",
+
       "Figma",
+
+      "Netlify",
     ]),
   },
   {
