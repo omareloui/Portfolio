@@ -73,6 +73,7 @@ const projects = [
 
       "MongoDB",
       "RestAPI",
+      "JWT",
 
       "Nuxt",
       "Vue",

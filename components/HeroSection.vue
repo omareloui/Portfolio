@@ -15,7 +15,7 @@
 
         <Grid :columns-on-desktop="2" gap="20px" class="links">
           <TheLink to="#projects" cta large>see my work</TheLink>
-          <TheLink to="#capabilities" large>what I can do</TheLink>
+          <TheLink to="#contact" large>contact me</TheLink>
         </Grid>
       </div>
     </SectionContainer>
