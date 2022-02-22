@@ -24,6 +24,11 @@
     rgb(var(--clr-primary-rgb), 0.3),
     rgb(var(--clr-secondary-rgb), 0.3)
   );
+  --clr-gradient-bg: linear-gradient(
+    16deg,
+    var(--clr-secondary) 0,
+    var(--clr-primary) 30%
+  );
 
   --clr-link-gradient-1: #07effd;
   --clr-link-gradient-2: #005fff;

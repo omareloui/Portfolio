@@ -26,11 +26,9 @@
 @use "~~/assets/styles/mixins" as *;
 
 header {
-  --bg: linear-gradient(16deg, var(--clr-secondary) 0, var(--clr-primary) 30%);
-
   z-index: 1;
   position: relative;
-  background: var(--bg);
+  background: var(--clr-gradient-bg);
   width: 100%;
   color: var(--clr-text-light);
 
