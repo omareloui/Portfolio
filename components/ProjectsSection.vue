@@ -82,13 +82,20 @@ const projects = [
       "Figma",
     ]),
   },
-  // {
-  //   title: "MusicUtils",
-  //   description: "I like to keep my music organized to ",
-  //   github: "https://github.com/omareloui/MusicUtils",
-  //   image: "/images/projects/music-utils.png",
-  //   technologies: new Set(["Python", "JavaScript"]),
-  // },
+  {
+    title: "Music Utils",
+    description: `
+      I like to keep my music organized. That's why I wrote this script to
+      organize the music folder's file system according to the metadata. Then
+      updated it to fetch lyrics and download high quality music files using
+      Deezloader to download from Deezer and Spotify. I created an API version
+      (with a script for Tampermonkey to work on open.spotify.com) and a CLI
+      version.
+    `,
+    github: "https://github.com/omareloui/MusicUtils",
+    image: "/images/projects/music-utils.png",
+    technologies: new Set(["Python", "JavaScript"]),
+  },
 ] as ProjectPreviewProps[];
 </script>
 
