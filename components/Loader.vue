@@ -30,7 +30,7 @@ onMounted(removeLoader);
 .loader {
   z-index: 999999;
   @include size(100%, 100vh);
-  background: var(--clr-primary);
+  background: var(--clr-primary-gradient);
   position: fixed;
   inset: 0;
   display: grid;
