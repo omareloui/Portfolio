@@ -25,15 +25,8 @@
         </Paragraph>
 
         <Paragraph>
-          Other than developing I enjoy leatherwork, you can check some of my
-          projects
-          <TheLink
-            underlined
-            to="https://instagram.com/odinleatherstore"
-            new-tab
-            >@odinleatherstore</TheLink
-          >
-          on Instagram.
+          <!-- prettier-ignore -->
+          Other than developing I enjoy leatherwork, you can check some of my projects <TheLink underlined to="https://instagram.com/odinleatherstore" new-tab>@odinleatherstore</TheLink> on Instagram.
         </Paragraph>
       </article>
     </div>
