@@ -1,9 +1,11 @@
 <script setup lang="ts">
 interface Props {
   title: string;
+  subtitle: string;
   description: string;
   link?: string;
   github?: string;
+  design?: string;
   image: string;
   technologies: Set<string>;
 }
@@ -16,11 +18,14 @@ defineProps<Props>();
     <div class="project-preview__content">
       <h3 class="project-preview__title">{{ title }}</h3>
 
+      <p class="project-preview__subtitle">{{ subtitle }}</p>
+
       <div class="project-preview__description">{{ description }}</div>
 
       <div class="project-preview__links" v-if="link || github">
         <TheLink v-if="link" :to="link" new-tab>Live site</TheLink>
         <TheLink v-if="github" :to="github" new-tab>GitHub</TheLink>
+        <TheLink v-if="design" :to="design" new-tab>Design</TheLink>
       </div>
 
       <LineBreak
@@ -80,7 +85,6 @@ defineProps<Props>();
 
   &__mockup {
     grid-area: mockup;
-    // align-self: center;
   }
 
   &__title {
@@ -89,7 +93,11 @@ defineProps<Props>();
     line-height: 110%;
   }
 
-  &__title,
+  &__subtitle {
+    color: var(--clr-text-dark-1);
+  }
+
+  &__subtitle,
   &__description {
     margin-bottom: 10px;
   }
@@ -118,6 +126,7 @@ defineProps<Props>();
     padding: 2rem 1.2rem;
 
     &__title,
+    &__subtitle,
     &__description,
     &__links {
       text-align: center;

@@ -1,6 +1,7 @@
 <template>
   <SectionContainer id="about">
     <SectionHeading>About Me</SectionHeading>
+    <SectionSubheading>More on me</SectionSubheading>
     <div class="body">
       <div class="image-wrapper">
         <img src="/images/me.jpg" alt="Image of me (Omar Eloui)" />
@@ -24,14 +25,14 @@
         </Paragraph>
 
         <Paragraph>
-          Other than developing I enjoy leather work, you can check my leather
-          work Instagram
+          Other than developing I enjoy leatherwork, you can check some of my
+          projects
           <TheLink
             underlined
             to="https://instagram.com/odinleatherstore"
             new-tab
             >@odinleatherstore</TheLink
-          >.
+          >on Instagram.
         </Paragraph>
       </article>
     </div>

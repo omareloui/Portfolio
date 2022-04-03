@@ -38,7 +38,7 @@ onMounted(removeLoader);
 
   &__logo {
     @include center;
-    opacity: 0.03;
+    opacity: 0.1;
   }
 
   &__spinner {
