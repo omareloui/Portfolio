@@ -32,7 +32,8 @@
             to="https://instagram.com/odinleatherstore"
             new-tab
             >@odinleatherstore</TheLink
-          >on Instagram.
+          >
+          on Instagram.
         </Paragraph>
       </article>
     </div>
