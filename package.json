@@ -17,12 +17,12 @@
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^7.19.1",
-    "nuxt3": "latest",
     "prettier": "^2.4.1",
     "sass": "^1.43.2",
     "sass-loader": "^12.2.0"
   },
   "dependencies": {
-    "isotope-layout": "^3.0.6"
+    "isotope-layout": "^3.0.6",
+    "nuxt3": "latest"
   }
 }
