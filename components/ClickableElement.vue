@@ -1,7 +1,4 @@
 <script setup lang="ts">
-const activatecursor = new Event("activatecursor");
-const deactivatecursor = new Event("deactivatecursor");
-
 const { tag } = defineProps<{ tag: string }>();
 
 const emit = defineEmits<{
@@ -10,10 +7,12 @@ const emit = defineEmits<{
 }>();
 
 function onMouseEnter() {
+  const activatecursor = new Event("activatecursor");
   dispatchEvent(activatecursor);
 }
 
 function onMouseLeave() {
+  const deactivatecursor = new Event("deactivatecursor");
   dispatchEvent(deactivatecursor);
 }
 </script>
