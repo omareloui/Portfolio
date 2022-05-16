@@ -1,12 +1,14 @@
 <script setup lang="ts">
-useMeta({
+import { useGTag } from "~~/composables/useGTag";
+
+useHead({
   title: "Omar Eloui | Web Developer",
   htmlAttrs: { lang: "en" },
 });
 
 onMounted(() => {
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = (...args) => window.dataLayer!.push(...args);
+  const gtag = useGTag();
+
   gtag("js", new Date());
   gtag("config", "G-MD040L0DB2");
 });

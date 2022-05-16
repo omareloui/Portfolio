@@ -1,3 +1,18 @@
+<script setup lang="ts">
+let gtag: GTagFunction;
+
+function init() {
+  gtag = useGTag();
+}
+
+function onContactClick() {
+  if (!gtag) return;
+  gtag("event", "contacted_via_email");
+}
+
+onMounted(init);
+</script>
+
 <template>
   <SectionContainer id="contact">
     <SectionHeading left-on-tablet>Need a developer?</SectionHeading>
@@ -8,7 +23,12 @@
           ><ActionCircle /> I'm currently available for work.</Paragraph
         >
         <Paragraph>
-          <TheLink to="mailto:omareloui@hotmail.com" gradient large class="mail"
+          <TheLink
+            to="mailto:omareloui@hotmail.com"
+            gradient
+            large
+            class="mail"
+            @click="onContactClick"
             >Send me a message</TheLink
           >
         </Paragraph>

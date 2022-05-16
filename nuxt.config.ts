@@ -11,8 +11,8 @@ export default defineNuxtConfig({
   meta: {
     script: [
       {
-        async: true,
         src: "https://www.googletagmanager.com/gtag/js?id=G-MD040L0DB2",
+        async: true,
       },
     ],
     link: [
