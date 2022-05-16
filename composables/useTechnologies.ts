@@ -7,12 +7,16 @@ export const useTechnologies = () => [
   "JavaScript",
 
   "Html",
-  "Pug",
   "Css",
   "Sass",
 
+  "Pug",
+  "EJS",
+
   "MarkDown",
 
+  "ReactJs",
+  "AlpineJs",
   "Lit",
 
   "ThreeJs",
@@ -20,23 +24,45 @@ export const useTechnologies = () => [
   "WebGL",
 
   "TailWindCss",
+  "SkeletonCss",
 
   "Vite",
   "PWA",
 
   // Back end
   "Node",
+  "ExpressJs",
+
   "Deno",
   "Python",
+
   "MongoDB",
+  "PostgreSQL",
   "MySQL",
+
+  "Sharp",
 
   // Both
   "JWT",
   "RestAPI",
   "GraphQL",
 
+  "Jasmine",
   "Jest",
+
+  // Tools
+  "Vim",
+  "VSCode",
+
+  "Prettier",
+  "ESLint",
+
+  "Figma",
+  "Illustrator",
+
+  // OSs
+  "Linux",
+  "Windows",
 
   // Other
   "Git",
@@ -46,10 +72,6 @@ export const useTechnologies = () => [
   "DigitalOcean",
   "Netlify",
   "Heroku",
-
-  // Tools
-  "Vim",
-  "VSCode",
-  "Figma",
-  "Illustrator",
+  "AWS",
+  "Docker",
 ];

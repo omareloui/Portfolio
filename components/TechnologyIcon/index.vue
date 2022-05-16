@@ -1,6 +1,7 @@
 <script setup lang="ts">
 type TechnologyCategory =
   | "Development Tool"
+  | "Library"
   | "Framework"
   | "Language"
   | "Preprocessor"
@@ -17,7 +18,10 @@ type TechnologyCategory =
   | "3D Development"
   | "PWA"
   | "Superset"
-  | "Build Tool";
+  | "Build Tool"
+  | "Containerization Technology"
+  | "Template Engine"
+  | "Operating System";
 
 type TechnologyStack =
   | "Front-End"

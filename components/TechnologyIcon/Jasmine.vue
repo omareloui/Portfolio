@@ -1,0 +1,79 @@
+<template>
+  <TechnologyIcon
+    title="Jasmine"
+    category="Test Framework"
+    stack="Front and Back Ends"
+  >
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      width="32px"
+      height="32px"
+      viewBox="0 0 32 32"
+      style="enable-background: new 0 0 32 32"
+      xml:space="preserve"
+    >
+      <g>
+        <polyline
+          id="path36_1_"
+          fill="#8a4182"
+          points="14.8,13.3 17.2,13.3 17.9,12.4 17.9,5.8 14.1,5.8 14.1,12.4 14.8,13.3 	"
+        />
+        <polyline
+          id="path38_1_"
+          fill="#8a4182"
+          points="13.2,16.2 13.9,13.9 13.3,13 7,11 5.9,14.5 12.2,16.5 13.2,16.2 	"
+        />
+        <polyline
+          id="path40_1_"
+          fill="#8a4182"
+          points="15.5,18.6 13.5,17.2 12.5,17.5 8.6,22.9 11.6,25.1 15.5,19.7 15.5,18.6 	"
+        />
+        <polyline
+          id="path42_1_"
+          fill="#8a4182"
+          points="18.5,17.2 16.5,18.6 16.5,19.7 20.4,25.1 23.4,22.9 19.5,17.5 18.5,17.2 	"
+        />
+        <polyline
+          id="path44_1_"
+          fill="#8a4182"
+          points="18.1,13.9 18.8,16.2 19.8,16.5 26.1,14.5 25,11 18.7,13 18.1,13.9 	"
+        />
+        <path
+          id="path46_1_"
+          fill="#8a4182"
+          d="M16,0C7.2,0,0,7.2,0,16c0,8.8,7.2,16,16,16c8.8,0,16-7.2,16-16C32,7.2,24.8,0,16,0z M16,3.2
+		C23,3.2,28.8,9,28.8,16c0,7-5.7,12.8-12.8,12.8C9,28.8,3.2,23,3.2,16C3.2,9,9,3.2,16,3.2z"
+        />
+        <polyline
+          id="path48_1_"
+          fill="#8a4182"
+          points="25.7,19.6 20.9,18 21.2,17 26,18.6 25.7,19.6 	"
+        />
+        <polyline
+          id="path50_1_"
+          fill="#8a4182"
+          points="19.6,11.8 18.7,11.2 21.7,7.2 22.5,7.8 19.6,11.8 	"
+        />
+        <polyline
+          id="path52_1_"
+          fill="#8a4182"
+          points="12.5,11.8 9.5,7.7 10.3,7.1 13.3,11.2 12.5,11.8 	"
+        />
+        <polyline
+          id="path54_1_"
+          fill="#8a4182"
+          points="6.3,19.5 6,18.5 10.8,17 11.1,17.9 6.3,19.5 	"
+        />
+        <polygon
+          id="path56_1_"
+          fill="#8a4182"
+          points="15.5,26.2 16.5,26.2 16.5,21.2 15.5,21.2 	"
+        />
+      </g>
+    </svg>
+  </TechnologyIcon>
+</template>

@@ -64,7 +64,7 @@
     }
 
     .image-wrapper {
-      --border-width: 5px;
+      --border-width: 2px;
 
       position: relative;
       grid-area: image;
@@ -101,7 +101,7 @@
       }
 
       &::after {
-        background: rgb(var(--clr-primary-rgb), 0.25);
+        background: rgb(var(--clr-primary-rgb), 0.15);
         border-radius: 28px;
         @include center;
         @include size(100%);

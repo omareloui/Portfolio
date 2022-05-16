@@ -1,32 +1,35 @@
 <script setup lang="ts">
 import { useTechnologies } from "~~/composables/useTechnologies";
 import { useCamelCaseToTitle } from "~~/composables/useCamelCaseToTitle";
+import Isotope from "isotope-layout";
 
 const camelCaseToTitle = useCamelCaseToTitle();
 const icons = useTechnologies();
 const bubbleEl = ref(null as null | HTMLElement);
 
-type FilterOption = typeof filterOptions[number];
-
-const filterOptions = ["frontEnd", "backEnd", "tools", "other"];
+const filterOptions = ["frontEnd", "backEnd", "tools", "other"] as const;
 const currentFilter = ref("frontEnd" as FilterOption);
 
-let iso;
+type FilterOption = typeof filterOptions[number];
+
+let iso: Isotope;
 
 const filterFunctions = {
   all: (item: HTMLElement) => !!item,
   tools: (item: HTMLElement) =>
-    !!getTitleEl(item).dataset.category.match(/^(Design|Development) Tool$/),
+    !!getTitleEl(item).dataset.category?.match(/^(Design|Development) Tool$/),
   frontEnd: (item: HTMLElement) =>
-    !!getTitleEl(item).dataset.stack.match(/^(Front-End|Front and Back Ends)$/),
+    !!getTitleEl(item).dataset.stack?.match(
+      /^(Front-End|Front and Back Ends)$/
+    ),
   backEnd: (item: HTMLElement) =>
-    !!getTitleEl(item).dataset.stack.match(/^(Back-End|Front and Back Ends)$/),
+    !!getTitleEl(item).dataset.stack?.match(/^(Back-End|Front and Back Ends)$/),
   other: (item: HTMLElement) => {
     const el = getTitleEl(item);
 
     return (
-      !!el.dataset.stack.match(/^(DevOps|Other)$/) &&
-      !el.dataset.category.match("Tool")
+      !!el.dataset.stack?.match(/^(DevOps|Other)$/) &&
+      !el.dataset.category?.match("Tool")
     );
   },
 };
@@ -37,11 +40,11 @@ function getTitleEl(parent: HTMLElement) {
 
 function filterTechnologiesOnClick(e: PointerEvent) {
   const el = e.target as HTMLElement;
-  const filterMode = el.dataset.filter;
+  const filterMode = el.dataset.filter as FilterOption;
   filterTechnologies(filterMode);
 }
 
-async function filterTechnologies(mode = currentFilter.value) {
+async function filterTechnologies(mode: FilterOption = currentFilter.value) {
   iso.arrange({ filter: filterFunctions[mode] });
   currentFilter.value = mode;
 

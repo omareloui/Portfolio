@@ -1,6 +1,8 @@
 import { defineNuxtConfig } from "nuxt3";
 
 export default defineNuxtConfig({
+  typescript: { strict: true },
+
   meta: {
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
