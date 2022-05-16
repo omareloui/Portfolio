@@ -3,6 +3,11 @@ import { defineNuxtConfig } from "nuxt";
 export default defineNuxtConfig({
   typescript: { strict: true },
 
+  components: {
+    global: true,
+    dirs: ["~/components"],
+  },
+
   meta: {
     script: [
       {
