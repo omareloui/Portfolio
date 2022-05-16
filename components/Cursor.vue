@@ -64,8 +64,8 @@ function updateCursorLayout() {
     opacity = 0.8;
   }
 
-  el.value.style.transform = `translate(${tran})`;
-  const svgEl = el.value.querySelector("svg")!;
+  el.value!.style.transform = `translate(${tran})`;
+  const svgEl = el.value!.querySelector("svg")!;
   svgEl.style.transform = `scale(${scale})`;
   svgEl.style.opacity = opacity.toString();
 }
@@ -102,7 +102,7 @@ function onMouseMove(e: MouseEvent) {
   updateCursor();
 
   if (!isLoaded) {
-    el!.value.querySelector("svg")!.style.transform = "scale(1)";
+    el.value!.querySelector("svg")!.style.transform = "scale(1)";
     renderCursor();
     isLoaded = true;
   }

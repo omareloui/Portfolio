@@ -3,6 +3,13 @@ useMeta({
   title: "Omar Eloui | Web Developer",
   htmlAttrs: { lang: "en" },
 });
+
+onMounted(() => {
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = (...args) => window.dataLayer!.push(...args);
+  gtag("js", new Date());
+  gtag("config", "G-MD040L0DB2");
+});
 </script>
 
 <template>

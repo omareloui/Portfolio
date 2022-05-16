@@ -4,6 +4,12 @@ export default defineNuxtConfig({
   typescript: { strict: true },
 
   meta: {
+    script: [
+      {
+        async: true,
+        src: "https://www.googletagmanager.com/gtag/js?id=G-MD040L0DB2",
+      },
+    ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
