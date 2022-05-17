@@ -10,6 +10,8 @@ interface Props {
   technologies: Set<string>;
 }
 
+// TODO: add analytics here
+
 defineProps<Props>();
 </script>
 

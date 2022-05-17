@@ -34,6 +34,7 @@ export function useProjects() {
         "Heroku",
       ]),
     },
+
     {
       title: "Najeh's Portfolio",
       subtitle: "Photographer portfolio",
@@ -61,6 +62,7 @@ export function useProjects() {
         "Netlify",
       ]),
     },
+
     {
       title: "Links",
       subtitle: "Link shortener",
@@ -84,6 +86,7 @@ export function useProjects() {
       github: "https://github.com/omareloui/Links",
       design: "https://www.figma.com/file/0DGDQwOIle54iyNpxlgDnm/Links",
     },
+
     {
       title: "LemmeIn",
       subtitle: "Account manager",
@@ -118,6 +121,7 @@ export function useProjects() {
         "Figma",
       ]),
     },
+
     {
       title: "Image Processor",
       subtitle: "An image processor api (with UI)",
@@ -147,6 +151,7 @@ export function useProjects() {
         "ESLint",
       ]),
     },
+
     {
       title: "Music Utils",
       subtitle: "Well, a music utilities!",
@@ -161,6 +166,25 @@ export function useProjects() {
       github: "https://github.com/omareloui/MusicUtils",
       image: "/images/projects/music-utils.webp",
       technologies: new Set(["Python", "JavaScript"]),
+    },
+
+    {
+      title: "Color Generator",
+      subtitle: "A random color generator",
+      description: `
+        An application inspired by colorspark.app to
+        generate random colors.
+      `,
+      github: "https://github.com/omareloui/ColorGenerator",
+      link: "https://generate-random-color.netlify.app",
+      image: "/images/projects/color-generator.webp",
+      technologies: new Set([
+        "JavaScript",
+        "Sass",
+        "Html",
+        "Prettier",
+        "Netlify",
+      ]),
     },
   ] as ProjectPreviewProps[];
 }
