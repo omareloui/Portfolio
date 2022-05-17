@@ -16,6 +16,11 @@ const { to, underlined, cta, gradient } = withDefaults(
     gradient: false,
   }
 );
+
+const emit = defineEmits<{
+  (e: "click", event: PointerEvent): void;
+  (e: "dblclick", event: PointerEvent): void;
+}>();
 </script>
 
 <template>
@@ -29,6 +34,8 @@ const { to, underlined, cta, gradient } = withDefaults(
       'link--gradient': gradient,
     }"
     :target="newTab ? '_blank' : undefined"
+    @click="emit('click', $event)"
+    @dblclick="emit('dblclick', $event)"
   >
     <span class="link__content">
       <slot></slot>

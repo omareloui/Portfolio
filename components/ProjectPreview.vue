@@ -10,9 +10,26 @@ interface Props {
   technologies: Set<string>;
 }
 
-// TODO: add analytics here
+const props = defineProps<Props>();
 
-defineProps<Props>();
+const { $gtag } = useNuxtApp();
+
+const gTagOptions = {
+  value: 1,
+  project: props.title,
+} as GTagOptions;
+
+function onLiveLinkVisit() {
+  $gtag("event", "project_visit_live", gTagOptions);
+}
+
+function onGithubLinkVisit() {
+  $gtag("event", "project_visit_github", gTagOptions);
+}
+
+function onDesignLinkVisit() {
+  $gtag("event", "project_visit_design", gTagOptions);
+}
 </script>
 
 <template>
@@ -25,9 +42,15 @@ defineProps<Props>();
       <div class="project-preview__description">{{ description }}</div>
 
       <div class="project-preview__links" v-if="link || github">
-        <TheLink v-if="link" :to="link" new-tab>Live site</TheLink>
-        <TheLink v-if="github" :to="github" new-tab>GitHub</TheLink>
-        <TheLink v-if="design" :to="design" new-tab>Design</TheLink>
+        <TheLink v-if="link" :to="link" new-tab @click="onLiveLinkVisit"
+          >Live site</TheLink
+        >
+        <TheLink v-if="github" :to="github" new-tab @click="onGithubLinkVisit"
+          >GitHub</TheLink
+        >
+        <TheLink v-if="design" :to="design" new-tab @click="onDesignLinkVisit"
+          >Design</TheLink
+        >
       </div>
 
       <LineBreak

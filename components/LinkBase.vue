@@ -1,9 +1,16 @@
 <script setup lang="ts">
-const emit = defineEmits(["click", "dblclick"]);
+const emit = defineEmits<{
+  (e: "click", event: PointerEvent): void;
+  (e: "dblclick", event: PointerEvent): void;
+}>();
 </script>
 
 <template>
-  <ClickableElement tag="a" @click="emit('click')" @dblclick="emit('dblclick')">
+  <ClickableElement
+    tag="a"
+    @click="emit('click', $event)"
+    @dblclick="emit('dblclick', $event)"
+  >
     <slot></slot>
   </ClickableElement>
 </template>
