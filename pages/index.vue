@@ -3,6 +3,21 @@ useHead({
   title: "Omar Eloui | Web Developer",
   htmlAttrs: { lang: "en" },
 });
+
+function init() {
+  const route = useRoute();
+  const visitor = route.query.v as string | undefined;
+  const source = route.query.s as string | undefined;
+
+  if (!visitor && !source) return;
+
+  const { $gtag } = useNuxtApp();
+
+  if (visitor) $gtag("event", "recognized_visitor", { value: 1, visitor });
+  if (source) $gtag("event", "recognized_src", { value: 1, source });
+}
+
+onMounted(init);
 </script>
 
 <template>

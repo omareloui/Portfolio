@@ -4,7 +4,7 @@ type GTagFunction = (
   options?: {
     debug_mode?: boolean;
     value?: number;
-    [K in string]: string | number | Date;
+    [K: string]: string | number | Date;
   }
 ) => void;
 
