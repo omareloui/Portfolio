@@ -23,6 +23,7 @@
     "sass-loader": "^12.2.0"
   },
   "dependencies": {
-    "isotope-layout": "^3.0.6"
+    "isotope-layout": "^3.0.6",
+    "vue-gtag-next": "^1.14.0"
   }
 }

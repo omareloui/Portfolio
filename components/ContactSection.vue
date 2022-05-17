@@ -1,16 +1,8 @@
 <script setup lang="ts">
-let gtag: GTagFunction;
-
-function init() {
-  gtag = useGTag();
-}
-
 function onContactClick() {
-  if (!gtag) return;
-  gtag("event", "contacted_via_email");
+  const { $gtag } = useNuxtApp();
+  $gtag("event", "contacted_via_email", { value: 1 });
 }
-
-onMounted(init);
 </script>
 
 <template>

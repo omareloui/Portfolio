@@ -9,12 +9,6 @@ export default defineNuxtConfig({
   },
 
   meta: {
-    script: [
-      {
-        src: "https://www.googletagmanager.com/gtag/js?id=G-MD040L0DB2",
-        async: true,
-      },
-    ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
