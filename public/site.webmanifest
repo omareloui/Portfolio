@@ -1,5 +1,5 @@
 {
-  "name": "Omar Eloui | Full-Stack Developer Portfolio",
+  "name": "Omar Eloui | Full-Stack Developer",
   "short_name": "Omar Eloui",
 
   "icons": [
@@ -24,6 +24,12 @@
     {
       "src": "/logo_x180.png",
       "sizes": "180x108",
+      "purpose": "any"
+    },
+
+    {
+      "src": "/logo_x144.png",
+      "sizes": "144x144",
       "purpose": "any"
     },
 
@@ -66,6 +72,6 @@
 
   "start_url": "/?source=pwa",
   "display": "fullscreen",
-  "background_color": "#000000",
+  "background_color": "#f0f0f0",
   "theme_color": "#5216d1"
 }

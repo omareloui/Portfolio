@@ -1,6 +1,4 @@
 <script setup lang="ts">
-let destroySW: () => void;
-
 useHead({
   title: "Omar Eloui | Web Developer",
   htmlAttrs: { lang: "en" },
@@ -21,8 +19,7 @@ function setGTag() {
 
 function setSW() {
   const registerSW = useRegisterSW();
-  const { destroy } = registerSW();
-  destroySW = destroy;
+  registerSW();
 }
 
 function init() {
@@ -31,8 +28,6 @@ function init() {
 }
 
 onMounted(init);
-
-onUnmounted(() => destroySW && destroySW());
 </script>
 
 <template>
