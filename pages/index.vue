@@ -1,10 +1,12 @@
 <script setup lang="ts">
+let destroySW: () => void;
+
 useHead({
   title: "Omar Eloui | Web Developer",
   htmlAttrs: { lang: "en" },
 });
 
-function init() {
+function setGTag() {
   const route = useRoute();
   const visitor = route.query.v as string | undefined;
   const source = route.query.s as string | undefined;
@@ -17,7 +19,20 @@ function init() {
   if (source) $gtag("event", "recognized_src", { value: 1, source });
 }
 
+function setSW() {
+  const registerSW = useRegisterSW();
+  const { destroy } = registerSW();
+  destroySW = destroy;
+}
+
+function init() {
+  setGTag();
+  setSW();
+}
+
 onMounted(init);
+
+onUnmounted(() => destroySW && destroySW());
 </script>
 
 <template>

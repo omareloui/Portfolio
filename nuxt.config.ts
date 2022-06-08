@@ -15,9 +15,31 @@ export default defineNuxtConfig({
     },
   },
 
+  head: {
+    title: "Omar Eloui | Web Developer",
+  },
+
   meta: {
+    meta: [{ name: "theme-color", content: "#5216d1" }],
     link: [
+      { charset: "utf-8" },
+      {
+        hid: "description",
+        name: "description",
+        content:
+          "Personal portfolio for Omar Eloui. A full-stack developer based in Egypt.",
+      },
+
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+
+      {
+        hid: "apple-touch-icon",
+        rel: "apple-touch-icon",
+        href: "/logo_x180.png",
+      },
+
+      { rel: "manifest", href: "/site.webmanifest" },
+
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
         rel: "preconnect",
