@@ -18,7 +18,20 @@ workbox.routing.registerRoute(
 workbox.routing.registerRoute(
   ({ request }) => request.destination === "style",
   new workbox.strategies.StaleWhileRevalidate({
-    cacheName: "assets",
+    cacheName: "styles",
+    plugins: [
+      // Ensure that only requests that result in a 200 status are cached
+      new workbox.cacheableResponse.CacheableResponse({
+        statuses: [200],
+      }),
+    ],
+  })
+);
+
+workbox.routing.registerRoute(
+  ({ request }) => request.destination === "script",
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: "scripts",
     plugins: [
       // Ensure that only requests that result in a 200 status are cached
       new workbox.cacheableResponse.CacheableResponse({
