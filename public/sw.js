@@ -29,6 +29,18 @@ workbox.routing.registerRoute(
 );
 
 workbox.routing.registerRoute(
+  ({ request }) => request.destination === "font",
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: "fonts",
+    plugins: [
+      new workbox.cacheableResponse.CacheableResponse({
+        statuses: [200],
+      }),
+    ],
+  })
+);
+
+workbox.routing.registerRoute(
   ({ request }) => request.destination === "script",
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: "scripts",
