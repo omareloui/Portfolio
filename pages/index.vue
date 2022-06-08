@@ -17,14 +17,8 @@ function setGTag() {
   if (source) $gtag("event", "recognized_src", { value: 1, source });
 }
 
-function setSW() {
-  const registerSW = useRegisterSW();
-  registerSW();
-}
-
 function init() {
   setGTag();
-  setSW();
 }
 
 onMounted(init);
