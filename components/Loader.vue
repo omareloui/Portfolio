@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { useSleep } from "~~/composables/useSleep";
-
 const sleep = useSleep();
 const isLoaded = ref(false);
 
 async function removeLoader() {
   await sleep(1000);
   isLoaded.value = true;
-  useMeta({
+  useHead({
     bodyAttrs: { style: "--body-y-overflow: auto" },
   });
 }
