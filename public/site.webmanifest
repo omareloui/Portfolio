@@ -4,7 +4,7 @@
   "short_name": "Omar Eloui",
 
   "start_url": "/?source=pwa",
-  "display": "fullscreen",
+  "display": "standalone",
   "background_color": "#f0f0f0",
   "theme_color": "#5216d1",
 
