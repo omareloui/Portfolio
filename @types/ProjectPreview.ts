@@ -6,5 +6,5 @@ export interface ProjectPreviewProps {
   design?: string;
   description: string;
   image: string;
-  technologies: Set<string>;
+  technologies: string[];
 }

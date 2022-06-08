@@ -7,7 +7,7 @@ interface Props {
   github?: string;
   design?: string;
   image: string;
-  technologies: Set<string>;
+  technologies: string[];
 }
 
 const props = defineProps<Props>();
