@@ -35,7 +35,7 @@ export default defineNuxtConfig({
       {
         hid: "apple-touch-icon",
         rel: "apple-touch-icon",
-        href: "/logo_x180.png",
+        href: "/icons/logo_x180.png",
       },
 
       { rel: "manifest", href: "/site.webmanifest" },

@@ -1,77 +1,78 @@
 {
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
   "name": "Omar Eloui | Full-Stack Developer",
   "short_name": "Omar Eloui",
 
+  "start_url": "/?source=pwa",
+  "display": "fullscreen",
+  "background_color": "#f0f0f0",
+  "theme_color": "#5216d1",
+
   "icons": [
     {
-      "src": "/logo_x512.png",
+      "src": "/icons/logo_x512.png",
       "sizes": "512x306",
       "purpose": "maskable"
     },
 
     {
-      "src": "/logo_x384.png",
+      "src": "/icons/logo_x384.png",
       "sizes": "384x229",
       "purpose": "maskable"
     },
 
     {
-      "src": "/logo_x192.png",
+      "src": "/icons/logo_x192.png",
       "sizes": "192x115",
       "purpose": "maskable"
     },
 
     {
-      "src": "/logo_x180.png",
+      "src": "/icons/logo_x180.png",
       "sizes": "180x108",
       "purpose": "any"
     },
 
     {
-      "src": "/logo_x144.png",
+      "src": "/icons/logo_x144.png",
       "sizes": "144x144",
       "purpose": "any"
     },
 
     {
-      "src": "/logo_x128.png",
+      "src": "/icons/logo_x128.png",
       "sizes": "128x76",
       "purpose": "maskable"
     },
 
     {
-      "src": "/logo_x120.png",
+      "src": "/icons/logo_x120.png",
       "sizes": "120x72",
       "purpose": "any"
     },
 
     {
-      "src": "/logo_x96.png",
+      "src": "/icons/logo_x96.png",
       "sizes": "96x57",
       "purpose": "maskable"
     },
 
     {
-      "src": "/logo_x72.png",
+      "src": "/icons/logo_x72.png",
       "sizes": "72x43",
       "purpose": "maskable"
     },
 
     {
-      "src": "/logo_x48.png",
+      "src": "/icons/logo_x48.png",
       "sizes": "48x29",
       "purpose": "any"
     },
 
     {
-      "src": "/logo_x32.png",
+      "src": "/icons/logo_x32.png",
       "sizes": "32x19",
       "purpose": "any"
     }
-  ],
-
-  "start_url": "/?source=pwa",
-  "display": "fullscreen",
-  "background_color": "#f0f0f0",
-  "theme_color": "#5216d1"
+  ]
 }
