@@ -56,6 +56,7 @@ workbox.routing.registerRoute(
         statuses: [200, 404],
       }),
       new workbox.expiration.CacheExpiration("images", {
+        maxEntries: 50,
         maxAgeSeconds: 60 * 60 * 24 * 30, // 30 Days
       }),
     ],

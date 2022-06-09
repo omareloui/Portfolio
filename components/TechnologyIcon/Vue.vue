@@ -1,0 +1,23 @@
+<template>
+  <TechnologyIcon title="Vue" category="Framework" stack="Front-End">
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      width="32px"
+      height="27.6px"
+      viewBox="0 0 32 27.6"
+      style="enable-background: new 0 0 32 27.6"
+      xml:space="preserve"
+    >
+      <path
+        fill="#48b382"
+        d="M25.6,0H32L16,27.6L0,0h12.2L16,6.4L19.7,0H25.6z"
+      />
+      <path fill="#48b382" d="M0,0l16,27.6L32,0h-6.4L16,16.6L6.3,0H0z" />
+      <path fill="#36495e" d="M6.4,0L16,16.6L25.6,0h-5.9L16,6.4L12.3,0H6.4z" />
+    </svg>
+  </TechnologyIcon>
+</template>

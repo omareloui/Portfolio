@@ -1,0 +1,36 @@
+<template>
+  <TechnologyIcon title="Tailwind CSS" category="Framework" stack="Front-End">
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      width="32px"
+      height="19.2px"
+      viewBox="0 0 32 19.2"
+      style="enable-background: new 0 0 32 19.2"
+      xml:space="preserve"
+    >
+      <linearGradient
+        id="SVGID_1_"
+        gradientUnits="userSpaceOnUse"
+        x1="-267.3172"
+        y1="398.3053"
+        x2="-265.7511"
+        y2="397.7635"
+        gradientTransform="matrix(21 0 0 -12.6 5612.7979 5024.7471)"
+      >
+        <stop offset="0" style="stop-color: #2198bd" />
+        <stop offset="1" style="stop-color: #52baa8" />
+      </linearGradient>
+      <path
+        fill="url(#SVGID_1_)"
+        d="M16,0c-4.3,0-6.9,2.1-8,6.4c1.6-2.1,3.5-2.9,5.6-2.4c1.2,0.3,2.1,1.2,3.1,2.2C18.2,7.8,20,9.6,24,9.6
+	c4.3,0,6.9-2.1,8-6.4c-1.6,2.1-3.5,2.9-5.6,2.4c-1.2-0.3-2.1-1.2-3.1-2.2C21.8,1.8,20,0,16,0z M8,9.6c-4.3,0-6.9,2.1-8,6.4
+	c1.6-2.1,3.5-2.9,5.6-2.4c1.2,0.3,2.1,1.2,3.1,2.2c1.6,1.6,3.4,3.4,7.3,3.4c4.3,0,6.9-2.1,8-6.4c-1.6,2.1-3.5,2.9-5.6,2.4
+	c-1.2-0.3-2.1-1.2-3.1-2.2C13.8,11.4,12,9.6,8,9.6z"
+      />
+    </svg>
+  </TechnologyIcon>
+</template>
