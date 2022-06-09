@@ -50,7 +50,10 @@ const { title, category, stack, size, hideTitle } = withDefaults(
 <template>
   <div class="technology" :class="{ 'technology--no-bg': noBackground }">
     <div class="technology__icon" v-bind="{ title }">
-      <slot></slot>
+      <img
+        :src="`/images/technologies/${title.replace(/\s|\./g, '')}.svg`"
+        :alt="`${title} icon`"
+      />
     </div>
 
     <span
@@ -90,7 +93,7 @@ const { title, category, stack, size, hideTitle } = withDefaults(
     @include size(var(--icon-size));
     padding: 0.5rem 0.7rem 0;
 
-    ::v-deep(svg) {
+    img {
       @include size(100%);
     }
   }
