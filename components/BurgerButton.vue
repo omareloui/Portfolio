@@ -8,6 +8,7 @@ const emit = defineEmits(["click"]);
     class="burger"
     :class="{ 'burger--open': isOpen }"
     @click="emit('click')"
+    aria-label="nav menu"
   >
     <span class="burger__line burger__line--1"></span>
     <span class="burger__line burger__line--2"></span>

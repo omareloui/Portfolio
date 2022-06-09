@@ -3,9 +3,10 @@
     <SectionHeading>About Me</SectionHeading>
     <SectionSubheading>More on me</SectionSubheading>
     <div class="body">
-      <div class="image-wrapper">
-        <img src="/images/me.jpg" alt="Image of me (Omar Eloui)" />
-      </div>
+      <picture class="image-wrapper">
+        <source srcset="/images/me_250.webp" media="(min-width: 768px)" />
+        <img src="/images/me_580.webp" alt="Me (Omar Eloui)" loading="lazy" />
+      </picture>
 
       <article>
         <Paragraph padding="0.1rem 0">

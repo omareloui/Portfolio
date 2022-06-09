@@ -1,9 +1,7 @@
 <script setup lang="ts">
-const sleep = useSleep();
 const isLoaded = ref(false);
 
 async function removeLoader() {
-  await sleep(1000);
   isLoaded.value = true;
   useHead({
     bodyAttrs: { style: "--body-y-overflow: auto" },

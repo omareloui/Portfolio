@@ -5,7 +5,7 @@
 
     <div class="capabilities-body">
       <div class="capability">
-        <span class="capability__indicator">01.</span>
+        <span class="capability__indicator" aria-hidden="true">01.</span>
         <h3 class="capability__heading">Development</h3>
         <div class="capability__body">
           I love working on complex web applications and delivering easy to use,
@@ -15,7 +15,7 @@
       </div>
 
       <div class="capability">
-        <span class="capability__indicator">02.</span>
+        <span class="capability__indicator" aria-hidden="true">02.</span>
         <h3 class="capability__heading">Design</h3>
         <div class="capability__body">
           I design user-centric, modern interfaces for digital products or

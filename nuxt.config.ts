@@ -15,21 +15,21 @@ export default defineNuxtConfig({
     },
   },
 
-  head: {
-    title: "Omar Eloui | Web Developer",
-  },
-
   meta: {
-    meta: [{ name: "theme-color", content: "#5216d1" }],
-    link: [
+    title: "Omar Eloui | Web Developer",
+
+    meta: [
+      { name: "theme-color", content: "#5216d1" },
       { charset: "utf-8" },
       {
         hid: "description",
         name: "description",
         content:
-          "Personal portfolio for Omar Eloui. A full-stack developer based in Egypt.",
+          "Full-stack developer portfolio. Omar Eloui is a developer based in Egypt.",
       },
+    ],
 
+    link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
 
       {
@@ -37,6 +37,7 @@ export default defineNuxtConfig({
         rel: "apple-touch-icon",
         href: "/icons/logo_x180.png",
       },
+      { rel: "apple-mobile-web-app-status-bar", content: "#5216d1" },
 
       { rel: "manifest", href: "/site.webmanifest" },
 

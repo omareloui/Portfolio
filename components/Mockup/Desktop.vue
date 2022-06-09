@@ -6,7 +6,12 @@ const { image, alt } = defineProps<{ image: string; alt: string }>();
   <div class="desktop-mockup">
     <div class="desktop-mockup__outside">
       <div class="desktop-mockup__inside">
-        <img class="desktop-mockup__image" :src="image" :alt="alt" />
+        <img
+          class="desktop-mockup__image"
+          :src="image"
+          :alt="alt"
+          loading="lazy"
+        />
       </div>
     </div>
     <div class="desktop-mockup__body">
