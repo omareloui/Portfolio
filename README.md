@@ -1,1 +1,3 @@
-# Starter template for my Nuxt3 Projects
+# Omar Eloui portfolio
+
+Personal portfolio to show case my projects.
