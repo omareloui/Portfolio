@@ -19,14 +19,48 @@ export default defineNuxtConfig({
     title: "Omar Eloui | Web Developer",
 
     meta: [
-      { name: "theme-color", content: "#5216d1" },
       { charset: "utf-8" },
+      { name: "theme-color", content: "#5216d1" },
+
       {
         hid: "description",
         name: "description",
         content:
           "Full-stack developer portfolio. Omar Eloui is a developer based in Egypt.",
       },
+      { property: "og:url", content: "https://omareloui.com" },
+      { property: "og:title", content: "Omar Eloui | Full-Stack Developer" },
+      { property: "og:type", content: "website" },
+      {
+        property: "og:site_name",
+        content: "Omar Eloui | Full-Stack Developer",
+      },
+      {
+        property: "og:description",
+        content:
+          "Full-stack developer portfolio. Omar Eloui is a developer based in Egypt.",
+      },
+
+      { property: "og:image", content: "/images/heading.png" },
+      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:width", content: "1280" },
+      { property: "og:image:height", content: "640" },
+
+      {
+        property: "og:update_time",
+        content: Math.floor(Number(new Date()) / 1000),
+      },
+
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "twitter:domain", content: "omareloui.com" },
+      { property: "twitter:url", content: "https://omareloui.com" },
+      { name: "twitter:title", content: "Omar Eloui | Full-Stack Developer" },
+      {
+        name: "twitter:description",
+        content:
+          "Full-stack developer portfolio. Omar Eloui is a developer based in Egypt.",
+      },
+      { name: "twitter:image", content: "/images/heading.png" },
     ],
 
     link: [
