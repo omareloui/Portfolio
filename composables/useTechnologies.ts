@@ -1,77 +1,118 @@
-export const useTechnologies = () => [
-  // Front end
-  "Nuxt",
-  "Vue",
+export type Category =
+  | "Development Tool"
+  | "Library"
+  | "Framework"
+  | "Language"
+  | "Preprocessor"
+  | "Test Framework"
+  | "Version Control System"
+  | "VSC Cloud Hosting Service"
+  | "Run Time For JS"
+  | "Cloud Service"
+  | "Design Tool"
+  | "API"
+  | "Auth System"
+  | "DataBase"
+  | "Package Manger"
+  | "3D Development"
+  | "PWA"
+  | "Superset"
+  | "Build Tool"
+  | "Containerization Technology"
+  | "Template Engine"
+  | "Operating System";
 
-  "TypeScript",
-  "JavaScript",
+export type Stack =
+  | "Front-End"
+  | "Back-End"
+  | "Front and Back Ends"
+  | "DevOps"
+  | "Other";
 
-  "Html",
-  "Css",
-  "Sass",
+export const useTechnologies: () => {
+  title: string;
+  stack: Stack;
+  category: Category;
+}[] = () => [
+  { title: "Nuxt", category: "Framework", stack: "Front and Back Ends" },
+  { title: "Vue", category: "Framework", stack: "Front-End" },
 
-  "Pug",
-  "EJS",
+  { title: "TypeScript", category: "Superset", stack: "Front and Back Ends" },
+  { title: "JavaScript", category: "Language", stack: "Front and Back Ends" },
 
-  "MarkDown",
+  { title: "Html", category: "Language", stack: "Front-End" },
+  { title: "Css", category: "Language", stack: "Front-End" },
+  { title: "Sass", category: "Preprocessor", stack: "Front-End" },
 
-  "ReactJs",
-  "AlpineJs",
-  "Lit",
+  { title: "Pug", category: "Preprocessor", stack: "Front-End" },
+  { title: "EJS", category: "Template Engine", stack: "Front-End" },
 
-  "ThreeJs",
-  "P5Js",
-  "WebGL",
+  { title: "MarkDown", category: "Language", stack: "Front-End" },
 
-  "TailWindCss",
-  "SkeletonCss",
+  { title: "ReactJs", category: "Framework", stack: "Front-End" },
+  { title: "AlpineJs", category: "Framework", stack: "Front-End" },
+  { title: "Lit", category: "Framework", stack: "Front-End" },
 
-  "Vite",
-  "PWA",
+  { title: "ThreeJs", category: "3D Development", stack: "Front-End" },
+  { title: "P5Js", category: "3D Development", stack: "Front-End" },
+  { title: "WebGL", category: "3D Development", stack: "Front-End" },
 
-  // Back end
-  "Node",
-  "ExpressJs",
+  { title: "TailWindCss", category: "Framework", stack: "Front-End" },
+  { title: "SkeletonCss", category: "Library", stack: "Front-End" },
 
-  "Deno",
-  "Python",
+  { title: "Vite", category: "Build Tool", stack: "Front and Back Ends" },
+  { title: "PWA", category: "PWA", stack: "Front-End" },
 
-  "MongoDB",
-  "PostgreSQL",
-  "MySQL",
+  { title: "Node", category: "Run Time For JS", stack: "Back-End" },
+  { title: "ExpressJs", category: "Framework", stack: "Back-End" },
 
-  "Sharp",
+  { title: "Deno", category: "Run Time For JS", stack: "Back-End" },
+  { title: "Python", category: "Language", stack: "Back-End" },
 
-  // Both
-  "JWT",
-  "RestAPI",
-  "GraphQL",
+  { title: "MongoDB", category: "DataBase", stack: "Back-End" },
+  { title: "PostgreSql", category: "DataBase", stack: "Back-End" },
+  { title: "MySQL", category: "DataBase", stack: "Back-End" },
 
-  "Jasmine",
-  "Jest",
+  { title: "Sharp", category: "Library", stack: "Back-End" },
 
-  // Tools
-  "Vim",
-  "VSCode",
+  { title: "JWT", category: "Auth System", stack: "Back-End" },
+  { title: "RestAPI", category: "Auth System", stack: "Back-End" },
+  { title: "GraphQL", category: "Auth System", stack: "Back-End" },
 
-  "Prettier",
-  "ESLint",
+  {
+    title: "Jasmine",
+    category: "Test Framework",
+    stack: "Front and Back Ends",
+  },
+  { title: "Jest", category: "Test Framework", stack: "Front and Back Ends" },
 
-  "Figma",
-  "Illustrator",
+  { title: "Vim", category: "Development Tool", stack: "Other" },
+  { title: "VSCode", category: "Development Tool", stack: "Other" },
 
-  // OSs
-  "Linux",
-  "Windows",
+  {
+    title: "Prettier",
+    category: "Development Tool",
+    stack: "Front and Back Ends",
+  },
+  {
+    title: "ESLint",
+    category: "Development Tool",
+    stack: "Front and Back Ends",
+  },
 
-  // Other
-  "Git",
-  "GitHub",
-  "NPM",
-  "PNPM",
-  "DigitalOcean",
-  "Netlify",
-  "Heroku",
-  "AWS",
-  "Docker",
+  { title: "Figma", category: "Design Tool", stack: "Other" },
+  { title: "Illustrator", category: "Design Tool", stack: "Other" },
+
+  { title: "Linux", category: "Operating System", stack: "Other" },
+  { title: "Windows", category: "Operating System", stack: "Other" },
+
+  { title: "Git", category: "Version Control System", stack: "DevOps" },
+  { title: "GitHub", category: "VSC Cloud Hosting Service", stack: "DevOps" },
+  { title: "NPM", category: "Package Manger", stack: "Other" },
+  { title: "PNPM", category: "Package Manger", stack: "Other" },
+  { title: "AWS", category: "Cloud Service", stack: "DevOps" },
+  { title: "DigitalOcean", category: "Cloud Service", stack: "DevOps" },
+  { title: "Netlify", category: "Cloud Service", stack: "DevOps" },
+  { title: "Heroku", category: "Cloud Service", stack: "DevOps" },
+  { title: "Docker", category: "Containerization Technology", stack: "DevOps" },
 ];

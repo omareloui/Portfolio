@@ -1,34 +1,8 @@
 <script setup lang="ts">
-type TechnologyCategory =
-  | "Development Tool"
-  | "Library"
-  | "Framework"
-  | "Language"
-  | "Preprocessor"
-  | "Test Framework"
-  | "Version Control System"
-  | "VSC Cloud Hosting Service"
-  | "Run Time For JS"
-  | "Cloud Service"
-  | "Design Tool"
-  | "API"
-  | "Auth System"
-  | "DataBase"
-  | "Package Manger"
-  | "3D Development"
-  | "PWA"
-  | "Superset"
-  | "Build Tool"
-  | "Containerization Technology"
-  | "Template Engine"
-  | "Operating System";
-
-type TechnologyStack =
-  | "Front-End"
-  | "Back-End"
-  | "Front and Back Ends"
-  | "DevOps"
-  | "Other";
+import type {
+  Category as TechnologyCategory,
+  Stack as TechnologyStack,
+} from "~~/composables/useTechnologies";
 
 const { title, category, stack, size, hideTitle } = withDefaults(
   defineProps<{
@@ -50,7 +24,12 @@ const { title, category, stack, size, hideTitle } = withDefaults(
 <template>
   <div class="technology" :class="{ 'technology--no-bg': noBackground }">
     <div class="technology__icon" v-bind="{ title }">
-      <slot></slot>
+      <img
+        :src="`/images/icons/technologies/${title}.svg`"
+        :title="title"
+        :alt="title"
+        loading="lazy"
+      />
     </div>
 
     <span
@@ -90,7 +69,7 @@ const { title, category, stack, size, hideTitle } = withDefaults(
     @include size(var(--icon-size));
     padding: 0.5rem 0.7rem 0;
 
-    ::v-deep(svg) {
+    img {
       @include size(100%);
     }
   }

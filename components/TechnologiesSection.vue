@@ -138,7 +138,7 @@ onUnmounted(destroy);
 
     <ul class="technologies">
       <li v-for="(icon, index) in icons" :key="index">
-        <Component :is="`TechnologyIcon${icon}`" />
+        <TechnologyIcon v-bind="icon" />
       </li>
     </ul>
   </SectionContainer>

@@ -3,11 +3,6 @@ import { defineNuxtConfig } from "nuxt";
 export default defineNuxtConfig({
   typescript: { shim: false, strict: true },
 
-  components: {
-    global: true,
-    dirs: ["~/components"],
-  },
-
   runtimeConfig: {
     private: {
       CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,

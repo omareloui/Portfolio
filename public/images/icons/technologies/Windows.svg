@@ -1,0 +1,20 @@
+<svg
+  version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  x="0px"
+  y="0px"
+  width="32px"
+  height="32px"
+  viewBox="0 0 32 32"
+  style="enable-background: new 0 0 32 32"
+  xml:space="preserve"
+>
+  <path
+    fill="#00b6f0"
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M32,16.9L32,32l-17.3-2.4l0-12.7L32,16.9z M14.7,2.5L32,0v15.2l-17.3,0.1V2.5z
+  M13.1,16.8l0,12.6L0,27.6l0-10.9L13.1,16.8z M0,4.5l13.1-1.8l0,12.6L0,15.4L0,4.5z"
+  />
+</svg>
