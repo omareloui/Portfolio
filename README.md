@@ -1,3 +1,3 @@
 # Omar Eloui portfolio
 
-Personal portfolio to show case my projects.
+Personal portfolio to showcase my projects.
