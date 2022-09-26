@@ -7,8 +7,8 @@ import type {
 const { title, category, stack, size, hideTitle } = withDefaults(
   defineProps<{
     title: string;
-    category: TechnologyCategory;
-    stack: TechnologyStack;
+    category?: TechnologyCategory;
+    stack?: TechnologyStack;
     size?: string;
     hideTitle?: boolean;
     noBackground?: boolean;

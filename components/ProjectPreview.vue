@@ -60,11 +60,11 @@ function onDesignLinkVisit() {
       />
 
       <div class="project-preview__technologies">
-        <component
+        <TechnologyIcon
           class="technology"
           v-for="tech of technologies"
           :key="tech"
-          :is="`TechnologyIcon${tech}`"
+          :title="tech"
           hide-title
           no-background
           size="30px"
