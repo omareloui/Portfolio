@@ -1,0 +1,26 @@
+---
+import ToggleThemeButton from "@components/ToggleThemeButton.astro";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Omar Eloui | Web Developer</title>
+  </head>
+  <body>
+    <ToggleThemeButton />
+    <slot />
+  </body>
+</html>
+
+<script>
+  import { theme } from "@utils";
+  theme.init();
+</script>
+
+<style lang="scss">
+  @use "../assets/styles/index.scss";
+</style>

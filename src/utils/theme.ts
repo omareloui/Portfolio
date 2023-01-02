@@ -1,4 +1,4 @@
-import type { ThemeState } from "@type";
+type ThemeState = "dark" | "light" | "default";
 
 const LOCAL_STORAGE_THEME_NAME = "theme";
 
@@ -23,8 +23,16 @@ function setTheme(theme: ThemeState, shouldStoreInLocalStorage = true) {
   if (shouldStoreInLocalStorage) storeInLocalStorage(theme);
 }
 
-function getFromLocalStorage(): ThemeState | null {
+export function getFromLocalStorage(): ThemeState | null {
   return localStorage.getItem(LOCAL_STORAGE_THEME_NAME) as ThemeState | null;
+}
+
+export function getFromSystemColorScheme(): Exclude<ThemeState, "default"> {
+  const isDark =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+  if (isDark) return "dark";
+  return "light";
 }
 
 export function toggleTheme(): void {
@@ -48,12 +56,7 @@ export function loadFromSystemTheme() {
   const localItem = getFromLocalStorage();
   if (!checkIfShouldLoadSystemTheme(localItem)) return;
 
-  const isDark =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  if (isDark) setTheme("dark", false);
-  else setTheme("light", false);
+  setTheme(getFromSystemColorScheme(), false);
 }
 
 export function listenForSystemColorSchemeChange() {

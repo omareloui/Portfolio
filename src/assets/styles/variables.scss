@@ -1,0 +1,29 @@
+$colors-props: background text;
+
+@mixin set-colors($scheme: light) {
+  @each $style in $colors-props {
+    --clr-#{$style}: var(--#{$style}-#{$scheme});
+  }
+}
+
+:root {
+  color-scheme: light;
+
+  --clr-background-light: #fefefe;
+  --clr-background-dark: #121212;
+
+  --clr-text-light: #121212;
+  --clr-text-dark: #fefefe;
+
+  // --clr-surface1: ;
+  // --clr-surface2: ;
+  // --clr-surface3: ;
+  // --clr-surface4: ;
+
+  @include set-colors;
+}
+
+:root[theme="dark"] {
+  color-scheme: dark;
+  @include set-colors(dark);
+}

@@ -1,11 +1,54 @@
-<button class="toggle-theme" type="button">toggle theme</button>
+---
+---
+
+<label for="switch" class="toggle-theme">
+  dark theme
+  <input type="checkbox" role="switch" class="switch" />
+</label>
+
+<style lang="scss">
+  .toggle-theme {
+    --track-size: calc(var(--thumb-size) * 2);
+    --track-padding: 2px;
+
+    --track-inactive: hsl(80 0% 80%);
+    --track-active: hsl(80 60% 45%);
+
+    --track-color-inactive: var(--track-inactive);
+    --track-color-active: var(--track-active);
+
+    @media (prefers-color-scheme: dark) {
+      --track-inactive: hsl(80 0% 35%);
+      --track-active: hsl(80 60% 60%);
+      /* background: red; */
+    }
+  }
+</style>
 
 <script>
   import { theme } from "@utils";
 
-  const toggleThemeButton = document.querySelector(
-    ".toggle-theme"
-  ) as HTMLButtonElement;
+  const themeInput = document.querySelector(
+    ".toggle-theme input[type='checkbox']"
+  ) as HTMLInputElement;
 
-  toggleThemeButton.addEventListener("click", theme.toggleTheme);
+  // Set the current state for the switch
+  const selectedTheme = theme.getFromLocalStorage();
+  if (selectedTheme === "dark") themeInput.checked = true;
+  else if (selectedTheme === "light") themeInput.checked = false;
+  else {
+    themeInput.indeterminate = true;
+  }
+
+  let wasIndeterminate = themeInput.indeterminate;
+  themeInput.addEventListener("change", e => {
+    const target = e.target as HTMLInputElement;
+
+    if (wasIndeterminate && theme.getFromSystemColorScheme() === "dark") {
+      target.checked = false;
+      wasIndeterminate = false;
+    }
+
+    theme.toggleTheme();
+  });
 </script>

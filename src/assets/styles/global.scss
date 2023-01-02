@@ -1,11 +1,9 @@
-:root {
-  --background-base: #fefefe;
-  --txt-base: #121212;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-:root[theme="dark"] {
-  color-scheme: dark;
-
-  --background-base: #121212;
-  --txt-base: #fefefe;
+body {
+  background: var(--clr-background);
+  color: var(--clr-text);
 }
