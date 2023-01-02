@@ -8,7 +8,6 @@
     "eslint:recommended",
     "prettier",
     "plugin:@typescript-eslint/recommended",
-    "plugin:vue/essential",
     "plugin:astro/recommended"
   ],
   "parserOptions": {
@@ -16,21 +15,14 @@
     "parser": "@typescript-eslint/parser",
     "sourceType": "module"
   },
-  "plugins": [
-    "vue",
-    "@typescript-eslint"
-  ],
+  "plugins": ["@typescript-eslint"],
   "overrides": [
     {
-      "files": [
-        "*.astro"
-      ],
+      "files": ["*.astro"],
       "parser": "astro-eslint-parser",
       "parserOptions": {
         "parser": "@typescript-eslint/parser",
-        "extraFileExtensions": [
-          ".astro"
-        ]
+        "extraFileExtensions": [".astro"]
       },
       "rules": {}
     }

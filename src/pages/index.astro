@@ -1,14 +1,32 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import ToggleThemeButton from "@components/ToggleThemeButton.astro";
 ---
 
-<Layout>
-  <main>
-    <h1>Welcome to <span class="text-gradient">Astro</span></h1>
-    <p class="instructions">
-      To get started, open the directory <code>src/pages</code> in your project.<br
-      />
-      <strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-    </p>
-  </main>
-</Layout>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Omar Eloui | Web Developer</title>
+  </head>
+  <body>
+    <h1>Astro</h1>
+    <ToggleThemeButton />
+    <div style="height:300px"></div>
+  </body>
+</html>
+
+<script>
+  import { theme } from "@utils";
+  theme.init();
+</script>
+
+<style lang="scss">
+  @use "../assets/styles/global.scss";
+
+  body {
+    background: var(--background-base);
+    color: var(--txt-base);
+  }
+</style>

@@ -1,0 +1,11 @@
+<button class="toggle-theme" type="button">toggle theme</button>
+
+<script>
+  import { theme } from "@utils";
+
+  const toggleThemeButton = document.querySelector(
+    ".toggle-theme"
+  ) as HTMLButtonElement;
+
+  toggleThemeButton.addEventListener("click", theme.toggleTheme);
+</script>

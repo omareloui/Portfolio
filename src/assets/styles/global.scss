@@ -1,0 +1,11 @@
+:root {
+  --background-base: #fefefe;
+  --txt-base: #121212;
+}
+
+:root[theme="dark"] {
+  color-scheme: dark;
+
+  --background-base: #121212;
+  --txt-base: #fefefe;
+}
