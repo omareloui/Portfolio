@@ -1,0 +1,278 @@
+<label class="switch">
+  <input
+    type="checkbox"
+    role="switch"
+    class="switch__input"
+    aria-label="change current theme"
+  />
+</label>
+
+<style lang="scss">
+  .switch {
+    --thumb-size: 2rem;
+
+    --thumb: var(--gradient-primary);
+    --thumb-highlight: hsl(0 0% 0% / 25%);
+
+    --thumb-image: url("/icons/theme-light.svg");
+
+    --track-size: calc(var(--thumb-size) * 3);
+    --track-padding: 5px;
+
+    --track-inactive: hsl(80 0% 80%);
+    --track-active: hsl(80 60% 45%);
+
+    --thumb-color: var(--thumb);
+    --thumb-color-highlight: var(--thumb-highlight);
+    --track-color-inactive: var(--track-inactive);
+    --track-color-active: var(--track-active);
+
+    --isLTR: 1;
+
+    width: min-content;
+
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+
+    :root[theme="dark"] & {
+      /* --thumb: hsl(0 0% 5%); */
+      --thumb-highlight: hsl(0 0% 100% / 25%);
+      --track-inactive: hsl(80 0% 35%);
+      --track-active: hsl(80 60% 60%);
+      --thumb-image: url("/icons/theme-dark.svg");
+    }
+
+    &:dir(rtl) {
+      --isLTR: -1;
+    }
+
+    &__input {
+      --thumb-position: 0%;
+      --thumb-transition-duration: 0.25s;
+
+      padding: var(--track-padding);
+      background: var(--track-color-inactive);
+      inline-size: var(--track-size);
+      block-size: var(--thumb-size);
+      border-radius: var(--track-size);
+
+      appearance: none;
+      pointer-events: none;
+      touch-action: pan-y;
+      border: none;
+      outline-offset: 5px;
+      box-sizing: content-box;
+
+      flex-shrink: 0;
+      display: grid;
+      align-items: center;
+      grid: [track] 1fr / [track] 1fr;
+
+      transition: background-color 0.25s ease;
+
+      &::after,
+      &::before {
+        content: "";
+        cursor: pointer;
+        pointer-events: auto;
+        grid-area: track;
+        inline-size: var(--thumb-size);
+        block-size: var(--thumb-size);
+        border-radius: 50%;
+        transform: translateX(var(--thumb-position));
+
+        @media (prefers-reduced-motion: no-preference) {
+          transition: transform var(--thumb-transition-duration) ease,
+            box-shadow 0.25s ease;
+        }
+      }
+
+      &::before {
+        --highlight-size: 0;
+        background: var(--thumb-color);
+        box-shadow: 0 0 0 var(--highlight-size) var(--thumb-color-highlight);
+      }
+
+      &::after {
+        background: var(--thumb-image) no-repeat center / 75%;
+      }
+
+      &:not(:disabled):hover::before {
+        --highlight-size: 0.5rem;
+      }
+
+      &:checked {
+        background: var(--track-color-active);
+        --thumb-position: calc((var(--track-size) - 100%) * var(--isLTR));
+      }
+
+      &:indeterminate {
+        --thumb-image: url("/icons/theme-auto.svg");
+        --thumb-position: calc(
+          calc(calc(var(--track-size) / 2) - calc(var(--thumb-size) / 2)) *
+            var(--isLTR)
+        );
+      }
+    }
+  }
+</style>
+
+<script>
+  import { theme } from "@utils";
+  import { style as styleUtils } from "@utils";
+
+  const element = document.querySelector(".switch") as HTMLLabelElement;
+  const checkbox = element.querySelector("input") as HTMLInputElement;
+
+  /// Toggling theme functionality {{{
+  // Set the current state for the switch
+  const selectedTheme = theme.getFromLocalStorage();
+  if (selectedTheme === "dark") checkbox.checked = true;
+  else if (selectedTheme === "light") checkbox.checked = false;
+  else checkbox.indeterminate = true;
+
+  // Listen for changes on the input
+  let wasIndeterminate = checkbox.indeterminate;
+  function isLabelElement(el: HTMLElement): el is HTMLLabelElement {
+    if (el.tagName === "LABEL") return true;
+    return false;
+  }
+
+  function handleInputChange(e: Event) {
+    const target = e.target as HTMLLabelElement | HTMLInputElement;
+    let input: HTMLInputElement = isLabelElement(target)
+      ? (target.querySelector("input") as HTMLInputElement)
+      : target;
+
+    if (wasIndeterminate && theme.getFromSystemColorScheme() === "dark") {
+      input.checked = false;
+      wasIndeterminate = false;
+    }
+
+    theme.setTheme(input.checked ? "dark" : "light");
+  }
+  checkbox.addEventListener("change", handleInputChange);
+  /// }}}
+
+  /// Dragging functionality {{{
+  const thumbsize = styleUtils.getPseudoStyle(checkbox, "width");
+
+  const padding =
+    styleUtils.getStyle(checkbox, "padding-left") +
+    styleUtils.getStyle(checkbox, "padding-right");
+
+  const state = {
+    activethumb: null as HTMLInputElement | null,
+    recentlyDragged: false,
+    ui: {
+      thumbsize,
+      padding,
+      bounds: {
+        lower: 0,
+        middle: (checkbox.clientWidth - padding) / 4,
+        upper: checkbox.clientWidth - thumbsize - padding,
+      },
+    },
+  };
+
+  function init() {
+    checkbox.addEventListener("pointerdown", dragInit);
+    checkbox.addEventListener("pointerup", dragEnd);
+    checkbox.addEventListener("click", preventBubbles);
+    element.addEventListener("click", labelClick);
+
+    window.addEventListener("pointerup", e => {
+      if (!state.activethumb) return;
+      dragEnd(e);
+    });
+  }
+  init();
+
+  function dragInit(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.disabled) return;
+
+    state.activethumb = target;
+    state.activethumb.addEventListener("pointermove", dragging);
+    state.activethumb.style.setProperty("--thumb-transition-duration", "0s");
+  }
+
+  function dragging(event: PointerEvent) {
+    if (!state.activethumb || !state.activethumb) return;
+
+    const labelEl = state.activethumb.parentElement;
+    if (!labelEl) throw new Error("Can't find the switch's parent label.");
+
+    const { thumbsize, bounds, padding } = state.ui;
+    const directionality = styleUtils.getStyle(state.activethumb, "--isLTR");
+
+    const track =
+      directionality === -1
+        ? state.activethumb.clientWidth * -1 + thumbsize + padding
+        : 0;
+
+    let pos = Math.round(event.offsetX - thumbsize / 2);
+    if (pos < bounds.lower) pos = 0;
+    if (pos > bounds.upper) pos = bounds.upper;
+
+    state.activethumb.style.setProperty("--thumb-position", `${track + pos}px`);
+  }
+
+  function dragEnd(event: Event) {
+    if (!state.activethumb) return;
+
+    state.activethumb.checked = determineChecked();
+
+    if (state.activethumb.indeterminate)
+      state.activethumb.indeterminate = false;
+
+    state.activethumb.style.removeProperty("--thumb-transition-duration");
+    state.activethumb.style.removeProperty("--thumb-position");
+    state.activethumb.removeEventListener("pointermove", dragging);
+    state.activethumb = null;
+
+    handleInputChange(event);
+    padRelease();
+  }
+
+  const padRelease = () => {
+    state.recentlyDragged = true;
+    setTimeout(() => (state.recentlyDragged = false), 300);
+  };
+
+  function preventBubbles(event: Event) {
+    if (state.recentlyDragged) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }
+
+  function labelClick(event: Event) {
+    const labelEl = event.target as HTMLLabelElement;
+    const inputEl = labelEl.querySelector("input") as HTMLInputElement;
+    if (
+      state.recentlyDragged ||
+      !labelEl.classList.contains("switch") ||
+      inputEl.disabled
+    )
+      return;
+
+    inputEl.checked = !inputEl.checked;
+    event.preventDefault();
+    handleInputChange(event);
+  }
+
+  function determineChecked() {
+    const activethumb = state.activethumb as HTMLInputElement;
+    const { bounds } = state.ui;
+    let curpos = Math.abs(
+      parseInt(activethumb.style.getPropertyValue("--thumb-position"))
+    );
+
+    if (!curpos) curpos = activethumb.checked ? bounds.lower : bounds.upper;
+
+    return curpos >= bounds.middle;
+  }
+  /// }}}
+</script>

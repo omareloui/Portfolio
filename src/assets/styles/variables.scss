@@ -1,29 +1,52 @@
-$colors-props: background text;
+@use "sass:list";
+@use "mixins.scss" as *;
 
-@mixin set-colors($scheme: light) {
+$colors-props: ();
+
+// Helpers {{{
+@mixin add-color($color-name, $light-value, $dark-value) {
+  --#{$color-name}-light: #{$light-value};
+  --#{$color-name}-dark: #{$dark-value};
+  $colors-props: list.append($colors-props, #{$color-name}) !global;
+}
+
+@mixin set-color-theme($theme: light) {
   @each $style in $colors-props {
-    --clr-#{$style}: var(--#{$style}-#{$scheme});
+    --#{$style}: var(--#{$style}-#{$theme});
   }
 }
+// }}}
 
 :root {
   color-scheme: light;
 
-  --clr-background-light: #fefefe;
-  --clr-background-dark: #121212;
+  --gradient-primary: linear-gradient(
+    245deg,
+    #4adeff 17%,
+    #9656ff 50%,
+    #ff31d2 82%
+  );
 
-  --clr-text-light: #121212;
-  --clr-text-dark: #fefefe;
+  @include add-color(background, #fefefe, #121212);
+  @include add-color(text, #121212, #fefefe);
 
-  // --clr-surface1: ;
-  // --clr-surface2: ;
-  // --clr-surface3: ;
-  // --clr-surface4: ;
+  // TODO:
+  // @include add-color(surface0)
+  // @include add-color(surface1)
+  // @include add-color(surface2)
+  // @include add-color(surface3)
+  // @include add-color(overlay0)
+  // @include add-color(overlay1)
+  // @include add-color(overlay2)
+  // @include add-color(overlay3)
+  // @include add-color(text)
+  // @include add-color(subtext0)
+  // @include add-color(subtext1)
 
-  @include set-colors;
+  @include set-color-theme(light);
 }
 
 :root[theme="dark"] {
   color-scheme: dark;
-  @include set-colors(dark);
+  @include set-color-theme(dark);
 }

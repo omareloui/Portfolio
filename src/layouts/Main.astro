@@ -1,5 +1,9 @@
 ---
-import ToggleThemeButton from "@components/ToggleThemeButton.astro";
+import "@assets/styles/variables.scss";
+import "@assets/styles/global.scss";
+import "@assets/styles/helper-classes.scss";
+
+import Header from "@components/Header.astro";
 ---
 
 <html lang="en">
@@ -11,7 +15,7 @@ import ToggleThemeButton from "@components/ToggleThemeButton.astro";
     <title>Omar Eloui | Web Developer</title>
   </head>
   <body>
-    <ToggleThemeButton />
+    <Header />
     <slot />
   </body>
 </html>
@@ -20,7 +24,3 @@ import ToggleThemeButton from "@components/ToggleThemeButton.astro";
   import { theme } from "@utils";
   theme.init();
 </script>
-
-<style lang="scss">
-  @use "../assets/styles/index.scss";
-</style>

@@ -1,9 +1,12 @@
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--clr-background);
-  color: var(--clr-text);
+  background: var(--background);
+  color: var(--text);
 }

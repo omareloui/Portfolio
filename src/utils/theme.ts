@@ -1,4 +1,6 @@
-type ThemeState = "dark" | "light" | "default";
+export const THEMES = ["dark", "light", "auto"];
+
+export type ThemeState = typeof THEMES[number];
 
 const LOCAL_STORAGE_THEME_NAME = "theme";
 
@@ -6,17 +8,17 @@ function storeInLocalStorage(state: ThemeState) {
   localStorage.setItem(LOCAL_STORAGE_THEME_NAME, state);
 }
 
-function getSystemTheme(): Exclude<ThemeState, "default"> {
+function getSystemTheme(): Exclude<ThemeState, "auto"> {
   const isDark =
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches;
   return isDark ? "dark" : "light";
 }
 
-function setTheme(theme: ThemeState, shouldStoreInLocalStorage = true) {
+export function setTheme(theme: ThemeState, shouldStoreInLocalStorage = true) {
   const rootEl = document.querySelector("html") as HTMLHtmlElement;
 
-  if (theme === "default") setTheme(getSystemTheme(), false);
+  if (theme === "auto") setTheme(getSystemTheme(), false);
   else if (theme === "light") rootEl.setAttribute("theme", "");
   else rootEl.setAttribute("theme", theme);
 
@@ -27,7 +29,7 @@ export function getFromLocalStorage(): ThemeState | null {
   return localStorage.getItem(LOCAL_STORAGE_THEME_NAME) as ThemeState | null;
 }
 
-export function getFromSystemColorScheme(): Exclude<ThemeState, "default"> {
+export function getFromSystemColorScheme(): Exclude<ThemeState, "auto"> {
   const isDark =
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -45,11 +47,11 @@ export function checkIfShouldLoadSystemTheme(
   localItem?: ThemeState | null
 ): boolean {
   const _localItem = localItem || getFromLocalStorage();
-  return !_localItem || (_localItem && _localItem === "default");
+  return !_localItem || (_localItem && _localItem === "auto");
 }
 
 export function loadFromLocalStorage() {
-  return setTheme(getFromLocalStorage() || "default");
+  return setTheme(getFromLocalStorage() || "auto");
 }
 
 export function loadFromSystemTheme() {
