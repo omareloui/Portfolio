@@ -28,6 +28,7 @@
     }
   ],
   "rules": {
+    "@typescript/no-non-null-assertion": ["off"],
     "no-console": ["warn", { "allow": ["warn", "error"] }]
   }
 }

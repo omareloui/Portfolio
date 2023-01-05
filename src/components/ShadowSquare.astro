@@ -11,7 +11,7 @@ export interface Props {
 const {
   size = "200px",
   position = "auto",
-  duration = "240s",
+  duration = "120s",
   borderColor = "var(--surface2)",
 } = Astro.props;
 
@@ -41,7 +41,7 @@ const initialState = `${random(0, 360)}deg`;
     @include size(var(--size));
     pointer-events: none;
     border: 2px solid var(--border-color);
-    animation: rotate var(--duration) linear infinite;
+    animation: rotate var(--duration) linear infinite alternate;
     translate: -50% -50%;
   }
 

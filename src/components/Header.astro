@@ -42,7 +42,7 @@ const navLinks = [
 </Container>
 
 <div class="tablet-down nav-menu hide">
-  <ShadowSquare size="150px" position="20% auto auto 20%" />
+  <ShadowSquare size="150px" position="20% auto auto 20%" duration="30s" />
   <ShadowSquare size="600px" position="90% auto auto 90%" />
 
   <Container>
@@ -187,11 +187,11 @@ const navLinks = [
     background: var(--background-nav);
     backdrop-filter: blur(4px);
 
-    transition: ease-in-out 500ms;
+    transition: translate ease-in-out 500ms, opacity ease-in-out 500ms;
     translate: 0;
 
     &.hide {
-      translate: 0 calc(-100% - var(--nav-height));
+      translate: 100% 0;
       pointer-events: none;
       opacity: 0;
     }

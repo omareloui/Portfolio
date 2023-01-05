@@ -4,7 +4,6 @@ import "@assets/styles/global.scss";
 import "@assets/styles/helper-classes.scss";
 
 import Header from "@components/Header.astro";
-import ThemeSwitch from "@components/ThemeSwitch.astro";
 ---
 
 <html lang="en">
@@ -13,8 +12,7 @@ import ThemeSwitch from "@components/ThemeSwitch.astro";
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- TODO: change the icon depending on the current theme -->
-    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon-light.svg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,13 +25,14 @@ import ThemeSwitch from "@components/ThemeSwitch.astro";
   </head>
   <body>
     <Header />
-    <slot />
     <div style="height: 1000px">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta labore
       reprehenderit ipsum assumenda cumque dolorum eum nemo. Fugit excepturi
       iste repellendus. Perferendis quia eligendi, eveniet a laborum est minima
       quaerat!
     </div>
+
+    <slot />
   </body>
 </html>
 
