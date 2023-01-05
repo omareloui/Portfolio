@@ -1,0 +1,92 @@
+<button
+  class="burger-menu"
+  data-state="closed"
+  type="button"
+  aria-label="Open/close the nav menu"
+>
+  <span class="burger-menu__slice"></span>
+  <span class="burger-menu__slice"></span>
+  <span class="burger-menu__slice"></span>
+</button>
+
+<script>
+  import { NavToggleEvent } from "@assets/typescript/events";
+
+  const menuButton = document.querySelector(
+    "button.burger-menu"
+  ) as HTMLButtonElement;
+
+  function toggleButton() {
+    menuButton.dataset.state =
+      menuButton.dataset.state === "opened" ? "closed" : "opened";
+    document.dispatchEvent(NavToggleEvent);
+  }
+
+  menuButton.addEventListener("click", toggleButton);
+</script>
+
+<style lang="scss">
+  @use "../assets/styles/mixins.scss" as *;
+
+  .burger-menu {
+    position: relative;
+    cursor: pointer;
+    border: none;
+    background: none;
+
+    @include size(35px 20px);
+
+    &:focus {
+      outline-offset: 5px;
+    }
+
+    &__slice {
+      @include size(100% 2px);
+
+      position: absolute;
+      display: block;
+      left: 0;
+      margin-top: -1px;
+
+      background: var(--text);
+      transition: all 700ms, width 200ms, color 200ms;
+      translate: 0 -50%;
+
+      &:first-child {
+        top: 0;
+      }
+
+      &:nth-child(2) {
+        @include w(80%);
+        top: 50%;
+      }
+
+      &:nth-child(3) {
+        top: 100%;
+      }
+    }
+
+    :is(&:hover, &:focus) &__slice {
+      @include w(100%);
+    }
+
+    &[data-state="opened"] {
+      .burger-menu {
+        &__slice:first-child {
+          opacity: 1;
+          rotate: 405deg;
+          top: 50%;
+        }
+        &__slice:nth-child(2) {
+          @include w(0);
+          opacity: 0;
+        }
+        &__slice:nth-child(3) {
+          opacity: 1;
+          rotate: -405deg;
+          top: 50%;
+        }
+      }
+    }
+  }
+</style>

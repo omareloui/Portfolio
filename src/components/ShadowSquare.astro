@@ -1,0 +1,56 @@
+---
+import { random } from "@utils";
+
+export interface Props {
+  size?: string;
+  duration?: string;
+  position?: string;
+  borderColor?: string;
+}
+
+const {
+  size = "200px",
+  position = "auto",
+  duration = "240s",
+  borderColor = "var(--surface2)",
+} = Astro.props;
+
+const initialState = `${random(0, 360)}deg`;
+---
+
+<div class="shadow-square"></div>
+
+<style
+  lang="scss"
+  define:vars={{
+    size,
+    position,
+    ["border-color"]: borderColor,
+    duration,
+    ["initial-state"]: initialState,
+  }}
+>
+  @use "../assets/styles/mixins.scss" as *;
+
+  .shadow-square {
+    z-index: -1;
+    position: absolute;
+
+    inset: var(--position);
+
+    @include size(var(--size));
+    pointer-events: none;
+    border: 2px solid var(--border-color);
+    animation: rotate var(--duration) linear infinite;
+    translate: -50% -50%;
+  }
+
+  @keyframes rotate {
+    0% {
+      rotate: var(--initial-state);
+    }
+    100% {
+      rotate: calc(360deg - var(--initial-state));
+    }
+  }
+</style>

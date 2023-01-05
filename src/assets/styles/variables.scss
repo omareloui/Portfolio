@@ -18,6 +18,7 @@ $colors-props: ();
 // }}}
 
 :root {
+  // Colors {{{
   color-scheme: light;
 
   --gradient-primary: linear-gradient(
@@ -27,23 +28,25 @@ $colors-props: ();
     #ff31d2 82%
   );
 
-  @include add-color(background, #fefefe, #121212);
-  @include add-color(text, #121212, #fefefe);
+  @include add-color(surface0, #f8f8f8, #1b1b1b);
+  @include add-color(surface1, #ffffff, #222222);
+  @include add-color(surface2, #e2e2e2, #343434);
+  @include add-color(overlay0, #d4d4d4, #747474);
 
-  // TODO:
-  // @include add-color(surface0)
-  // @include add-color(surface1)
-  // @include add-color(surface2)
-  // @include add-color(surface3)
-  // @include add-color(overlay0)
-  // @include add-color(overlay1)
-  // @include add-color(overlay2)
-  // @include add-color(overlay3)
-  // @include add-color(text)
-  // @include add-color(subtext0)
-  // @include add-color(subtext1)
+  @include add-color(highlight, #1b1b1b38, #f8f8f838);
+
+  @include add-color(text, #131313, #f2f2f2);
+  @include add-color(subtext1, #595959, #eeeeee);
+  @include add-color(subtext2, #848484, #cccccc);
+  @include add-color(shadow-text, #13131329, #e5e5e514);
+  @include add-color(text-invert, #f2f2f2, #131313);
 
   @include set-color-theme(light);
+  // }}}
+
+  // Media Queries {{{
+  @include screens;
+  // }}}
 }
 
 :root[theme="dark"] {

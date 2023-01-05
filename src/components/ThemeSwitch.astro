@@ -1,3 +1,11 @@
+---
+export interface Props {
+  size?: string;
+}
+
+const { size = "1.5rem" } = Astro.props;
+---
+
 <label class="switch">
   <input
     type="checkbox"
@@ -7,117 +15,6 @@
   />
 </label>
 
-<style lang="scss">
-  .switch {
-    --thumb-size: 2rem;
-
-    --thumb: var(--gradient-primary);
-    --thumb-highlight: hsl(0 0% 0% / 25%);
-
-    --thumb-image: url("/icons/theme-light.svg");
-
-    --track-size: calc(var(--thumb-size) * 3);
-    --track-padding: 5px;
-
-    --track-inactive: hsl(80 0% 80%);
-    --track-active: hsl(80 60% 45%);
-
-    --thumb-color: var(--thumb);
-    --thumb-color-highlight: var(--thumb-highlight);
-    --track-color-inactive: var(--track-inactive);
-    --track-color-active: var(--track-active);
-
-    --isLTR: 1;
-
-    width: min-content;
-
-    cursor: pointer;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-
-    :root[theme="dark"] & {
-      /* --thumb: hsl(0 0% 5%); */
-      --thumb-highlight: hsl(0 0% 100% / 25%);
-      --track-inactive: hsl(80 0% 35%);
-      --track-active: hsl(80 60% 60%);
-      --thumb-image: url("/icons/theme-dark.svg");
-    }
-
-    &:dir(rtl) {
-      --isLTR: -1;
-    }
-
-    &__input {
-      --thumb-position: 0%;
-      --thumb-transition-duration: 0.25s;
-
-      padding: var(--track-padding);
-      background: var(--track-color-inactive);
-      inline-size: var(--track-size);
-      block-size: var(--thumb-size);
-      border-radius: var(--track-size);
-
-      appearance: none;
-      pointer-events: none;
-      touch-action: pan-y;
-      border: none;
-      outline-offset: 5px;
-      box-sizing: content-box;
-
-      flex-shrink: 0;
-      display: grid;
-      align-items: center;
-      grid: [track] 1fr / [track] 1fr;
-
-      transition: background-color 0.25s ease;
-
-      &::after,
-      &::before {
-        content: "";
-        cursor: pointer;
-        pointer-events: auto;
-        grid-area: track;
-        inline-size: var(--thumb-size);
-        block-size: var(--thumb-size);
-        border-radius: 50%;
-        transform: translateX(var(--thumb-position));
-
-        @media (prefers-reduced-motion: no-preference) {
-          transition: transform var(--thumb-transition-duration) ease,
-            box-shadow 0.25s ease;
-        }
-      }
-
-      &::before {
-        --highlight-size: 0;
-        background: var(--thumb-color);
-        box-shadow: 0 0 0 var(--highlight-size) var(--thumb-color-highlight);
-      }
-
-      &::after {
-        background: var(--thumb-image) no-repeat center / 75%;
-      }
-
-      &:not(:disabled):hover::before {
-        --highlight-size: 0.5rem;
-      }
-
-      &:checked {
-        background: var(--track-color-active);
-        --thumb-position: calc((var(--track-size) - 100%) * var(--isLTR));
-      }
-
-      &:indeterminate {
-        --thumb-image: url("/icons/theme-auto.svg");
-        --thumb-position: calc(
-          calc(calc(var(--track-size) / 2) - calc(var(--thumb-size) / 2)) *
-            var(--isLTR)
-        );
-      }
-    }
-  }
-</style>
-
 <script>
   import { theme } from "@utils";
   import { style as styleUtils } from "@utils";
@@ -126,6 +23,8 @@
   const checkbox = element.querySelector("input") as HTMLInputElement;
 
   /// Toggling theme functionality {{{
+  // TODO: add event listeners to all switches
+
   // Set the current state for the switch
   const selectedTheme = theme.getFromLocalStorage();
   if (selectedTheme === "dark") checkbox.checked = true;
@@ -276,3 +175,104 @@
   }
   /// }}}
 </script>
+
+<style lang="scss" define:vars={{ size }}>
+  .switch {
+    --thumb-size: var(--size);
+    --thumb-image: url("/icons/theme-light.svg");
+
+    --track-size: calc(var(--thumb-size) * 2.5);
+    --track-padding: 3px;
+
+    --track-color: var(--subtext1);
+
+    --thumb-color: var(--gradient-primary);
+    --thumb-color-highlight: var(--highlight);
+
+    --isLTR: 1;
+
+    /* display: inline-block; */
+    width: min-content;
+
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+
+    :root[theme="dark"] & {
+      --thumb-image: url("/icons/theme-dark.svg");
+    }
+
+    &:dir(rtl) {
+      --isLTR: -1;
+    }
+
+    &__input {
+      --thumb-position: 0%;
+      --thumb-transition-duration: 0.25s;
+
+      padding: var(--track-padding);
+      background: var(--track-color);
+      inline-size: var(--track-size);
+      block-size: var(--thumb-size);
+      border-radius: var(--track-size);
+
+      appearance: none;
+      pointer-events: none;
+      touch-action: pan-y;
+      border: none;
+      outline-offset: 5px;
+      box-sizing: content-box;
+
+      flex-shrink: 0;
+      display: grid;
+      align-items: center;
+      grid: [track] 1fr / [track] 1fr;
+
+      transition: background-color 0.25s ease;
+
+      &::after,
+      &::before {
+        content: "";
+        cursor: pointer;
+        pointer-events: auto;
+        grid-area: track;
+        inline-size: var(--thumb-size);
+        block-size: var(--thumb-size);
+        border-radius: 50%;
+        transform: translateX(var(--thumb-position));
+
+        @media (prefers-reduced-motion: no-preference) {
+          transition: transform var(--thumb-transition-duration) ease,
+            box-shadow 0.25s ease;
+        }
+      }
+
+      &::before {
+        --highlight-size: 0;
+        background: var(--thumb-color);
+        box-shadow: 0 0 0 var(--highlight-size) var(--thumb-color-highlight);
+      }
+
+      &::after {
+        background: var(--thumb-image) no-repeat center / 75%;
+      }
+
+      &:not(:disabled):hover::before {
+        --highlight-size: 0.5rem;
+      }
+
+      &:checked {
+        background: var(--track-color);
+        --thumb-position: calc((var(--track-size) - 100%) * var(--isLTR));
+      }
+
+      &:indeterminate {
+        --thumb-image: url("/icons/theme-auto.svg");
+        --thumb-position: calc(
+          calc(calc(var(--track-size) / 2) - calc(var(--thumb-size) / 2)) *
+            var(--isLTR)
+        );
+      }
+    }
+  }
+</style>

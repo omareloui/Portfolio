@@ -1,3 +1,12 @@
+@use "sass:map";
+@use "sass:list";
+
+@mixin generate-variables($map, $prefix) {
+  @each $name, $value in $map {
+    --#{$prefix}-#{"" + $name}: #{$value};
+  }
+}
+
 // Size {{{
 @mixin size($size) {
   @if length($size) == 2 {
@@ -34,5 +43,84 @@
 
 @mixin h($args) {
   @include dimensions(height, $args);
+}
+// }}}
+
+// Media Queries {{{
+$screens: (
+  narrow: 340px,
+  mobile: 480px,
+  tablet: 768px,
+  desktop: 1024px,
+);
+
+@mixin screens {
+  @include generate-variables($screens, "screen");
+}
+
+@mixin screen($size) {
+  @if list.index(map.keys($screens), $size) {
+    @media only screen and (min-width: map.get($screens, $size)) {
+      @content;
+    }
+  } @else {
+    @media only screen and (min-width: $size) {
+      @content;
+    }
+  }
+}
+
+@mixin st-screen($size) {
+  @if list.index(map.keys($screens), $size) {
+    @media only screen and (max-width: map.get($screens, $size)) {
+      @content;
+    }
+  } @else {
+    @media only screen and (max-width: $size) {
+      @content;
+    }
+  }
+}
+
+@mixin narrow-up {
+  @include screen("narrow") {
+    @content;
+  }
+}
+@mixin mobile-up {
+  @include screen("mobile") {
+    @content;
+  }
+}
+@mixin tablet-up {
+  @include screen("tablet") {
+    @content;
+  }
+}
+@mixin desktop-up {
+  @include screen("desktop") {
+    @content;
+  }
+}
+
+@mixin narrow-down {
+  @include st-screen("narrow") {
+    @content;
+  }
+}
+@mixin mobile-down {
+  @include st-screen("mobile") {
+    @content;
+  }
+}
+@mixin tablet-down {
+  @include st-screen("tablet") {
+    @content;
+  }
+}
+@mixin desktop-down {
+  @include st-screen("desktop") {
+    @content;
+  }
 }
 // }}}

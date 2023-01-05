@@ -1,0 +1,29 @@
+---
+export interface Props {
+  tag?: string;
+  class?: string;
+}
+
+const { tag: Tag = "section", class: className } = Astro.props;
+---
+
+<Tag class:list={["container", className]}>
+  <slot />
+</Tag>
+
+<style lang="scss">
+  .container {
+    --container-width: var(--screen-desktop);
+    --container-padding: 50px;
+
+    max-width: var(--container-width);
+    padding-inline: var(--container-padding);
+
+    margin-left: auto;
+    margin-right: auto;
+
+    @media screen and (max-width: calc(var(--container-padding) * 2 + var(--container-width))) {
+      max-width: 100%;
+    }
+  }
+</style>

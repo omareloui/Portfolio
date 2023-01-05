@@ -4,19 +4,36 @@ import "@assets/styles/global.scss";
 import "@assets/styles/helper-classes.scss";
 
 import Header from "@components/Header.astro";
+import ThemeSwitch from "@components/ThemeSwitch.astro";
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- TODO: change the icon depending on the current theme -->
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Poppins:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
     <title>Omar Eloui | Web Developer</title>
   </head>
   <body>
     <Header />
     <slot />
+    <div style="height: 1000px">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta labore
+      reprehenderit ipsum assumenda cumque dolorum eum nemo. Fugit excepturi
+      iste repellendus. Perferendis quia eligendi, eveniet a laborum est minima
+      quaerat!
+    </div>
   </body>
 </html>
 
