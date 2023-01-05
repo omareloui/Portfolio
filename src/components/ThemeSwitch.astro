@@ -29,7 +29,10 @@ const { size = "1.5rem" } = Astro.props;
 
   switches.forEach(el => {
     theme.loadInitialState(el);
+
     // TODO: make the drag work with theme change
+    // Src: https://github.com/argyleink/gui-challenges/blob/main/switch/index.js
+
     // prepareForDragging(
     //   el,
     //   theme.inputHandlerFactory(el.querySelector("input") as HTMLInputElement)

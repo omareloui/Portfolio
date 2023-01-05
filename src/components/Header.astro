@@ -65,38 +65,40 @@ const navLinks = [
   </Container>
 </div>
 
-<Container tag="header" class="tablet-up">
-  <div class="left">
-    <ul class="links-list">
-      {
-        navLinks.map(nl => (
-          <li>
-            <a href={nl.link}>{nl.text}</a>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
+<header class="tablet-up">
+  <Container tag="div">
+    <div class="left">
+      <ul class="links-list">
+        {
+          navLinks.map(nl => (
+            <li>
+              <a href={nl.link}>{nl.text}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
 
-  <div class="center">
-    <a class="logo" href="/" aria-label="go home">
-      <Logo />
-    </a>
-  </div>
+    <div class="center">
+      <a class="logo" href="/" aria-label="go home">
+        <Logo />
+      </a>
+    </div>
 
-  <div class="right">
-    <!--
+    <div class="right">
+      <!--
   <div class="languages">
     <ul>
       {languages.map(l => <li>{l}</li>)}
     </ul>
   </div>
   -->
-    <div class="theme-switch">
-      <ThemeSwitch size="1.3rem" />
+      <div class="theme-switch">
+        <ThemeSwitch size="1.3rem" />
+      </div>
     </div>
-  </div>
-</Container>
+  </Container>
+</header>
 
 <script>
   type State = "opened" | "closed";
@@ -143,6 +145,7 @@ const navLinks = [
 
     header,
     .nav-menu {
+      z-index: 10000;
       background: var(--background-nav);
       backdrop-filter: blur(4px);
     }
@@ -227,7 +230,7 @@ const navLinks = [
   /// }}}
 
   /// Large Screen {{{
-  :global(header:where(.tablet-up)) {
+  header:where(.tablet-up) :global(.container) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     /* place-items: center; */

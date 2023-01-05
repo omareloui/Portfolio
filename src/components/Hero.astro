@@ -1,0 +1,17 @@
+---
+import Container from "./Container.astro";
+import Hero3D from "./Hero3D.astro";
+---
+
+<div class="hero">
+  <Container>
+    <Hero3D class="hero__3d" />
+  </Container>
+</div>
+
+<style lang="scss">
+  @use "../assets/styles/mixins.scss" as *;
+
+  .hero {
+  }
+</style>

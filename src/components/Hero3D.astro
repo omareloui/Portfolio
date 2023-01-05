@@ -1,0 +1,160 @@
+<div class="hero-3d"></div>
+
+<style lang="scss">
+  @use "../assets/styles/mixins.scss" as *;
+  :global(:has(> .hero-3d)) {
+    position: relative;
+  }
+
+  .hero-3d {
+    z-index: -1;
+    position: absolute;
+    top: calc(-1 * var(--nav-height));
+    left: 0;
+    pointer-events: none;
+
+    display: flex;
+    justify-items: flex-end;
+    justify-content: flex-end;
+
+    @include tablet-up {
+      right: calc(var(--container-padding));
+    }
+
+    @include desktop-up {
+      right: calc(
+        (100% - var(--container-width) - var(--container-padding)) / 2
+      );
+    }
+  }
+</style>
+
+<script>
+  import * as THREE from "three";
+  import * as openSimplexNoise from "open-simplex-noise";
+
+  import sphereVertex from "@assets/glsl/sphere_vertex.glsl";
+  import sphereFragment from "@assets/glsl/sphere_fragment.glsl";
+
+  const PLANE_COLOR = 0x898989;
+  const BREAK_POINT = 768;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    innerWidth / innerHeight,
+    0.1,
+    1000
+  );
+  camera.position.set(0, 0, 5);
+
+  /// Renderer {{{
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(innerWidth, innerHeight);
+
+  const parent = document.querySelector(".hero-3d");
+  if (!parent) throw new Error("Can't find the parent to append the canvas");
+  parent.appendChild(renderer.domElement);
+  /// }}}
+
+  const v3 = new THREE.Vector3();
+
+  /// Plane {{{
+  const planeGeometry = new THREE.BoxGeometry(5, 5, 5, 8, 8, 8);
+
+  planeGeometry.translate(0, 0, -3);
+
+  const planeGeometryPositionData: THREE.Vector3[] = [];
+  const planeGeometryPosition = planeGeometry.attributes
+    .position as THREE.BufferAttribute;
+
+  for (let i = 0; i < planeGeometryPosition.count; i++) {
+    v3.fromBufferAttribute(planeGeometryPosition, i);
+    planeGeometryPositionData.push(v3.clone());
+  }
+  const planeMesh = new THREE.MeshBasicMaterial({
+    color: PLANE_COLOR,
+    wireframe: true,
+  });
+  const plane = new THREE.Mesh(planeGeometry, planeMesh);
+  scene.add(plane);
+  /// }}}
+
+  /// Sphere {{{
+  const sphereGeometry = new THREE.SphereGeometry(1.5, 100, 100);
+  const sphereGeometryPositionData: THREE.Vector3[] = [];
+  const sphereGeometryPosition = sphereGeometry.attributes
+    .position as THREE.BufferAttribute;
+
+  for (let i = 0; i < sphereGeometryPosition.count; i++) {
+    v3.fromBufferAttribute(sphereGeometryPosition, i);
+    sphereGeometryPositionData.push(v3.clone());
+  }
+
+  const sphereMesh = new THREE.ShaderMaterial({
+    uniforms: {
+      colorA: {
+        // eslint-disable-next-line
+        // @ts-ignore
+        type: "vec3",
+        value: new THREE.Vector3(1.0, 0.5, 1.0),
+      },
+    },
+    vertexShader: sphereVertex,
+    fragmentShader: sphereFragment,
+  });
+
+  const sphere = new THREE.Mesh(sphereGeometry, sphereMesh);
+  scene.add(sphere);
+  /// }}}
+
+  const noise = openSimplexNoise.makeNoise4D(Date.now());
+  const clock = new THREE.Clock();
+
+  function onResize() {
+    const header = document.querySelector("header") as HTMLElement;
+    const navHeight = header.getBoundingClientRect().height;
+    let width = innerWidth;
+    let height = innerHeight - navHeight;
+
+    const isOnDesktop = innerWidth > BREAK_POINT;
+
+    if (isOnDesktop) {
+      width = innerWidth * 0.6;
+      height = height < 600 ? 600 : height;
+      camera.position.setX(-1.2);
+      camera.position.setZ(10);
+    } else {
+      height = width * 1.6;
+      camera.position.setX(0);
+      camera.position.setZ(8);
+    }
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height);
+  }
+
+  window.addEventListener("resize", onResize);
+
+  renderer.setAnimationLoop(() => {
+    const t = clock.getElapsedTime() / 1;
+
+    sphereGeometryPositionData.forEach((p, idx) => {
+      let setNoise = noise(p.x, p.y, p.z, t / 4);
+      v3.copy(p).addScaledVector(p, setNoise);
+      sphereGeometryPosition.setXYZ(idx, v3.x, v3.y, v3.z);
+    });
+    sphereGeometry.computeVertexNormals();
+    sphereGeometryPosition.needsUpdate = true;
+
+    planeGeometryPositionData.forEach((p, idx) => {
+      const setNoise = noise(p.x, p.y, p.z, t / 10);
+      v3.copy(p).addScaledVector(p, setNoise);
+      planeGeometryPosition.setXYZ(idx, v3.x, v3.y, v3.z);
+    });
+    planeGeometryPosition.needsUpdate = true;
+    renderer.render(scene, camera);
+  });
+
+  onResize();
+</script>
