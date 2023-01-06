@@ -124,3 +124,43 @@ $screens: (
   }
 }
 // }}}
+
+/// Animation {{{
+@mixin animate-backgrond-gradient(
+  $color: var(--gradient-primary-animate),
+  $duration: 15s,
+  $increase-x-by: 5,
+  $increase-y-by: 1,
+  $timing-function: ease
+) {
+  background: $color;
+  background-size: calc($increase-x-by * 100%) calc($increase-y-by * 100%);
+  background-position: 0 0;
+
+  animation: gradient-background $duration $timing-function infinite;
+}
+
+@mixin animate-background-gradient-on-hover(
+  $color: var(--gradient-primary-animate),
+  $duration: 15s,
+  $increase-x-by: 5,
+  $increase-y-by: 1,
+  $timing-function: ease
+) {
+  @include animate-backgrond-gradient(
+    $color,
+    $duration,
+    $increase-x-by,
+    $increase-y-by,
+    $timing-function
+  );
+
+  animation-play-state: paused;
+
+  &:hover,
+  &:focus {
+    animation-play-state: running;
+  }
+}
+
+/// }}}

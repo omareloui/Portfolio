@@ -1,17 +1,138 @@
 ---
-import Container from "./Container.astro";
-import Hero3D from "./Hero3D.astro";
+import Button from "@components/Button.astro";
+import Container from "@components/Container.astro";
+import Hero3D from "@components/Hero3D.astro";
+import ButtonCta from "./ButtonCta.astro";
 ---
 
-<div class="hero">
-  <Container>
-    <Hero3D class="hero__3d" />
-  </Container>
-</div>
+<Container class="hero">
+  <Hero3D class="hero__3d" />
+
+  <div class="hero__main">
+    <div class="titles">
+      <h1 class="title">
+        <span class="supertitle"> i'm Omar.</span>
+        i build stuff for the web
+      </h1>
+      <span class="subtitle">and design when it comes to it</span>
+    </div>
+    <div class="body">
+      <p>
+        I'm a full stack web developer based in Egypt specialized in lorem ipsum
+        dolor sit amet consectetur adipisicing elit. Quasi reiciendis quidem,
+        ullam eveniet veritatis incidunt quaerat animi ea odit sit in eligendi
+        tenetur possimus molestias alias vitae quas autem hic.
+      </p>
+      <div class="buttons">
+        <ButtonCta>Checkout my work</ButtonCta>
+        <Button>What I can do</Button>
+      </div>
+    </div>
+  </div>
+</Container>
 
 <style lang="scss">
   @use "../assets/styles/mixins.scss" as *;
 
   .hero {
+    display: grid;
+
+    @include tablet-down {
+      grid-template-columns: 1fr;
+      &__3d,
+      &__main {
+        grid-row: 1 / -1;
+      }
+
+      &__3d {
+        grid-column: 1 / -1;
+      }
+
+      &__main {
+        grid-column: 1 / -1;
+        padding-block: 30px;
+        background: var(--blur-surface3);
+        backdrop-filter: blur(2px);
+        border-radius: 10px;
+      }
+    }
+
+    @include tablet-up {
+      grid-template-columns: repeat(4, 1fr);
+
+      &__3d,
+      &__main {
+        grid-row: 1 / -1;
+      }
+
+      &__main {
+        grid-column: 1 / 3;
+      }
+
+      &__3d {
+        grid-column: 2 / -1;
+      }
+    }
+
+    &__main {
+      align-self: center;
+
+      width: 100%;
+
+      .titles {
+        * {
+          font-weight: bold;
+        }
+        span {
+          display: block;
+        }
+        h1 {
+          font-size: 2.5rem;
+        }
+        .supertitle {
+          color: var(--subtext0);
+          font-size: 1.2rem;
+        }
+        .subtitle {
+          font-size: 1rem;
+          color: var(--subtext1);
+          font-weight: normal;
+          margin-block: 10px 20px;
+        }
+      }
+
+      .body {
+        p {
+          font-size: 1rem;
+        }
+
+        .buttons {
+          font-size: 1.2rem;
+          margin-top: 30px;
+          display: flex;
+          gap: 20px;
+
+          button:last-child {
+            /* color: var(--cyan); */
+          }
+        }
+      }
+    }
+
+    @include tablet-up {
+      .hero__main {
+        h1 {
+          font-size: 3rem;
+        }
+        .body {
+          p {
+            font-size: 1.1rem;
+          }
+          .buttons button {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
   }
 </style>

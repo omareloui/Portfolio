@@ -25,6 +25,7 @@ const navLinks = [
 // const languages = ["en", "es", "ar"];
 ---
 
+<!-- Mobile {{{  -->
 <Container tag="header" class="tablet-down">
   <a class="logo" href="/" aria-label="go home">
     <Logo />
@@ -44,6 +45,7 @@ const navLinks = [
 <div class="tablet-down nav-menu hide">
   <ShadowSquare size="150px" position="20% auto auto 20%" duration="30s" />
   <ShadowSquare size="600px" position="90% auto auto 90%" />
+  <Logo class="nav-menu__shadow-logo" color="var(--surface2)" />
 
   <Container>
     <ul class="links-list">
@@ -64,7 +66,9 @@ const navLinks = [
     </div>
   </Container>
 </div>
+<!-- }}}  -->
 
+<!-- Desktop {{{  -->
 <header class="tablet-up">
   <Container tag="div">
     <div class="left">
@@ -99,6 +103,7 @@ const navLinks = [
     </div>
   </Container>
 </header>
+<!-- }}}  -->
 
 <script>
   type State = "opened" | "closed";
@@ -136,9 +141,8 @@ const navLinks = [
 
   body {
     --nav-height: 60px;
-
-    --background-nav: hsl(0deg 0% 97% / 0.8);
-    --background-nav-dark: hsl(0deg 0% 11% / 0.8);
+    --nav-background: var(--blur-surface5);
+    --nav-blur: 5px;
 
     position: relative;
     scroll-padding-top: var(--nav-height);
@@ -146,12 +150,8 @@ const navLinks = [
     header,
     .nav-menu {
       z-index: 10000;
-      background: var(--background-nav);
-      backdrop-filter: blur(4px);
-    }
-
-    :root[theme="dark"] :is(& header, & .nav-menu) {
-      --background-nav: var(--background-nav-dark);
+      background: var(--nav-background);
+      backdrop-filter: blur(var(--nav-blur));
     }
   }
 
@@ -183,20 +183,26 @@ const navLinks = [
     position: fixed;
     top: var(--nav-height);
     left: 0;
-    backdrop-filter: blur(4px);
 
     @include size(100% calc(100vh - var(--nav-height)));
 
-    background: var(--background-nav);
-    backdrop-filter: blur(4px);
+    background: var(--nav-background);
+    backdrop-filter: blur(var(--nav-blur));
 
-    transition: translate ease-in-out 500ms, opacity ease-in-out 500ms;
-    translate: 0;
+    transition: opacity 200ms;
 
     &.hide {
-      translate: 100% 0;
       pointer-events: none;
       opacity: 0;
+    }
+
+    &__shadow-logo {
+      position: absolute;
+      z-index: -1;
+      opacity: 0.3;
+      width: 80%;
+      left: 50%;
+      translate: -50% 0;
     }
 
     :global(.container) {

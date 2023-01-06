@@ -1,0 +1,59 @@
+---
+import Button from "./Button.astro";
+import type { ClassList } from "@utils";
+
+export interface Props {
+  class?: ClassList;
+  type?: "button" | "submit";
+}
+
+const { class: className, type = "button" } = Astro.props;
+
+function appenedClass(newClassName: string): ClassList {
+  if (!className) return newClassName;
+  if (typeof className === "string") return `${className} ${newClassName}`;
+  return [...className, newClassName];
+}
+---
+
+<Button class={appenedClass("button-cta")} type={type}>
+  <slot />
+</Button>
+
+<style define:vars="" lang="scss">
+  @use "../assets/styles/mixins.scss" as *;
+
+  .button-cta {
+    border-radius: 100px;
+    padding: 8px 20px;
+    position: relative;
+
+    color: var(--text-main-light);
+
+    @include animate-background-gradient-on-hover;
+
+    &::before {
+      content: "";
+      z-index: -1;
+      position: absolute;
+      inset: 0;
+      @include animate-backgrond-gradient;
+      animation-play-state: paused;
+
+      scale: 0;
+      filter: blur(20px);
+      opacity: 0;
+      transition: opacity ease-in-out 300ms, scale ease-in-out 300ms;
+      border-radius: inherit;
+    }
+
+    &:hover,
+    &:focus {
+      &::before {
+        opacity: 0.4;
+        scale: 1.02;
+        animation-play-state: running;
+      }
+    }
+  }
+</style>

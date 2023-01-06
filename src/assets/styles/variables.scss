@@ -21,11 +21,27 @@ $colors-props: ();
   // Colors {{{
   color-scheme: light;
 
+  --text-main-light: #f2f2f2;
+  --text-main-dark: #131313;
+
+  --cyan: #4adeff;
+  --purple: #9656ff;
+  --magenta: #ff31d2;
+
   --gradient-primary: linear-gradient(
     245deg,
-    #4adeff 17%,
-    #9656ff 50%,
-    #ff31d2 82%
+    var(--cyan) 17%,
+    var(--purple) 50%,
+    var(--magenta) 82%
+  );
+
+  --gradient-primary-animate: linear-gradient(
+    245deg,
+    var(--cyan) 16.65%,
+    var(--purple) 33.35%,
+    var(--magenta) 50%,
+    var(--purple) 66.65%,
+    var(--cyan) 100%
   );
 
   @include add-color(surface0, #f8f8f8, #1b1b1b);
@@ -33,11 +49,42 @@ $colors-props: ();
   @include add-color(surface2, #e2e2e2, #343434);
   @include add-color(overlay0, #d4d4d4, #747474);
 
+  @include add-color(
+    blur-surface0,
+    hsl(0deg 0% 97% / 0.8),
+    hsl(0deg 0% 11% / 0.8)
+  );
+  @include add-color(
+    blur-surface2,
+    hsl(0deg 0% 97% / 0.7),
+    hsl(0deg 0% 11% / 0.7)
+  );
+  @include add-color(
+    blur-surface2,
+    hsl(0deg 0% 97% / 0.6),
+    hsl(0deg 0% 11% / 0.6)
+  );
+  @include add-color(
+    blur-surface3,
+    hsl(0deg 0% 97% / 0.5),
+    hsl(0deg 0% 11% / 0.5)
+  );
+  @include add-color(
+    blur-surface4,
+    hsl(0deg 0% 97% / 0.4),
+    hsl(0deg 0% 11% / 0.4)
+  );
+  @include add-color(
+    blur-surface5,
+    hsl(0deg 0% 97% / 0.2),
+    hsl(0deg 0% 11% / 0.2)
+  );
+
   @include add-color(highlight, #1b1b1b38, #f8f8f838);
 
-  @include add-color(text, #131313, #f2f2f2);
-  @include add-color(subtext1, #595959, #eeeeee);
-  @include add-color(subtext2, #848484, #cccccc);
+  @include add-color(text, var(--text-main-dark), var(--text-main-light));
+  @include add-color(subtext0, #595959, #cccccc);
+  @include add-color(subtext1, #848484, #8f8f8f);
   @include add-color(shadow-text, #13131329, #e5e5e514);
   @include add-color(text-invert, #f2f2f2, #131313);
 
