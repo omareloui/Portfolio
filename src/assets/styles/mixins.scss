@@ -125,6 +125,55 @@ $screens: (
 }
 // }}}
 
+/// Styles {{{
+@mixin gradient-shadow(
+  $add-position-relative: true,
+  $show-on-hover: true,
+  $animate-on-hover: false
+) {
+  @if $add-position-relative {
+    position: relative;
+  }
+
+  &::before {
+    content: "hi";
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-primary);
+    filter: blur(15px);
+    transition: opacity ease-in-out 300ms, scale ease-in-out 300ms;
+    border-radius: inherit;
+
+    @if $animate-on-hover {
+      @include animate-backgrond-gradient;
+      animation-play-state: paused;
+    }
+
+    @if $show-on-hover {
+      scale: 0.6;
+      opacity: 0.2;
+    } @else {
+      opacity: 0.4;
+      scale: 1.02;
+    }
+  }
+
+  @if $show-on-hover {
+    &:hover,
+    &:focus {
+      &::before {
+        @if $animate-on-hover {
+          animation-play-state: running;
+        }
+        opacity: 0.4;
+        scale: 0.8;
+      }
+    }
+  }
+}
+/// }}}
+
 /// Animation {{{
 @mixin animate-backgrond-gradient(
   $color: var(--gradient-primary-animate),
@@ -162,5 +211,4 @@ $screens: (
     animation-play-state: running;
   }
 }
-
 /// }}}

@@ -113,13 +113,13 @@ const { class: className } = Astro.props;
 
     if (isOnDesktop) {
       width = parent.clientWidth;
-      height = contentEl.clientHeight * 2;
-      camera.position.setZ(5);
+      height = contentEl.clientHeight * 1.5;
+      camera.position.setZ(6);
     } else {
       width = getStyle(contentEl, "width");
       height = contentEl.clientHeight * 1.2;
       camera.position.setX(0);
-      camera.position.setZ(6);
+      camera.position.setZ(9);
     }
 
     camera.aspect = width / height;

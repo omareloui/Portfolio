@@ -26,34 +26,8 @@ function appenedClass(newClassName: string): ClassList {
   .button-cta {
     border-radius: 100px;
     padding: 8px 20px;
-    position: relative;
-
     color: var(--text-main-light);
-
     @include animate-background-gradient-on-hover;
-
-    &::before {
-      content: "";
-      z-index: -1;
-      position: absolute;
-      inset: 0;
-      @include animate-backgrond-gradient;
-      animation-play-state: paused;
-
-      scale: 0;
-      filter: blur(20px);
-      opacity: 0;
-      transition: opacity ease-in-out 300ms, scale ease-in-out 300ms;
-      border-radius: inherit;
-    }
-
-    &:hover,
-    &:focus {
-      &::before {
-        opacity: 0.4;
-        scale: 1.02;
-        animation-play-state: running;
-      }
-    }
+    @include gradient-shadow($animate-on-hover: true);
   }
 </style>

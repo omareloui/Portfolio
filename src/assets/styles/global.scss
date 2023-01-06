@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+::selection {
+  background: var(--purple);
+}
+
 body {
   background: var(--surface0);
   color: var(--text);

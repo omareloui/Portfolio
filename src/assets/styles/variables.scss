@@ -55,7 +55,7 @@ $colors-props: ();
     hsl(0deg 0% 11% / 0.8)
   );
   @include add-color(
-    blur-surface2,
+    blur-surface1,
     hsl(0deg 0% 97% / 0.7),
     hsl(0deg 0% 11% / 0.7)
   );
@@ -78,6 +78,22 @@ $colors-props: ();
     blur-surface5,
     hsl(0deg 0% 97% / 0.2),
     hsl(0deg 0% 11% / 0.2)
+  );
+
+  @include add-color(
+    blur-invert-surface0,
+    hsl(0deg 0% 11% / 0.8),
+    hsl(0deg 0% 97% / 0.8)
+  );
+  @include add-color(
+    blur-invert-surface3,
+    hsl(0deg 0% 11% / 0.5),
+    hsl(0deg 0% 97% / 0.5)
+  );
+  @include add-color(
+    blur-invert-surface5,
+    hsl(0deg 0% 11% / 0.2),
+    hsl(0deg 0% 97% / 0.2)
   );
 
   @include add-color(highlight, #1b1b1b38, #f8f8f838);

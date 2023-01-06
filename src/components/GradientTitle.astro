@@ -1,0 +1,39 @@
+---
+export interface Props {
+  tag?: string;
+  class?: string;
+}
+
+const { tag: Tag = "h3", class: className } = Astro.props;
+---
+
+<>
+  <!-- @ts-ignore -->
+  <Tag class:list={["gradient-title", className]}>
+    <slot />
+  </Tag>
+</>
+
+<style lang="scss" define:vars="">
+  @use "../assets/styles/mixins.scss" as *;
+
+  .gradient-title {
+    @include animate-background-gradient-on-hover(
+      $color: var(--gradient-primary),
+      $increase-x-by: 1.5,
+      $duration: 3s
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Playfair Display", sans-serif;
+    font-size: 3.6rem;
+
+    @include tablet-up {
+      font-size: 5rem;
+    }
+  }
+</style>

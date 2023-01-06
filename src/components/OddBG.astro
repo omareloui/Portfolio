@@ -1,0 +1,31 @@
+---
+export interface Props {
+  inverted?: boolean;
+  degree?: number;
+}
+
+const { inverted, degree = 8 } = Astro.props;
+
+const invertNum = inverted ? 1 : -1;
+---
+
+<div class="odd-bg">
+  <div class="odd-bg__content">
+    <slot />
+  </div>
+</div>
+
+<style lang="scss" define:vars={{ invertNum, degree }}>
+  .odd-bg {
+    --skew: calc(1deg * var(--degree) * var(--invertNum));
+
+    background-color: var(--surface1);
+    transform: skew(0deg, var(--skew));
+    padding-block: 130px;
+    min-height: 200px;
+
+    &__content {
+      transform: skew(0deg, calc(var(--skew) * -1));
+    }
+  }
+</style>
