@@ -11,6 +11,7 @@
     "astro": "astro"
   },
   "devDependencies": {
+    "@types/isotope-layout": "^3.0.9",
     "@types/node": "^18.11.18",
     "@types/three": "^0.148.0",
     "@typescript-eslint/eslint-plugin": "^5.47.1",
@@ -28,6 +29,7 @@
   },
   "dependencies": {
     "astro": "^1.8.0",
+    "isotope-layout": "^3.0.6",
     "open-simplex-noise": "^2.5.0",
     "three": "^0.148.0"
   }

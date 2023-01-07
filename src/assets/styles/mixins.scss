@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:math";
 @use "sass:list";
 
 @mixin generate-variables($map, $prefix) {
@@ -129,7 +130,8 @@ $screens: (
 @mixin gradient-shadow(
   $add-position-relative: true,
   $show-on-hover: true,
-  $animate-on-hover: false
+  $animate-on-hover: false,
+  $opacity: 0.4
 ) {
   @if $add-position-relative {
     position: relative;
@@ -152,9 +154,9 @@ $screens: (
 
     @if $show-on-hover {
       scale: 0.6;
-      opacity: 0.2;
+      opacity: math.div($opacity, 2);
     } @else {
-      opacity: 0.4;
+      opacity: $opacity;
       scale: 1.02;
     }
   }
@@ -166,7 +168,7 @@ $screens: (
         @if $animate-on-hover {
           animation-play-state: running;
         }
-        opacity: 0.4;
+        opacity: $opacity;
         scale: 0.8;
       }
     }

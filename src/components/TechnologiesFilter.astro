@@ -1,0 +1,132 @@
+---
+import { camelCaseToTitle } from "@utils";
+
+export interface Props {
+  filterOptions: readonly string[];
+}
+
+const { filterOptions } = Astro.props;
+const initialValue = filterOptions[0];
+---
+
+<div class="filter-buttons" data-current={initialValue}>
+  <span class="filter-buttons__current-bubble"></span>
+  {
+    filterOptions.map(option => {
+      return (
+        <button
+          class:list={[
+            "filter-buttons__button",
+            { "filter-buttons__button--current": option === initialValue },
+          ]}
+          data-filter={option}
+          type="button"
+        >
+          {camelCaseToTitle(option)}
+        </button>
+      );
+    })
+  }
+</div>
+
+<script>
+  import { TechnologyFilterChangeEvent } from "@assets/typescript/events";
+  const filterButtons = document.querySelector(
+    ".filter-buttons"
+  ) as HTMLElement;
+  const buttons = filterButtons.querySelectorAll(
+    ".filter-buttons__button"
+    // eslint-disable-next-line
+  ) as NodeListOf<HTMLButtonElement>;
+
+  const ACTIVE_CLASS = "filter-buttons__button--current";
+
+  buttons.forEach(button => {
+    button.addEventListener("click", onFilterButtonClick);
+  });
+
+  function onFilterButtonClick(e: MouseEvent) {
+    const target = e.target as HTMLButtonElement;
+    const newFilter = target.dataset.filter;
+
+    removeActiveClass();
+    target.classList.add(ACTIVE_CLASS);
+
+    filterButtons.dataset.current = newFilter;
+    filterButtons.dispatchEvent(TechnologyFilterChangeEvent);
+    updateBubble();
+  }
+
+  function removeActiveClass() {
+    buttons.forEach(button => button.classList.remove(ACTIVE_CLASS));
+  }
+
+  addEventListener("resize", updateBubble);
+  function updateBubble() {
+    const newEl = document.querySelector(
+      `.${ACTIVE_CLASS}`
+    ) as HTMLButtonElement;
+    const bubbleEl = document.querySelector(
+      "span.filter-buttons__current-bubble"
+    ) as HTMLSpanElement;
+
+    const bb = newEl.getBoundingClientRect();
+    bubbleEl.style.left = `${newEl.offsetLeft}px`;
+    bubbleEl.style.width = `${bb.width}px`;
+    bubbleEl.style.height = `${bb.height}px`;
+  }
+  updateBubble();
+</script>
+
+<style lang="scss" define:vars="">
+  @use "../assets/styles/mixins.scss" as *;
+
+  .filter-buttons {
+    position: relative;
+    background: var(--blur-surface1);
+    backdrop-filter: blur(4px);
+    border-radius: 999px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    isolation: isolate;
+    width: 95%;
+    margin: 0 auto;
+
+    @include tablet-up {
+      font-size: 1.2rem;
+      padding: 20px 30px;
+      width: 80%;
+    }
+
+    &__current-bubble {
+      z-index: -1;
+      position: absolute;
+      background: var(--gradient-primary);
+      transition: 500ms cubic-bezier(0, 0.91, 0.41, 0.98);
+      border-radius: inherit;
+    }
+
+    &__button {
+      background: none;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 200ms cubic-bezier(0, 0.91, 0.41, 0.98);
+      white-space: nowrap;
+      padding: 8px 10px;
+      font-size: 0.8rem;
+      outline-offset: 5px;
+      border-radius: inherit;
+
+      @include tablet-up {
+        padding: 10px 20px;
+        font-size: 1rem;
+      }
+
+      &--current {
+        color: var(--text-main-light);
+      }
+    }
+  }
+</style>

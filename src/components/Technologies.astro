@@ -1,0 +1,92 @@
+---
+import SectionWrapper from "@components/SectionWrapper.astro";
+import TechnologiesFilter from "@components/TechnologiesFilter.astro";
+import TechnologyIcon from "@components/TechnologyIcon.astro";
+import { technologies } from "@assets/typescript/technologies";
+
+const filterOptions = ["frontEnd", "backEnd", "tools", "other"] as const;
+---
+
+<SectionWrapper title="Technologies" shadowTitle="What I Use" isOdd={true}>
+  <TechnologiesFilter filterOptions={filterOptions} />
+
+  <ul class="technologies">
+    {
+      technologies.map(tech => (
+        <li>
+          <TechnologyIcon
+            title={tech.title}
+            stack={tech.stack}
+            category={tech.category}
+          />
+        </li>
+      ))
+    }
+  </ul>
+</SectionWrapper>
+
+<script>
+  import Isotope from "isotope-layout";
+
+  const filterButtons = document.querySelector(
+    ".filter-buttons"
+  ) as HTMLElement;
+  filterButtons.addEventListener("techfilterchange", onFilterChange);
+
+  const iso: Isotope = new Isotope("ul.technologies", {
+    layoutMode: "fitRows",
+    getSortData: {
+      name: ".technology__title",
+      category: ".technology__title[data-category]",
+      stack: ".technology__title[data-stack]",
+    },
+    sortBy: ["original-order"],
+  });
+
+  const filterFunctions = {
+    all: (item: HTMLElement) => !!item,
+    tools: (item: HTMLElement) =>
+      !!getTitleEl(item).dataset.category?.match(/^(Design|Development) Tool$/),
+    frontEnd: (item: HTMLElement) =>
+      !!getTitleEl(item).dataset.stack?.match(
+        /^(Front-End|Front and Back Ends)$/
+      ),
+    backEnd: (item: HTMLElement) =>
+      !!getTitleEl(item).dataset.stack?.match(
+        /^(Back-End|Front and Back Ends)$/
+      ),
+    other: (item: HTMLElement) => {
+      const el = getTitleEl(item);
+
+      return (
+        !!el.dataset.stack?.match(/^(DevOps|Other)$/) &&
+        !el.dataset.category?.match("Tool")
+      );
+    },
+  };
+
+  function getTitleEl(parent: HTMLElement): HTMLDivElement {
+    return parent.querySelector(".technology__title") as HTMLDivElement;
+  }
+
+  function onFilterChange() {
+    const newFilter = filterButtons.dataset
+      .current as keyof typeof filterFunctions;
+    iso.arrange({ filter: filterFunctions[newFilter] });
+  }
+</script>
+
+<style lang="scss" define:vars="">
+  @use "../assets/styles/mixins.scss" as *;
+
+  ul.technologies {
+    margin-top: 20px;
+    background: var(--blur-surface2);
+    padding: 16px 6px;
+    border-radius: 10px;
+
+    @include tablet-up {
+      padding: 20px 50px;
+    }
+  }
+</style>
