@@ -19,7 +19,7 @@ import SectionWrapper from "@components/SectionWrapper.astro";
   </div>
 </SectionWrapper>
 
-<style lang="scss" define:vars="">
+<style lang="scss">
   @use "../assets/styles/mixins.scss" as *;
 
   .aboutme-title {
@@ -59,6 +59,8 @@ import SectionWrapper from "@components/SectionWrapper.astro";
       border-radius: 12px;
       position: relative;
       transition: 1000ms var(--main-timing-function);
+      padding: 1px;
+      overflow: hidden;
       @include w(clamp(200px, 50%, 400px));
 
       img {

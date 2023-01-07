@@ -49,8 +49,16 @@ $colors-props: ();
   @include add-color(surface2, #e2e2e2, #343434);
   @include add-color(overlay0, #d4d4d4, #747474);
 
-  @include add-color(boxshadow0, hsl(0deg 0 10% / 0.3), hsl(0deg 0 85% / 0.3));
-  @include add-color(boxshadow1, hsl(0deg 0 30% / 0.1), hsl(0deg 0 85% / 0.1));
+  @include add-color(
+    boxshadow0,
+    hsl(0deg 0% 10% / 0.3),
+    hsl(0deg 0% 85% / 0.3)
+  );
+  @include add-color(
+    boxshadow1,
+    hsl(0deg 0% 30% / 0.1),
+    hsl(0deg 0% 85% / 0.1)
+  );
 
   @include add-color(
     blur-surface0,
