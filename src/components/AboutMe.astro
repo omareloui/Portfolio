@@ -7,7 +7,7 @@ import SectionWrapper from "@components/SectionWrapper.astro";
     <span class="first-name">Omar</span>
     <span class="last-name">Eloui</span>
     <span class="image">
-      <img src="/images/me.jpg" alt="Image of me (omar eloui)." />
+      <img src="/images/me.jpg" alt="Image of me (Omar Eloui)." />
     </span>
   </h3>
 
@@ -21,6 +21,36 @@ import SectionWrapper from "@components/SectionWrapper.astro";
     <a href="#!">My Resume (pdf 000kb)</a>
   </div>
 </SectionWrapper>
+
+<script>
+  import { relativeTranslate } from "@utils";
+  const elements = [
+    ...document.querySelectorAll(
+      ".aboutme-title :is(.first-name, .last-name, .image)"
+    ),
+  ] as HTMLElement[];
+
+  relativeTranslate(
+    [
+      {
+        element: elements[0] as HTMLElement,
+        fraction: 3,
+        direction: "with-mouse",
+      },
+      {
+        element: elements[1] as HTMLElement,
+        fraction: 3,
+        direction: "against-mouse",
+      },
+      {
+        element: elements[2] as HTMLElement,
+        fraction: 20,
+        direction: "against-mouse",
+      },
+    ],
+    elements[2] as HTMLElement
+  );
+</script>
 
 <style lang="scss">
   @use "../assets/styles/mixins.scss" as *;
@@ -61,7 +91,7 @@ import SectionWrapper from "@components/SectionWrapper.astro";
       grid-row: 2 / 5;
       border-radius: 12px;
       position: relative;
-      transition: 1000ms var(--main-timing-function);
+      transition: 1.5s var(--main-timing-function);
       padding: 1px;
       overflow: hidden;
       @include w(clamp(200px, 50%, 400px));
@@ -84,7 +114,7 @@ import SectionWrapper from "@components/SectionWrapper.astro";
           var(--surface0) 100%
         );
         @include size(100% 100%);
-        transition: 500ms ease;
+        transition: 1s;
       }
 
       &:hover {

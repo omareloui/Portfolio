@@ -12,14 +12,10 @@ export interface Props {
 const {
   size = "clamp(2.8rem, 10vw, 5rem)",
   translate = "-30% -80%",
-  translateOnMobile,
   ariaHidden = true,
   parentQuery,
-  movingFraction = 2,
   italic = true,
 } = Astro.props;
-
-const _translateOnMobile = translateOnMobile || translate;
 ---
 
 <span
@@ -27,129 +23,66 @@ const _translateOnMobile = translateOnMobile || translate;
   aria-hidden={ariaHidden}
   data-parent={parentQuery}
   data-initial-translate={translate}
-  data-initial-mobile-translate={_translateOnMobile}
-  data-moving-fraction={movingFraction}
 >
   <slot />
 </span>
 
 <script>
-  const BREAK_POINT = 768;
+  import { relativeTranslate } from "@utils";
 
   // eslint-disable-next-line
   const shadowElments: NodeListOf<HTMLElement> =
     document.querySelectorAll(".shadow-text");
 
-  shadowElments.forEach(shadowEl => {
+  shadowElments.forEach(element => {
     let parent: Element | null;
-    const parentQuery = shadowEl.dataset.parent;
+    const parentQuery = element.dataset.parent;
+    const initialTranslate = element.dataset.initialTranslate as string;
 
-    if (!parentQuery) parent = shadowEl.parentElement;
-    else if (parentQuery === "prev") parent = shadowEl.previousElementSibling;
-    else if (parentQuery === "next") parent = shadowEl.nextElementSibling;
-    else parent = shadowEl.querySelector(parentQuery);
+    if (!parentQuery) parent = element.parentElement;
+    else if (parentQuery === "prev") parent = element.previousElementSibling;
+    else if (parentQuery === "next") parent = element.nextElementSibling;
+    else parent = element.querySelector(parentQuery);
 
     if (!parent || !(parent instanceof HTMLElement)) return;
 
+    relativeTranslate(
+      [
+        {
+          element,
+          fraction: 4,
+          direction: "with-mouse",
+          transition: "200ms ease-out",
+          initialTranslate,
+        },
+      ],
+      parent
+    );
+
+    setParentStyles();
     function setParentStyles() {
-      // eslint-disable-next-line
-      // @ts-ignore
+      if (!parent || !(parent instanceof HTMLElement)) return;
       parent.style.display = "relative";
     }
-
-    function parseXYProps(value: string): [string, string] {
-      const sanatized = value.trim().replace(/\s+/, " ").split(" ");
-      if (sanatized.length > 2) throw new Error("Invalid translate value.");
-      if (sanatized.length === 2) return sanatized as [string, string];
-      return [sanatized[0], sanatized[0]] as [string, string];
-    }
-
-    function onEnterParent() {
-      shadowEl.classList.add("shadow-text--on-parent");
-    }
-
-    function onMoveOverParent(e: PointerEvent) {
-      const parent = e.target as HTMLElement;
-      const boundingBox = parent.getBoundingClientRect();
-      const movingFraction =
-        parseInt(shadowEl.dataset.movingFraction || "", 10) || 2;
-
-      const layerPos = {
-        x: e.clientX - boundingBox.x,
-        y: e.clientY - boundingBox.y,
-      };
-
-      const layerPosFromCenter = {
-        x: layerPos.x - boundingBox.width / 2,
-        y: layerPos.y - boundingBox.height / 2,
-      };
-
-      const xPerc = Math.round(
-        (layerPosFromCenter.x / boundingBox.width) * 100
-      );
-      const yPerc = Math.round(
-        (layerPosFromCenter.y / boundingBox.height) * 100
-      );
-
-      if (innerWidth > BREAK_POINT) {
-        const [initialX, initialY] = parseXYProps(
-          shadowEl.dataset.initialTranslate as string
-        );
-
-        shadowEl.style.setProperty(
-          "--translate",
-          `calc(${initialX} + ${xPerc / movingFraction}%) calc(${initialY} + ${
-            yPerc / movingFraction
-          }%`
-        );
-      } else {
-        const [initialX, initialY] = parseXYProps(
-          shadowEl.dataset.initialMobileTranslate as string
-        );
-
-        shadowEl.style.setProperty(
-          "--translate-on-mobile",
-          `calc(${initialX} + ${xPerc / movingFraction}%) calc(${initialY} + ${
-            yPerc / movingFraction
-          }%`
-        );
-      }
-    }
-
-    function onLeaveParent() {
-      const initialTranslate = shadowEl.dataset.initialTranslate as string;
-      const initialTranslateForMobile = shadowEl.dataset
-        .initialMobileTranslate as string;
-      if (innerWidth > BREAK_POINT)
-        shadowEl.style.setProperty("--translate", initialTranslate);
-      else
-        shadowEl.style.setProperty(
-          "--translate-on-mobile",
-          initialTranslateForMobile
-        );
-      shadowEl.classList.remove("shadow-text--on-parent");
-    }
+    element.style.translate = initialTranslate;
 
     parent.addEventListener("pointerenter", onEnterParent);
-    parent.addEventListener("pointermove", onMoveOverParent);
     parent.addEventListener("pointerleave", onLeaveParent);
-    setParentStyles();
+    function onEnterParent() {
+      element.classList.add("shadow-text--on-parent");
+    }
+    function onLeaveParent() {
+      element.classList.remove("shadow-text--on-parent");
+    }
   });
 </script>
 
-<style
-  lang="scss"
-  define:vars={{ size, translate, "translate-on-mobile": _translateOnMobile }}
-  is:global
->
+<style lang="scss" is:global define:vars={{ size }}>
   @use "../assets/styles/mixins.scss" as *;
 
   .shadow-text {
     z-idnex: -1;
     position: absolute;
-
-    transition: ease-out 200ms;
-    translate: var(--translate);
 
     color: var(--shadow-text);
     pointer-events: none;
@@ -166,10 +99,6 @@ const _translateOnMobile = translateOnMobile || translate;
 
     &.italic {
       font-style: italic;
-    }
-
-    @include tablet-down {
-      translate: var(--translate-on-mobile);
     }
   }
 </style>
