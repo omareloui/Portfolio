@@ -1,17 +1,8 @@
 ---
-import Container from "@components/Container.astro";
-import OddBG from "@components/OddBG.astro";
-import SectionTitle from "@components/SectionTitle.astro";
 import PreviewProject from "@components/PreviewProject.astro";
+import SectionWrapper from "@components/SectionWrapper.astro";
 ---
 
-<OddBG>
-  <Container>
-    <SectionTitle>
-      Projects
-      <Fragment slot="shadow-text">Showcase</Fragment>
-    </SectionTitle>
-
-    <PreviewProject />
-  </Container>
-</OddBG>
+<SectionWrapper title="Projects" shadowTitle="Showcase" isOdd={true}>
+  <PreviewProject />
+</SectionWrapper>

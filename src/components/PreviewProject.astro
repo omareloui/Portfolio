@@ -7,6 +7,7 @@ import Divider from "@components/Divider.astro";
   <GradientTitle class="title">Yearbook</GradientTitle>
   <div class="body">
     <div class="images">
+      <div class="images__bg"></div>
       <img src="/images/yearbook2.png" alt="not found" />
       <img src="/images/yearbook1.png" alt="not found" />
     </div>
@@ -82,53 +83,58 @@ import Divider from "@components/Divider.astro";
 
       .images {
         grid-area: image;
-        background: linear-gradient(
-          -45deg,
-          hsl(20deg 90% 80% / 0.6),
-          hsl(60deg 90% 80% / 0.6)
-        );
         width: 85%;
         margin: 20px auto;
         border-radius: 12px;
         display: grid;
 
-        padding: 3px 10px;
-        padding-top: calc(3px + 5%);
+        > * {
+          grid-column: 1 / -1;
+          grid-row: 1 / -1;
+        }
 
-        transition: 1s cubic-bezier(0, 0.91, 0.41, 0.98);
-
-        @include desktop-up {
-          padding: 10px 30px;
-          padding-top: calc(10px + 5%);
+        &__bg {
+          background: linear-gradient(
+            -45deg,
+            hsl(20deg 90% 80% / 0.6),
+            hsl(60deg 90% 80% / 0.6)
+          );
+          border-radius: inherit;
+          transition: 1s cubic-bezier(0, 0.91, 0.41, 0.98);
         }
 
         img {
-          grid-column: 1 / -1;
-          grid-row: 1 / -1;
-
           display: block;
           @include size(100%);
           object-fit: cover;
           isolation: isolate;
           transition: 1s cubic-bezier(0, 0.91, 0.41, 0.98);
           border-radius: 5px;
+          filter: drop-shadow(2px 2px 2px var(--boxshadow1));
 
-          &:nth-child(1) {
-            translate: 5% -5%;
+          &:nth-of-type(2) {
+            translate: -1% 5%;
+          }
+          &:nth-of-type(1) {
+            translate: 4% 0%;
             opacity: 0.7;
           }
         }
 
         &:hover {
-          scale: 0.98;
+          .images__bg {
+            scale: 0.8;
+            translate: 8% -9%;
+          }
           img {
-            &:nth-child(2) {
+            filter: drop-shadow(10px 10px 30px var(--boxshadow1));
+            &:nth-of-type(2) {
               scale: 1.03;
-              translate: -2% 2%;
+              translate: -3% 7%;
             }
-            &:nth-child(1) {
+            &:nth-of-type(1) {
               scale: 0.9;
-              translate: 7% -7%;
+              translate: 6% -2%;
             }
           }
         }

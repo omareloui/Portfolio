@@ -1,0 +1,25 @@
+---
+export interface Props {
+  title: string;
+  shadowTitle: string;
+  isOdd?: boolean;
+}
+
+import Container from "./Container.astro";
+import OddBG from "./OddBG.astro";
+import SectionTitle from "./SectionTitle.astro";
+
+const { title, shadowTitle, isOdd = false } = Astro.props;
+
+const ContainerTag = isOdd ? OddBG : "div";
+---
+
+<ContainerTag>
+  <Container>
+    <SectionTitle>
+      {title}
+      <Fragment slot="shadow-text">{shadowTitle}</Fragment>
+    </SectionTitle>
+    <slot />
+  </Container>
+</ContainerTag>
