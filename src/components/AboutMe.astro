@@ -1,0 +1,104 @@
+---
+import SectionWrapper from "@components/SectionWrapper.astro";
+---
+
+<SectionWrapper title="About Me" shadowTitle="Know Me">
+  <h3 class="aboutme-title">
+    <span class="first-name">Omar</span>
+    <span class="last-name">Eloui</span>
+    <span class="image">
+      <img src="/images/me.jpg" alt="Image of me (omar eloui)." />
+    </span>
+  </h3>
+
+  <div class="aboutme-body">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis cum
+    aspernatur animi? Nam tempore iste deserunt neque. Non repellat iusto
+    eligendi aperiam consequatur adipisci laborum ipsa, tempora similique
+    obcaecati. Labore!
+  </div>
+</SectionWrapper>
+
+<style lang="scss" define:vars="">
+  @use "../assets/styles/mixins.scss" as *;
+
+  .aboutme-title {
+    --overlap: 30px;
+
+    display: grid;
+    grid-template-rows: auto calc(var(--overlap) * 0.8) auto var(--overlap) auto;
+    justify-items: center;
+    font-family: "Playfair Display", sans-serif;
+    font-size: 4rem;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 6px;
+
+    @include tablet-up {
+      --overlap: 75px;
+      font-size: 9rem;
+    }
+
+    > * {
+      grid-column: 1 / -1;
+    }
+
+    .first-name {
+      z-index: 1;
+      grid-row: 1 / 3;
+    }
+
+    .last-name {
+      z-index: 3;
+      grid-row: 4 / 6;
+    }
+
+    .image {
+      z-index: 2;
+      grid-row: 2 / 5;
+      border-radius: 12px;
+      position: relative;
+      transition: 1000ms var(--main-timing-function);
+      @include w(clamp(200px, 50%, 400px));
+
+      img {
+        @include size(100%);
+        border-radius: inherit;
+        object-fit: cover;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(
+          180deg,
+          var(--blur-surface-none) 0%,
+          var(--surface0) 100%
+        );
+        @include size(100% 70%);
+        transition: 500ms ease;
+      }
+
+      &:hover {
+        scale: 1.03;
+        translate: 0 calc(-0.8 * var(--overlap));
+        border-radius: 0;
+        &::before {
+          translate: 0 100%;
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  .aboutme-body {
+    font-size: 1.4rem;
+    text-align: center;
+
+    @include tablet-up {
+      text-align: start;
+    }
+  }
+</style>

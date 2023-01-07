@@ -82,6 +82,11 @@ $colors-props: ();
     hsl(0deg 0% 97% / 0.2),
     hsl(0deg 0% 11% / 0.2)
   );
+  @include add-color(
+    blur-surface-none,
+    hsl(0deg 0% 97% / 0),
+    hsl(0deg 0% 11% / 0)
+  );
 
   @include add-color(
     blur-invert-surface0,
@@ -113,6 +118,8 @@ $colors-props: ();
   // Media Queries {{{
   @include screens;
   // }}}
+
+  --main-timing-function: cubic-bezier(0, 0.91, 0.41, 0.98);
 }
 
 :root[theme="dark"] {

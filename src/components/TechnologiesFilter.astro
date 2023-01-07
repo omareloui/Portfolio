@@ -103,7 +103,7 @@ const initialValue = filterOptions[0];
       z-index: -1;
       position: absolute;
       background: var(--gradient-primary);
-      transition: 500ms cubic-bezier(0, 0.91, 0.41, 0.98);
+      transition: 500ms var(--main-timing-function);
       border-radius: inherit;
     }
 
@@ -112,7 +112,7 @@ const initialValue = filterOptions[0];
       border: none;
       font-weight: bold;
       cursor: pointer;
-      transition: color 200ms cubic-bezier(0, 0.91, 0.41, 0.98);
+      transition: color 200ms var(--main-timing-function);
       white-space: nowrap;
       padding: 8px 10px;
       font-size: 0.8rem;
