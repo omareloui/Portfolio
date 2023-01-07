@@ -17,6 +17,9 @@ import SectionWrapper from "@components/SectionWrapper.astro";
     eligendi aperiam consequatur adipisci laborum ipsa, tempora similique
     obcaecati. Labore!
   </div>
+  <div class="aboutme-resume">
+    <a href="#!">My Resume (pdf 000kb)</a>
+  </div>
 </SectionWrapper>
 
 <style lang="scss">
@@ -76,10 +79,11 @@ import SectionWrapper from "@components/SectionWrapper.astro";
         left: 0;
         background: linear-gradient(
           180deg,
-          var(--blur-surface-none) 0%,
+          var(--blur-surface-none) 25%,
+          var(--surface0) 95%,
           var(--surface0) 100%
         );
-        @include size(100% 70%);
+        @include size(100% 100%);
         transition: 500ms ease;
       }
 
@@ -98,8 +102,26 @@ import SectionWrapper from "@components/SectionWrapper.astro";
   .aboutme-body {
     font-size: 1.4rem;
     text-align: center;
+    margin-top: 20px;
+  }
 
-    @include tablet-up {
+  .aboutme-resume {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+
+    a {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200%;
+      background-position: 50% 50%;
+    }
+  }
+
+  @include tablet-up {
+    .aboutme-resume,
+    .aboutme-body {
       text-align: start;
     }
   }

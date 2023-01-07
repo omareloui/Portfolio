@@ -74,6 +74,7 @@ const filterOptions = ["frontEnd", "backEnd", "tools", "other"] as const;
       .current as keyof typeof filterFunctions;
     iso.arrange({ filter: filterFunctions[newFilter] });
   }
+  onFilterChange();
 </script>
 
 <style lang="scss">
