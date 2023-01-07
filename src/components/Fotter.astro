@@ -1,7 +1,83 @@
-<fotter>
-  <div class="left">Copyright © 2022 Omar Eloui All Rights Reserved.</div>
-  <div class="center"></div>
-  <div class="right">
-    <a href="https://github.com/omareloui/Portfolio">Source code</a>
-  </div>
-</fotter>
+---
+import Container from "./Container.astro";
+import { createLinksLink } from "@utils";
+---
+
+<footer>
+  <Container>
+    <div class="left">
+      <span class="tablet-up">Copyright © 2022 Omar Eloui</span>
+      <span class="tablet-down">Copyright © 2022</span>
+    </div>
+    <div class="center">
+      {
+        ["github", "linkedin", "telegram"].map(x => (
+          <a
+            href={createLinksLink(x)}
+            target="_blank"
+            aria-label={`A link to my ${x}.`}
+          >
+            <img src={`/icons/footer/${x}.svg`} alt="" />
+          </a>
+        ))
+      }
+    </div>
+    <div class="right">
+      <a href={createLinksLink("portfolio-gh")} target="_blank">Source code</a>
+    </div>
+  </Container>
+</footer>
+
+<style lang="scss">
+  @use "../assets/styles/mixins.scss" as *;
+
+  footer {
+    isolation: isolate;
+    background: var(--surface2);
+
+    > :first-child {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      font-size: 0.8rem;
+      padding: 10px;
+
+      @include tablet-up {
+        font-size: 1rem;
+      }
+
+      .left {
+        justify-self: start;
+      }
+      .center {
+        justify-self: center;
+        display: flex;
+        gap: 10px;
+
+        a {
+          display: block;
+          line-height: 100%;
+          opacity: 0.5;
+          transition: 500ms;
+          @include size(25px);
+
+          @include tablet-up {
+            @include size(30px);
+          }
+
+          &:hover {
+            opacity: 1;
+          }
+
+          img {
+            @include size(100%);
+          }
+        }
+      }
+      .right {
+        justify-self: end;
+        font-weight: bold;
+      }
+    }
+  }
+</style>
