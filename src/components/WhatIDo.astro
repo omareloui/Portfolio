@@ -1,0 +1,50 @@
+---
+import SectionWrapper from "./SectionWrapper.astro";
+---
+
+<SectionWrapper title="Skills" shadowTitle="What I Do">
+  <div class="skill-body">
+    <div class="skill-body__skill">
+      <h3>Development</h3>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, omnis
+        expedita sapiente laboriosam odit ut repellendus eaque blanditiis.
+        Laboriosam, voluptatum dignissimos? Molestiae unde aliquam suscipit et
+        tempora eius doloremque cumque?
+      </p>
+    </div>
+    <div class="skill-body__skill">
+      <h3>Design</h3>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, omnis
+        expedita sapiente laboriosam odit ut repellendus eaque blanditiis.
+        Laboriosam, voluptatum dignissimos? Molestiae unde aliquam suscipit et
+        tempora eius doloremque cumque?
+      </p>
+    </div>
+  </div>
+</SectionWrapper>
+
+<style lang="scss" define:vars="">
+  @use "../assets/styles/mixins.scss" as *;
+
+  .skill-body {
+    display: grid;
+    gap: 20px;
+
+    @include tablet-down {
+      text-align: center;
+    }
+
+    @include tablet-up {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &__skill {
+      h3 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+      }
+    }
+  }
+</style>

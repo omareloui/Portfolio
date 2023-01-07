@@ -14,7 +14,7 @@ const { title, shadowTitle, isOdd = false } = Astro.props;
 const ContainerTag = isOdd ? OddBG : "div";
 ---
 
-<ContainerTag>
+<ContainerTag class="section-container">
   <Container>
     <SectionTitle>
       {title}
@@ -23,3 +23,9 @@ const ContainerTag = isOdd ? OddBG : "div";
     <slot />
   </Container>
 </ContainerTag>
+
+<style>
+  .section-container {
+    margin-block: 120px;
+  }
+</style>

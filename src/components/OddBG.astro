@@ -16,16 +16,23 @@ const invertNum = inverted ? 1 : -1;
 </div>
 
 <style lang="scss" define:vars={{ invertNum, degree }}>
+  @use "../assets/styles/mixins.scss" as *;
+
   .odd-bg {
     --skew: calc(1deg * var(--degree) * var(--invertNum));
 
     background-color: var(--surface1);
     transform: skew(0deg, var(--skew));
     padding-block: 130px;
+    margin-block: 45px;
     min-height: 200px;
 
     &__content {
       transform: skew(0deg, calc(var(--skew) * -1));
+    }
+
+    @include tablet-up {
+      margin-block: 70px;
     }
   }
 </style>
