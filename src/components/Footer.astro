@@ -5,13 +5,13 @@ import { createLinksLink } from "@utils";
 
 <footer>
   <Container>
-    <div class="left">
-      <span class="tablet-up">Copyright © 2022 Omar Eloui</span>
-      <span class="tablet-down">Copyright © 2022</span>
+    <div class="copyright">
+      <span class="tablet-up">Copyright © 2023 Omar Eloui</span>
+      <span class="tablet-down">Copyright © 2023</span>
     </div>
-    <div class="center">
+    <div class="links">
       {
-        ["github", "linkedin", "telegram"].map(x => (
+        ["linkedin", "telegram", "github"].map(x => (
           <a
             href={createLinksLink(x)}
             target="_blank"
@@ -22,7 +22,7 @@ import { createLinksLink } from "@utils";
         ))
       }
     </div>
-    <div class="right">
+    <div class="source-code tablet-up">
       <a href={createLinksLink("portfolio-gh")} target="_blank">Source code</a>
     </div>
   </Container>
@@ -37,20 +37,17 @@ import { createLinksLink } from "@utils";
 
     > :first-child {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       align-items: center;
       font-size: 0.8rem;
       padding: 10px;
 
-      @include tablet-up {
-        font-size: 1rem;
-      }
-
-      .left {
+      .copyright {
         justify-self: start;
       }
-      .center {
-        justify-self: center;
+
+      .links {
+        justify-self: end;
         display: flex;
         gap: 10px;
 
@@ -61,10 +58,6 @@ import { createLinksLink } from "@utils";
           transition: 500ms;
           @include size(25px);
 
-          @include tablet-up {
-            @include size(30px);
-          }
-
           &:hover {
             opacity: 1;
           }
@@ -74,9 +67,20 @@ import { createLinksLink } from "@utils";
           }
         }
       }
-      .right {
-        justify-self: end;
-        font-weight: bold;
+
+      @include tablet-up {
+        grid-template-columns: repeat(3, 1fr);
+        font-size: 1rem;
+        .links {
+          justify-self: center;
+          a {
+            @include size(30px);
+          }
+        }
+        .source-code {
+          justify-self: end;
+          font-weight: bold;
+        }
       }
     }
   }
