@@ -52,7 +52,9 @@ const navLinks = [
       {
         navLinks.map(nl => (
           <li>
-            <a href={nl.link}>{nl.text}</a>
+            <a href={nl.link} tabindex="-1">
+              {nl.text}
+            </a>
           </li>
         ))
       }
@@ -60,7 +62,7 @@ const navLinks = [
 
     <div class="bottom">
       <div class="theme-switch">
-        <ThemeSwitch size="1.1rem" />
+        <ThemeSwitch size="1.1rem" focusable={false} />
       </div>
       <!-- TODO: languages -->
     </div>
@@ -132,8 +134,18 @@ const navLinks = [
       ? navMenu.classList.remove("hide")
       : navMenu.classList.add("hide");
 
+    updateFocus(state === "opened");
     updateUI(state as State);
   });
+
+  function updateFocus(focusable: boolean) {
+    const links = document.querySelectorAll(
+      ".nav-menu :is(ul.links-list a, input)"
+    );
+    links.forEach(linkEl =>
+      linkEl.setAttribute("tabindex", (focusable ? 0 : -1).toString())
+    );
+  }
 </script>
 
 <style lang="scss">
