@@ -26,7 +26,6 @@ const { class: className } = Astro.props;
   import { getStyle } from "src/utils/style";
 
   const PLANE_COLOR = 0x898989;
-  const BREAK_POINT = 768;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
@@ -48,9 +47,8 @@ const { class: className } = Astro.props;
   const v3 = new THREE.Vector3();
 
   /// Plane {{{
-  const planeGeometry = new THREE.BoxGeometry(5, 5, 5, 8, 8, 8);
-
-  planeGeometry.translate(0, 0, -3);
+  const planeGeometry = new THREE.BoxGeometry(8, 8, 0, 12, 12, 0);
+  planeGeometry.translate(0, 0, -2);
 
   const planeGeometryPositionData: THREE.Vector3[] = [];
   const planeGeometryPosition = planeGeometry.attributes
@@ -102,7 +100,8 @@ const { class: className } = Astro.props;
   function onResize() {
     renderer.setSize(0, 0);
 
-    const isOnDesktop = innerWidth > BREAK_POINT;
+    const isOnTabet = innerWidth > 768;
+    const isOnDesktop = innerWidth > 1024;
 
     let width;
     let height;
@@ -111,10 +110,16 @@ const { class: className } = Astro.props;
       "section.hero .hero__main"
     ) as HTMLElement;
 
-    if (isOnDesktop) {
+    if (isOnTabet) {
       width = parent.clientWidth;
       height = contentEl.clientHeight * 1.5;
-      camera.position.setZ(6);
+      if (isOnDesktop) {
+        camera.position.setX(-2.4);
+        camera.position.setZ(7);
+      } else {
+        camera.position.setZ(6);
+        camera.position.setX(-1);
+      }
     } else {
       width = getStyle(contentEl, "width");
       height = contentEl.clientHeight * 1.2;
