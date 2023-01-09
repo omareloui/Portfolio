@@ -2,12 +2,76 @@
 import SectionWrapper from "@components/SectionWrapper.astro";
 ---
 
-<SectionWrapper title="Contact" shadowTitle="Reach Me" isOdd={true}>
-  <>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta eligendi
-    omnis velit. Voluptatem, eius cumque maxime odit libero voluptate enim
-    beatae culpa repudiandae nam nisi ipsa, blanditiis, inventore vitae rem.
-  </>
+<SectionWrapper title="Contact" shadowTitle="Get in Touch" isOdd={true}>
+  <p class="contact__available">I'm currently available for work</p>
+
+  <div class="contact__methods">
+    <h3>Want to work together or have any questions?</h3>
+    <p>
+      Feel free to reach out through email <a
+        href="mailto:contact@omareloui.com"
+        title="email me"
+        class="gradient">contact@omareloui.com</a
+      > or phone <a href="tel:+0201119447500" title="call me" class="gradient"
+        >+0201119447500</a
+      >.
+    </p>
+  </div>
 </SectionWrapper>
 
-<style lang="scss"></style>
+<style lang="scss">
+  @use "../assets/styles/mixins.scss" as *;
+
+  .contact {
+    .gradient {
+    }
+
+    &__available,
+    &__methods,
+    h3 {
+      text-align: center;
+      @include tablet-up {
+        text-align: start;
+      }
+    }
+
+    &__available {
+      margin-block: 40px;
+      font-size: 1.2rem;
+
+      @include tablet-up {
+        --circle-size: 12px;
+        --circle-gap: 8px;
+
+        margin-block: 20px;
+
+        padding-left: calc(var(--circle-size) + var(--circle-gap));
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 0;
+          translate: 0 -50%;
+          background: var(--magenta);
+          @include size(var(--circle-size));
+          animation: pulse 2000ms infinite;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    &__methods {
+      margin-top: 20px;
+      font-size: 1.4rem;
+      a {
+        font-weight: bold;
+        background: var(--gradient-primary);
+        background-size: 200%;
+        background-position: 50%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+</style>

@@ -1,3 +1,3 @@
 export function createLinksLink(slug: string) {
-  return `https://omareloui-links.vercel.app/${slug}?s=portfolio`;
+  return `https://links.omareloui.com/${slug}?s=portfolio`;
 }

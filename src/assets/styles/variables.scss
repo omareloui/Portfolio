@@ -28,6 +28,9 @@ $colors-props: ();
   --purple: #9656ff;
   --magenta: #ff31d2;
 
+  --purple-hsl: 263deg 100% 67%;
+  --magenta-hsl: 313deg 100% 60%;
+
   --gradient-primary: linear-gradient(
     245deg,
     var(--cyan) 17%,
