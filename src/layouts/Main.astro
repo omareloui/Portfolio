@@ -6,6 +6,13 @@ import "@assets/styles/helper-classes.scss";
 
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
+import GalleryPreviewer from "@components/GalleryPreviewer.astro";
+
+export interface Props {
+  includeGallery: boolean;
+}
+
+const { includeGallery = true } = Astro.props;
 ---
 
 <html lang="en">
@@ -26,6 +33,7 @@ import Footer from "@components/Footer.astro";
     <title>Omar Eloui | Web Developer</title>
   </head>
   <body>
+    {includeGallery && <GalleryPreviewer />}
     <Header />
     <slot />
     <Footer />

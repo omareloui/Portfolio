@@ -1,9 +1,10 @@
 ---
 export interface Props {
   size?: string;
+  focusable?: boolean;
 }
 
-const { size = "1.5rem" } = Astro.props;
+const { size = "1.5rem", focusable = true } = Astro.props;
 ---
 
 <label class="switch">
@@ -12,6 +13,7 @@ const { size = "1.5rem" } = Astro.props;
     role="switch"
     class="switch__input"
     aria-label="change current theme"
+    tabindex={focusable ? 0 : -1}
   />
 </label>
 

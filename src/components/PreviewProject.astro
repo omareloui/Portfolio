@@ -6,7 +6,10 @@ import Divider from "@components/Divider.astro";
 <div class="project">
   <GradientTitle class="title">Yearbook</GradientTitle>
   <div class="body">
-    <div class="images">
+    <div
+      class="images"
+      data-images-srcs="/images/yearbook1.png,/images/yearbook2.png"
+    >
       <img src="/images/yearbook2.png" alt="not found" />
       <img src="/images/yearbook1.png" alt="not found" />
     </div>
@@ -38,6 +41,28 @@ import Divider from "@components/Divider.astro";
     </div>
   </div>
 </div>
+
+<script>
+  const images = document.querySelectorAll(".project .images");
+
+  images.forEach(images => {
+    images.addEventListener("click", e => {
+      const target = e.target as HTMLElement;
+      const imagesDiv = getClickedImagesDiv(target);
+      const srcs = (imagesDiv.dataset.imagesSrcs as string).split(",");
+
+      const OpenGalleryEvent = new CustomEvent("opengallery", {
+        detail: srcs,
+      });
+      dispatchEvent(OpenGalleryEvent);
+    });
+  });
+
+  function getClickedImagesDiv(el: HTMLElement): HTMLElement {
+    if (el.classList.contains("images")) return el;
+    return el.parentElement as HTMLElement;
+  }
+</script>
 
 <style lang="scss">
   @use "../assets/styles/mixins.scss" as *;
@@ -108,6 +133,8 @@ import Divider from "@components/Divider.astro";
           grid-column: 1 / -1;
           grid-row: 1 / -1;
           place-self: center;
+
+          cursor: pointer;
 
           @include size(100%);
           @include w(max 85%);

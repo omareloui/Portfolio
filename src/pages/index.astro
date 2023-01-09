@@ -1,5 +1,6 @@
 ---
 import MainLayout from "@layouts/Main.astro";
+
 import Hero from "@components/Hero.astro";
 import Projects from "@components/Projects.astro";
 import WhatIDo from "@components/WhatIDo.astro";
@@ -8,7 +9,7 @@ import AboutMe from "@components/AboutMe.astro";
 import Contact from "@components/Contact.astro";
 ---
 
-<MainLayout>
+<MainLayout includeGallery={true}>
   <Hero />
   <main>
     <Projects />

@@ -1,0 +1,265 @@
+---
+import Container from "./Container.astro";
+---
+
+<div class="gallery" data-is-open="false">
+  <Container>
+    <div class="gallery__image"></div>
+    <!-- Buttons {{{ -->
+    <div class="buttons">
+      <button
+        class="buttons__prev"
+        tabindex="-1"
+        type="button"
+        aria-label="previous image"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          height="24"
+          width="24"
+          ><polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button
+        class="buttons__next"
+        tabindex="-1"
+        type="button"
+        aria-label="next image"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          height="24"
+          width="24"
+          style="rotate: 180deg"
+          ><polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button
+        class="buttons__close"
+        tabindex="-1"
+        type="button"
+        aria-label="close gallery"
+      >
+        <svg id="Capa_1" viewBox="0 0 20 19.84" stroke="currentColor"
+          ><path
+            d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+    <!-- }}} -->
+    <div class="gallery__state">
+      <span class="current"></span>/<span class="total"></span>
+    </div>
+  </Container>
+</div>
+
+<script>
+  const gallery = document.querySelector(
+    ".gallery .gallery__image"
+  ) as HTMLElement;
+  const galleryWrapper = gallery.parentElement?.parentElement as HTMLElement;
+  const [current, total] = [
+    ...document.querySelectorAll(".gallery .gallery__state span"),
+  ] as [HTMLElement, HTMLElement];
+  const buttons = document.querySelectorAll(".gallery .buttons button");
+
+  let currentIndex = 1;
+  let srcs: string[];
+
+  addEventListener("opengallery", onOpenGallery);
+  addEventListener("keyup", onKeyUp);
+
+  buttons.forEach(button => {
+    if (button.classList.contains("buttons__next"))
+      button.addEventListener("click", onNextClick);
+    else if (button.classList.contains("buttons__prev"))
+      button.addEventListener("click", onPrevClick);
+    else if (button.classList.contains("buttons__close"))
+      button.addEventListener("click", onCloseClick);
+  });
+
+  function onOpenGallery(e: Event) {
+    srcs = (e as CustomEvent).detail as string[];
+
+    updateIndex("reset");
+    updateImage();
+    updateButtons(true);
+
+    galleryWrapper.dataset.isOpen = "true";
+    galleryWrapper.style.transition =
+      "opacity var(--show-transition-duration) ease-in-out var(--show-transition-duration), translate 0ms ease";
+  }
+
+  function onCloseClick() {
+    galleryWrapper.dataset.isOpen = "false";
+
+    galleryWrapper.style.transition =
+      "opacity var(--show-transition-duration) ease-in-out, translate 0ms ease var(--show-transition-duration)";
+
+    function clearGallery() {
+      gallery.innerHTML = "";
+    }
+    setTimeout(clearGallery, 200);
+    updateButtons(false);
+  }
+
+  function onNextClick() {
+    updateIndex("increase");
+    updateImage();
+  }
+  function onPrevClick() {
+    updateIndex("decrease");
+    updateImage();
+  }
+
+  function onKeyUp(e: KeyboardEvent) {
+    if (e.code === "Escape") onCloseClick();
+    if (e.code === "ArrowRight") onNextClick();
+    if (e.code === "ArrowLeft") onPrevClick();
+    if (e.code === "KeyH") onPrevClick();
+    if (e.code === "KeyL") onNextClick();
+  }
+
+  function updateButtons(focusable: boolean) {
+    buttons.forEach(button => {
+      button.setAttribute("tabindex", (focusable ? 0 : -1).toString());
+    });
+  }
+
+  function updateImage() {
+    const el = document.createElement("img");
+    el.src = srcs[currentIndex - 1] as string;
+    el.alt = "a preview image of one of my projects";
+    gallery.innerHTML = "";
+    gallery.append(el);
+  }
+
+  function updateIndex(update: "increase" | "decrease" | "reset") {
+    const totalLength = srcs.length;
+    if (update === "increase") {
+      currentIndex += 1;
+      if (currentIndex > totalLength) currentIndex = 1;
+    } else if (update === "decrease") {
+      currentIndex -= 1;
+      if (currentIndex === 0) currentIndex = totalLength;
+    } else if (update === "reset") {
+      currentIndex = 1;
+      total.innerText = totalLength.toString().padStart(2, "0");
+    }
+    current.innerText = currentIndex.toString().padStart(2, "0");
+  }
+</script>
+
+<style lang="scss">
+  @use "../assets/styles/mixins.scss" as *;
+
+  .gallery {
+    --show-transition-duration: 200ms;
+
+    z-index: 10001;
+    isolation: isolate;
+    position: fixed;
+    background: var(--blur-surface2);
+    backdrop-filter: blur(20px);
+    top: 0;
+    left: 0;
+    @include size(100%);
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    translate: 0 -100%;
+
+    transition: opacity var(--show-transition-duration) ease-in-out,
+      translate 0ms ease var(--show-transition-duration);
+
+    &[data-is-open="true"] {
+      opacity: 1;
+      translate: 0 0;
+      pointer-events: all;
+    }
+
+    .container {
+      position: relative;
+      height: 100%;
+    }
+
+    button,
+    &__state {
+      background: var(--blur-surface2);
+      backdrop-filter: blur(8px);
+    }
+
+    &__image {
+      display: grid;
+      place-items: center;
+      height: 100%;
+      @include w(100%);
+      :global(img) {
+        @include w(100%);
+        /* object-fit: cover; */
+      }
+    }
+
+    &__state {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      font-size: 1.8rem;
+      opacity: 0.6;
+      font-family: "Playfair Display", sans-serif;
+      padding: 5px 10px 13px;
+      border-radius: 5px;
+      span {
+        margin: 0 8px;
+      }
+      @include tablet-up {
+        font-size: 3rem;
+      }
+    }
+
+    .buttons {
+      > button {
+        position: absolute;
+        cursor: pointer;
+        border: none;
+        padding: 10px;
+        border-radius: 10px;
+        outline-offset: 3px;
+        opacity: 0.6;
+        svg {
+          @include size(100%);
+        }
+      }
+
+      &__next,
+      &__prev {
+        top: 50%;
+        translate: 0 -50%;
+      }
+
+      &__next {
+        right: 20px;
+      }
+      &__prev {
+        left: 20px;
+      }
+
+      &__close {
+        top: 8%;
+        right: 10%;
+        @include size(45px);
+      }
+    }
+  }
+</style>
