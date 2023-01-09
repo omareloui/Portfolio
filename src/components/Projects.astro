@@ -1,8 +1,41 @@
 ---
 import PreviewProject from "@components/PreviewProject.astro";
 import SectionWrapper from "@components/SectionWrapper.astro";
+
+import { createClient } from "contentful";
+
+const client = createClient({
+  space: import.meta.env.CONTENTFUL_SPACE_ID!,
+  accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN!,
+});
+
+const { items } = await client.getEntries();
+const projects = items
+  .map(x => {
+    const { fields } = x;
+    // eslint-disable-next-line
+    // @ts-ignore
+    fields.images = fields.images.map(x => x.fields.file.url);
+    return fields;
+  })
+  .reverse();
 ---
 
-<SectionWrapper title="Projects" shadowTitle="Showcase" isOdd={true}>
-  <PreviewProject />
+<SectionWrapper
+  title="Projects"
+  shadowTitle="Showcase"
+  isOdd={true}
+  class="projects"
+>
+  <!-- @ts-ignore -->
+  {projects.map(project => <PreviewProject project={project} />)}
 </SectionWrapper>
+
+<style lang="scss">
+  @use "../assets/styles/mixins.scss" as *;
+
+  .projects {
+    display: grid;
+    gap: 50px;
+  }
+</style>

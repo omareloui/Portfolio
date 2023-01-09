@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "astro": "^1.8.0",
+    "contentful": "^9.2.15",
     "isotope-layout": "^3.0.6",
     "open-simplex-noise": "^2.5.0",
     "three": "^0.148.0"

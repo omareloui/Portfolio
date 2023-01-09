@@ -1,43 +1,69 @@
 ---
 import GradientTitle from "@components/GradientTitle.astro";
 import Divider from "@components/Divider.astro";
+
+export interface Props {
+  project: {
+    title: string;
+    subtitle: string;
+    description: string;
+    link?: string;
+    github?: string;
+    design?: string;
+    images: string[];
+    technologies: string[];
+  };
+}
+
+const {
+  project: {
+    title,
+    subtitle,
+    description,
+    technologies,
+    images,
+    link,
+    design,
+    github,
+  },
+} = Astro.props;
 ---
 
 <div class="project">
-  <GradientTitle class="title">Yearbook</GradientTitle>
+  <GradientTitle class="title">{title}</GradientTitle>
   <div class="body">
     <div
-      class="images"
-      data-images-srcs="/images/yearbook1.png,/images/yearbook2.png"
+      class:list={["images", { "images--only-one": images.length === 1 }]}
+      data-images-srcs={images.join(",")}
     >
-      <img src="/images/yearbook2.png" alt="not found" />
-      <img src="/images/yearbook1.png" alt="not found" />
+      {
+        images
+          .slice(0, 2)
+          .reverse()
+          .map(img => <img src={img} alt={`Image for ${title}.`} />)
+      }
     </div>
+
+    <div class="subtitle">{subtitle}</div>
 
     <div class="links">
-      <a href="#!">live site</a>
-      <a href="#!">github</a>
-      <a href="#!">design</a>
+      {link && <a href={link}>live site</a>}
+      {github && <a href={github}>github</a>}
+      {design && <a href={design}>design</a>}
     </div>
 
-    <div class="description">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum nihil
-      quidem voluptates fuga, temporibus atque quisquam quae itaque ipsa
-      deserunt magnam, illo facere odit magni soluta quibusdam animi sint dolor?
-    </div>
+    <div class="description">{description}</div>
 
     <Divider />
 
     <div class="technologies">
-      <div class="technology"><img src="/icons/tech/AlpineJs.svg" /></div>
-      <div class="technology"><img src="/icons/tech/AWS.svg" /></div>
-      <div class="technology"><img src="/icons/tech/Deno.svg" /></div>
-      <div class="technology"><img src="/icons/tech/Nuxt.svg" /></div>
-      <div class="technology"><img src="/icons/tech/Vue.svg" /></div>
-      <div class="technology"><img src="/icons/tech/Linux.svg" /></div>
-      <div class="technology"><img src="/icons/tech/Lit.svg" /></div>
-      <div class="technology"><img src="/icons/tech/Vim.svg" /></div>
-      <div class="technology"><img src="/icons/tech/Neovim.svg" /></div>
+      {
+        technologies.map(tech => (
+          <div class="technology">
+            <img src={`/icons/tech/${tech}.svg`} />
+          </div>
+        ))
+      }
     </div>
   </div>
 </div>
@@ -85,6 +111,7 @@ import Divider from "@components/Divider.astro";
       grid-row: 2/-1;
     }
 
+    // Body {{{
     .body {
       padding: 30px 20px;
       width: 90%;
@@ -96,15 +123,17 @@ import Divider from "@components/Divider.astro";
       @include desktop-up {
         display: grid;
         gap: 20px;
-        grid-template-columns: 1.5fr 1fr;
+        grid-template-columns: 1.2fr 1fr;
         padding-inline: 40px;
         grid-template-areas:
+          "subtitle image"
           "desc image"
           "link image"
           "divider image"
           "tech image";
       }
 
+      // Images {{{
       .images {
         grid-area: image;
         width: 85%;
@@ -145,11 +174,13 @@ import Divider from "@components/Divider.astro";
           transition: 1s var(--main-timing-function);
           border-radius: inherit;
           filter: drop-shadow(2px 2px 2px var(--boxshadow1));
+        }
 
-          &:nth-of-type(2) {
+        &:not(.images--only-one) {
+          img:nth-of-type(2) {
             translate: -2% 5%;
           }
-          &:nth-of-type(1) {
+          img:nth-of-type(1) {
             translate: 4% -5%;
             opacity: 0.7;
           }
@@ -173,7 +204,20 @@ import Divider from "@components/Divider.astro";
           }
         }
       }
+      // }}}
 
+      // Subtitle {{{
+      .subtitle {
+        text-align: center;
+        font-style: italic;
+        color: var(--subtext0);
+        @include desktop-up {
+          text-align: start;
+        }
+      }
+      // }}}
+
+      // Links {{{
       .links {
         grid-area: link;
         display: flex;
@@ -195,7 +239,9 @@ import Divider from "@components/Divider.astro";
           margin-block: 0px;
         }
       }
+      // }}}
 
+      // Description {{{
       .description {
         grid-area: desc;
         text-align: center;
@@ -203,14 +249,18 @@ import Divider from "@components/Divider.astro";
           text-align: start;
         }
       }
+      // }}}
 
+      // Divider {{{
       hr {
         @include desktop-up {
           grid-area: divider;
           margin: 0;
         }
       }
+      // }}}
 
+      // Technologies {{{
       .technologies {
         grid-area: tech;
         display: flex;
@@ -245,7 +295,9 @@ import Divider from "@components/Divider.astro";
           }
         }
       }
+      // }}}
     }
+    // }}}
 
     @include tablet-up {
       --overlap: 32px;

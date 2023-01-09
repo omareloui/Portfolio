@@ -1,15 +1,19 @@
 ---
 export interface Props {
   tag?: string;
-  class?: string;
+  class?: string | undefined;
+  id?: string | undefined;
 }
 
-const { tag: Tag = "div", class: className } = Astro.props;
+const { tag: Tag = "div", class: className, id } = Astro.props;
 ---
 
-<Tag class:list={["container", className]}>
-  <slot />
-</Tag>
+<>
+  <!-- @ts-ignore -->
+  <Tag class:list={["container", className]} id={id}>
+    <slot />
+  </Tag>
+</>
 
 <style lang="scss">
   .container {
