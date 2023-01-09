@@ -134,7 +134,24 @@ const { class: className } = Astro.props;
 
   window.addEventListener("resize", onResize);
 
+  /// Intersection {{{
+  // TODO: make this global intersection
+  let shouldPause = false;
+  const observer = new IntersectionObserver(onIntersection, {});
+
+  observer.observe(parent);
+
+  function onIntersection(entries: IntersectionObserverEntry[]) {
+    entries.forEach(e => {
+      if (e.isIntersecting) shouldPause = false;
+      else shouldPause = true;
+    });
+  }
+  /// }}}
+
   renderer.setAnimationLoop(() => {
+    if (shouldPause) return;
+
     const t = clock.getElapsedTime() / 1;
 
     sphereGeometryPositionData.forEach((p, idx) => {
