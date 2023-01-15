@@ -94,10 +94,14 @@ const {
   @use "../assets/styles/mixins.scss" as *;
 
   .project {
-    --overlap: 25px;
+    --overlap: 20px;
 
     display: grid;
     grid-template-rows: auto var(--overlap) auto;
+
+    @include tablet-up {
+      --overlap: 32px;
+    }
 
     .title,
     .body {
@@ -298,9 +302,5 @@ const {
       // }}}
     }
     // }}}
-
-    @include tablet-up {
-      --overlap: 32px;
-    }
   }
 </style>
