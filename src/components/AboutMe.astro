@@ -1,5 +1,10 @@
 ---
+import fs from "node:fs/promises";
 import SectionWrapper from "@components/SectionWrapper.astro";
+const RESUME_FILENAME = "Omar_Eloui_web_developer_resume.pdf";
+
+const stats = await fs.stat(`./public/${RESUME_FILENAME}`);
+const size = Math.round(stats.size / 1024);
 ---
 
 <SectionWrapper title="About Me" shadowTitle="Know Me" id="aboutme">
@@ -18,7 +23,7 @@ import SectionWrapper from "@components/SectionWrapper.astro";
     obcaecati. Labore!
   </div>
   <div class="aboutme-resume">
-    <a href="#!">My Resume (pdf 000kb)</a>
+    <a href={`/${RESUME_FILENAME}`}>My Resume (pdf {size}kb)</a>
   </div>
 </SectionWrapper>
 
