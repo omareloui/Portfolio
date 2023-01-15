@@ -10,11 +10,16 @@ import GalleryPreviewer from "@components/GalleryPreviewer.astro";
 import ScrollTop from "@components/ScrollTop.astro";
 
 export interface Props {
+  notHomepage?: boolean;
   includeGallery?: boolean;
   includeScrollTop?: boolean;
 }
 
-const { includeGallery = true, includeScrollTop = true } = Astro.props;
+const {
+  notHomepage = true,
+  includeGallery = false,
+  includeScrollTop = true,
+} = Astro.props;
 ---
 
 <>
@@ -38,7 +43,7 @@ const { includeGallery = true, includeScrollTop = true } = Astro.props;
     </head>
     <body>
       {includeGallery && <GalleryPreviewer />}
-      <Header />
+      <Header notHomepage={notHomepage} />
       <slot />
       <Footer />
       {includeScrollTop && <ScrollTop />}

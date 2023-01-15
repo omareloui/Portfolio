@@ -2,9 +2,16 @@
 export interface Props {
   inverted?: boolean;
   degree?: number;
+  padding?: string;
+  margin?: string;
 }
 
-const { inverted, degree = 8 } = Astro.props;
+const {
+  inverted,
+  degree = 8,
+  padding = "150px",
+  margin = "45px",
+} = Astro.props;
 
 const invertNum = inverted ? 1 : -1;
 ---
@@ -15,7 +22,7 @@ const invertNum = inverted ? 1 : -1;
   </div>
 </div>
 
-<style lang="scss" define:vars={{ invertNum, degree }}>
+<style lang="scss" define:vars={{ invertNum, degree, padding, margin }}>
   @use "../assets/styles/mixins.scss" as *;
 
   .odd-bg {
@@ -23,8 +30,8 @@ const invertNum = inverted ? 1 : -1;
 
     background-color: var(--surface1);
     transform: skew(0deg, var(--skew));
-    padding-block: 150px;
-    margin-block: 45px;
+    padding-block: var(--padding);
+    margin-block: var(--margin);
     min-height: 200px;
 
     &__content {
