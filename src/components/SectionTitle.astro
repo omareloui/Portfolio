@@ -1,5 +1,11 @@
 ---
 import ShadowText from "@components/ShadowText.astro";
+
+export interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
 ---
 
 <div class="section-title">
@@ -7,7 +13,7 @@ import ShadowText from "@components/ShadowText.astro";
     <ShadowText translate="-5% -50%" italic={false}>
       <slot name="shadow-text" />
     </ShadowText>
-    <slot />
+    <a href={`#${id}`}><slot /></a>
   </h2>
   <span class="underline"></span>
 </div>
@@ -22,6 +28,9 @@ import ShadowText from "@components/ShadowText.astro";
     h2 {
       font-size: 2rem;
       width: fit-content;
+      a {
+        text-decoration: none;
+      }
     }
 
     .underline {
