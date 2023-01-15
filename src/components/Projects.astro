@@ -2,23 +2,34 @@
 import PreviewProject from "@components/PreviewProject.astro";
 import SectionWrapper from "@components/SectionWrapper.astro";
 
-import { createClient } from "contentful";
+import { createClient, Asset } from "contentful";
 
 const client = createClient({
   space: import.meta.env.CONTENTFUL_SPACE_ID!,
   accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN!,
 });
 
-const { items } = await client.getEntries();
+type Project = {
+  index: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  link: string;
+  github: string;
+  design: string;
+  image: Asset;
+  technologies: string[];
+  images: Asset[] | string[];
+};
+
+const { items } = await client.getEntries<Project>();
 const projects = items
   .map(x => {
     const { fields } = x;
-    // eslint-disable-next-line
-    // @ts-ignore
-    fields.images = fields.images.map(x => x.fields.file.url);
+    fields.images = fields.images.map(x => (x as Asset).fields.file.url);
     return fields;
   })
-  .reverse();
+  .sort((a, b) => a.index - b.index);
 ---
 
 <SectionWrapper
