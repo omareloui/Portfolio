@@ -1,3 +1,5 @@
+import { HideScrollTopEvent, ShowScrollTopEvent } from "./events";
+
 export function init() {
   const observer = new IntersectionObserver(onIntersection, {
     rootMargin: "-200px",
@@ -6,15 +8,21 @@ export function init() {
   const navLinks = document.querySelectorAll(":is(header, .nav-menu) ul li");
 
   const sections = document.querySelectorAll(
-    ":is(#projects, #aboutme, #contact, #technologies, #skills)"
+    ":is(#projects, #aboutme, #contact, #technologies, #skills, #hero)"
   );
 
   sections.forEach(s => observer.observe(s));
   function onIntersection(entries: IntersectionObserverEntry[]) {
     entries.forEach(e => {
+      if (e.target.id === "hero") {
+        if (!e.isIntersecting) document.dispatchEvent(ShowScrollTopEvent);
+        else document.dispatchEvent(HideScrollTopEvent);
+      }
+
       if (!e.isIntersecting) {
         if (e.target.id === "projects")
           navLinks.forEach(x => x.classList.remove("active"));
+
         return;
       }
 

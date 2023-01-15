@@ -7,12 +7,14 @@ import "@assets/styles/helper-classes.scss";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import GalleryPreviewer from "@components/GalleryPreviewer.astro";
+import ScrollTop from "@components/ScrollTop.astro";
 
 export interface Props {
-  includeGallery: boolean;
+  includeGallery?: boolean;
+  includeScrollTop?: boolean;
 }
 
-const { includeGallery = true } = Astro.props;
+const { includeGallery = true, includeScrollTop = true } = Astro.props;
 ---
 
 <>
@@ -39,6 +41,7 @@ const { includeGallery = true } = Astro.props;
       <Header />
       <slot />
       <Footer />
+      {includeScrollTop && <ScrollTop />}
     </body>
   </html>
 </>

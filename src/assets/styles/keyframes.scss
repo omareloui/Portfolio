@@ -24,3 +24,21 @@
     transform: scale(0.95);
   }
 }
+
+@keyframes scroll-up {
+  0% {
+    translate: 0 0;
+  }
+  25% {
+    translate: 0 -5px;
+  }
+  50% {
+    translate: 0 0;
+  }
+  75% {
+    translate: 0 5px;
+  }
+  100% {
+    translate: 0 0;
+  }
+}

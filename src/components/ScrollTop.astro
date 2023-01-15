@@ -1,0 +1,78 @@
+---
+import Button from "@components/Button.astro";
+---
+
+<div class="scroll-top hide">
+  <Button aria-label="Scroll top">
+    <svg viewBox="0 0 24 24" width="24" height="24">
+      <path
+        d="M12 22L12 7"
+        stroke="var(--text)"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"></path>
+      <path
+        d="M5 14L12 7L19 14"
+        stroke="var(--text)"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"></path>
+      <path
+        d="M3 2H21"
+        stroke="var(--text)"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"></path>
+    </svg>
+  </Button>
+</div>
+
+<script>
+  const button: HTMLElement = document.querySelector(".scroll-top button")!;
+  button.addEventListener("click", scrollTop);
+
+  document.addEventListener("showscrolltop", show);
+  document.addEventListener("hidescrolltop", hide);
+
+  function show() {
+    button.parentElement!.classList.remove("hide");
+  }
+
+  function hide() {
+    button.parentElement!.classList.add("hide");
+  }
+
+  function scrollTop() {
+    scrollTo(0, 0);
+  }
+</script>
+
+<style lang="scss">
+  @use "../assets/styles/mixins.scss" as *;
+
+  .scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    transition: var(--main-timing-function) 500ms;
+    backdrop-filter: blur(4px);
+    background: var(--blur-surface0);
+    border-radius: 50%;
+
+    &.hide {
+      opacity: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+    button {
+      border-radius: 50%;
+      padding: 20px;
+
+      &:hover {
+        svg {
+          animation: scroll-up 1000ms linear infinite;
+        }
+      }
+    }
+  }
+</style>

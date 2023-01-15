@@ -7,6 +7,7 @@ export interface Props {
   class?: ClassList | undefined;
   type?: "button" | "submit";
   dataElement?: string;
+  ariaLabel?: string;
 }
 
 const {
@@ -14,12 +15,18 @@ const {
   class: className,
   type = "button",
   dataElement,
+  ariaLabel,
 } = Astro.props;
 
 const classes = className ? parseClasses(className) : undefined;
 ---
 
-<button class={classes} type={type} data-element={dataElement}>
+<button
+  aria-label={ariaLabel}
+  class={classes}
+  type={type}
+  data-element={dataElement}
+>
   <slot />
 </button>
 
