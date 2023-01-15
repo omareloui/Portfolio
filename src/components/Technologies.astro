@@ -7,7 +7,12 @@ import { technologies } from "@assets/typescript/technologies";
 const filterOptions = ["frontEnd", "backEnd", "tools", "other"] as const;
 ---
 
-<SectionWrapper title="Technologies" shadowTitle="What I Use" isOdd={true}>
+<SectionWrapper
+  title="Technologies"
+  shadowTitle="What I Use"
+  isOdd={true}
+  id="technologies"
+>
   <TechnologiesFilter filterOptions={filterOptions} />
 
   <ul class="technologies">

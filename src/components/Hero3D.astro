@@ -135,7 +135,6 @@ const { class: className } = Astro.props;
   window.addEventListener("resize", onResize);
 
   /// Intersection {{{
-  // TODO: make this global intersection
   let shouldPause = false;
   const observer = new IntersectionObserver(onIntersection, {});
 

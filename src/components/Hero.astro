@@ -24,12 +24,25 @@ import ButtonCta from "./ButtonCta.astro";
         tenetur possimus molestias alias vitae quas autem hic.
       </p>
       <div class="buttons">
-        <ButtonCta>Checkout my work</ButtonCta>
-        <Button>What I can do</Button>
+        <ButtonCta dataElement="#projects">Checkout my work</ButtonCta>
+        <Button dataElement="#contact">Contact</Button>
       </div>
     </div>
   </div>
 </Container>
+
+<script>
+  const buttons = document.querySelectorAll(
+    ".hero__main .body .buttons button"
+  );
+
+  buttons.forEach(btn => btn.addEventListener("click", onBtnClick));
+
+  function onBtnClick(e: Event) {
+    const el = e.target! as HTMLElement;
+    document.querySelector(el.dataset.element!)!.scrollIntoView();
+  }
+</script>
 
 <style lang="scss">
   @use "../assets/styles/mixins.scss" as *;
@@ -113,7 +126,7 @@ import ButtonCta from "./ButtonCta.astro";
           gap: 20px;
 
           button:last-child {
-            /* color: var(--cyan); */
+            border-radius: 99px;
           }
         }
       }

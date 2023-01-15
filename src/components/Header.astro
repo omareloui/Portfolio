@@ -7,19 +7,27 @@ import ThemeSwitch from "@components/ThemeSwitch.astro";
 import ShadowSquare from "./ShadowSquare.astro";
 
 const navLinks = [
-  { link: "#aboutme", text: "About me" },
   {
-    link: "#portfolio",
-    text: "Portfolio",
+    link: "#projects",
+    text: "Projects",
+    mobileOnly: false,
   },
+  {
+    link: "#skills",
+    text: "Skills",
+    mobileOnly: true,
+  },
+  {
+    link: "#technologies",
+    text: "Technologies",
+    mobileOnly: true,
+  },
+  { link: "#aboutme", text: "About Me", mobileOnly: false },
   {
     link: "#contact",
-    text: "Contact me",
+    text: "Contact",
+    mobileOnly: false,
   },
-  // {
-  //   link: "#whatiuse",
-  //   text: "What I Use",
-  // },
 ];
 
 // const languages = ["en", "es", "ar"];
@@ -76,11 +84,13 @@ const navLinks = [
     <div class="left">
       <ul class="links-list">
         {
-          navLinks.map(nl => (
-            <li>
-              <a href={nl.link}>{nl.text}</a>
-            </li>
-          ))
+          navLinks
+            .filter(nl => !nl.mobileOnly)
+            .map(nl => (
+              <li>
+                <a href={nl.link}>{nl.text}</a>
+              </li>
+            ))
         }
       </ul>
     </div>
@@ -108,7 +118,34 @@ const navLinks = [
 <!-- }}}  -->
 
 <script>
+  import { init as initObservers } from "@assets/typescript/observers";
+  const navButton: HTMLElement = document.querySelector("button.burger-menu")!;
+  const mobileLinks = document.querySelectorAll(".nav-menu ul.links-list a");
+
   type State = "opened" | "closed";
+
+  document.addEventListener("navtoggle", navToggle);
+
+  // Close the nav on mobile on clicking an element
+  mobileLinks.forEach(linkEl =>
+    linkEl.addEventListener("click", () => {
+      navButton.dataset.state = "closed";
+      navToggle();
+    })
+  );
+
+  function navToggle() {
+    const state = navButton.dataset.state!;
+
+    const navMenu: HTMLElement = document.querySelector(".nav-menu")!;
+
+    state === "opened"
+      ? navMenu.classList.remove("hide")
+      : navMenu.classList.add("hide");
+
+    updateFocus(state === "opened");
+    updateUI(state as State);
+  }
 
   function updateUI(state: State) {
     const shadowText: HTMLElement | null = document.querySelector(
@@ -120,24 +157,6 @@ const navLinks = [
     }
   }
 
-  document.addEventListener("navtoggle", () => {
-    const navButton: HTMLElement | null =
-      document.querySelector("button.burger-menu");
-    if (!navButton) throw new Error("Can't find the nav button.");
-    const state = navButton.dataset.state;
-    if (!state) throw new Error("Can't find the current state.");
-
-    const navMenu: HTMLElement | null = document.querySelector(".nav-menu");
-    if (!navMenu) throw new Error("Can't find the menu.");
-
-    state === "opened"
-      ? navMenu.classList.remove("hide")
-      : navMenu.classList.add("hide");
-
-    updateFocus(state === "opened");
-    updateUI(state as State);
-  });
-
   function updateFocus(focusable: boolean) {
     const links = document.querySelectorAll(
       ".nav-menu :is(ul.links-list a, input)"
@@ -146,24 +165,47 @@ const navLinks = [
       linkEl.setAttribute("tabindex", (focusable ? 0 : -1).toString())
     );
   }
+
+  initObservers();
 </script>
 
 <style lang="scss">
   @use "../assets/styles/mixins.scss" as *;
 
-  body {
+  :root {
     --nav-height: 60px;
     --nav-background: var(--blur-surface5);
     --nav-blur: 5px;
+  }
 
-    position: relative;
+  html {
     scroll-padding-top: var(--nav-height);
+    scroll-behavior: smooth;
+  }
 
+  body {
     header,
     .nav-menu {
       z-index: 10000;
       background: var(--nav-background);
       backdrop-filter: blur(var(--nav-blur));
+    }
+  }
+
+  :is(header, .nav-menu) li {
+    transition: var(--main-timing-function) 500ms;
+
+    scale: 0.9;
+    opacity: 0.6;
+
+    &:hover {
+      scale: 1;
+    }
+
+    &.active {
+      opacity: 1;
+      scale: 1;
+      /* background: red; */
     }
   }
 
@@ -263,13 +305,15 @@ const navLinks = [
       .links-list {
         display: flex;
         gap: 15px;
-        li a {
-          font-size: 1rem;
-          font-weight: bold;
-          text-decoration: none;
-          display: inline-block;
-          text-align: center;
-          white-space: nowrap;
+        li {
+          a {
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap;
+          }
         }
       }
     }

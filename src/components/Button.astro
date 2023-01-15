@@ -6,14 +6,20 @@ export interface Props {
   background?: string;
   class?: ClassList | undefined;
   type?: "button" | "submit";
+  dataElement?: string;
 }
 
-const { background, class: className, type = "button" } = Astro.props;
+const {
+  background,
+  class: className,
+  type = "button",
+  dataElement,
+} = Astro.props;
 
 const classes = className ? parseClasses(className) : undefined;
 ---
 
-<button class={classes} type={type}>
+<button class={classes} type={type} data-element={dataElement}>
   <slot />
 </button>
 

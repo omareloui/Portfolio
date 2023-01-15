@@ -5,9 +5,10 @@ import type { ClassList } from "@utils";
 export interface Props {
   class?: ClassList;
   type?: "button" | "submit";
+  dataElement?: string;
 }
 
-const { class: className, type = "button" } = Astro.props;
+const { class: className, type = "button", dataElement } = Astro.props;
 
 function appenedClass(newClassName: string): ClassList {
   if (!className) return newClassName;
@@ -16,7 +17,11 @@ function appenedClass(newClassName: string): ClassList {
 }
 ---
 
-<Button class={appenedClass("button-cta")} type={type}>
+<Button
+  class={appenedClass("button-cta")}
+  type={type}
+  dataElement={dataElement}
+>
   <slot />
 </Button>
 
