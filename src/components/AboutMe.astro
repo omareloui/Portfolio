@@ -29,11 +29,44 @@ const size = Math.round(stats.size / 1024);
 
 <script>
   import { relativeTranslate } from "@utils";
+  const observer = new IntersectionObserver(onIntersection, {
+    threshold: 0.2,
+  });
   const elements = [
     ...document.querySelectorAll(
       ".aboutme-title :is(.first-name, .last-name, .image)"
     ),
   ] as HTMLElement[];
+
+  observer.observe(document.querySelector("#aboutme")!);
+
+  function onIntersection(entries: IntersectionObserverEntry[]) {
+    entries.forEach(e => {
+      // if (e.isIntersecting) show();
+      // else hide();
+      if (!e.isIntersecting) return;
+      show();
+      observer.disconnect();
+    });
+  }
+
+  hide();
+
+  function hide() {
+    elements.forEach(el => {
+      el.style.opacity = "0";
+      if (el.classList.contains("first-name")) el.style.translate = "100% 0";
+      else if (el.classList.contains("last-name"))
+        el.style.translate = "-100% 0";
+      else el.style.translate = "0 50%";
+    });
+  }
+  function show() {
+    elements.forEach(el => {
+      el.style.translate = "0 0";
+      el.style.opacity = "1";
+    });
+  }
 
   relativeTranslate(
     [
@@ -41,16 +74,19 @@ const size = Math.round(stats.size / 1024);
         element: elements[0] as HTMLElement,
         fraction: 3,
         direction: "with-mouse",
+        initialTranslate: "0px 0px",
       },
       {
         element: elements[1] as HTMLElement,
         fraction: 3,
         direction: "against-mouse",
+        initialTranslate: "0px 0px",
       },
       {
         element: elements[2] as HTMLElement,
         fraction: 20,
         direction: "against-mouse",
+        initialTranslate: "0px 0px",
       },
     ],
     elements[2] as HTMLElement
@@ -61,6 +97,7 @@ const size = Math.round(stats.size / 1024);
   @use "../assets/styles/mixins.scss" as *;
 
   .aboutme-title {
+    overflow: hidden;
     --overlap: 30px;
 
     display: grid;

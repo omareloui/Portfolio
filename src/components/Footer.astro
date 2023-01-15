@@ -50,9 +50,14 @@ import { createLinksLink } from "@utils";
 <style lang="scss">
   @use "../assets/styles/mixins.scss" as *;
 
+  body {
+    --footer-height: 50px;
+  }
+
   footer {
     isolation: isolate;
     background: var(--surface1);
+    height: var(--footer-height);
 
     > :first-child {
       display: grid;

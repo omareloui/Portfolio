@@ -43,6 +43,43 @@ const projects = items
   {projects.map(project => <PreviewProject project={project} />)}
 </SectionWrapper>
 
+<script>
+  const projects = document.querySelectorAll("#projects .project");
+  let shown = 0;
+
+  const observer = new IntersectionObserver(onIntersection, {});
+
+  projects.forEach(p => {
+    observer.observe(p);
+    const el = p as HTMLElement;
+    el.style.transition = "var(--main-timing-function) 1.2s";
+    hide(el);
+  });
+
+  function onIntersection(entries: IntersectionObserverEntry[]) {
+    entries.forEach(entry => {
+      const target = entry.target as HTMLElement;
+      if (entry.isIntersecting) {
+        reveal(target);
+        observer.unobserve(target);
+        shown += 1;
+        if (shown === projects.length) observer.disconnect();
+      }
+    });
+  }
+
+  function hide(el: HTMLElement) {
+    el.style.opacity = "0";
+    el.style.scale = "0.8";
+    el.style.translate = "0 150px";
+  }
+  function reveal(el: HTMLElement) {
+    el.style.opacity = "1";
+    el.style.scale = "1";
+    el.style.translate = "0 0";
+  }
+</script>
+
 <style lang="scss">
   @use "../assets/styles/mixins.scss" as *;
 

@@ -1,9 +1,7 @@
 import { HideScrollTopEvent, ShowScrollTopEvent } from "./events";
 
 export function init() {
-  const observer = new IntersectionObserver(onIntersection, {
-    rootMargin: "-200px",
-  });
+  const observer = new IntersectionObserver(onIntersection, {});
 
   const navLinks = document.querySelectorAll(":is(header, .nav-menu) ul li");
 
@@ -14,11 +12,14 @@ export function init() {
   sections.forEach(s => observer.observe(s));
   function onIntersection(entries: IntersectionObserverEntry[]) {
     entries.forEach(e => {
+      // Scroll top {{{
       if (e.target.id === "hero") {
         if (!e.isIntersecting) document.dispatchEvent(ShowScrollTopEvent);
         else document.dispatchEvent(HideScrollTopEvent);
       }
+      // }}}
 
+      // Nav active highlight {{{
       if (!e.isIntersecting) {
         if (e.target.id === "projects")
           navLinks.forEach(x => x.classList.remove("active"));
@@ -34,6 +35,7 @@ export function init() {
           linkLI.classList.add("active");
         }
       });
+      // }}}
     });
   }
 }
