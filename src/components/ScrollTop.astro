@@ -1,10 +1,11 @@
 ---
 import Button from "@components/Button.astro";
+import Container from "@components/Container.astro";
 ---
 
-<div class="scroll-top hide">
+<Container class="scroll-top hide">
   <Button aria-label="Scroll top">
-    <svg viewBox="0 0 24 24" width="24" height="24">
+    <svg viewBox="0 0 24 24" fill="none">
       <path
         d="M12 22L12 7"
         stroke="var(--text)"
@@ -25,7 +26,7 @@ import Button from "@components/Button.astro";
         stroke-width="2"></path>
     </svg>
   </Button>
-</div>
+</Container>
 
 <script>
   const button: HTMLElement = document.querySelector(".scroll-top button")!;
@@ -51,28 +52,45 @@ import Button from "@components/Button.astro";
   @use "../assets/styles/mixins.scss" as *;
 
   .scroll-top {
+    --size: 60px;
+
     position: fixed;
     bottom: 20px;
-    right: 20px;
-    transition: var(--main-timing-function) 500ms;
-    backdrop-filter: blur(4px);
-    background: var(--blur-surface0);
-    border-radius: 50%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    height: var(--size);
+    pointer-events: none;
+    user-select: none;
 
-    &.hide {
-      opacity: 0;
-      pointer-events: none;
-      user-select: none;
-    }
     button {
+      background: var(--blur-surface0);
+      backdrop-filter: blur(4px);
+      @include size(var(--size));
       border-radius: 50%;
-      padding: 20px;
+      padding: 18px;
+      pointer-events: all;
+      user-select: all;
+      transition: opacity ease-in-out 300ms;
+
+      position: absolute;
+      right: 30px;
+      top: 0;
 
       &:hover {
         svg {
           animation: scroll-up 1000ms linear infinite;
         }
       }
+      svg {
+        @include size(100%);
+      }
+    }
+
+    &.hide button {
+      opacity: 0;
+      pointer-events: none;
+      user-select: none;
     }
   }
 </style>
