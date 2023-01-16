@@ -11,16 +11,17 @@ import ButtonCta from "./ButtonCta.astro";
   <div class="hero__main" id="hero">
     <div class="titles">
       <h1 class="title">
-        <span class="supertitle">I'm Omar.</span>
+        <span class="supertitle">I'm <strong>Omar Eloui</strong>.</span>
         I build stuff for the web
       </h1>
       <span class="subtitle">and design when it comes to it</span>
     </div>
     <div class="body">
       <p>
-        I'll help you deliver the story you have to the world through web
-        applications
+        I'm a full stack web developer, professional Googler, designer
+        —occasionally—, and <a href="#aboutme">some other stuff</a>.
       </p>
+
       <div class="buttons">
         <ButtonCta dataElement="#projects">Checkout my work</ButtonCta>
         <Button dataElement="#contact">Contact</Button>
@@ -99,6 +100,7 @@ import ButtonCta from "./ButtonCta.astro";
         }
         h1 {
           font-size: 2.5rem;
+          line-height: 100%;
         }
         .supertitle {
           color: var(--subtext0);
@@ -115,6 +117,7 @@ import ButtonCta from "./ButtonCta.astro";
       .body {
         p {
           font-size: 1rem;
+          padding: 1rem 0;
         }
 
         .buttons {
