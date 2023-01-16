@@ -28,6 +28,8 @@ const {
     <div
       class:list={["images", { "images--only-one": images.length === 1 }]}
       data-images-srcs={images.join(",")}
+      tabindex="0"
+      aria-label={`open ${title} gallery`}
     >
       {
         (images as string[])
@@ -64,18 +66,30 @@ const {
 <script>
   const images = document.querySelectorAll(".project .images");
 
-  images.forEach(images => {
-    images.addEventListener("click", e => {
+  images.forEach(_images => {
+    _images.addEventListener("click", e => {
       const target = e.target as HTMLElement;
-      const imagesDiv = getClickedImagesDiv(target);
-      const srcs = (imagesDiv.dataset.imagesSrcs as string).split(",");
+      openGallery(target);
+    });
 
-      const OpenGalleryEvent = new CustomEvent("opengallery", {
-        detail: srcs,
-      });
-      dispatchEvent(OpenGalleryEvent);
+    _images.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.code === "Enter" || e.code === "Space") {
+        const target = e.target as HTMLElement;
+        e.preventDefault();
+        openGallery(target);
+      }
     });
   });
+
+  function openGallery(element: HTMLElement) {
+    const imagesDiv = getClickedImagesDiv(element);
+    const srcs = (imagesDiv.dataset.imagesSrcs as string).split(",");
+
+    const OpenGalleryEvent = new CustomEvent("opengallery", {
+      detail: srcs,
+    });
+    dispatchEvent(OpenGalleryEvent);
+  }
 
   function getClickedImagesDiv(el: HTMLElement): HTMLElement {
     if (el.classList.contains("images")) return el;
@@ -139,6 +153,7 @@ const {
         display: grid;
         position: relative;
         aspect-ratio: 9 / 6;
+        outline-offset: 3px;
 
         &::before {
           content: "";
