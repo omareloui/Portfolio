@@ -5,10 +5,6 @@ import type { APIRoute } from "astro";
 
 import type { Quote } from "@type";
 
-function sleep(ms: number) {
-  return new Promise(res => setTimeout(res, ms));
-}
-
 export const get: APIRoute = async function get() {
   let quotes: Quote[] = [];
 
@@ -32,7 +28,6 @@ export const get: APIRoute = async function get() {
     const quotesString = await fs.readFile("./public/quotes.json", {
       encoding: "utf8",
     });
-
     quotes = JSON.parse(quotesString).quotes;
   }
 
