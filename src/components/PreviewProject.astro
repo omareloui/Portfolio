@@ -1,18 +1,10 @@
 ---
 import GradientTitle from "@components/GradientTitle.astro";
 import Divider from "@components/Divider.astro";
+import type { Project } from "./Projects.astro";
 
 export interface Props {
-  project: {
-    title: string;
-    subtitle: string;
-    description: string;
-    link?: string;
-    github?: string;
-    design?: string;
-    images: string[];
-    technologies: string[];
-  };
+  project: Project;
 }
 
 const {
@@ -25,6 +17,7 @@ const {
     link,
     design,
     github,
+    color,
   },
 } = Astro.props;
 ---
@@ -37,7 +30,7 @@ const {
       data-images-srcs={images.join(",")}
     >
       {
-        images
+        (images as string[])
           .slice(0, 2)
           .reverse()
           .map(img => <img src={img} alt={`Image for ${title}.`} />)
@@ -90,7 +83,7 @@ const {
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" define:vars={{ color }}>
   @use "../assets/styles/mixins.scss" as *;
 
   .project {
@@ -153,11 +146,16 @@ const {
           position: absolute;
           inset: 0;
           border-radius: inherit;
-          background: linear-gradient(
-            -45deg,
-            hsl(20deg 90% 80% / 0.6),
-            hsl(60deg 90% 80% / 0.6)
+
+          background: var(
+            --color,
+            linear-gradient(
+              -45deg,
+              hsl(30deg 14% 91% / 0.6),
+              hsl(0deg 0% 100% / 0.6)
+            )
           );
+
           border-radius: inherit;
           transition: 1s var(--main-timing-function);
         }

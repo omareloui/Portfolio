@@ -9,7 +9,7 @@ const client = createClient({
   accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN!,
 });
 
-type Project = {
+export interface Project {
   index: number;
   title: string;
   subtitle: string;
@@ -20,7 +20,8 @@ type Project = {
   image: Asset;
   technologies: string[];
   images: Asset[] | string[];
-};
+  color: string;
+}
 
 const { items } = await client.getEntries<Project>();
 const projects = items
