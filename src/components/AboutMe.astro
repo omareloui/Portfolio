@@ -1,6 +1,7 @@
 ---
 import fs from "node:fs/promises";
 import SectionWrapper from "@components/SectionWrapper.astro";
+import { createLinksLink } from "@utils";
 const RESUME_FILENAME = "Omar_Eloui_web_developer_resume.pdf";
 
 const stats = await fs.stat(`./public/${RESUME_FILENAME}`);
@@ -17,10 +18,23 @@ const size = Math.round(stats.size / 1024);
   </h3>
 
   <div class="aboutme-body">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis cum
-    aspernatur animi? Nam tempore iste deserunt neque. Non repellat iusto
-    eligendi aperiam consequatur adipisci laborum ipsa, tempora similique
-    obcaecati. Labore!
+    <p>Hello world! I'm Omar. I'm a full-stack web developer based in Egypt.</p>
+    <p>
+      My interest in web development started back in 2017, when I started to
+      build scripts and applications to help me automate tasks I do regularly or
+      solve problems in my day-to-day life. Since then and I started sharpening
+      my skills to start working as a freelancer.
+    </p>
+    <p>
+      I'm excited to make the leap and continue refining my skills with the
+      right company.
+    </p>
+    <p>
+      Other than developing I enjoy leatherwork, you can check some of my
+      projects on Instagram <a href={createLinksLink("odin-ig")}
+        >@odinleatherstore</a
+      >.
+    </p>
   </div>
   <div class="aboutme-resume">
     <a href={`/${RESUME_FILENAME}`}>My Resume (pdf {size}kb)</a>
