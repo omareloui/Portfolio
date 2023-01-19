@@ -32,6 +32,21 @@ const ogImage = "/images/heading.webp";
   <!-- @ts-ignore -->
   <html lang="en" theme="dark">
     <head>
+      <!-- Gtag -->
+      <script
+        type="text/partytown"
+        src="https://www.googletagmanager.com/gtag/js?id=G-MD040L0DB2"
+      ></script>
+      <script type="text/partytown">
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          // eslint-disable-next-line
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "G-MD040L0DB2");
+      </script>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width" />
       <meta name="generator" content={Astro.generator} />

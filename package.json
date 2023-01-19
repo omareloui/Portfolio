@@ -28,7 +28,9 @@
     "vite-plugin-glsl": "^1.0.2"
   },
   "dependencies": {
+    "@astrojs/partytown": "^1.0.2",
     "astro": "^1.8.0",
+    "astro-seo": "^0.7.0",
     "contentful": "^9.2.15",
     "isotope-layout": "^3.0.6",
     "open-simplex-noise": "^2.5.0",
