@@ -1,4 +1,6 @@
 ---
+import { SEO } from "astro-seo";
+
 import "@assets/styles/variables.scss";
 import "@assets/styles/global.scss";
 import "@assets/styles/keyframes.scss";
@@ -20,6 +22,10 @@ const {
   includeGallery = false,
   includeScrollTop = true,
 } = Astro.props;
+
+const title = "Omar Eloui | Full-Stack Developer";
+const description = "Omar Eloui is a full stack developer.";
+const ogImage = "/images/heading.webp";
 ---
 
 <>
@@ -30,8 +36,6 @@ const {
       <meta name="viewport" content="width=device-width" />
       <meta name="generator" content={Astro.generator} />
 
-      <link rel="icon" type="image/svg+xml" href="/icons/favicon-light.svg" />
-
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link
@@ -39,7 +43,57 @@ const {
         rel="stylesheet"
       />
 
-      <title>Omar Eloui | Web Developer</title>
+      <SEO
+        title={title}
+        description={description}
+        openGraph={{
+          basic: {
+            title,
+            url: "https://omareloui.com",
+            type: "website",
+            image: ogImage,
+          },
+          optional: { siteName: title, description },
+          image: {
+            url: ogImage,
+            alt: "Heading image of the site.",
+            type: "image/webp",
+            width: 1280,
+            height: 640,
+          },
+        }}
+        twitter={{
+          creator: "@omareloui",
+          card: "summary_large_image",
+          image: ogImage,
+          imageAlt: "Heading image of the site.",
+          title,
+          description,
+        }}
+        extend={{
+          meta: [
+            /*TODO: change that color */
+            /* { name: "theme-color", content: "#5216d1" }, */
+
+            {
+              property: "og:update_time",
+              content: +Math.floor(Number(new Date()) / 1000),
+            },
+          ],
+          link: [
+            {
+              rel: "icon",
+              href: "/icons/favicon-light.svg",
+              type: "image/svg+xml",
+            },
+
+            // For PWD
+            /* { hid: "apple-touch-icon", rel: "apple-touch-icon", href: "/icons/logo_x180.png" }, */
+            /* { rel: "apple-mobile-web-app-status-bar", content: "#5216d1" }, */
+            /* { rel: "manifest", href: "/site.webmanifest" }, */
+          ],
+        }}
+      />
     </head>
     <body>
       {includeGallery && <GalleryPreviewer />}
