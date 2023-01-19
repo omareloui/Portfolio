@@ -59,7 +59,7 @@ const ogImage = "/images/heading.webp";
       />
 
       <SEO
-        title={title}
+        title="Omar Eloui | Full Stack Developer"
         description={description}
         openGraph={{
           basic: {
@@ -87,12 +87,9 @@ const ogImage = "/images/heading.webp";
         }}
         extend={{
           meta: [
-            /*TODO: change that color */
-            /* { name: "theme-color", content: "#5216d1" }, */
-
             {
               property: "og:update_time",
-              content: +Math.floor(Number(new Date()) / 1000),
+              content: `${Math.floor(Number(new Date()) / 1000)}`,
             },
           ],
           link: [
@@ -101,14 +98,17 @@ const ogImage = "/images/heading.webp";
               href: "/icons/favicon-light.svg",
               type: "image/svg+xml",
             },
-
-            // For PWD
-            /* { hid: "apple-touch-icon", rel: "apple-touch-icon", href: "/icons/logo_x180.png" }, */
-            /* { rel: "apple-mobile-web-app-status-bar", content: "#5216d1" }, */
-            /* { rel: "manifest", href: "/site.webmanifest" }, */
+            { rel: "manifest", href: "/site.webmanifest" },
+            { rel: "apple-touch-icon", href: "/icons/logo_x180.png" },
           ],
         }}
       />
+
+      <script>
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("/sw.js");
+        }
+      </script>
     </head>
     <body>
       {includeGallery && <GalleryPreviewer />}

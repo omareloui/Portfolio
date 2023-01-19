@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "Omar Eloui | Full-Stack Developer",
+  "short_name": "Omar Eloui",
+  "description": "Omar Eloui is a full stack developer.",
+
+  "id": "/?source=pwa",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+
+  "background_color": "#1b1b1b",
+  "theme_color": "#1b1b1b",
+
+  "icons": [
+    {
+      "src": "/pwd/icons/logo.svg",
+      "sizes": "any",
+      "purpose": "any"
+    },
+
+    {
+      "src": "/pwd/icons/logo_x512.png",
+      "sizes": "512x514",
+      "purpose": "any"
+    },
+
+    {
+      "src": "/pwd/icons/logo_x384.png",
+      "sizes": "384x385",
+      "purpose": "any"
+    },
+
+    {
+      "src": "/pwd/icons/logo_x192.png",
+      "sizes": "192x193",
+      "purpose": "any"
+    },
+
+    {
+      "src": "/pwd/icons/logo_x180.png",
+      "sizes": "180x181",
+      "purpose": "any"
+    },
+
+    {
+      "src": "/pwd/icons/logo_x128.png",
+      "sizes": "128x128",
+      "purpose": "any"
+    },
+
+    {
+      "src": "/pwd/icons/logo_mask.svg",
+      "sizes": "any",
+      "purpose": "maskable"
+    },
+
+    {
+      "src": "/pwd/icons/logo_mask_x512.png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+
+    {
+      "src": "/pwd/icons/logo_mask_x384.png",
+      "sizes": "384x384",
+      "purpose": "maskable"
+    },
+
+    {
+      "src": "/pwd/icons/logo_mask_x192.png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+
+    {
+      "src": "/pwd/icons/logo_mask_x180.png",
+      "sizes": "180x180",
+      "purpose": "maskable"
+    },
+
+    {
+      "src": "/pwd/icons/logo_mask_x128.png",
+      "sizes": "128x128",
+      "purpose": "maskable"
+    }
+  ]
+}

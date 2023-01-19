@@ -2,9 +2,15 @@
 import PreviewProject from "@components/PreviewProject.astro";
 import SectionWrapper from "@components/SectionWrapper.astro";
 
+import contentful from "contentful";
 import { createClient, Asset } from "contentful";
 
-const client = createClient({
+const createClientFunc =
+  import.meta.env.MODE === "development"
+    ? createClient
+    : contentful.createClient;
+
+const client = createClientFunc({
   space: import.meta.env.CONTENTFUL_SPACE_ID!,
   accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN!,
 });
