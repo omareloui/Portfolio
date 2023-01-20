@@ -30,21 +30,26 @@ import Container from "@components/Container.astro";
 
 <script>
   const button: HTMLElement = document.querySelector(".scroll-top button")!;
-  button.addEventListener("click", scrollTop);
 
-  document.addEventListener("showscrolltop", show);
-  document.addEventListener("hidescrolltop", hide);
+  if (button) init();
 
-  function show() {
-    button.parentElement!.classList.remove("hide");
-  }
+  function init() {
+    button.addEventListener("click", scrollTop);
 
-  function hide() {
-    button.parentElement!.classList.add("hide");
-  }
+    document.addEventListener("showscrolltop", show);
+    document.addEventListener("hidescrolltop", hide);
 
-  function scrollTop() {
-    scrollTo(0, 0);
+    function show() {
+      button.parentElement!.classList.remove("hide");
+    }
+
+    function hide() {
+      button.parentElement!.classList.add("hide");
+    }
+
+    function scrollTop() {
+      scrollTo(0, 0);
+    }
   }
 </script>
 

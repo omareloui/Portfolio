@@ -68,104 +68,109 @@ import Container from "./Container.astro";
   const gallery = document.querySelector(
     ".gallery .gallery__image"
   ) as HTMLElement;
-  const galleryWrapper = gallery.parentElement?.parentElement as HTMLElement;
-  const [current, total] = [
-    ...document.querySelectorAll(".gallery .gallery__state span"),
-  ] as [HTMLElement, HTMLElement];
-  const buttons = document.querySelectorAll(".gallery .buttons button");
 
-  let currentIndex = 1;
-  let srcs: string[];
+  if (gallery) init();
 
-  addEventListener("opengallery", onOpenGallery);
-  addEventListener("keyup", onKeyUp);
+  function init() {
+    const galleryWrapper = gallery.parentElement!.parentElement!;
+    const [current, total] = [
+      ...document.querySelectorAll(".gallery .gallery__state span"),
+    ] as [HTMLElement, HTMLElement];
+    const buttons = document.querySelectorAll(".gallery .buttons button");
 
-  buttons.forEach(button => {
-    if (button.classList.contains("buttons__next"))
-      button.addEventListener("click", onNextClick);
-    else if (button.classList.contains("buttons__prev"))
-      button.addEventListener("click", onPrevClick);
-    else if (button.classList.contains("buttons__close"))
-      button.addEventListener("click", onCloseClick);
-  });
+    let currentIndex = 1;
+    let srcs: string[];
 
-  function onOpenGallery(e: Event) {
-    srcs = (e as CustomEvent).detail as string[];
+    addEventListener("opengallery", onOpenGallery);
+    addEventListener("keyup", onKeyUp);
 
-    updateIndex("reset");
-    updateImage();
-    updateButtons(true);
-
-    galleryWrapper.dataset.isOpen = "true";
-    galleryWrapper.style.transition =
-      "opacity var(--show-transition-duration) ease-in-out var(--show-transition-duration), translate 0ms ease";
-  }
-
-  function onCloseClick() {
-    galleryWrapper.dataset.isOpen = "false";
-
-    galleryWrapper.style.transition =
-      "opacity var(--show-transition-duration) ease-in-out, translate 0ms ease var(--show-transition-duration)";
-
-    function clearGallery() {
-      gallery.innerHTML = "";
-    }
-    setTimeout(clearGallery, 200);
-    updateButtons(false);
-  }
-
-  function onNextClick() {
-    updateIndex("increase");
-    updateImage();
-  }
-  function onPrevClick() {
-    updateIndex("decrease");
-    updateImage();
-  }
-
-  function onKeyUp(e: KeyboardEvent) {
-    if (e.code === "Escape") onCloseClick();
-    if (e.code === "ArrowRight") onNextClick();
-    if (e.code === "ArrowLeft") onPrevClick();
-    if (e.code === "KeyH") onPrevClick();
-    if (e.code === "KeyL") onNextClick();
-  }
-
-  function updateButtons(focusable: boolean) {
     buttons.forEach(button => {
-      button.setAttribute("tabindex", (focusable ? 0 : -1).toString());
+      if (button.classList.contains("buttons__next"))
+        button.addEventListener("click", onNextClick);
+      else if (button.classList.contains("buttons__prev"))
+        button.addEventListener("click", onPrevClick);
+      else if (button.classList.contains("buttons__close"))
+        button.addEventListener("click", onCloseClick);
     });
-  }
 
-  function updateImage() {
-    const el = document.createElement("img");
-    el.src = srcs[currentIndex - 1] as string;
-    el.alt = "a preview image of one of my projects";
-    gallery.innerHTML = "";
-    gallery.append(el);
-  }
+    function onOpenGallery(e: Event) {
+      srcs = (e as CustomEvent).detail as string[];
 
-  function updateIndex(update: "increase" | "decrease" | "reset") {
-    const totalLength = srcs.length;
-    if (update === "increase") {
-      currentIndex += 1;
-      if (currentIndex > totalLength) currentIndex = 1;
-    } else if (update === "decrease") {
-      currentIndex -= 1;
-      if (currentIndex === 0) currentIndex = totalLength;
-    } else if (update === "reset") {
-      currentIndex = 1;
-      total.innerText = totalLength.toString().padStart(2, "0");
+      updateIndex("reset");
+      updateImage();
+      updateButtons(true);
+
+      galleryWrapper.dataset.isOpen = "true";
+      galleryWrapper.style.transition =
+        "opacity var(--show-transition-duration) ease-in-out var(--show-transition-duration), translate 0ms ease";
     }
-    current.innerText = currentIndex.toString().padStart(2, "0");
-    updateShowButtons();
-  }
 
-  function updateShowButtons() {
-    galleryWrapper.classList.remove("gallery--start", "gallery--end");
-    if (currentIndex === 1) galleryWrapper.classList.add("gallery--start");
-    if (currentIndex === srcs.length)
-      galleryWrapper.classList.add("gallery--end");
+    function onCloseClick() {
+      galleryWrapper.dataset.isOpen = "false";
+
+      galleryWrapper.style.transition =
+        "opacity var(--show-transition-duration) ease-in-out, translate 0ms ease var(--show-transition-duration)";
+
+      function clearGallery() {
+        gallery.innerHTML = "";
+      }
+      setTimeout(clearGallery, 200);
+      updateButtons(false);
+    }
+
+    function onNextClick() {
+      updateIndex("increase");
+      updateImage();
+    }
+    function onPrevClick() {
+      updateIndex("decrease");
+      updateImage();
+    }
+
+    function onKeyUp(e: KeyboardEvent) {
+      if (e.code === "Escape") onCloseClick();
+      if (e.code === "ArrowRight") onNextClick();
+      if (e.code === "ArrowLeft") onPrevClick();
+      if (e.code === "KeyH") onPrevClick();
+      if (e.code === "KeyL") onNextClick();
+    }
+
+    function updateButtons(focusable: boolean) {
+      buttons.forEach(button => {
+        button.setAttribute("tabindex", (focusable ? 0 : -1).toString());
+      });
+    }
+
+    function updateImage() {
+      const el = document.createElement("img");
+      el.src = srcs[currentIndex - 1] as string;
+      el.alt = "a preview image of one of my projects";
+      gallery.innerHTML = "";
+      gallery.append(el);
+    }
+
+    function updateIndex(update: "increase" | "decrease" | "reset") {
+      const totalLength = srcs.length;
+      if (update === "increase") {
+        currentIndex += 1;
+        if (currentIndex > totalLength) currentIndex = 1;
+      } else if (update === "decrease") {
+        currentIndex -= 1;
+        if (currentIndex === 0) currentIndex = totalLength;
+      } else if (update === "reset") {
+        currentIndex = 1;
+        total.innerText = totalLength.toString().padStart(2, "0");
+      }
+      current.innerText = currentIndex.toString().padStart(2, "0");
+      updateShowButtons();
+    }
+
+    function updateShowButtons() {
+      galleryWrapper.classList.remove("gallery--start", "gallery--end");
+      if (currentIndex === 1) galleryWrapper.classList.add("gallery--start");
+      if (currentIndex === srcs.length)
+        galleryWrapper.classList.add("gallery--end");
+    }
   }
 </script>
 

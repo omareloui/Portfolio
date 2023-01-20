@@ -2,13 +2,27 @@
 import Container from "@components/Container.astro";
 import OddBG from "@components/OddBG.astro";
 import Main from "@layouts/Main.astro";
-
-const { url } = Astro;
-
-const quote = await (await fetch(`${url.origin}/quotes/random`)).json();
 ---
 
-<Main>
+<script>
+  import { random } from "@utils";
+
+  const { quotes } = (await (await fetch("/quotes.json")).json()) as {
+    quotes: { text: string; author: string | null }[];
+  };
+
+  const quote = quotes[random(0, quotes.length)]!;
+  const quoteblock = document.querySelector(".not-found figure quoteblock")!;
+  quoteblock.textContent = `“${quote.text}”`;
+
+  if (quote.author) {
+    const figcaption = document.createElement("figcaption");
+    figcaption.textContent = `— ${quote.author}`;
+    quoteblock.parentElement!.appendChild(figcaption);
+  }
+</script>
+
+<Main includeGallery={false} includeScrollTop={false}>
   <div class="not-found">
     <div class="page-content">
       <Container>
@@ -32,12 +46,12 @@ const quote = await (await fetch(`${url.origin}/quotes/random`)).json();
                   fill="var(--text)"></path>
               </g>
             </svg>
-            <div class="content">
-              <quoteblock>
-                “{quote.text}”
-              </quoteblock>
-              {quote.author && <figcaption>— {quote.author}</figcaption>}
-            </div>
+            <Container>
+              <div class="content">
+                <quoteblock></quoteblock>
+                {/*quote.author && <figcaption>— {quote.author}</figcaption>*/}
+              </div>
+            </Container>
             <svg viewBox="0 0 48 48">
               <g transform="translate(-407, -9)">
                 <path
@@ -133,12 +147,12 @@ const quote = await (await fetch(`${url.origin}/quotes/random`)).json();
         z-index: -1;
         @include size(80px);
         &:nth-of-type(1) {
-          left: -5%;
+          left: -0%;
           top: -35px;
         }
         &:nth-of-type(2) {
-          right: -5%;
-          bottom: -15px;
+          right: -0%;
+          bottom: -20px;
           rotate: 180deg;
           translate: -20% 0;
         }
