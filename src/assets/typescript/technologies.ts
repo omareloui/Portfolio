@@ -40,6 +40,11 @@ export const technologies: {
   { title: "TypeScript", category: "Superset", stack: "Front and Back Ends" },
   { title: "JavaScript", category: "Language", stack: "Front and Back Ends" },
 
+  { title: "Rust", category: "Language", stack: "Back-End" },
+  { title: "Lua", category: "Language", stack: "Back-End" },
+  { title: "Deno", category: "Run Time For JS", stack: "Back-End" },
+  { title: "Python", category: "Language", stack: "Back-End" },
+
   { title: "Html", category: "Language", stack: "Front-End" },
   { title: "Css", category: "Language", stack: "Front-End" },
   { title: "Sass", category: "Preprocessor", stack: "Front-End" },
@@ -67,9 +72,6 @@ export const technologies: {
 
   { title: "Node", category: "Run Time For JS", stack: "Back-End" },
   { title: "ExpressJs", category: "Framework", stack: "Back-End" },
-
-  { title: "Deno", category: "Run Time For JS", stack: "Back-End" },
-  { title: "Python", category: "Language", stack: "Back-End" },
 
   { title: "MongoDB", category: "DataBase", stack: "Back-End" },
   { title: "PostgreSQL", category: "DataBase", stack: "Back-End" },
