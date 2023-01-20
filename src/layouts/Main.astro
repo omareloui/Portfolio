@@ -26,7 +26,7 @@ const {
 
 const title = "Omar Eloui | Full-Stack Developer";
 const description = "Omar Eloui is a full stack developer.";
-const ogImage = "/images/heading.webp";
+const ogImage = "/images/heading.png";
 ---
 
 <>
@@ -60,7 +60,7 @@ const ogImage = "/images/heading.webp";
       />
 
       <SEO
-        title="Omar Eloui | Full Stack Developer"
+        title={title}
         description={description}
         openGraph={{
           basic: {
@@ -69,13 +69,13 @@ const ogImage = "/images/heading.webp";
             type: "website",
             image: ogImage,
           },
-          optional: { siteName: title, description },
+          optional: { siteName: "OmarEloui", description },
           image: {
             url: ogImage,
             alt: "Heading image of the site.",
-            type: "image/webp",
-            width: 1280,
-            height: 640,
+            type: "image/png",
+            width: 1200,
+            height: 630,
           },
         }}
         twitter={{
