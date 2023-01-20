@@ -8,6 +8,8 @@ self.addEventListener("activate", () => {
   self.clients.claim();
 });
 
+workbox.setConfig({ debug: false });
+
 // Navigation
 workbox.routing.registerRoute(
   ({ request }) => request.mode === "navigate",
@@ -35,7 +37,8 @@ workbox.routing.registerRoute(
 
 // Scripts
 workbox.routing.registerRoute(
-  ({ request }) => request.destination === "script",
+  ({ request }) =>
+    request.destination === "script" || request.url.match(/quotes\.json$/),
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: "scripts",
     plugins: [
