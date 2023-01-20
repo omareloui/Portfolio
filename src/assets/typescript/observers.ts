@@ -20,19 +20,12 @@ export function init() {
       // }}}
 
       // Nav active highlight {{{
-      if (!e.isIntersecting) {
-        if (e.target.id === "projects")
-          navLinks.forEach(x => x.classList.remove("active"));
-
-        return;
-      }
-
-      navLinks.forEach(linkLI => {
-        linkLI.classList.remove("active");
-        const { href } = linkLI.querySelector("a")!;
+      navLinks.forEach(linkLi => {
+        const { href } = linkLi.querySelector("a")!;
         const idFromHref = href.match(/#([^\\]+)$/)![1];
         if (idFromHref === e.target.id) {
-          linkLI.classList.add("active");
+          if (e.isIntersecting) linkLi.classList.add("active");
+          else linkLi.classList.remove("active");
         }
       });
       // }}}
