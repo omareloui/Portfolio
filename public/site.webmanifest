@@ -20,25 +20,25 @@
 
     {
       "src": "/pwd/icons/logo_x512.png",
-      "sizes": "512x514",
+      "sizes": "512x512",
       "purpose": "any"
     },
 
     {
       "src": "/pwd/icons/logo_x384.png",
-      "sizes": "384x385",
+      "sizes": "384x384",
       "purpose": "any"
     },
 
     {
       "src": "/pwd/icons/logo_x192.png",
-      "sizes": "192x193",
+      "sizes": "192x192",
       "purpose": "any"
     },
 
     {
       "src": "/pwd/icons/logo_x180.png",
-      "sizes": "180x181",
+      "sizes": "180x180",
       "purpose": "any"
     },
 
