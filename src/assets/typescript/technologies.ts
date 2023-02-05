@@ -108,6 +108,7 @@ export const technologies: {
   { title: "Figma", category: "Design Tool", stack: "Other" },
   { title: "Illustrator", category: "Design Tool", stack: "Other" },
 
+  { title: "Arch ~btw~", category: "Operating System", stack: "Other" },
   { title: "Linux", category: "Operating System", stack: "Other" },
   { title: "Windows", category: "Operating System", stack: "Other" },
 
