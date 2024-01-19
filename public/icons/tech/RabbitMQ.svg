@@ -1,0 +1,39 @@
+<svg
+   width="30.254461"
+   height="32"
+   viewBox="-7.5 0 10.248699 10.84"
+   preserveAspectRatio="xMidYMid"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="rabbitmq-logo-svgrepo-com.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#5a5a5a"
+     inkscape:zoom="11.949843"
+     inkscape:cx="13.975079"
+     inkscape:cy="24.853884"
+     inkscape:window-width="1920"
+     inkscape:window-height="1080"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <path
+     d="M 2.3259398,4.3360001 H -1.0805515 A 0.30978293,0.30978293 0 0 1 -1.3902143,4.0263774 V 0.47616414 C -1.3902143,0.21326101 -1.6033953,0 -1.8661783,0 h -1.2160321 c -0.2629432,0 -0.476004,0.21326101 -0.476004,0.47616414 V 4.0048791 c 0,0.1830753 -0.1480056,0.3318817 -0.331081,0.3326823 l -1.1163475,0.00532 c -0.1846367,0.00101 -0.334644,-0.1488017 -0.3342837,-0.3332783 l 0.00693,-3.53263827 C -5.3324002,0.21366135 -5.5456613,0 -5.8089647,0 H -7.023996 C -7.2869792,0 -7.5,0.21326101 -7.5,0.47616414 V 10.417241 C -7.5,10.6508 -7.3107994,10.84 -7.0774413,10.84 h 9.4033811 c 0.2335582,0 0.4227592,-0.1892 0.4227592,-0.422759 V 4.7587589 c 0,-0.2335582 -0.189201,-0.4227588 -0.4227592,-0.4227588 z M 0.728504,8.0684881 c 0,0.3060597 -0.2481307,0.5542304 -0.5541904,0.5542304 h -0.9610157 c -0.3060998,0 -0.5542303,-0.2481707 -0.5542303,-0.5542304 V 7.1074725 c 0,-0.3060999 0.2481305,-0.5542305 0.5542303,-0.5542305 h 0.9610157 c 0.3060597,0 0.5541904,0.2481306 0.5541904,0.5542305 z"
+     fill="#ff6600"
+     id="path1"
+     style="stroke-width:0.999995" />
+</svg>

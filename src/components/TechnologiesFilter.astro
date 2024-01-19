@@ -15,13 +15,9 @@ const initialValue = filterOptions[0];
     filterOptions.map(option => {
       return (
         <button
-          class:list={[
-            "filter-buttons__button",
-            { "filter-buttons__button--current": option === initialValue },
-          ]}
+          class:list={["filter-buttons__button", { "filter-buttons__button--current": option === initialValue }]}
           data-filter={option}
-          type="button"
-        >
+          type="button">
           {camelCaseToTitle(option)}
         </button>
       );
@@ -31,11 +27,9 @@ const initialValue = filterOptions[0];
 
 <script>
   import { TechnologyFilterChangeEvent } from "@assets/typescript/events";
-  const filterButtons = document.querySelector(
-    ".filter-buttons"
-  ) as HTMLElement;
+  const filterButtons = document.querySelector(".filter-buttons") as HTMLElement;
   const buttons = filterButtons.querySelectorAll(
-    ".filter-buttons__button"
+    ".filter-buttons__button",
     // eslint-disable-next-line
   ) as NodeListOf<HTMLButtonElement>;
 
@@ -63,12 +57,8 @@ const initialValue = filterOptions[0];
 
   addEventListener("resize", updateBubble);
   function updateBubble() {
-    const newEl = document.querySelector(
-      `.${ACTIVE_CLASS}`
-    ) as HTMLButtonElement;
-    const bubbleEl = document.querySelector(
-      "span.filter-buttons__current-bubble"
-    ) as HTMLSpanElement;
+    const newEl = document.querySelector(`.${ACTIVE_CLASS}`) as HTMLButtonElement;
+    const bubbleEl = document.querySelector("span.filter-buttons__current-bubble") as HTMLSpanElement;
 
     const bb = newEl.getBoundingClientRect();
     bubbleEl.style.left = `${newEl.offsetLeft}px`;

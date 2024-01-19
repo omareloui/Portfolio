@@ -7,12 +7,7 @@ import Container from "./Container.astro";
     <div class="gallery__image"></div>
     <!-- Buttons {{{ -->
     <div class="buttons">
-      <button
-        class="buttons__prev"
-        tabindex="-1"
-        type="button"
-        aria-label="previous image"
-      >
+      <button class="buttons__prev" tabindex="-1" type="button" aria-label="previous image">
         <svg
           fill="none"
           stroke="currentColor"
@@ -25,12 +20,7 @@ import Container from "./Container.astro";
           ><polyline points="15 18 9 12 15 6"></polyline>
         </svg>
       </button>
-      <button
-        class="buttons__next"
-        tabindex="-1"
-        type="button"
-        aria-label="next image"
-      >
+      <button class="buttons__next" tabindex="-1" type="button" aria-label="next image">
         <svg
           fill="none"
           stroke="currentColor"
@@ -44,12 +34,7 @@ import Container from "./Container.astro";
           ><polyline points="15 18 9 12 15 6"></polyline>
         </svg>
       </button>
-      <button
-        class="buttons__close"
-        tabindex="-1"
-        type="button"
-        aria-label="close gallery"
-      >
+      <button class="buttons__close" tabindex="-1" type="button" aria-label="close gallery">
         <svg id="Capa_1" viewBox="0 0 20 19.84" stroke="currentColor"
           ><path
             d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"
@@ -65,17 +50,16 @@ import Container from "./Container.astro";
 </div>
 
 <script>
-  const gallery = document.querySelector(
-    ".gallery .gallery__image"
-  ) as HTMLElement;
+  const gallery = document.querySelector(".gallery .gallery__image") as HTMLElement;
 
   if (gallery) init();
 
   function init() {
     const galleryWrapper = gallery.parentElement!.parentElement!;
-    const [current, total] = [
-      ...document.querySelectorAll(".gallery .gallery__state span"),
-    ] as [HTMLElement, HTMLElement];
+    const [current, total] = [...document.querySelectorAll(".gallery .gallery__state span")] as [
+      HTMLElement,
+      HTMLElement,
+    ];
     const buttons = document.querySelectorAll(".gallery .buttons button");
 
     let currentIndex = 1;
@@ -85,12 +69,9 @@ import Container from "./Container.astro";
     addEventListener("keyup", onKeyUp);
 
     buttons.forEach(button => {
-      if (button.classList.contains("buttons__next"))
-        button.addEventListener("click", onNextClick);
-      else if (button.classList.contains("buttons__prev"))
-        button.addEventListener("click", onPrevClick);
-      else if (button.classList.contains("buttons__close"))
-        button.addEventListener("click", onCloseClick);
+      if (button.classList.contains("buttons__next")) button.addEventListener("click", onNextClick);
+      else if (button.classList.contains("buttons__prev")) button.addEventListener("click", onPrevClick);
+      else if (button.classList.contains("buttons__close")) button.addEventListener("click", onCloseClick);
     });
 
     function onOpenGallery(e: Event) {
@@ -150,7 +131,7 @@ import Container from "./Container.astro";
     }
 
     function updateIndex(update: "increase" | "decrease" | "reset") {
-      const totalLength = srcs.length;
+      const totalLength = srcs?.length;
       if (update === "increase") {
         currentIndex += 1;
         if (currentIndex > totalLength) currentIndex = 1;
@@ -168,8 +149,7 @@ import Container from "./Container.astro";
     function updateShowButtons() {
       galleryWrapper.classList.remove("gallery--start", "gallery--end");
       if (currentIndex === 1) galleryWrapper.classList.add("gallery--start");
-      if (currentIndex === srcs.length)
-        galleryWrapper.classList.add("gallery--end");
+      if (currentIndex === srcs?.length) galleryWrapper.classList.add("gallery--end");
     }
   }
 </script>
@@ -194,8 +174,7 @@ import Container from "./Container.astro";
     pointer-events: none;
     translate: 0 -100%;
 
-    transition: opacity var(--show-transition-duration) ease-in-out,
-      translate 0ms ease var(--show-transition-duration);
+    transition: opacity var(--show-transition-duration) ease-in-out, translate 0ms ease var(--show-transition-duration);
 
     &[data-is-open="true"] {
       opacity: 1;

@@ -8,17 +8,7 @@ export interface Props {
 }
 
 const {
-  project: {
-    title,
-    subtitle,
-    description,
-    technologies,
-    images,
-    link,
-    design,
-    github,
-    color,
-  },
+  project: { title, subtitle, description, technologies, images, link, design, github, color },
 } = Astro.props;
 ---
 
@@ -35,7 +25,7 @@ const {
         (images as string[])
           .slice(0, 2)
           .reverse()
-          .map(img => <img src={img} alt={`Screenshots of ${title}.`} />)
+          .map(img => <img src={img} alt={`Screenshot of ${title}.`} />)
       }
     </div>
 
@@ -162,14 +152,7 @@ const {
           inset: 0;
           border-radius: inherit;
 
-          background: var(
-            --color,
-            linear-gradient(
-              -45deg,
-              hsl(30deg 14% 91% / 0.6),
-              hsl(0deg 0% 100% / 0.6)
-            )
-          );
+          background: var(--color, linear-gradient(-45deg, hsl(30deg 14% 91% / 0.6), hsl(0deg 0% 100% / 0.6)));
 
           border-radius: inherit;
           transition: 1s var(--main-timing-function);

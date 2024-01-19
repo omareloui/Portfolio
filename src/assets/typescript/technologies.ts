@@ -1,9 +1,10 @@
-export type Category =
+type Category =
   | "Development Tool"
   | "Library"
   | "Framework"
   | "Language"
   | "Preprocessor"
+  | "Message Broker"
   | "Test Framework"
   | "Version Control System"
   | "VSC Cloud Hosting Service"
@@ -22,24 +23,18 @@ export type Category =
   | "Template Engine"
   | "Operating System";
 
-export type Stack =
-  | "Front-End"
-  | "Back-End"
-  | "Front and Back Ends"
-  | "DevOps"
-  | "Other";
+export type Stack = "Front-End" | "Back-End" | "Front and Back Ends" | "DevOps" | "Other";
 
-export const technologies: {
-  title: string;
-  category: Category;
-  stack: Stack;
-}[] = [
+type Technology = { title: string; category: Category; stack: Stack };
+
+export const technologies: Technology[] = [
   { title: "Nuxt", category: "Framework", stack: "Front and Back Ends" },
   { title: "Vue", category: "Framework", stack: "Front-End" },
 
   { title: "TypeScript", category: "Superset", stack: "Front and Back Ends" },
   { title: "JavaScript", category: "Language", stack: "Front and Back Ends" },
 
+  { title: "Go", category: "Language", stack: "Back-End" },
   { title: "Rust", category: "Language", stack: "Back-End" },
   { title: "Lua", category: "Language", stack: "Back-End" },
   { title: "Deno", category: "Run Time For JS", stack: "Back-End" },
@@ -73,6 +68,7 @@ export const technologies: {
   { title: "Node", category: "Run Time For JS", stack: "Back-End" },
   { title: "ExpressJs", category: "Framework", stack: "Back-End" },
 
+  { title: "RabbitMQ", category: "Message Broker", stack: "Back-End" },
   { title: "MongoDB", category: "DataBase", stack: "Back-End" },
   { title: "PostgreSQL", category: "DataBase", stack: "Back-End" },
   { title: "MySQL", category: "DataBase", stack: "Back-End" },
@@ -83,27 +79,16 @@ export const technologies: {
   { title: "RestAPI", category: "Auth System", stack: "Back-End" },
   { title: "GraphQL", category: "Auth System", stack: "Back-End" },
 
-  {
-    title: "Jasmine",
-    category: "Test Framework",
-    stack: "Front and Back Ends",
-  },
+  { title: "Jasmine", category: "Test Framework", stack: "Front and Back Ends" },
   { title: "Jest", category: "Test Framework", stack: "Front and Back Ends" },
 
   { title: "Neovim", category: "Development Tool", stack: "Other" },
   { title: "Vim", category: "Development Tool", stack: "Other" },
   { title: "VSCode", category: "Development Tool", stack: "Other" },
+  { title: "Bazel", category: "Development Tool", stack: "Other" },
 
-  {
-    title: "Prettier",
-    category: "Development Tool",
-    stack: "Front and Back Ends",
-  },
-  {
-    title: "ESLint",
-    category: "Development Tool",
-    stack: "Front and Back Ends",
-  },
+  { title: "Prettier", category: "Development Tool", stack: "Front and Back Ends" },
+  { title: "ESLint", category: "Development Tool", stack: "Front and Back Ends" },
 
   { title: "Figma", category: "Design Tool", stack: "Other" },
   { title: "Illustrator", category: "Design Tool", stack: "Other" },
