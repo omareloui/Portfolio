@@ -3,11 +3,11 @@ import PreviewProject from "@components/PreviewProject.astro";
 import SectionWrapper from "@components/SectionWrapper.astro";
 
 import contentful from "contentful";
-import { createClient, Asset } from "contentful";
+import type { Asset } from "contentful";
 
-const createClientFunc = import.meta.env.MODE === "development" ? createClient : contentful.createClient;
+const {createClient} = contentful
 
-const client = createClientFunc({
+const client = createClient({
   space: import.meta.env.CONTENTFUL_SPACE_ID!,
   accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN!,
 });
@@ -21,26 +21,26 @@ export interface Project {
   github: string;
   design: string;
   image: Asset;
+  images: string[];
   technologies: string[];
-  images: Asset[] | string[];
   color: string;
   archived: boolean;
 }
 
-const { items } = await client.getEntries<Project>();
+const { items } = await client.getEntries<{ fields: Project; contentTypeId: string }>();
 
 const projects = items
   .filter(x => !x.fields.archived)
   .map(x => {
     const { fields } = x;
-    fields.images = fields.images.map(x => (x as Asset).fields.file.url);
+    const images = (fields.images as Asset[])!.map(x => x.fields.file!.url as string);
+    (fields as Project).images = images;
     return fields;
   })
-  .sort((a, b) => a.index - b.index);
+  .sort((a, b) => (a.index as number) - (b.index as number));
 ---
 
 <SectionWrapper id="projects" title="Projects" shadowTitle="Showcase" isOdd={true} class="projects">
-  <!-- @ts-ignore -->
   {projects.map(project => <PreviewProject project={project} />)}
 </SectionWrapper>
 

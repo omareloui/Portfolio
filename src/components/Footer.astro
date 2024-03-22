@@ -6,35 +6,19 @@ import { createLinksLink } from "@utils";
 <footer>
   <Container>
     <div class="copyright">
-      <span class="tablet-up"
-        >Copyright © {new Date().getFullYear()} Omar Eloui</span
-      >
+      <span class="tablet-up">Copyright © {new Date().getFullYear()} Omar Eloui</span>
       <span class="tablet-down">Copyright © {new Date().getFullYear()}</span>
     </div>
     <div class="links">
       {
         ["linkedin", "telegram"].map(x => (
-          <a
-            href={createLinksLink(x)}
-            target="_blank"
-            aria-label={`A link to my ${x}.`}
-          >
+          <a href={createLinksLink(x)} target="_blank" aria-label={`A link to my ${x}.`}>
             <img src={`/icons/footer/${x}.svg`} alt="" />
           </a>
         ))
       }
-      <a
-        href={createLinksLink("github")}
-        target="_blank"
-        aria-label="A link to my github."
-      >
-        <svg
-          width="32"
-          height="30"
-          viewBox="0 0 32 30"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+      <a href={createLinksLink("github")} target="_blank" aria-label="A link to my github.">
+        <svg width="32" height="30" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             fill-rule="evenodd"
             clip-rule="evenodd"
@@ -61,7 +45,7 @@ import { createLinksLink } from "@utils";
     background: var(--surface1);
     height: var(--footer-height);
 
-    > :first-child {
+    :global(> :first-child) {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       align-items: center;
