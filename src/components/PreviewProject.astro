@@ -62,8 +62,9 @@ const {
       openGallery(target);
     });
 
-    _images.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.code === "Enter" || e.code === "Space") {
+    _images.addEventListener("keydown", e => {
+      const _e = e as KeyboardEvent;
+      if (_e.code === "Enter" || _e.code === "Space") {
         const target = e.target as HTMLElement;
         e.preventDefault();
         openGallery(target);

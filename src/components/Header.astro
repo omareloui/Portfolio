@@ -54,12 +54,7 @@ const navLinks = [
     </a>
 
     <div class="menu">
-      <ShadowText
-        size="1.8rem"
-        translate="-50% -50%"
-        parentQuery="next"
-        movingFraction={4}>Menu</ShadowText
-      >
+      <ShadowText size="1.8rem" translate="-50% -50%" parentQuery="next" movingFraction={4}>Menu</ShadowText>
       <BurgerButton />
     </div>
   </Container>
@@ -133,8 +128,7 @@ const navLinks = [
 
   <script>
     import { init as initObservers } from "@assets/typescript/observers";
-    const navButton: HTMLElement =
-      document.querySelector("button.burger-menu")!;
+    const navButton: HTMLElement = document.querySelector("button.burger-menu")!;
     const mobileLinks = document.querySelectorAll(".nav-menu ul.links-list a");
 
     type State = "opened" | "closed";
@@ -146,7 +140,7 @@ const navLinks = [
       linkEl.addEventListener("click", () => {
         navButton.dataset.state = "closed";
         navToggle();
-      })
+      }),
     );
 
     function navToggle() {
@@ -154,18 +148,14 @@ const navLinks = [
 
       const navMenu: HTMLElement = document.querySelector(".nav-menu")!;
 
-      state === "opened"
-        ? navMenu.classList.remove("hide")
-        : navMenu.classList.add("hide");
+      state === "opened" ? navMenu.classList.remove("hide") : navMenu.classList.add("hide");
 
       updateFocus(state === "opened");
       updateUI(state as State);
     }
 
     function updateUI(state: State) {
-      const shadowText: HTMLElement | null = document.querySelector(
-        "header .shadow-text"
-      );
+      const shadowText: HTMLElement | null = document.querySelector("header .shadow-text");
       if (shadowText) {
         if (state === "opened") shadowText.innerText = "Close";
         else shadowText.innerText = "Menu";
@@ -173,12 +163,8 @@ const navLinks = [
     }
 
     function updateFocus(focusable: boolean) {
-      const links = document.querySelectorAll(
-        ".nav-menu :is(ul.links-list a, input)"
-      );
-      links.forEach(linkEl =>
-        linkEl.setAttribute("tabindex", (focusable ? 0 : -1).toString())
-      );
+      const links = document.querySelectorAll(".nav-menu :is(ul.links-list a, input)");
+      links.forEach(linkEl => linkEl.setAttribute("tabindex", (focusable ? 0 : -1).toString()));
     }
 
     initObservers();
@@ -198,16 +184,14 @@ const navLinks = [
       scroll-behavior: smooth;
     }
 
-    body {
-      header,
-      .nav-menu {
-        z-index: 10000;
-        background: var(--nav-background);
-        backdrop-filter: blur(var(--nav-blur));
-      }
+    :global(body :is(header, .nav-menu)) {
+      z-index: 10000;
+      background: var(--nav-background);
+      backdrop-filter: blur(var(--nav-blur));
     }
 
-    :is(header, .nav-menu) li {
+    :global(header li),
+    .nav-menu li {
       transition: var(--main-timing-function) 500ms;
 
       scale: 0.9;
@@ -224,7 +208,7 @@ const navLinks = [
       }
     }
 
-    header {
+    :global(header) {
       position: sticky;
       top: 0;
 
@@ -266,7 +250,7 @@ const navLinks = [
         opacity: 0;
       }
 
-      &__shadow-logo {
+      :global(.nav-menu__shadow-logo) {
         position: absolute;
         z-index: -1;
         opacity: 0.3;

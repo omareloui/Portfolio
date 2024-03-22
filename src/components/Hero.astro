@@ -18,8 +18,9 @@ import ButtonCta from "./ButtonCta.astro";
     </div>
     <div class="body">
       <p>
-        I'm a full stack web developer, professional Googler, designer
-        —occasionally—, and <a href="#aboutme">some other stuff</a>.
+        I'm a full stack web developer, professional Googler, designer —occasionally—, and <a href="#aboutme"
+          >some other stuff</a
+        >.
       </p>
 
       <div class="buttons">
@@ -31,9 +32,7 @@ import ButtonCta from "./ButtonCta.astro";
 </Container>
 
 <script>
-  const buttons = document.querySelectorAll(
-    ".hero__main .body .buttons button"
-  );
+  const buttons = document.querySelectorAll(".hero__main .body .buttons button");
 
   buttons.forEach(btn => btn.addEventListener("click", onBtnClick));
 
@@ -46,21 +45,21 @@ import ButtonCta from "./ButtonCta.astro";
 <style lang="scss">
   @use "../assets/styles/mixins.scss" as *;
 
-  .hero {
+  :global(.hero) {
     display: grid;
 
     @include tablet-down {
       grid-template-columns: 1fr;
-      &__3d,
-      &__main {
+      :global(.hero__3d),
+      .hero__main {
         grid-row: 1 / -1;
       }
 
-      &__3d {
+      :global(.hero__3d) {
         grid-column: 1 / -1;
       }
 
-      &__main {
+      .hero__main {
         grid-column: 1 / -1;
         padding-block: 30px;
         background: var(--blur-surface3);
@@ -72,21 +71,21 @@ import ButtonCta from "./ButtonCta.astro";
     @include tablet-up {
       grid-template-columns: repeat(4, 1fr);
 
-      &__3d,
-      &__main {
+      :global(.hero__3d),
+      .hero__main {
         grid-row: 1 / -1;
       }
 
-      &__main {
+      .hero__main {
         grid-column: 1 / 3;
       }
 
-      &__3d {
+      :global(.hero__3d) {
         grid-column: 2 / -1;
       }
     }
 
-    &__main {
+    .hero__main {
       align-self: center;
 
       width: 100%;
