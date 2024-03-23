@@ -13,29 +13,26 @@ const size = Math.round(stats.size / 1024);
     <span class="first-name">Omar</span>
     <span class="last-name">Eloui</span>
     <span class="image">
-      <img src="/images/me.webp" alt="Image of me (Omar Eloui)." />
+      <img src="/images/me.webp" alt="Me (Omar Eloui)." />
     </span>
   </h3>
 
   <div class="aboutme-body">
     <p>
-      I'm a web developer based in Egypt with languages background—Spanish and
-      English. In other words, I went to languages school (Al-Alsun) and
-      returned a programmer.
+      I'm a web developer based in Egypt with languages background—Spanish and English. In other words, I went to
+      languages school (Al-Alsun) and returned a programmer.
     </p>
     <p>
-      My interest in web development started 2017, when I discovered programming
-      and its magic I started to build scripts and applications to help me
-      automate things and solve my problems.
+      My interest in web development started 2017, when I discovered programming and its magic I started to build
+      scripts and applications to help me automate things and solve my problems.
     </p>
     <p>
-      Now, I'm looking for a way to provide my acquired skills to create things
-      that have purpose and solve real problems.
+      Now, I'm looking for a way to provide my acquired skills to create things that have purpose and solve real
+      problems.
     </p>
     <p>
-      In addition to development I'm a leatherworker, you can check some of my
-      work on Instagram <a href={createLinksLink("odin-ig")}
-        >@odinleatherstore</a
+      In addition to development I'm a leatherworker, you can check some of my work on Instagram <a
+        href={createLinksLink("odin-ig")}>@odinleatherstore</a
       > though I stopped posting there, I might be back soon.
     </p>
   </div>
@@ -50,9 +47,7 @@ const size = Math.round(stats.size / 1024);
     threshold: 0.2,
   });
   const elements = [
-    ...document.querySelectorAll(
-      ".aboutme-title :is(.first-name, .last-name, .image)"
-    ),
+    ...document.querySelectorAll(".aboutme-title :is(.first-name, .last-name, .image)"),
   ] as HTMLElement[];
 
   observer.observe(document.querySelector("#aboutme")!);
@@ -73,8 +68,7 @@ const size = Math.round(stats.size / 1024);
     elements.forEach(el => {
       el.style.opacity = "0";
       if (el.classList.contains("first-name")) el.style.translate = "100% 0";
-      else if (el.classList.contains("last-name"))
-        el.style.translate = "-100% 0";
+      else if (el.classList.contains("last-name")) el.style.translate = "-100% 0";
       else el.style.translate = "0 50%";
     });
   }
@@ -106,7 +100,7 @@ const size = Math.round(stats.size / 1024);
         initialTranslate: "0px 0px",
       },
     ],
-    elements[2] as HTMLElement
+    elements[2] as HTMLElement,
   );
 </script>
 
@@ -171,12 +165,7 @@ const size = Math.round(stats.size / 1024);
         position: absolute;
         bottom: 0;
         left: 0;
-        background: linear-gradient(
-          180deg,
-          var(--blur-surface-none) 25%,
-          var(--surface0) 95%,
-          var(--surface0) 100%
-        );
+        background: linear-gradient(180deg, var(--blur-surface-none) 25%, var(--surface0) 95%, var(--surface0) 100%);
         @include size(100% 100%);
         transition: 1s;
       }

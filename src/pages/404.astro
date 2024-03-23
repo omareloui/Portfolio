@@ -18,7 +18,7 @@ import Main from "@layouts/Main.astro";
   if (quote.author) {
     const figcaption = document.createElement("figcaption");
     figcaption.textContent = `— ${quote.author}`;
-    quoteblock.parentElement!.appendChild(figcaption);
+    quoteblock.parentElement!.parentElement!.parentElement!.appendChild(figcaption);
   }
 </script>
 
