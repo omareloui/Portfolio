@@ -157,7 +157,7 @@ import Container from "./Container.astro";
 <style lang="scss">
   @use "../assets/styles/mixins.scss" as *;
 
-  .gallery {
+  :global(.gallery) {
     --show-transition-duration: 200ms;
 
     z-index: 10001;
@@ -204,23 +204,22 @@ import Container from "./Container.astro";
     }
 
     button,
-    &__state {
+    .gallery__state {
       background: var(--blur-surface2);
       backdrop-filter: blur(8px);
     }
 
-    &__image {
+    .gallery__image {
       display: grid;
       place-items: center;
       height: 100vh;
       @include w(100%);
       :global(img) {
         @include w(100%);
-        /* object-fit: cover; */
       }
     }
 
-    &__state {
+    .gallery__state {
       position: absolute;
       top: 10%;
       left: 10%;
@@ -273,13 +272,6 @@ import Container from "./Container.astro";
       @include desktop-up {
         > button {
           @include w(80px);
-        }
-
-        &__next {
-          right: -80px;
-        }
-        &__prev {
-          left: -80px;
         }
       }
     }
