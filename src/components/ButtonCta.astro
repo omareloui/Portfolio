@@ -10,25 +10,21 @@ export interface Props {
 
 const { class: className, type = "button", dataElement } = Astro.props;
 
-function appenedClass(newClassName: string): ClassList {
+function appendClass(newClassName: string): ClassList {
   if (!className) return newClassName;
   if (typeof className === "string") return `${className} ${newClassName}`;
   return [...className, newClassName];
 }
 ---
 
-<Button
-  class={appenedClass("button-cta")}
-  type={type}
-  dataElement={dataElement}
->
+<Button class={appendClass("button-cta")} {...{dataElement,type}}>
   <slot />
 </Button>
 
 <style lang="scss">
   @use "../assets/styles/mixins.scss" as *;
 
-  .button-cta {
+  :global(button.button-cta.button-cta) {
     border-radius: 100px;
     padding: 8px 20px;
     color: var(--text-main-light);

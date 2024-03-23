@@ -161,7 +161,7 @@ $screens: (
     border-radius: inherit;
 
     @if $animate-on-hover {
-      @include animate-backgrond-gradient;
+      @include animate-background-gradient;
       animation-play-state: paused;
     }
 
@@ -195,7 +195,7 @@ $screens: (
 /// }}}
 
 /// Animation {{{
-@mixin animate-backgrond-gradient($color: var(--gradient-primary-animate),
+@mixin animate-background-gradient($color: var(--gradient-primary-animate),
   $duration: 15s,
   $increase-x-by: 5,
   $increase-y-by: 1,
@@ -212,11 +212,11 @@ $screens: (
   $increase-x-by: 5,
   $increase-y-by: 1,
   $timing-function: ease) {
-  @include animate-backgrond-gradient($color,
+  @include animate-background-gradient($color,
     $duration,
     $increase-x-by,
     $increase-y-by,
-    $timing-function );
+    $timing-function);
 
   animation-play-state: paused;
 

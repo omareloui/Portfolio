@@ -12,14 +12,13 @@ export function init() {
   sections.forEach(s => observer.observe(s));
   function onIntersection(entries: IntersectionObserverEntry[]) {
     entries.forEach(e => {
-      // Scroll top {{{
+      // Scroll top
       if (e.target.id === "hero") {
         if (!e.isIntersecting) document.dispatchEvent(ShowScrollTopEvent);
         else document.dispatchEvent(HideScrollTopEvent);
       }
-      // }}}
 
-      // Nav active highlight {{{
+      // Nav active highlight
       navLinks.forEach(linkLi => {
         const { href } = linkLi.querySelector("a")!;
         const idFromHref = href.match(/#([^\\]+)$/)![1];
@@ -28,7 +27,6 @@ export function init() {
           else linkLi.classList.remove("active");
         }
       });
-      // }}}
     });
   }
 }

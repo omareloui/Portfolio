@@ -39,11 +39,7 @@ const { id } = Astro.props;
       margin-top: 5px;
       @include size(100px 5px);
 
-      @include animate-backgrond-gradient(
-        $color: var(--gradient-primary),
-        $increase-x-by: 2,
-        $duration: 5s
-      );
+      @include animate-background-gradient($color: var(--gradient-primary), $increase-x-by: 2, $duration: 5s);
       animation-play-state: paused;
     }
 

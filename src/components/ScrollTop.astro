@@ -6,24 +6,10 @@ import Container from "@components/Container.astro";
 <Container class="scroll-top hide">
   <Button ariaLabel="Scroll top">
     <svg viewBox="0 0 24 24" fill="none">
-      <path
-        d="M12 22L12 7"
-        stroke="var(--text)"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"></path>
-      <path
-        d="M5 14L12 7L19 14"
-        stroke="var(--text)"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"></path>
-      <path
-        d="M3 2H21"
-        stroke="var(--text)"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"></path>
+      <path d="M12 22L12 7" stroke="var(--text)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+      <path d="M5 14L12 7L19 14" stroke="var(--text)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      ></path>
+      <path d="M3 2H21" stroke="var(--text)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
     </svg>
   </Button>
 </Container>
@@ -56,7 +42,7 @@ import Container from "@components/Container.astro";
 <style lang="scss">
   @use "../assets/styles/mixins.scss" as *;
 
-  .scroll-top {
+  :global(.scroll-top) {
     --size: 60px;
 
     position: fixed;
@@ -68,7 +54,7 @@ import Container from "@components/Container.astro";
     pointer-events: none;
     user-select: none;
 
-    button {
+    :global(button) {
       background: var(--blur-surface0);
       backdrop-filter: blur(4px);
       @include size(var(--size));
@@ -92,7 +78,7 @@ import Container from "@components/Container.astro";
       }
     }
 
-    &.hide button {
+    &:global(.hide button) {
       opacity: 0;
       pointer-events: none;
       user-select: none;

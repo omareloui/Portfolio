@@ -6,33 +6,22 @@ export interface Props {
   background?: string;
   class?: ClassList | undefined;
   type?: "button" | "submit";
-  dataElement?: string;
+  dataElement?: string | undefined;
   ariaLabel?: string;
 }
 
-const {
-  background,
-  class: className,
-  type = "button",
-  dataElement,
-  ariaLabel,
-} = Astro.props;
+const { background, class: className, type = "button", dataElement, ariaLabel } = Astro.props;
 
 const classes = className ? parseClasses(className) : undefined;
 ---
 
-<button
-  aria-label={ariaLabel}
-  class={classes}
-  type={type}
-  data-element={dataElement}
->
+<button aria-label={ariaLabel} class={classes} type={type} data-element={dataElement}>
   <slot />
 </button>
 
 <style define:vars={{ background }}>
   button {
-    background: var(--background, none);
+    background: var(--background, unset);
     border: none;
     padding: 5px 8px;
     cursor: pointer;
