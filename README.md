@@ -16,6 +16,12 @@ git clone git@github.com:omareloui/Portfolio.git
 cd Portfolio
 ```
 
+Copy the `.env` file and add your secrets.
+
+```bash
+cp .env.example .env
+```
+
 Download the dependencies.
 
 ```bash

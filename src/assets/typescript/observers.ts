@@ -5,9 +5,7 @@ export function init() {
 
   const navLinks = document.querySelectorAll(":is(header, .nav-menu) ul li");
 
-  const sections = document.querySelectorAll(
-    ":is(#projects, #aboutme, #contact, #technologies, #skills, #hero)"
-  );
+  const sections = document.querySelectorAll("section");
 
   sections.forEach(s => observer.observe(s));
   function onIntersection(entries: IntersectionObserverEntry[]) {

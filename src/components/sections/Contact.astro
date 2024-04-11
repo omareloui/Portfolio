@@ -1,36 +1,26 @@
 ---
 import SectionWrapper from "@components/SectionWrapper.astro";
+
+const { isOdd = false } = Astro.props;
 ---
 
-<SectionWrapper
-  title="Contact"
-  shadowTitle="Get in Touch"
-  isOdd={true}
-  id="contact"
->
+<SectionWrapper title="Contact" shadowTitle="Get in Touch" id="contact" isOdd={isOdd}>
   <p class="contact__available">I'm currently available for work</p>
 
   <div class="contact__methods">
     <h3>Want to work together or have any questions?</h3>
     <p>
-      Feel free to reach out through email <a
-        href="mailto:contact@omareloui.com"
-        title="email me"
-        class="gradient">contact@omareloui.com</a
-      > or phone <a href="tel:+0201119447500" title="call me" class="gradient"
-        >+0201119447500</a
-      >.
+      Feel free to reach out through email <a href="mailto:contact@omareloui.com" title="email me"
+        >contact@omareloui.com</a
+      > or phone <a href="tel:+0201119447500" title="call me">+0201119447500</a>.
     </p>
   </div>
 </SectionWrapper>
 
 <style lang="scss">
-  @use "../assets/styles/mixins.scss" as *;
+  @use "@assets/styles/mixins.scss" as *;
 
   .contact {
-    .gradient {
-    }
-
     &__available,
     &__methods,
     h3 {

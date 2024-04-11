@@ -5,7 +5,9 @@ import SectionWrapper from "@components/SectionWrapper.astro";
 import contentful from "contentful";
 import type { Asset } from "contentful";
 
-const {createClient} = contentful
+const { isOdd = false } = Astro.props;
+
+const { createClient } = contentful;
 
 const client = createClient({
   space: import.meta.env.CONTENTFUL_SPACE_ID!,
@@ -27,7 +29,9 @@ export interface Project {
   archived: boolean;
 }
 
-const { items } = await client.getEntries<{ fields: Project; contentTypeId: string }>();
+const res = await client.getEntries<{ fields: Project; contentTypeId: string }>();
+
+const { items } = res;
 
 const projects = items
   .filter(x => !x.fields.archived)
@@ -40,7 +44,7 @@ const projects = items
   .sort((a, b) => (a.index as number) - (b.index as number));
 ---
 
-<SectionWrapper id="projects" title="Projects" shadowTitle="Showcase" isOdd={true} class="projects">
+<SectionWrapper id="projects" title="Projects" shadowTitle="Showcase" class="projects" isOdd={isOdd}>
   {projects.map(project => <PreviewProject project={project} />)}
 </SectionWrapper>
 
@@ -82,7 +86,7 @@ const projects = items
 </script>
 
 <style lang="scss">
-  @use "../assets/styles/mixins.scss" as *;
+  @use "@assets/styles/mixins.scss" as *;
 
   .projects {
     display: grid;

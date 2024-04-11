@@ -1,7 +1,8 @@
 ---
 import GradientTitle from "@components/GradientTitle.astro";
 import Divider from "@components/Divider.astro";
-import type { Project } from "./Projects.astro";
+import TechnologyUsage from "@components/TechnologyUsage.astro";
+import type { Project } from "./sections/Projects.astro";
 
 export interface Props {
   project: Project;
@@ -42,13 +43,7 @@ const {
     <Divider />
 
     <div class="technologies">
-      {
-        technologies.map(tech => (
-          <div class="technology">
-            <img src={`/icons/tech/${tech}.svg`} alt={`${tech} icon`} />
-          </div>
-        ))
-      }
+      {technologies.map(tech => (<TechnologyUsage tech={tech}/>))}
     </div>
   </div>
 </div>
@@ -268,25 +263,6 @@ const {
         flex-wrap: wrap;
         place-content: center;
         gap: 8px;
-
-        .technology {
-          @include size(40px);
-          display: block;
-          padding: 5px;
-          border-radius: 50%;
-          transition: scale 200ms ease-in-out;
-
-          @include gradient-shadow;
-
-          img {
-            @include size(100%);
-          }
-
-          &:hover,
-          &:focus {
-            scale: 1.1;
-          }
-        }
 
         @include desktop-up {
           gap: 15px;

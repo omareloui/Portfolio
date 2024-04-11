@@ -2,13 +2,16 @@
 import fs from "node:fs/promises";
 import SectionWrapper from "@components/SectionWrapper.astro";
 import { createLinksLink } from "@utils";
+
+const {isOdd = false} = Astro.props;
+
 const RESUME_FILENAME = "Omar_Eloui_web_developer_resume.pdf";
 
 const stats = await fs.stat(`./public/${RESUME_FILENAME}`);
 const size = Math.round(stats.size / 1024);
 ---
 
-<SectionWrapper title="About Me" shadowTitle="Know Me" id="aboutme">
+<SectionWrapper title="About Me" shadowTitle="Know Me" id="aboutme" isOdd={isOdd}>
   <h3 class="aboutme-title">
     <span class="first-name">Omar</span>
     <span class="last-name">Eloui</span>
@@ -105,7 +108,7 @@ const size = Math.round(stats.size / 1024);
 </script>
 
 <style lang="scss">
-  @use "../assets/styles/mixins.scss" as *;
+  @use "@assets/styles/mixins.scss" as *;
 
   .aboutme-title {
     overflow: hidden;

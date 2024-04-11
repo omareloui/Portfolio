@@ -1,8 +1,10 @@
 ---
-import SectionWrapper from "./SectionWrapper.astro";
+import SectionWrapper from "@components/SectionWrapper.astro";
+
+const {isOdd = false} = Astro.props;
 ---
 
-<SectionWrapper title="Skills" shadowTitle="What I Do" id="skills">
+<SectionWrapper title="Skills" shadowTitle="What I Do" id="skills" isOdd={isOdd}>
   <div class="skill-body">
     <div class="skill-body__skill">
       <h3>Development</h3>
@@ -24,7 +26,7 @@ import SectionWrapper from "./SectionWrapper.astro";
 </SectionWrapper>
 
 <style lang="scss">
-  @use "../assets/styles/mixins.scss" as *;
+  @use "@assets/styles/mixins.scss" as *;
 
   .skill-body {
     display: grid;

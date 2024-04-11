@@ -4,10 +4,12 @@ import TechnologiesFilter from "@components/TechnologiesFilter.astro";
 import TechnologyIcon from "@components/TechnologyIcon.astro";
 import { technologies } from "@assets/typescript/technologies";
 
+const {isOdd = false} = Astro.props;
+
 const filterOptions = ["backEnd", "frontEnd", "tools", "other" /*, "all" */] as const;
 ---
 
-<SectionWrapper title="Technologies" shadowTitle="What I Use" isOdd={true} id="technologies">
+<SectionWrapper title="Technologies" shadowTitle="What I Use" id="technologies" isOdd={isOdd}>
   <TechnologiesFilter filterOptions={filterOptions} />
 
   <ul class="technologies">
@@ -61,7 +63,7 @@ const filterOptions = ["backEnd", "frontEnd", "tools", "other" /*, "all" */] as 
 </script>
 
 <style lang="scss">
-  @use "../assets/styles/mixins.scss" as *;
+  @use "@assets/styles/mixins.scss" as *;
 
   ul.technologies {
     margin-top: 20px;

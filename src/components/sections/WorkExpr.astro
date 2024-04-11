@@ -1,0 +1,119 @@
+---
+import TechnologyUsage from "@components/TechnologyUsage.astro";
+import SectionWrapper from "@components/SectionWrapper.astro";
+import ExternalIcon from "@components/ExternalIcon.astro";
+
+const { isOdd = false } = Astro.props;
+
+const workExprs = [
+  {
+    from: "2023",
+    to: undefined,
+    title: "Back-End Developer",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora minus, necessitatibus magni omnis deleniti animi mollitia? Beatae nisi laborum quae? Cum corporis eius minus tenetur totam maxime nostrum rem eum?",
+    company: "Arab African International Bank",
+    link: "https://aaib.com",
+    tech: [
+      "JavaScript",
+      "TypeScript",
+      "GraphQL",
+      "Docker",
+      "Pug",
+      "EmailDevelopment",
+      // TODO: add this to my stack
+      "NestJS",
+      "MJML",
+    ],
+  },
+];
+---
+
+<SectionWrapper title="Work Experiences" shadowTitle="My Career" id="workexpr" isOdd={isOdd}>
+  <div class="work-expr-entries">
+    {
+      workExprs.map(expr => (
+        <div class="work-expr">
+          <div class="work-expr__left">
+            <p class="work-expr__duration">
+              <span class="from">{expr.from}</span>—<span class="to">{expr.to || "Present"}</span>
+            </p>
+          </div>
+          <div class="work-expr__right">
+            <div class="work-expr__company">
+              <a href={expr.link} target="_blank" class="gradient-text">
+                {expr.company}
+                <ExternalIcon size={16} color="var(--subtext1)" />
+              </a>
+            </div>
+            <div class="work-expr__title">{expr.title}</div>
+            <div class="work-expr__desc">{expr.desc}</div>
+            <div class="work-expr__technologies">
+              {expr.tech.map(t => (
+                <TechnologyUsage tech={t} includeText={true} size="30px" />
+              ))}
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</SectionWrapper>
+
+<style lang="scss">
+  @use "@assets/styles/mixins.scss" as *;
+
+  .work-expr-entries {
+    display: grid;
+    gap: 50px;
+
+    .work-expr {
+      display: grid;
+      grid-template-columns: 1fr;
+      padding: 56px 40px;
+
+      @include tablet-up {
+        grid-template-columns: 128px 1fr;
+      }
+
+      &__right {
+        display: grid;
+        gap: 4px;
+      }
+
+      &__company {
+        a {
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 1.4rem;
+          display: inline-block;
+          position: relative;
+
+          :global(svg) {
+            position: absolute;
+            right: -22px;
+            top: 1px;
+          }
+        }
+      }
+
+      &__title {
+        color: var(--subtext0);
+        font-weight: bold;
+      }
+
+      &__duration {
+        color: var(--subtext1);
+      }
+
+      &__desc {
+        margin-bottom: 10px;
+      }
+
+      &__technologies {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+    }
+  }
+</style>

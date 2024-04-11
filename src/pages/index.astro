@@ -2,20 +2,21 @@
 import MainLayout from "@layouts/Main.astro";
 
 import Hero from "@components/Hero.astro";
-import Projects from "@components/Projects.astro";
-import WhatIDo from "@components/WhatIDo.astro";
-import Technologies from "@components/Technologies.astro";
-import AboutMe from "@components/AboutMe.astro";
-import Contact from "@components/Contact.astro";
+import WorkExpr from "@components/sections/WorkExpr.astro";
+import Projects from "@components/sections/Projects.astro";
+import WhatIDo from "@components/sections/WhatIDo.astro";
+import Technologies from "@components/sections/Technologies.astro";
+import AboutMe from "@components/sections/AboutMe.astro";
+import Contact from "@components/sections/Contact.astro";
+
+import { isOdd } from "@assets/typescript/utils";
+
+const sections = [Projects, WorkExpr, Technologies, WhatIDo, AboutMe, Contact];
 ---
 
 <MainLayout includeGallery={true} includeScrollTop={true} notHomepage={false}>
   <Hero />
   <main>
-    <Projects />
-    <WhatIDo />
-    <Technologies />
-    <AboutMe />
-    <Contact />
+    {sections.map((S, i) => <S isOdd={isOdd(i + 1)} />)}
   </main>
 </MainLayout>

@@ -1,0 +1,45 @@
+---
+const { tech, size = "40px", includeText = false } = Astro.props;
+---
+
+<div class="technology">
+  <div class="technology__img-wrapper">
+    <img src={`/icons/tech/${tech}.svg`} alt={includeText ? "" : `${tech} icon`} />
+  </div>
+
+  {includeText && <p>{tech}</p>}
+</div>
+
+<style lang="scss" define:vars={{ size }}>
+  @use "../assets/styles/mixins.scss" as *;
+
+  .technology {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    transition: scale 200ms ease-in-out;
+
+    @include gradient-shadow;
+
+    &__img-wrapper {
+      @include size(var(--size));
+      font-size: 0.5rem;
+
+      img {
+        @include size(100%);
+      }
+    }
+
+    p {
+      font-size: 0.6rem;
+    }
+
+    &:hover,
+    &:focus {
+      scale: 1.1;
+    }
+  }
+</style>
