@@ -10,10 +10,7 @@
   style="enable-background: new 0 0 32 27.7"
   xml:space="preserve"
 >
-  <polygon
-    fill="#8080f1"
-    points="10.7,16.5 10.7,11.2 16,7.7 21.3,11.2 21.3,16.5 16,20.1 			"
-  />
+  <polygon fill="#8080f1" points="10.7,16.5 10.7,11.2 16,7.7 21.3,11.2 21.3,16.5 16,20.1 			" />
   <path
     fill="#4a31c3"
     fill-rule="evenodd"

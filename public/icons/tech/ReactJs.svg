@@ -11,14 +11,7 @@
   xml:space="preserve"
 >
   <g transform="matrix(1.25305,0,0,1.25305,-16.3076,4.57191)">
-    <circle
-      fill="#75cbed"
-      clip-rule="evenodd"
-      full-rule="evenodd"
-      cx="25.8"
-      cy="7.7"
-      r="2.3"
-    />
+    <circle fill="#75cbed" clip-rule="evenodd" full-rule="evenodd" cx="25.8" cy="7.7" r="2.3" />
     <path
       fill="#75cbed"
       d="M25.8,16.3c1.8,1.8,3.6,2.8,5.1,2.8c0.5,0,0.9-0.1,1.3-0.3c1.3-0.8,1.8-2.6,1.3-5.3c-0.1-0.5-0.2-1-0.3-1.5
