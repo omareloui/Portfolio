@@ -48,7 +48,7 @@ const workExprs = [
             <div class="work-expr__company">
               <a href={expr.link} target="_blank" class="gradient-text">
                 {expr.company}
-                <ExternalIcon size={16} color="var(--subtext1)" />
+                <ExternalIcon size={16} color="var(--subtext1)" className="tablet-up" />
               </a>
             </div>
             <div class="work-expr__title">{expr.title}</div>
@@ -75,10 +75,14 @@ const workExprs = [
     .work-expr {
       display: grid;
       grid-template-columns: 1fr;
-      padding: 56px 40px;
 
       @include tablet-up {
         grid-template-columns: 128px 1fr;
+        padding: 56px 40px;
+      }
+
+      @include tablet-down {
+        text-align: center;
       }
 
       &__right {
@@ -119,6 +123,10 @@ const workExprs = [
         display: flex;
         gap: 20px;
         flex-wrap: wrap;
+        margin-top: 10px;
+        @include tablet-down {
+          justify-content: center;
+        }
       }
     }
   }
