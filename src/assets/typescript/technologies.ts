@@ -21,20 +21,19 @@ type Category =
   | "Build Tool"
   | "Containerization Technology"
   | "Template Engine"
-  | "Operating System";
+  | "Operating System"
+  | "Architure";
 
 export type Stack = "Front-End" | "Back-End" | "Front and Back Ends" | "DevOps" | "Other";
 
 type Technology = { title: string; category: Category; stack: Stack };
 
 export const technologies: Technology[] = [
-  { title: "Nuxt", category: "Framework", stack: "Front and Back Ends" },
-  { title: "Vue", category: "Framework", stack: "Front-End" },
+  { title: "Go", category: "Language", stack: "Back-End" },
 
   { title: "TypeScript", category: "Superset", stack: "Front and Back Ends" },
   { title: "JavaScript", category: "Language", stack: "Front and Back Ends" },
 
-  { title: "Go", category: "Language", stack: "Back-End" },
   { title: "Rust", category: "Language", stack: "Back-End" },
   { title: "Lua", category: "Language", stack: "Back-End" },
   { title: "Deno", category: "Run Time For JS", stack: "Back-End" },
@@ -44,13 +43,21 @@ export const technologies: Technology[] = [
   { title: "Css", category: "Language", stack: "Front-End" },
   { title: "Sass", category: "Preprocessor", stack: "Front-End" },
 
-  { title: "Pug", category: "Preprocessor", stack: "Front-End" },
+  { title: "gRPC", category: "API", stack: "Back-End" },
+  { title: "Protobuf", category: "Language", stack: "Back-End" },
+
+  { title: "Microservices", category: "Architure", stack: "Back-End" },
+
+  { title: "Pug", category: "Template Engine", stack: "Front-End" },
   { title: "EJS", category: "Template Engine", stack: "Front-End" },
+
+  { title: "MJML", category: "Preprocessor", stack: "Front-End" },
 
   { title: "MarkDown", category: "Language", stack: "Front-End" },
 
+  { title: "Nuxt", category: "Framework", stack: "Front and Back Ends" },
   { title: "Astro", category: "Framework", stack: "Front and Back Ends" },
-
+  { title: "Vue", category: "Framework", stack: "Front-End" },
   { title: "ReactJs", category: "Framework", stack: "Front-End" },
   { title: "AlpineJs", category: "Framework", stack: "Front-End" },
   { title: "Lit", category: "Framework", stack: "Front-End" },
@@ -67,6 +74,7 @@ export const technologies: Technology[] = [
 
   { title: "Node", category: "Run Time For JS", stack: "Back-End" },
   { title: "ExpressJs", category: "Framework", stack: "Back-End" },
+  { title: "NestJS", category: "Framework", stack: "Back-End" },
 
   { title: "RabbitMQ", category: "Message Broker", stack: "Back-End" },
   { title: "MongoDB", category: "DataBase", stack: "Back-End" },
@@ -85,7 +93,9 @@ export const technologies: Technology[] = [
   { title: "Neovim", category: "Development Tool", stack: "Other" },
   { title: "Vim", category: "Development Tool", stack: "Other" },
   { title: "VSCode", category: "Development Tool", stack: "Other" },
+
   { title: "Bazel", category: "Development Tool", stack: "Other" },
+  { title: "Makefile", category: "Development Tool", stack: "Other" },
 
   { title: "Prettier", category: "Development Tool", stack: "Front and Back Ends" },
   { title: "ESLint", category: "Development Tool", stack: "Front and Back Ends" },
@@ -94,6 +104,7 @@ export const technologies: Technology[] = [
   { title: "Illustrator", category: "Design Tool", stack: "Other" },
 
   { title: "Arch ~btw~", category: "Operating System", stack: "Other" },
+  { title: "Nix", category: "Operating System", stack: "Other" },
   { title: "Linux", category: "Operating System", stack: "Other" },
   { title: "Windows", category: "Operating System", stack: "Other" },
 
