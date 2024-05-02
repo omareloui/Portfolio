@@ -57,6 +57,7 @@ export const technologies: Technology[] = [
 
   { title: "Nuxt", category: "Framework", stack: "Front and Back Ends" },
   { title: "Astro", category: "Framework", stack: "Front and Back Ends" },
+  { title: "Htmx", category: "Framework", stack: "Front-End" },
   { title: "Vue", category: "Framework", stack: "Front-End" },
   { title: "ReactJs", category: "Framework", stack: "Front-End" },
   { title: "AlpineJs", category: "Framework", stack: "Front-End" },
