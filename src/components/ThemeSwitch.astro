@@ -21,8 +21,7 @@ const { size = "1.5rem", focusable = true } = Astro.props;
   import { theme, style as styleUtils } from "@utils";
 
   // eslint-disable-next-line
-  const switches: NodeListOf<HTMLElement> =
-    document.querySelectorAll(".switch");
+  const switches: NodeListOf<HTMLElement> = document.querySelectorAll(".switch");
 
   theme.updateFavicon(theme.getCurrentState());
   document.addEventListener("themetoggle", theme.onThemeToggle);
@@ -32,7 +31,7 @@ const { size = "1.5rem", focusable = true } = Astro.props;
   switches.forEach(el => {
     theme.loadInitialState(el);
 
-    // TODO: make the drag work with theme change
+    // NOTE: you can make draging work, check here:
     // Src: https://github.com/argyleink/gui-challenges/blob/main/switch/index.js
 
     // prepareForDragging(
@@ -56,37 +55,25 @@ const { size = "1.5rem", focusable = true } = Astro.props;
     if (el.disabled) return;
     switchesUIState.activethumb = el;
     switchesUIState.activethumb.addEventListener("pointermove", dragging);
-    switchesUIState.activethumb.style.setProperty(
-      "--thumb-transition-duration",
-      "0s"
-    );
+    switchesUIState.activethumb.style.setProperty("--thumb-transition-duration", "0s");
   }
 
   function dragging(event: PointerEvent) {
     if (!switchesUIState.activethumb) return;
 
     const { thumbsize, bounds, padding } = switchesMap.get(
-      switchesUIState.activethumb.parentElement as HTMLLabelElement
+      switchesUIState.activethumb.parentElement as HTMLLabelElement,
     );
-    const directionality = styleUtils.getStyle(
-      switchesUIState.activethumb,
-      "--isLTR"
-    );
+    const directionality = styleUtils.getStyle(switchesUIState.activethumb, "--isLTR");
 
-    const track =
-      directionality === -1
-        ? switchesUIState.activethumb.clientWidth * -1 + thumbsize + padding
-        : 0;
+    const track = directionality === -1 ? switchesUIState.activethumb.clientWidth * -1 + thumbsize + padding : 0;
 
     let pos = Math.round(event.offsetX - thumbsize / 2);
 
     if (pos < bounds.lower) pos = 0;
     if (pos > bounds.upper) pos = bounds.upper;
 
-    switchesUIState.activethumb.style.setProperty(
-      "--thumb-position",
-      `${track + pos}px`
-    );
+    switchesUIState.activethumb.style.setProperty("--thumb-position", `${track + pos}px`);
   }
 
   function dragEnd(e: Event, changeHandler: (e: Event) => void) {
@@ -124,12 +111,7 @@ const { size = "1.5rem", focusable = true } = Astro.props;
   function labelClick(event: MouseEvent, handler: (e: Event) => void) {
     const target = event.target as HTMLLabelElement;
     const checkbox = target.querySelector("input") as HTMLInputElement;
-    if (
-      switchesUIState.recentlyDragged ||
-      !target.classList.contains("switch") ||
-      checkbox.disabled
-    )
-      return;
+    if (switchesUIState.recentlyDragged || !target.classList.contains("switch") || checkbox.disabled) return;
 
     checkbox.checked = !checkbox.checked;
     handler(event);
@@ -140,24 +122,17 @@ const { size = "1.5rem", focusable = true } = Astro.props;
     const activeThumb = getActiveThumb();
     const labelEl = activeThumb.parentElement as HTMLLabelElement;
     const { bounds } = switchesMap.get(labelEl);
-    let curpos = Math.abs(
-      parseInt(activeThumb.style.getPropertyValue("--thumb-position"))
-    );
+    let curpos = Math.abs(parseInt(activeThumb.style.getPropertyValue("--thumb-position")));
     if (!curpos) {
       curpos = activeThumb.checked ? bounds.lower : bounds.upper;
     }
     return curpos >= bounds.middle;
   }
 
-  function prepareForDragging(
-    element: HTMLElement,
-    changeHandler: (e: Event) => void
-  ) {
+  function prepareForDragging(element: HTMLElement, changeHandler: (e: Event) => void) {
     const checkbox = element.querySelector("input") as HTMLInputElement;
     const thumbsize = styleUtils.getPseudoStyle(checkbox, "width");
-    const padding =
-      styleUtils.getStyle(checkbox, "padding-left") +
-      styleUtils.getStyle(checkbox, "padding-right");
+    const padding = styleUtils.getStyle(checkbox, "padding-left") + styleUtils.getStyle(checkbox, "padding-right");
 
     checkbox.addEventListener("pointerdown", dragInit);
     checkbox.addEventListener("pointerup", e => dragEnd(e, changeHandler));
@@ -250,7 +225,8 @@ const { size = "1.5rem", focusable = true } = Astro.props;
         transform: translateX(var(--thumb-position));
 
         @media (prefers-reduced-motion: no-preference) {
-          transition: transform var(--thumb-transition-duration) ease,
+          transition:
+            transform var(--thumb-transition-duration) ease,
             box-shadow 0.25s ease;
         }
       }
@@ -276,10 +252,7 @@ const { size = "1.5rem", focusable = true } = Astro.props;
 
       &:indeterminate {
         --thumb-image: url("/icons/theme-auto.svg");
-        --thumb-position: calc(
-          calc(calc(var(--track-size) / 2) - calc(var(--thumb-size) / 2)) *
-            var(--isLTR)
-        );
+        --thumb-position: calc(calc(calc(var(--track-size) / 2) - calc(var(--thumb-size) / 2)) * var(--isLTR));
       }
     }
   }

@@ -87,6 +87,8 @@ export const technologies: Technology[] = [
   { title: "RestAPI", category: "Auth System", stack: "Back-End" },
   { title: "GraphQL", category: "Auth System", stack: "Back-End" },
 
+  { title: "LDAP", category: "Auth System", stack: "Back-End" },
+
   { title: "Jasmine", category: "Test Framework", stack: "Front and Back Ends" },
   { title: "Jest", category: "Test Framework", stack: "Front and Back Ends" },
 
@@ -110,6 +112,7 @@ export const technologies: Technology[] = [
 
   { title: "Git", category: "Version Control System", stack: "DevOps" },
   { title: "GitHub", category: "VSC Cloud Hosting Service", stack: "DevOps" },
+  { title: "GitLab", category: "VSC Cloud Hosting Service", stack: "DevOps" },
   { title: "NPM", category: "Package Manger", stack: "Other" },
   { title: "PNPM", category: "Package Manger", stack: "Other" },
   { title: "AWS", category: "Cloud Service", stack: "DevOps" },
