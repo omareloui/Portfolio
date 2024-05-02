@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import SectionWrapper from "@components/SectionWrapper.astro";
 import { createLinksLink } from "@utils";
 
-const {isOdd = false} = Astro.props;
+const { isOdd = false } = Astro.props;
 
 const RESUME_FILENAME = "Omar_Eloui_web_developer_resume.pdf";
 
@@ -35,12 +35,13 @@ const size = Math.round(stats.size / 1024);
     </p>
     <p>
       In addition to development I'm a leatherworker, you can check some of my work on Instagram <a
-        href={createLinksLink("odin-ig")}>@odinleatherstore</a
+        href={createLinksLink("odin-ig")}
+        target="_blank">@odinleatherstore</a
       > though I stopped posting there, I might be back soon.
     </p>
   </div>
   <div class="aboutme-resume">
-    <a href={`/${RESUME_FILENAME}`}>My Resume (pdf {size}kb)</a>
+    <a href={`/${RESUME_FILENAME}`} target="_blank">My Resume (pdf {size}kb)</a>
   </div>
 </SectionWrapper>
 

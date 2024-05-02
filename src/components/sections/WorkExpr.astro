@@ -7,30 +7,34 @@ const { isOdd = false } = Astro.props;
 
 const workExprs = [
   {
-    from: "2023",
+    from: "Mar. 2023",
     to: undefined,
     title: "Back-End Developer",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora minus, necessitatibus magni omnis deleniti animi mollitia? Beatae nisi laborum quae? Cum corporis eius minus tenetur totam maxime nostrum rem eum?",
+    desc: "Build and maintain critical distributed systems for internal and public usage. Improve the development experience for other developers by building tools and setup systems and frameworks to be consistent and make it easier to communicate. Contribute in designing the architecture of a major project.",
     company: "Arab African International Bank",
     link: "https://aaib.com",
     tech: [
-      "JavaScript",
-      "TypeScript",
-      "GraphQL",
-      "Docker",
-      "Pug",
-      "RabbitMQ",
+      "Microservices",
       "Go",
-      "Prettier",
-      "ESLint",
       "gRPC",
       "Protobuf",
-      "Microservices",
       "NestJS",
-      "MJML",
+      "ExpressJs",
+      "TypeScript",
+      "JavaScript",
+      "RabbitMQ",
       "Jest",
-      "Bazel",
+      "GraphQL",
+      "LDAP",
+      "Docker",
       "Makefile",
+      "Bazel",
+      "Prettier",
+      "ESLint",
+      "Pug",
+      "MJML",
+      "Git",
+      "GitLab",
     ],
   },
 ];
@@ -83,10 +87,6 @@ const workExprs = [
         padding: 56px 40px;
       }
 
-      @include tablet-down {
-        text-align: center;
-      }
-
       &__right {
         display: grid;
         gap: 4px;
@@ -115,6 +115,8 @@ const workExprs = [
 
       &__duration {
         color: var(--subtext1);
+        font-size: 0.8rem;
+        margin-top: 5px;
       }
 
       &__desc {
@@ -126,9 +128,6 @@ const workExprs = [
         gap: 20px;
         flex-wrap: wrap;
         margin-top: 10px;
-        @include tablet-down {
-          justify-content: center;
-        }
       }
     }
   }
