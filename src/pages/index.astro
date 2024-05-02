@@ -4,14 +4,14 @@ import MainLayout from "@layouts/Main.astro";
 import Hero from "@components/Hero.astro";
 import WorkExpr from "@components/sections/WorkExpr.astro";
 import Projects from "@components/sections/Projects.astro";
-import WhatIDo from "@components/sections/WhatIDo.astro";
+// import WhatIDo from "@components/sections/WhatIDo.astro";
 import Technologies from "@components/sections/Technologies.astro";
 import AboutMe from "@components/sections/AboutMe.astro";
 import Contact from "@components/sections/Contact.astro";
 
 import { isOdd } from "@assets/typescript/utils";
 
-const sections = [Projects, WorkExpr, Technologies, WhatIDo, AboutMe, Contact];
+const sections = [WorkExpr, Projects, Technologies, /* WhatIDo, */ AboutMe, Contact];
 ---
 
 <MainLayout includeGallery={true} includeScrollTop={true} notHomepage={false}>
