@@ -4,7 +4,7 @@ import TechnologiesFilter from "@components/TechnologiesFilter.astro";
 import TechnologyIcon from "@components/TechnologyIcon.astro";
 import { technologies } from "@assets/typescript/technologies";
 
-const {isOdd = false} = Astro.props;
+const { isOdd = false } = Astro.props;
 
 const filterOptions = ["backEnd", "frontEnd", "tools", "other" /*, "all" */] as const;
 ---
@@ -37,6 +37,7 @@ const filterOptions = ["backEnd", "frontEnd", "tools", "other" /*, "all" */] as 
       stack: ".technology__title[data-stack]",
     },
     sortBy: ["original-order"],
+    stagger: 5,
   });
 
   const filterFunctions = {

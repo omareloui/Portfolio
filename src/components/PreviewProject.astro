@@ -43,7 +43,7 @@ const {
     <Divider />
 
     <div class="technologies">
-      {technologies.map(tech => (<TechnologyUsage tech={tech}/>))}
+      {technologies.map(tech => <TechnologyUsage tech={tech} />)}
     </div>
   </div>
 </div>
@@ -96,12 +96,12 @@ const {
       --overlap: 32px;
     }
 
-    .title,
+    :global(.title),
     .body {
       grid-column: 1/-1;
     }
 
-    .title {
+    :global(.title) {
       grid-row: 1/3;
     }
     .body {
