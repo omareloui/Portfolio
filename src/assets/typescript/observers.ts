@@ -11,7 +11,7 @@ export function init() {
   function onIntersection(entries: IntersectionObserverEntry[]) {
     entries.forEach(e => {
       // Scroll top
-      if (e.target.id === "hero") {
+      if (e.target.classList.contains("hero")) {
         if (!e.isIntersecting) document.dispatchEvent(ShowScrollTopEvent);
         else document.dispatchEvent(HideScrollTopEvent);
       }
