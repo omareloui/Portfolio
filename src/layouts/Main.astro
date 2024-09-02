@@ -18,11 +18,7 @@ export interface Props {
   includeScrollTop?: boolean;
 }
 
-const {
-  notHomepage = true,
-  includeGallery = false,
-  includeScrollTop = false,
-} = Astro.props;
+const { notHomepage = true, includeGallery = false, includeScrollTop = false } = Astro.props;
 
 const title = "Omar Eloui | Full-Stack Developer";
 const description = "Omar Eloui is a full stack developer.";
@@ -34,11 +30,7 @@ const ogImage = "/images/heading.png";
   <html lang="en" theme="dark">
     <head>
       <!-- Gtag -->
-      <script
-        is:inline
-        type="text/partytown"
-        src="https://www.googletagmanager.com/gtag/js?id=G-MD040L0DB2"
-      ></script>
+      <script is:inline type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-MD040L0DB2"></script>
       <script type="text/partytown" is:inline>
         window.dataLayer = window.dataLayer || [];
         function gtag() {
@@ -65,7 +57,7 @@ const ogImage = "/images/heading.png";
         description={description}
         openGraph={{
           basic: {
-            title: "Omar Eloui | Web Developer",
+            title,
             url: "https://omareloui.com",
             type: "website",
             image: ogImage,

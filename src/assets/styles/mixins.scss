@@ -160,11 +160,6 @@ $screens: (
     transition: opacity ease-in-out 300ms, scale ease-in-out 300ms;
     border-radius: inherit;
 
-    @if $animate-on-hover {
-      @include animate-background-gradient;
-      animation-play-state: paused;
-    }
-
     @if $show-on-hover {
       scale: 0.6;
       opacity: math.div($opacity, 2);
@@ -173,6 +168,11 @@ $screens: (
     @else {
       opacity: $opacity;
       scale: 1.02;
+    }
+
+    @if $animate-on-hover {
+      animation-play-state: paused;
+      @include animate-background-gradient;
     }
   }
 
@@ -212,13 +212,12 @@ $screens: (
   $increase-x-by: 5,
   $increase-y-by: 1,
   $timing-function: ease) {
+  animation-play-state: paused;
   @include animate-background-gradient($color,
     $duration,
     $increase-x-by,
     $increase-y-by,
     $timing-function);
-
-  animation-play-state: paused;
 
   &:hover,
   &:focus {

@@ -109,15 +109,18 @@ import Main from "@layouts/Main.astro";
           border-radius: 100px;
           padding: 8px 20px;
           color: var(--text-main-light);
-          @include animate-background-gradient-on-hover;
-          @include gradient-shadow($animate-on-hover: true);
-
           font-size: 1.2rem;
           font-weight: bold;
           margin: 20px auto 0;
           display: inline-block;
           text-decoration: none;
           /* background-position: 50% 50%; */
+          & {
+            @include animate-background-gradient-on-hover;
+          }
+          & {
+            @include gradient-shadow($animate-on-hover: true);
+          }
         }
       }
     }
