@@ -23,3 +23,9 @@ body {
 a {
   color: var(--link);
 }
+
+pre:has(code) {
+  padding: 1rem;
+  border-radius: 9px;
+  margin-block: 1rem;
+}

@@ -49,6 +49,7 @@ const filterOptions = ["backEnd", "frontEnd", "tools", "other" /*, "all" */] as 
       const el = getTitleEl(item);
 
       return !!el.dataset.stack?.match(/^(DevOps|Other)$/) && !el.dataset.category?.match("Tool");
+      );
     },
   };
 
@@ -71,6 +72,10 @@ const filterOptions = ["backEnd", "frontEnd", "tools", "other" /*, "all" */] as 
     background: var(--blur-surface2);
     padding: 16px 6px;
     border-radius: 10px;
+
+    li {
+      list-style: none;
+    }
 
     @include tablet-up {
       padding: 20px 50px;
