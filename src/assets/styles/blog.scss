@@ -11,3 +11,14 @@ ol {
   margin-inline-start: 2rem;
   margin-block: 1rem;
 }
+
+:not(pre)>code {
+  background: #1f2428;
+  color: #9ECBFF;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: 1em;
+  display: inline-block;
+  padding-inline: 0.15em;
+  border-radius: 0.2em;
+  margin-inline: 0.025rem;
+}
