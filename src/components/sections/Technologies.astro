@@ -6,7 +6,10 @@ import { technologies } from "@assets/typescript/technologies";
 
 const { isOdd = false } = Astro.props;
 
-const filterOptions = ["backEnd", "frontEnd", "tools", "other" /*, "all" */] as const;
+// TODO: add k8
+// TODO: add these sections
+const filterOptions = ["backEnd", "cloudAndContainerization", "frontEnd", "tools", "other" /*, "all" */] as const;
+// const filterOptions = ["backEnd", "frontEnd", "tools", "other" /*, "all" */] as const;
 ---
 
 <SectionWrapper title="Technologies" shadowTitle="What I Use" id="technologies" isOdd={isOdd}>
