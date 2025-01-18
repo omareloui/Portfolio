@@ -1,10 +1,8 @@
+import partytown from "@astrojs/partytown";
+import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
 import glsl from "vite-plugin-glsl";
 
-// https://astro.build/config
-import partytown from "@astrojs/partytown";
-
-// https://astro.build/config
 export default defineConfig({
   vite: {
     plugins: [glsl()],
@@ -15,5 +13,9 @@ export default defineConfig({
         forward: ["dataLayer.push"],
       },
     }),
+    expressiveCode({
+      themes: ["github-dark", "github-light"],
+    }),
   ],
 });
+
