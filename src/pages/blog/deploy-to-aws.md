@@ -9,6 +9,90 @@ author:
 tags: ["aws", "ecs", "ecr", "ec2", "deploying", "ci/cd"]
 ---
 
-<!-- markdownlint-disable MD025 -->
-
 # Deploy Docker Image to AWS' ECS, ECR, and EC2 using GitHub Actions
+
+## Prepare Code and Env Variables
+
+To ssh into the server
+
+```bash /<.+?>/
+ssh -i <pem_key> <user@server_ip>
+```
+
+To sync files using rsync
+
+```bash /<.+?>/
+rsync --progress -avz <local_path> <user@server_ip>:<remote_path>
+```
+
+Create `.env` file and restrict it's permissions. Then add your env variables
+
+```bash /<.+?>/
+touch .env
+sudo chmod 600 .env
+sudo chown <username>:<username> .env
+```
+
+## Run the Project as a SystemD Service
+
+Create a `.service` file
+
+```bash "myapp"
+sudo vim /etc/systemd/system/myapp.service
+```
+
+Define the service settings. Add the following content in Vim, modifying as needed for your application
+
+```ini title="myapp.service" //etc/.env|myapp|/home\S*|/usr\S* start|NODE_ENV=production|ubuntu|My.*/
+[Unit]
+Description=My App
+After=network.target multi-user.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/app # Where you project is located
+ExecStart=/usr/bin/npm start # The command to start the server
+Restart=always
+Environment=NODE_ENV=production # The env variables to pass to the service process
+EnvironmentFile=/etc/.env # Where to take the env variables from (this is where you created the `.env` file)
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=myapp # Identifier to make it easier to be able to see syslogs
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Reload systemd and start your service.
+
+```bash "myapp"
+sudo systemctl daemon-reload
+sudo systemctl enable myapp.service
+sudo systemctl start myapp.service
+```
+
+## Install and Add Caddy
+
+<https://caddyserver.com/docs/install>
+
+```bash
+# sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+sudo apt update && sudo apt upgrade
+sudo apt install caddy
+```
+
+Configure Caddy by editing `/etc/caddy/Caddyfile`
+
+```kdl title="/etc/caddy/Caddyfile" "3000"
+:80 {
+    reverse_proxy localhost:3000
+}
+```
+
+Restart Caddy's service
+
+```bash
+sudo systemctl restart caddy
+```
