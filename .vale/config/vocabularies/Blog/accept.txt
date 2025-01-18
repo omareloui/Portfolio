@@ -1,3 +1,5 @@
-Astro
-RSync
-rsync
+[Aa]stro
+[Rr]sync
+[Ee]nv
+[Ss]ystem[Dd]
+Caddy
