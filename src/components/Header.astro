@@ -8,46 +8,55 @@ import ShadowSquare from "./ShadowSquare.astro";
 
 export interface Props {
   notHomepage?: boolean;
+  isBlog?: boolean;
 }
 
-const { notHomepage } = Astro.props;
+const { notHomepage, isBlog } = Astro.props;
 
 function getLink(sectionId: string) {
   return notHomepage ? `/#${sectionId}` : `#${sectionId}`;
 }
 
-const navLinks = [
-  {
-    link: getLink("workexpr"),
-    text: "Experience",
-    mobileOnly: false,
-  },
-  {
-    link: getLink("projects"),
-    text: "Projects",
-    mobileOnly: false,
-  },
-  // {
-  //   link: getLink("skills"),
-  //   text: "Skills",
-  //   mobileOnly: true,
-  // },
-  {
-    link: getLink("technologies"),
-    text: "Technologies",
-    mobileOnly: true,
-  },
-  {
-    link: getLink("aboutme"),
-    text: "About Me",
-    mobileOnly: false,
-  },
-  {
-    link: getLink("contact"),
-    text: "Contact",
-    mobileOnly: false,
-  },
-];
+const navLinks = !isBlog
+  ? [
+      {
+        link: getLink("workexpr"),
+        text: "Experience",
+        mobileOnly: false,
+      },
+      {
+        link: getLink("projects"),
+        text: "Projects",
+        mobileOnly: false,
+      },
+      // {
+      //   link: getLink("skills"),
+      //   text: "Skills",
+      //   mobileOnly: true,
+      // },
+      {
+        link: getLink("technologies"),
+        text: "Technologies",
+        mobileOnly: true,
+      },
+      {
+        link: getLink("aboutme"),
+        text: "About Me",
+        mobileOnly: false,
+      },
+      {
+        link: getLink("contact"),
+        text: "Contact",
+        mobileOnly: false,
+      },
+    ]
+  : [
+      {
+        link: "/blog",
+        text: "Blog",
+        mobileOnly: false,
+      },
+    ];
 
 // const languages = ["en", "es", "ar"];
 ---

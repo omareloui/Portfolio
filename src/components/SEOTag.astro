@@ -1,0 +1,62 @@
+---
+import { SEO } from "astro-seo";
+
+export interface Props {
+  title: string;
+  shadowTitle: string;
+  isOdd?: boolean;
+  class?: string;
+  id: string;
+}
+
+const headerTitle = "Omar Eloui | Full-Stack Developer";
+const description = "Omar Eloui is a full stack developer.";
+const ogImage = "/images/heading.png";
+---
+
+<SEO
+  title={headerTitle}
+  description={description}
+  openGraph={{
+    basic: {
+      title: headerTitle,
+      url: "https://omareloui.com",
+      type: "website",
+      image: ogImage,
+    },
+    optional: { siteName: "OmarEloui", description },
+    image: {
+      url: ogImage,
+      alt: "Heading image of the site.",
+      type: "image/png",
+      width: 1200,
+      height: 630,
+    },
+  }}
+  twitter={{
+    creator: "@omareloui",
+    card: "summary_large_image",
+    image: ogImage,
+    imageAlt: "Heading image of the site.",
+    title: headerTitle,
+    description,
+  }}
+  extend={{
+    meta: [
+      {
+        property: "og:update_time",
+        content: `${Math.floor(Number(new Date()) / 1000)}`,
+      },
+      { name: "theme-color", content: "#1b1b1b" },
+    ],
+    link: [
+      {
+        rel: "icon",
+        href: "/icons/favicon-light.svg",
+        type: "image/svg+xml",
+      },
+      { rel: "manifest", href: "/site.webmanifest" },
+      { rel: "apple-touch-icon", href: "/pwd/icons/logo_x180.png" },
+    ],
+  }}
+/>

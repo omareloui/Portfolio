@@ -1,0 +1,89 @@
+---
+import "@assets/styles/variables.scss";
+import "@assets/styles/global.scss";
+import "@assets/styles/keyframes.scss";
+import "@assets/styles/helper-classes.scss";
+import "@assets/styles/blog.scss";
+
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Container from "@components/Container.astro";
+import ScrollTop from "@components/ScrollTop.astro";
+import SEOTag from "@components/SEOTag.astro";
+import DateTime from "@components/DateTime.astro";
+
+export interface Props {
+  frontmatter: {
+    title: string;
+    author: { name: string; email: string };
+    shadowTitle: string;
+    pubDate: string;
+  };
+}
+
+const { frontmatter } = Astro.props;
+---
+
+<>
+  <!-- @ts-ignore -->
+  <html lang="en" theme="dark">
+    <head>
+      <!-- Gtag -->
+      <script is:inline type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-MD040L0DB2"></script>
+      <script type="text/partytown" is:inline>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          // eslint-disable-next-line
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-MD040L0DB2");
+      </script>
+      <SEOTag />
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width" />
+      <meta name="generator" content={Astro.generator} />
+
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+        rel="stylesheet"
+      />
+
+      <script>
+        import { theme } from "@utils";
+
+        theme.init();
+
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("/sw.js");
+        }
+      </script>
+    </head>
+    <body>
+      <!-- TODO: make work better for a blog -->
+      <Header notHomepage={true} isBlog={true} />
+
+      <Container>
+        <p>
+          Published on: <DateTime date={frontmatter.pubDate} />
+        </p>
+        <address>Written by: <a href={`mailto:${frontmatter.author.email}`}>{frontmatter.author.name}</a></address>
+      </Container>
+
+      <Container tag="main">
+        <slot />
+      </Container>
+
+      <Footer />
+      <ScrollTop />
+    </body>
+  </html>
+</>
+
+<style>
+  :global(main) {
+    min-height: calc(96vh - var(--nav-height) - var(--footer-height));
+  }
+</style>

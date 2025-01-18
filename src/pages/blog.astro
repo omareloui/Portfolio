@@ -1,0 +1,77 @@
+---
+import MainLayout from "@layouts/Main.astro";
+
+import "@assets/styles/blog.scss";
+
+import Container from "@components/Container.astro";
+import DateTime from "@components/DateTime.astro";
+import type { MarkdownInstance } from "astro";
+
+const allPosts: MarkdownInstance<Record<string, unknown>>[] = Object.values(
+  import.meta.glob("./blog/**/*.md", { eager: true }),
+);
+---
+
+<!-- think of a layout? -->
+<MainLayout>
+  <Container tag="main">
+    <h1>Blog Posts</h1>
+    <ul>
+      {
+        allPosts.map(post => (
+          <li>
+            <DateTime date={post.frontmatter.pubDate as string} />
+            <a href={post.url}>{post.frontmatter.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</MainLayout>
+
+<style>
+  @use "../assets/styles/mixins.scss" as *;
+
+  :global(main) {
+    min-height: calc(96vh - var(--nav-height) - var(--footer-height));
+  }
+
+  ul {
+    margin: 0;
+
+    li {
+      margin-block: 3rem;
+      list-style: none;
+      text-align: center;
+    }
+
+    a {
+      display: block;
+
+      font-size: 1.5rem;
+      text-decoration: none;
+
+      transition: all ease-in 200ms;
+
+      background: var(--gradient-primary);
+      background-size: calc(150%) calc(100%);
+      background-position: 0 0;
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      @include animate-background-gradient-on-hover($increase-x-by: 1.5, $duration: 1s);
+
+      &:hover {
+        scale: 1.01;
+      }
+    }
+  }
+
+  :global(ul > li > time) {
+    display: block;
+    font-size: 1rem;
+    color: var(--subtext1);
+    margin-bottom: 0.5rem;
+  }
+</style>
