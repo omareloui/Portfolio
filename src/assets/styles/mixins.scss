@@ -147,7 +147,9 @@ $screens: (
   $animate-on-hover: false,
   $opacity: 0.4) {
   @if $add-position-relative {
-    position: relative;
+    & {
+      position: relative;
+    }
   }
 
   &::before {
