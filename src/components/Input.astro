@@ -1,0 +1,51 @@
+---
+export interface Props {
+  id?: string;
+  name?: string;
+  type?: string;
+  label?: string;
+  placeholder?: string;
+}
+
+const { id, type, label, placeholder, name } = Astro.props;
+
+const _type = type || "text";
+
+const rand = Math.round(Math.random() * 100);
+const _id = id || `x-${rand}`;
+---
+
+<div class="input-field">
+  {label && <label for={_id}>{label}</label>}
+  <!-- @ts-expect-error the type  -->
+  <input id={_id} name={name} type={_type} placeholder={placeholder} />
+</div>
+
+<style>
+  .input-field {
+    label {
+      display: block;
+      text-transform: capitalize;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      font-size: 1rem;
+      background: var(--overlay1);
+      padding: 8px 10px;
+      border-radius: 5px;
+      border: 2px solid var(--surface2);
+      outline: none;
+      margin-top: 4px;
+      transition: border-color ease-in-out 200ms;
+
+      &:hover,
+      &:focus,
+      &:focus-within,
+      &:focus-visible {
+        border-color: var(--purple);
+      }
+    }
+  }
+</style>
