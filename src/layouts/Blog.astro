@@ -87,11 +87,11 @@ const { frontmatter } = Astro.props;
 <style lang="scss">
   @use "../assets/styles/mixins.scss" as *;
   .content {
-    --min-height-base: 96vh;
+    --min-height-base: 96dvh;
     min-height: calc(var(--min-height-base) - var(--nav-height) - var(--footer-height) + 5px);
 
     @include tablet-down {
-      --min-height-base: 98vh;
+      --min-height-base: 98dvh;
     }
   }
 
