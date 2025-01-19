@@ -16,7 +16,7 @@ const allPosts = (Object.values(import.meta.glob("./blog/**/*.md", { eager: true
 });
 ---
 
-<MainLayout>
+<MainLayout isBlog={true}>
   <Container tag="main">
     <h1>Blog Posts</h1>
 
