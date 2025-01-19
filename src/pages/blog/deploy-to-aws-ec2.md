@@ -83,7 +83,7 @@ sudo apt install caddy
 
 Configure Caddy by editing `/etc/caddy/Caddyfile`
 
-```kdl title="/etc/caddy/Caddyfile" "3000"
+```nginx title="/etc/caddy/Caddyfile" "3000"
 :80 {
     reverse_proxy localhost:3000
 }
