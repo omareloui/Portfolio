@@ -47,9 +47,7 @@ const filterOptions = ["backEnd", "frontEnd", "tools", "other" /*, "all" */] as 
     backEnd: (item: HTMLElement) => !!getTitleEl(item).dataset.stack?.match(/^(Back-End|Front and Back Ends)$/),
     other: (item: HTMLElement) => {
       const el = getTitleEl(item);
-
       return !!el.dataset.stack?.match(/^(DevOps|Other)$/) && !el.dataset.category?.match("Tool");
-      );
     },
   };
 

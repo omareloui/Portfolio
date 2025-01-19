@@ -31,8 +31,7 @@ const {
   import { relativeTranslate } from "@utils";
 
   // eslint-disable-next-line
-  const shadowElments: NodeListOf<HTMLElement> =
-    document.querySelectorAll(".shadow-text");
+  const shadowElments: NodeListOf<HTMLElement> = document.querySelectorAll(".shadow-text");
 
   shadowElments.forEach(element => {
     let parent: Element | null;
@@ -56,7 +55,7 @@ const {
           initialTranslate,
         },
       ],
-      parent
+      parent,
     );
 
     setParentStyles();
@@ -81,7 +80,6 @@ const {
   @use "../assets/styles/mixins.scss" as *;
 
   .shadow-text {
-    z-idnex: -1;
     position: absolute;
 
     color: var(--shadow-text);
