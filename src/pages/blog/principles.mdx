@@ -1,0 +1,247 @@
+---
+layout: ../../layouts/Blog.astro
+title: "Programming Principles"
+pubDate: 2025-01-19
+description: ""
+author:
+  name: "Omar Eloui"
+  email: "contact@omareloui.com"
+tags: ["oop", "solid"]
+---
+
+import Details from "@components/Details.astro";
+
+## OOP Principles
+
+### Encapsulation
+
+<Details>
+  
+Bundling data and methods that operate on that data within a single unit
+(class), hiding internal details and providing an interface.
+
+</Details>
+
+### Inheritance
+
+<Details>
+
+A mechanism where classes can inherit properties and methods from other
+classes, enabling code reuse and establishing relationships.
+
+</Details>
+
+### Polymorphism
+
+<Details>
+
+The ability to present the same interface for multiple data types/classes.
+Includes method overriding and overloading.
+
+</Details>
+
+### Abstraction
+
+<Details>
+
+Hiding complex implementation details and showing only necessary features of an
+object. Often achieved through abstract classes and interfaces.
+
+</Details>
+
+
+---
+
+## SOLID Principles
+
+### Single Responsibility Principle (SRP)
+
+A class should have only one reason to change, meaning it should have only one
+job or responsibility.
+
+<Details>
+
+```go
+// Bad
+type User struct {
+   Name string
+}
+
+func (u *User) SaveToDB() error {
+   // database logic
+   return nil
+}
+
+func (u *User) GenerateReport() string {
+   // report logic
+   return ""
+}
+
+// Good
+type User struct {
+   Name string
+}
+
+type UserRepository struct{}
+
+func (r *UserRepository) Save(user *User) error {
+   // database logic
+   return nil
+}
+
+type ReportGenerator struct{}
+
+func (g *ReportGenerator) GenerateUserReport(user *User) string {
+   // report logic
+   return ""
+}
+```
+
+</Details>
+
+### Open/Closed Principle (OCP)
+
+Software entities should be open for extension but closed for modification. You
+can add new functionality without changing existing code.
+
+<Details>
+
+```go
+type Shape interface {
+    Area() float64
+}
+
+type Rectangle struct {
+    width, height float64
+}
+
+func (r Rectangle) Area() float64 {
+    return r.width * r.height
+}
+
+type Circle struct {
+    radius float64
+}
+
+func (c Circle) Area() float64 {
+    return 3.14 * c.radius * c.radius
+}
+```
+</Details>
+
+### Liskov Substitution Principle (LSP)
+
+Objects of a superclass should be replaceable with
+objects of its subclasses without breaking the application. The subclass
+must honor the contracts established by the superclass.
+
+<Details>
+
+```go
+// Bad
+type Bird interface {
+    Fly()
+}
+
+type Penguin struct{}
+
+func (p Penguin) Fly() {
+    panic("Cannot fly")
+}
+
+// Good
+type Bird interface {
+    Move()
+}
+
+type FlyingBird interface {
+    Bird
+    Fly()
+}
+
+type SwimmingBird interface {
+    Bird
+    Swim()
+}
+```
+
+</Details>
+
+### Interface Segregation Principle (ISP)
+
+Clients shouldn't depend on interfaces they don't use. Large interfaces should
+be split into smaller, specific ones.
+
+<Details>
+
+```go
+// Bad
+type Worker interface {
+    Work()
+    Eat()
+    Sleep()
+}
+
+// Good
+type Workable interface {
+    Work()
+}
+
+type Eatable interface {
+    Eat()
+}
+
+type Human struct{}
+
+func (h Human) Work() {
+    // Working implementation
+}
+
+func (h Human) Eat() {
+    // Eating implementation
+}
+```
+
+</Details>
+
+### Dependency Inversion Principle (DIP)
+
+High-level modules shouldn't depend on low-level modules. Both should depend on
+abstractions. Abstractions shouldn't depend on details; details should depend
+on abstractions.
+
+<Details>
+
+```go
+// Bad
+type EmailSender struct{}
+
+func (e EmailSender) Send(message string) error {
+    return nil
+}
+
+type NotificationService struct {
+    sender EmailSender
+}
+
+// Good
+type MessageSender interface {
+    Send(message string) error
+}
+
+type EmailSender struct{}
+
+func (e EmailSender) Send(message string) error {
+    return nil
+}
+
+type NotificationService struct {
+    sender MessageSender
+}
+
+func NewNotificationService(sender MessageSender) *NotificationService {
+    return &NotificationService{sender: sender}
+}
+```
+
+</Details>
