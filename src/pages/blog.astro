@@ -105,11 +105,11 @@ const allPosts = (Object.values(import.meta.glob("./blog/**/*.md", { eager: true
   @use "../assets/styles/mixins.scss" as *;
 
   :global(main) {
-    --min-height-base: 96vh;
+    --min-height-base: 96dvh;
     min-height: calc(var(--min-height-base) - var(--nav-height) - var(--footer-height) - 1px);
 
     @include tablet-down {
-      --min-height-base: 98vh;
+      --min-height-base: 98dvh;
     }
   }
 
