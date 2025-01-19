@@ -18,6 +18,7 @@ export interface Props {
     author: { name: string; email: string };
     shadowTitle: string;
     pubDate: string;
+    tags: string[];
   };
 }
 
@@ -65,16 +66,19 @@ const { frontmatter } = Astro.props;
       <!-- TODO: make work better for a blog -->
       <Header notHomepage={true} isBlog={true} />
 
-      <Container>
-        <p>
-          Published on: <DateTime date={frontmatter.pubDate} />
-        </p>
-        <address>Written by: <a href={`mailto:${frontmatter.author.email}`}>{frontmatter.author.name}</a></address>
-      </Container>
+      <div class="content">
+        <Container>
+          <p>
+            Published on: <DateTime date={frontmatter.pubDate} />
+          </p>
+          <address>Written by: <a href={`mailto:${frontmatter.author.email}`}>{frontmatter.author.name}</a></address>
+        </Container>
 
-      <Container tag="main">
-        <slot />
-      </Container>
+        <Container tag="main">
+          <h1>{frontmatter.title}</h1>
+          <slot />
+        </Container>
+      </div>
 
       <Footer />
       <ScrollTop />
@@ -83,7 +87,7 @@ const { frontmatter } = Astro.props;
 </>
 
 <style>
-  :global(main) {
-    min-height: calc(96vh - var(--nav-height) - var(--footer-height));
+  .content {
+    min-height: calc(98vh - var(--nav-height) - var(--footer-height));
   }
 </style>

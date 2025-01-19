@@ -1,22 +1,38 @@
 ---
 import MainLayout from "@layouts/Main.astro";
+import { type Props as BlogProps } from "@layouts/Blog.astro";
 
 import "@assets/styles/blog.scss";
 
 import Container from "@components/Container.astro";
 import DateTime from "@components/DateTime.astro";
+import Input from "@components/Input.astro";
 import type { MarkdownInstance } from "astro";
 
-const allPosts: MarkdownInstance<Record<string, unknown>>[] = Object.values(
-  import.meta.glob("./blog/**/*.md", { eager: true }),
-);
+type PostPage = MarkdownInstance<BlogProps["frontmatter"]>;
+
+const allPosts = (Object.values(import.meta.glob("./blog/**/*.md", { eager: true })) as PostPage[]).sort((a, b) => {
+  return +new Date(b.frontmatter.pubDate) - +new Date(a.frontmatter.pubDate);
+});
 ---
 
-<!-- think of a layout? -->
 <MainLayout>
   <Container tag="main">
     <h1>Blog Posts</h1>
-    <ul>
+
+    <Input id="query" placeholder="Search posts..." type="search" name="q" />
+
+    <ul
+      id="posts"
+      data-posts={JSON.stringify(
+        allPosts.map(x => ({
+          title: x.frontmatter.title,
+          url: x.url,
+          pubDate: x.frontmatter.pubDate,
+          tags: x.frontmatter.tags,
+        })),
+      )}
+    >
       {
         allPosts.map(post => (
           <li>
@@ -27,7 +43,64 @@ const allPosts: MarkdownInstance<Record<string, unknown>>[] = Object.values(
       }
     </ul>
   </Container>
+
+  <template id="post">
+    <li>
+      <DateTime />
+      <a></a>
+    </li>
+  </template>
 </MainLayout>
+
+<script>
+  const postsEl = document.getElementById("posts")!;
+  const posts: { title: string; url: string; pubDate: string; tags: string[] }[] = JSON.parse(postsEl.dataset.posts!);
+
+  const queryInput = document.getElementById("query")!;
+
+  const postTemplate = document.getElementById("post")! as HTMLTemplateElement;
+
+  function replacePostsContent(posts: { title: string; url: string; pubDate: string; tags: string[] }[]) {
+    postsEl.innerHTML = "";
+    posts.forEach(addPost);
+  }
+
+  function initSearch() {
+    queryInput.focus();
+    queryInput.addEventListener("input", e => {
+      let query = (e.target as HTMLInputElement).value;
+      query = query.trim().toLowerCase();
+      if (!query) return replacePostsContent(posts);
+
+      const found = posts.filter(
+        p =>
+          p.title.toLowerCase().search(query.toLowerCase()) > -1 ||
+          p.tags.find(t => t.toLowerCase().search(query.toLowerCase()) > -1),
+      );
+      replacePostsContent(found);
+    });
+  }
+
+  function addPost(post: { title: string; url: string; pubDate: string; tags: string[] }) {
+    const postEl = postTemplate.content.cloneNode(true) as HTMLTemplateElement;
+
+    const anchor = postEl.querySelector("a") as HTMLAnchorElement;
+    const time = postEl.querySelector("time") as HTMLTimeElement;
+
+    anchor.href = post.url;
+    anchor.textContent = post.title;
+    time.dateTime = post.pubDate.slice(0, 10);
+    time.textContent = new Date(post.pubDate).toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+
+    postsEl.appendChild(postEl);
+  }
+
+  initSearch();
+</script>
 
 <style>
   @use "../assets/styles/mixins.scss" as *;
