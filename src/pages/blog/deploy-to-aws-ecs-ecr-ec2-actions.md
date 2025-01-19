@@ -1,0 +1,14 @@
+---
+layout: ../../layouts/Blog.astro
+title: "Deploy Docker Image to AWS' ECS, ECR, and EC2 using GitHub Actions"
+pubDate: 2025-01-19
+description: "A step-by-step walkthrough of deploying containerized applications to AWS infrastructure using GitHub Actions. This guide demonstrates the complete workflow of pushing Docker images to Amazon's Elastic Container Registry (ECR), orchestrating containers with Elastic Container Service (ECS), and automating the deployment process with CI/CD."
+author:
+  name: "Omar Eloui"
+  email: "contact@omareloui.com"
+tags: ["aws", "ecs", "ecr", "ec2", "deploying", "ci/cd", "GitHub Actions", "GitHub"]
+---
+
+You'll need to configure AWS first. Check [here](./configure-aws-cli).
+
+## Setup Docker with Elastic Container Register (ECR)

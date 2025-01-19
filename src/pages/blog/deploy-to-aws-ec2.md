@@ -1,15 +1,13 @@
 ---
 layout: ../../layouts/Blog.astro
-title: "Deploy Docker Image to AWS' ECS, ECR, and EC2 using GitHub Actions"
+title: "Deploy Project to AWS' EC2 or Any VPS"
 pubDate: 2025-01-18
-description: "A step-by-step walkthrough of deploying containerized applications to AWS infrastructure using GitHub Actions. This guide demonstrates the complete workflow of pushing Docker images to Amazon's Elastic Container Registry (ECR), orchestrating containers with Elastic Container Service (ECS), and automating the deployment process with CI/CD."
+description: ""
 author:
   name: "Omar Eloui"
   email: "contact@omareloui.com"
-tags: ["aws", "ecs", "ecr", "ec2", "deploying", "ci/cd"]
+tags: ["aws", "ec2", "deploying", "vps"]
 ---
-
-# Deploy Docker Image to AWS' ECS, ECR, and EC2 using GitHub Actions
 
 ## Prepare Code and Env Variables
 
