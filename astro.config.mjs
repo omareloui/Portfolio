@@ -14,8 +14,7 @@ export default defineConfig({
       },
     }),
     expressiveCode({
-      themes: ["github-dark", "github-light"],
+      themes: ["github-dark"],
     }),
   ],
 });
-

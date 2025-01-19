@@ -13,12 +13,12 @@ ol {
 }
 
 :not(pre)>code {
-  background: #1f2428;
-  color: #9ECBFF;
+  background: var(--inline-code-bg);
+  color: hsl(var(--cyan-hsl) / 0.8);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-  font-size: 1em;
+  font-size: 0.9em;
   display: inline-block;
-  padding-inline: 0.15em;
+  padding: 0.08em 0.15em;
   border-radius: 0.2em;
   margin-inline: 0.025rem;
 }

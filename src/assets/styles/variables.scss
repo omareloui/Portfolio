@@ -30,6 +30,7 @@ $colors-props: (
   --purple: #9656ff;
   --magenta: #ff31d2;
 
+  --cyan-hsl: 191deg 100% 65%;
   --purple-hsl: 263deg 100% 67%;
   --magenta-hsl: 313deg 100% 60%;
 
@@ -90,6 +91,8 @@ $colors-props: (
     hsl(0deg 0% 97% / 0.2));
 
   @include add-color(highlight, #1b1b1b38, #f8f8f838);
+
+  @include add-color(inline-code-bg, #1f2428, #1f2428);
 
   @include add-color(text, var(--text-main-dark), var(--text-main-light));
   @include add-color(subtext0, #595959, #cccccc);
