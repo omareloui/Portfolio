@@ -1,0 +1,13 @@
+---
+export interface Props {
+  summary?: string;
+}
+
+const { summary = "Show more" } = Astro.props;
+---
+
+<details>
+  {summary && <summary>{summary}</summary>}
+
+  <slot />
+</details>
