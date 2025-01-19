@@ -22,3 +22,28 @@ ol {
   border-radius: 0.2em;
   margin-inline: 0.025rem;
 }
+
+details {
+  background: var(--surface1);
+  margin-inline-start: 1rem;
+  margin-block-end: 2.5rem;
+  padding: 10px 20px;
+  border-radius: 15px;
+  border-left: 15px solid var(--purple);
+}
+
+summary {
+  color: var(--subtext1);
+  cursor: pointer;
+  font-size: 0.8em;
+  height: 20px;
+}
+
+hr {
+  border: none;
+  height: 3px;
+  background: var(--surface2);
+  border-radius: 99px;
+  margin-block: 3rem;
+  outline: none;
+}
