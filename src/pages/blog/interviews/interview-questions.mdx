@@ -9,13 +9,13 @@ author:
 tags: ["interview", "questions", "full-stack", "front-end", "back-end", "senior", "software engineer"]
 ---
 
+import Details from "@components/Details.astro";
+
 ## Technical Backend Questions
 
 ### Explain how you would implement idempotency in a payment API to prevent duplicate transactions
 
-<details>
-  <summary>Suggested solution</summary>
-  
+<Details>  
  To implement idempotency in a payment API:
 
 1.  Generate Unique Key: Assign a unique identifier (e.g., UUID) to each
@@ -23,13 +23,11 @@ tags: ["interview", "questions", "full-stack", "front-end", "back-end", "senior"
 2.  Store Key & Result: Store the key and the payment result in a persistent
     storage (e.g., database, cache).
 3.  Handle Subsequent Requests: If a request with the same key arrives: - Retrieve the stored result. - Return the stored result to the client, avoiding duplicate processing.
-</details>
+</Details>
 
 ### How would you design a payment processing system that handles high concurrency and ensures transaction consistency
 
-<details>
-  <summary>Suggested solution</summary>
-
+<Details>
 **1. Core Principles**
 
 - **Scalability:** The system must handle a massive volume of transactions
@@ -103,14 +101,11 @@ tags: ["interview", "questions", "full-stack", "front-end", "back-end", "senior"
   protect sensitive data and prevent fraud.
 - **Continuous improvement:** Regularly monitor, analyze, and optimize the
   system based on performance data and evolving requirements.
-
-</details>
+</Details>
 
 ### How would you handle distributed transactions across multiple microservices
 
-<details>
-  <summary>Suggested solution</summary>
-
+<Details>
 1.  Two-Phase Commit (2PC)
 
 **Concept:** A classic approach where a coordinator coordinates the transaction
@@ -143,14 +138,11 @@ These events are stored in an append-only log.
 messages to a queue within a transaction.   Consumers acknowledge messages
 only after successful completion of their local transactions. If a consumer
 fails, the message is typically redelivered.
-
-</details>
+</Details>
 
 ### What strategies would you use to optimize database performance for large-scale financial transactions
 
-<details>
-  <summary>Suggested solution</summary>
-
+<Details>
 **1. Data Modeling and Schema Design:**
 
 - **Normalization:** Properly normalize your database to reduce data
@@ -223,14 +215,11 @@ fails, the message is typically redelivered.
   case of failures.
 - **Database Upgrades:** Keep the database software up-to-date with the
   latest patches and security updates.
-
-</details>
+</Details>
 
 ### How do you ensure secure communication between microservices
 
-<details>
-  <summary>Suggested solution</summary>
-
+<Details>
 **1. Mutual TLS (mTLS)**
 
 - **Concept:** Both the client (calling service) and the server (receiving
@@ -271,16 +260,13 @@ fails, the message is typically redelivered.
 - **Benefits:** Simple to implement, suitable for basic authentication needs.
 - **Limitations:** Less secure than other methods, can be more difficult to
   revoke.
-
-</details>
+</Details>
 
 ## Frontend Questions
 
 ### How would you optimize the performance of a React application that displays real-time transaction data
 
-<details>
-  <summary>Suggested solution</summary>
-
+<Details>
 #### 1. Data Fetching and Management
 
 - **Data Fetching:**
@@ -349,14 +335,11 @@ fails, the message is typically redelivered.
   and make adjustments to improve the user experience.
 - **Stay updated:** Keep up-to-date with the latest React and JavaScript best
   practices and performance optimization techniques.
-
-</details>
+</Details>
 
 ### Explain your approach to state management in large-scale applications. When would you choose Redux over Context API
 
-<details>
-  <summary>Suggested solution</summary>
-
+<Details>
 **State Management Approach for Large-Scale Applications**
 
 In large-scale applications, effective state management is crucial for
@@ -411,14 +394,11 @@ maintainability, scalability, and performance. Here's a general approach:
 - **Advanced Features:** If you need features like time travel debugging,
   state persistence, or the ability to easily integrate with other tools and
   libraries.
-
-</details>
+</Details>
 
 ### How do you handle form validation and error handling in financial applications
 
-<details>
-  <summary>Suggested solution</summary>
-
+<Details>
 **1. Data Validation**
 
 - **Real-time Validation:**
@@ -496,14 +476,11 @@ const handleSubmit = async values => {
   }
 };
 ```
-
-</details>
+</Details>
 
 ### What strategies do you use for loading and caching large datasets on the client side
 
-<details>
-  <summary>Suggested solution</summary>
-
+<Details>
 **1. Data Fetching Optimization**
 
 - **Server-Side Rendering (SSR) or Static Site Generation (SSG):**
@@ -573,14 +550,11 @@ const handleSubmit = async values => {
 By implementing these strategies, you can effectively load and cache large
 datasets on the client-side, resulting in a faster, more responsive, and more
 efficient user experience.
-
-</details>
+</Details>
 
 ### How do you ensure accessibility in financial web applications
 
-<details>
-  <summary>Suggested solution</summary>
-
+<Details>
 **1. Adhere to Accessibility Standards**
 
 - **WCAG (Web Content Accessibility Guidelines):** These are internationally
@@ -646,16 +620,13 @@ efficient user experience.
 
 By following these guidelines, you can create financial web applications that
 are accessible to all users, regardless of their abilities.
-
-</details>
+</Details>
 
 ## System Design
 
 ### Design a real-time payment notification system that can handle millions of transactions
 
-<details>
-  <summary>Suggested solution</summary>
-
+<Details>
 **1. Real-time Data Streaming**
 
 - **Message Queues:** Utilize a high-throughput, low-latency message queue
@@ -733,14 +704,11 @@ are accessible to all users, regardless of their abilities.
   ensure reliable delivery.
 - **Testing:** Thoroughly test the system under various load conditions to
   ensure it can handle high volumes of transactions.
-
-</details>
+</Details>
 
 ### How would you architect a multi-tenant payment gateway
 
-<details>
-  <summary>Suggested solution</summary>
-
+<Details>
 **1. Core Principles**
 
 - **Isolation:** Ensure strong isolation between tenants' data and
@@ -835,14 +803,11 @@ are accessible to all users, regardless of their abilities.
 By carefully considering these principles and implementing a well-designed
 architecture, you can build a robust, scalable, and secure multi-tenant
 payment gateway that meets the needs of your diverse customer base.
-
-</details>
+</Details>
 
 ### Design a system for merchant onboarding and KYC verification
 
-<details>
-  <summary>Suggested solution</summary>
-
+<Details>
 **1. Onboarding Flow**
 
 - **Registration:**
@@ -896,16 +861,13 @@ payment gateway that meets the needs of your diverse customer base.
 - **Regular Reviews:** Regularly review and update KYC procedures and risk assessment models to adapt to evolving threats and regulatory changes.
 
 By implementing a robust and well-designed system, businesses can streamline the merchant onboarding process, reduce risk, and improve overall customer satisfaction.
-
-</details>
+</Details>
 
 ## Security (Critical for Fintech)
 
 ### How do you handle sensitive payment information securely
 
-<details>
-  <summary>Suggested solution</summary>
-
+<Details>
 **1. Encryption:**
 
 - **Data in Transit:** Utilize Transport Layer Security (TLS) or Secure
@@ -974,8 +936,7 @@ By implementing a robust and well-designed system, businesses can streamline the
 By following these practices, you can significantly enhance the security of
 your payment processing systems and protect your customers' sensitive
 information.
-
-</details>
+</Details>
 
 ### What security measures would you implement to prevent common web vulnerabilities
 
@@ -997,9 +958,7 @@ information.
 
 ### How do you handle technical debt while maintaining feature delivery
 
-<details>
-  <summary>Suggested solution</summary>
-
+<Details>
 **1. Acknowledge and Track Technical Debt**
 
 - **Identify and Categorize:** Regularly identify and categorize technical
@@ -1051,8 +1010,7 @@ information.
   for managing technical debt.
 - **Avoid "Technical Debt Bankruptcy":** Don't let technical debt accumulate
   to the point where it significantly hinders future development.
-
-</details>
+</Details>
 
 ---
 

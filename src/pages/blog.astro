@@ -11,7 +11,7 @@ import type { MarkdownInstance } from "astro";
 
 type PostPage = MarkdownInstance<BlogProps["frontmatter"]>;
 
-const allPosts = (Object.values(import.meta.glob("./blog/**/*.md", { eager: true })) as PostPage[]).sort((a, b) => {
+const allPosts = (Object.values(import.meta.glob("./blog/**/*.mdx", { eager: true })) as PostPage[]).sort((a, b) => {
   return +new Date(b.frontmatter.pubDate) - +new Date(a.frontmatter.pubDate);
 });
 ---

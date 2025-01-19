@@ -1,3 +1,4 @@
+import mdx from "@astrojs/mdx";
 import partytown from "@astrojs/partytown";
 import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
@@ -16,5 +17,7 @@ export default defineConfig({
     expressiveCode({
       themes: ["github-dark"],
     }),
+    mdx(),
   ],
 });
+
