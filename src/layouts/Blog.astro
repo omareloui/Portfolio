@@ -86,41 +86,45 @@ const { frontmatter } = Astro.props;
 
 <style lang="scss">
   @use "../assets/styles/mixins.scss" as *;
-
   .content {
-    min-height: calc(98vh - var(--nav-height) - var(--footer-height));
+    --min-height-base: 96vh;
+    min-height: calc(var(--min-height-base) - var(--nav-height) - var(--footer-height) + 5px);
 
-    :global(.metadata) {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      gap: 20px;
-      font-size: 1rem;
-      margin-top: 20px;
-      color: var(--subtext1);
+    @include tablet-down {
+      --min-height-base: 98vh;
+    }
+  }
 
-      address {
-        font-size: 0.8em;
-        font-style: unset;
-        position: relative;
+  :global(.metadata) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    color: var(--subtext1);
 
-        &:after {
-          content: "";
-          position: absolute;
-          right: -16px;
-          top: 50%;
-          translate: -50% -50%;
-          background-color: var(--purple);
-          border-radius: 100%;
-          display: block;
-          height: 4px;
-          width: 4px;
-        }
+    address {
+      font-size: 0.8em;
+      font-style: unset;
+      position: relative;
+
+      &:after {
+        content: "";
+        position: absolute;
+        right: -15px;
+        top: 50%;
+        translate: -50% -50%;
+        background-color: var(--subtext1);
+        border-radius: 100%;
+        display: block;
+        height: 4px;
+        width: 4px;
       }
+    }
 
-      :global(time) {
-        font-size: 0.8em;
-      }
+    :global(time) {
+      font-size: 0.8em;
     }
   }
 

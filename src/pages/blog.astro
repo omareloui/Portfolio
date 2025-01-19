@@ -21,7 +21,6 @@ const allPosts = (Object.values(import.meta.glob("./blog/**/*.md", { eager: true
     <h1>Blog Posts</h1>
 
     <Input id="query" placeholder="Search posts..." type="search" name="q" />
-
     <ul
       id="posts"
       data-posts={JSON.stringify(
@@ -102,11 +101,16 @@ const allPosts = (Object.values(import.meta.glob("./blog/**/*.md", { eager: true
   initSearch();
 </script>
 
-<style>
+<style lang="scss">
   @use "../assets/styles/mixins.scss" as *;
 
   :global(main) {
-    min-height: calc(96vh - var(--nav-height) - var(--footer-height));
+    --min-height-base: 96vh;
+    min-height: calc(var(--min-height-base) - var(--nav-height) - var(--footer-height) - 1px);
+
+    @include tablet-down {
+      --min-height-base: 98vh;
+    }
   }
 
   ul {
@@ -132,8 +136,6 @@ const allPosts = (Object.values(import.meta.glob("./blog/**/*.md", { eager: true
 
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-
-      @include animate-background-gradient-on-hover($increase-x-by: 1.5, $duration: 1s);
 
       &:hover {
         scale: 1.01;
