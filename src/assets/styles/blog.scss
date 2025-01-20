@@ -24,12 +24,14 @@ ol {
 }
 
 details {
+  --details-border-radius: 5px;
+
   background: var(--surface1);
   margin-inline-start: 1rem;
   margin-block-end: 2.5rem;
   padding: 10px 20px;
-  border-radius: 15px;
-  border-left: 15px solid var(--purple);
+  border-radius: var(--details-border-radius);
+  border-left: var(--details-border-radius) solid var(--purple);
 }
 
 summary {
