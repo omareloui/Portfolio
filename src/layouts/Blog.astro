@@ -15,6 +15,7 @@ import DateTime from "@components/DateTime.astro";
 export interface Props {
   frontmatter: {
     title: string;
+    description: string;
     author: { name: string; email: string };
     shadowTitle: string;
     pubDate: string;
@@ -40,7 +41,7 @@ const { frontmatter } = Astro.props;
         gtag("js", new Date());
         gtag("config", "G-MD040L0DB2");
       </script>
-      <SEOTag />
+      <SEOTag title={`${frontmatter.title} | Posts | Omar Eloui`} description={frontmatter.description} />
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width" />
       <meta name="generator" content={Astro.generator} />
@@ -63,8 +64,7 @@ const { frontmatter } = Astro.props;
       </script>
     </head>
     <body>
-      <!-- TODO: make work better for a blog -->
-      <Header notHomepage={true} isBlog={true} />
+      <Header notHomepage={true} postsPage={true} />
 
       <div class="content">
         <Container class="metadata">

@@ -3,28 +3,24 @@ import { SEO } from "astro-seo";
 
 export interface Props {
   title: string;
-  shadowTitle: string;
-  isOdd?: boolean;
-  class?: string;
-  id: string;
+  description: string;
+  ogImage?: string;
 }
 
-const headerTitle = "Omar Eloui | Full-Stack Developer";
-const description = "Omar Eloui is a full stack developer.";
-const ogImage = "/images/heading.png";
+let { title, description, ogImage = "/images/heading.png" } = Astro.props;
 ---
 
 <SEO
-  title={headerTitle}
+  title={title}
   description={description}
   openGraph={{
     basic: {
-      title: headerTitle,
-      url: "https://omareloui.com",
+      title: title,
+      url: `https://omareloui.com${Astro.url.pathname}`,
       type: "website",
       image: ogImage,
     },
-    optional: { siteName: "OmarEloui", description },
+    optional: { siteName: "Omar Eloui Portfolio", description },
     image: {
       url: ogImage,
       alt: "Heading image of the site.",
@@ -38,7 +34,7 @@ const ogImage = "/images/heading.png";
     card: "summary_large_image",
     image: ogImage,
     imageAlt: "Heading image of the site.",
-    title: headerTitle,
+    title: title,
     description,
   }}
   extend={{
