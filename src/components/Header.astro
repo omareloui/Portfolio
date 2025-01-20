@@ -8,10 +8,10 @@ import ShadowSquare from "./ShadowSquare.astro";
 
 export interface Props {
   notHomepage?: boolean;
-  isBlog?: boolean;
+  postsPage?: boolean;
 }
 
-const { notHomepage, isBlog } = Astro.props;
+const { notHomepage, postsPage } = Astro.props;
 
 function getLink(sectionId: string) {
   return notHomepage ? `/#${sectionId}` : `#${sectionId}`;
@@ -50,15 +50,15 @@ const portfolioLinks = [
   },
 ];
 
-const blogLinks = [
+const postsPagesLinks = [
   {
-    link: "/blog",
-    text: "Blog",
+    link: "/posts",
+    text: "Posts",
     mobileOnly: false,
   },
 ];
 
-const navLinks = !isBlog ? portfolioLinks : blogLinks;
+const navLinks = postsPage ? postsPagesLinks : portfolioLinks;
 
 // const languages = ["en", "es", "ar"];
 ---
