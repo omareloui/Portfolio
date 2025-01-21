@@ -68,7 +68,7 @@ if (process.env.NODE_ENV !== "development") {
   const postsEl = document.getElementById("posts")!;
   const posts: { title: string; url: string; pubDate: string; tags: string[] }[] = JSON.parse(postsEl.dataset.posts!);
 
-  const queryInput = document.getElementById("query")!;
+  const queryInput = document.getElementById("query") as HTMLInputElement;
 
   const postTemplate = document.getElementById("post")! as HTMLTemplateElement;
 
@@ -82,6 +82,7 @@ if (process.env.NODE_ENV !== "development") {
     queryInput.addEventListener("input", e => {
       let query = (e.target as HTMLInputElement).value;
       query = query.trim().toLowerCase();
+      updateURLState();
       if (!query) return replacePostsContent(posts);
 
       const found = posts.filter(
@@ -91,6 +92,22 @@ if (process.env.NODE_ENV !== "development") {
       );
       replacePostsContent(found);
     });
+    setFromLocation();
+  }
+
+  function setFromLocation() {
+    const url = new URL(location.href);
+    const query = url.searchParams.get("q") || url.searchParams.get("query") || url.searchParams.get("search");
+    if (!query) return;
+    queryInput.value = query || "";
+    queryInput.dispatchEvent(new Event("input"));
+  }
+
+  function updateURLState() {
+    const url = new URL(location.href);
+    const q = queryInput.value.trim();
+    q ? url.searchParams.set("q", q) : url.searchParams.delete("q");
+    window.history.replaceState({}, "", url);
   }
 
   function addPost(post: { title: string; url: string; pubDate: string; tags: string[]; wip?: boolean }) {
