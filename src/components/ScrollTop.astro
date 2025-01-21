@@ -40,21 +40,21 @@ import Container from "@components/Container.astro";
 </script>
 
 <style lang="scss">
-  @use "../assets/styles/mixins.scss" as *;
+  @use "@assets/styles/mixins.scss" as *;
 
   :global(.scroll-top) {
     --size: 60px;
 
     position: fixed;
     bottom: var(--footer-height);
-    width: 100%;
     left: 0;
     right: 0;
-    height: var(--size);
+    height: (var(--size));
+    width: 100%;
     pointer-events: none;
     user-select: none;
 
-    :global(button) {
+    :global(> button[type="button"]) {
       background: var(--blur-surface0);
       backdrop-filter: blur(4px);
       @include size(var(--size));
@@ -68,11 +68,6 @@ import Container from "@components/Container.astro";
       right: 30px;
       top: 0;
 
-      &:hover {
-        svg {
-          animation: scroll-up 1000ms linear infinite;
-        }
-      }
       svg {
         @include size(100%);
       }
