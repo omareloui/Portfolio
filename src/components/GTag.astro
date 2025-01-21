@@ -1,0 +1,17 @@
+---
+const G_TAG_ID = "G-MD040L0DB2";
+const rawTagScript = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    // eslint-disable-next-line
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+
+  gtag("config", "${G_TAG_ID}");
+`;
+---
+
+<script is:inline type="text/partytown" src={`https://www.googletagmanager.com/gtag/js?id=${G_TAG_ID}`}></script>
+
+<script is:inline set:html={rawTagScript} type="text/partytown" />

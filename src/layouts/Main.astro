@@ -7,6 +7,7 @@ import "@assets/styles/helper-classes.scss";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import SEOTag from "@components/SEOTag.astro";
+import GTag from "@components/GTag.astro";
 
 import GalleryPreviewer from "@components/GalleryPreviewer.astro";
 import ScrollTop from "@components/ScrollTop.astro";
@@ -29,18 +30,7 @@ const description =
   <!-- @ts-ignore -->
   <html lang="en" theme="dark">
     <head>
-      <!-- Gtag -->
-      <script is:inline type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-MD040L0DB2"></script>
-      <script type="text/partytown" is:inline>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          // eslint-disable-next-line
-          dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-
-        gtag("config", "G-MD040L0DB2");
-      </script>
+      <GTag />
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width" />
       <meta name="generator" content={Astro.generator} />
@@ -69,6 +59,7 @@ const description =
       <Header notHomepage={notHomepage} postsPage={isPostsPage} />
       <slot />
       <Footer />
+      <ScrollTop />
       {includeScrollTop && <ScrollTop />}
     </body>
   </html>

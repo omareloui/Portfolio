@@ -10,6 +10,7 @@ import Footer from "@components/Footer.astro";
 import Container from "@components/Container.astro";
 import ScrollTop from "@components/ScrollTop.astro";
 import SEOTag from "@components/SEOTag.astro";
+import GTag from "@components/GTag.astro";
 import DateTime from "@components/DateTime.astro";
 
 export interface Props {
@@ -31,17 +32,7 @@ const { frontmatter } = Astro.props;
   <!-- @ts-ignore -->
   <html lang="en" theme="dark">
     <head>
-      <!-- Gtag -->
-      <script is:inline type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-MD040L0DB2"></script>
-      <script type="text/partytown" is:inline>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          // eslint-disable-next-line
-          dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-        gtag("config", "G-MD040L0DB2");
-      </script>
+      <GTag />
       <SEOTag title={`${frontmatter.title} | Posts | Omar Eloui`} description={frontmatter.description} />
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width" />
