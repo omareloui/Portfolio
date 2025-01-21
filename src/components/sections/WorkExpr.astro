@@ -29,6 +29,7 @@ const workExprs: WorkExpr[] = [
       "gRPC",
       "Protobuf",
       "NestJS",
+      "Node",
       "ExpressJs",
       "TypeScript",
       "JavaScript",
@@ -47,14 +48,28 @@ const workExprs: WorkExpr[] = [
       "GitLab",
     ],
   },
-  // {
-  //   from: "June 2024",
-  //   to: undefined,
-  //   title: "Full-Stack Software Engineer",
-  //   desc: "TODO",
-  //   company: "What's Cooking — USA",
-  //   tech: ["ExpressJs", "ReactJs", "TypeScript", "JavaScript", "Docker", "Prettier", "ESLint", "Git", "GitHub"],
-  // },
+  {
+    from: "June 2024",
+    to: undefined,
+    title: "Full-Stack Software Engineer",
+    link: "https://whatscookin.us",
+    desc: `designed and implemented application enhancements, optimized SQL queries to improve performance, and developed secure data models with ComposeDB and DID-based authentication. Using React, I enhanced front-end interactivity and migrated a Python data pipeline into a microservice architecture for seamless, real-time data integration.`,
+    company: "What's Cookin",
+    tech: [
+      "Microservices",
+      "ExpressJs",
+      "Node",
+      "Python",
+      "ReactJs",
+      "TypeScript",
+      "JavaScript",
+      "Docker",
+      "Prettier",
+      "ESLint",
+      "Git",
+      "GitHub",
+    ],
+  },
 ];
 ---
 
@@ -105,6 +120,7 @@ const workExprs: WorkExpr[] = [
       @include tablet-up {
         grid-template-columns: 128px 1fr;
         padding: 56px 40px;
+        gap: 1rem;
       }
 
       &__right {
