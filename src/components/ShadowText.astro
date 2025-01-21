@@ -19,7 +19,7 @@ const {
 ---
 
 <span
-  class:list={["shadow-text", { italic }]}
+  class:list={["shadow-text", "loading", { italic }]}
   aria-hidden={ariaHidden}
   data-parent={parentQuery}
   data-initial-translate={translate}
@@ -31,9 +31,9 @@ const {
   import { relativeTranslate } from "@utils";
 
   // eslint-disable-next-line
-  const shadowElments: NodeListOf<HTMLElement> = document.querySelectorAll(".shadow-text");
+  const shadowElements: NodeListOf<HTMLElement> = document.querySelectorAll(".shadow-text");
 
-  shadowElments.forEach(element => {
+  shadowElements.forEach(element => {
     let parent: Element | null;
     const parentQuery = element.dataset.parent;
     const initialTranslate = element.dataset.initialTranslate as string;
@@ -59,17 +59,21 @@ const {
     );
 
     setParentStyles();
+
     function setParentStyles() {
       if (!parent || !(parent instanceof HTMLElement)) return;
       parent.style.display = "relative";
     }
     element.style.translate = initialTranslate;
+    element.classList.remove("loading");
 
     parent.addEventListener("pointerenter", onEnterParent);
     parent.addEventListener("pointerleave", onLeaveParent);
+
     function onEnterParent() {
       element.classList.add("shadow-text--on-parent");
     }
+
     function onLeaveParent() {
       element.classList.remove("shadow-text--on-parent");
     }
@@ -97,6 +101,12 @@ const {
 
     &.italic {
       font-style: italic;
+    }
+
+    &.loading {
+      opacity: 0;
+      scale: 0;
+      translate: 0 -50%;
     }
   }
 </style>
