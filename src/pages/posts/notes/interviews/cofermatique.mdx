@@ -1,0 +1,137 @@
+---
+layout: ../../../../layouts/Post.astro
+title: "Cofermatique Technical Interview"
+pubDate: 2025-01-21
+description: "Coformatique technical interview quetsions"
+author:
+  name: "Omar Eloui"
+  email: "contact@omareloui.com"
+tags: ["interview", "questions", "back-end", "senior", "mid", "software engineer", "database design", "problem solving"]
+wip: true
+---
+
+{/*<!-- markdownlint-disable MD033 MD024 -->*/}
+
+import Details from "@components/Details.astro";
+
+## Technical Questions
+
+- Why MongoDB over SQL.
+
+- What is the interceptor in NestJS.
+
+## Problem Solving
+
+### Problem #1
+
+Given an array of integer numbers sorted in ascending order, find the starting
+and ending position of a given target value. If target is not found in the
+array, return `[-1, -1]`. Could you write an algorithm with `O(log n)` runtime
+complexity?
+
+> #### Example 1
+>
+> Input: nums = [5,7,7,8,8,8,10], target = 8
+>
+> Output: [3,4]
+>
+> #### Example 2
+>
+> Input: nums = [5,7,7,8,8,10], target = 6
+>
+> Output: [-1,-1]
+
+<Details summary="Show answer">
+
+Binary search the required int. Then move from there, move to the right of
+found element until you find a diff int. Then do the same for the left.
+
+</Details>
+
+### Problem #2
+
+Given an integer array of numbers sorted in ascending order, return an array of
+the squares of each number sorted in an ascending order. Could you write an
+algorithm with `O(n)` runtime complexity?
+
+> #### Example 1
+>
+> Input: nums = [-4,-1,0,3,10]
+>
+> Output: [0,1,9,16,100]
+>
+> Explanation: After squaring, the array becomes [16,1,0,9,100].
+>
+> After sorting, it becomes [0,1,9,16,100].
+>
+> #### Example 2
+>
+> Input: nums = [-7,-3,2,3,11]
+>
+> Output: [4,9,9,49,121]
+
+<Details>
+
+The negative numbers will always be first. Square the negative numbers and
+store the result in a new array until you reach a zero or a positive number.
+This will we'll have the squared numbers in reverse order.
+
+> Input: nums = [-4,-1,0,3,10]
+>
+> Squared Negative Numbers Array: [16,1]
+
+Then we'll do something like in *Merge Sort*. We'll have a pointer that starts
+form the end of the squared negative numbers array. With each positive number
+we'll check if the current value of the pointer is less than the square of the
+current number. If so, add it first and then add the square of the positive
+number.
+
+```plaintext
+one iteration after setting the negative numbers:
+
+Input: nums = [-5,-1,0,3,10]
+                     ^
+Squared Negative Numbers Array: [16,1]
+                                    ^
+Result: [0]
+
+---
+
+One iteration after:
+
+Input: nums = [-5,-1,0,3,10]
+                       ^
+Squared Negative Numbers Array: [16,1]
+                                    ^
+Result: [0,1,9]
+
+---
+
+One iteration after:
+
+Input: nums = [-5,-1,0,3,10]
+                         ^
+Squared Negative Numbers Array: [16,1]
+                                 ^
+Result: [0,1,9,10,16]
+```
+
+</Details>
+
+## Database and SQL
+
+// employ, and deptartment
+
+// TODO: search view and material? view
+
+// TODO: search partian by
+
+## Soft Skills and Priorities
+
+### Order This to Match Your Priorities
+
+- Technical Progress
+- Team spirit
+- Financial compensation
+- Flexibility and env.
+- Scale (career growth)
