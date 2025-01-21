@@ -1,3 +1,7 @@
+:root {
+  --blocks-borders: 3px;
+}
+
 main {
   padding-block-end: 1rem;
 }
@@ -24,12 +28,9 @@ ol {
 }
 
 details {
-  --details-border-radius: 0.4rem;
   background: var(--surface1);
   margin-block-end: 2.5rem;
   padding: 10px 20px;
-  border-radius: var(--details-border-radius);
-  border-left: var(--details-border-radius) solid var(--purple);
 }
 
 summary {
@@ -54,7 +55,6 @@ blockquote {
   padding: 0.8rem 1rem;
   margin-block: 1rem;
   font-size: 0.9em;
-  border-left: 4px solid var(--purple);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   font-style: italic;
 
@@ -64,5 +64,17 @@ blockquote {
 
   > :is(h1, h2, h3, h4, h5, h6):not(:first-child) {
     margin-top: 1.2em;
+  }
+
+}
+
+blockquote,
+details {
+  border-radius: var(--blocks-borders);
+  border-left: var(--blocks-borders) solid var(--overlay0);
+  transition: border-color ease-in-out 200ms;
+
+  &:hover {
+    border-left-color: var(--purple);
   }
 }
