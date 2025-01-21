@@ -1,6 +1,6 @@
 ---
 export interface Props {
-  date?: Date | string;
+  date?: Date | string | number;
 }
 
 const { date } = Astro.props;
@@ -9,7 +9,7 @@ const _date = date ? new Date(date.toString()) : new Date();
 ---
 
 <>
-  <time datetime={_date.toString().slice(0, 10)}
+  <time datetime={_date.toISOString()}
     >{
       _date.toLocaleDateString("en-US", {
         month: "long",
