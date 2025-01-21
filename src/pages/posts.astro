@@ -11,11 +11,9 @@ import type { MarkdownInstance } from "astro";
 
 type PostPage = MarkdownInstance<BlogProps["frontmatter"]>;
 
-const allPosts = (Object.values(import.meta.glob("./posts/notes/**/*.mdx", { eager: true })) as PostPage[]).sort(
-  (a, b) => {
-    return +new Date(b.frontmatter.pubDate) - +new Date(a.frontmatter.pubDate);
-  },
-);
+const allPosts = (Object.values(import.meta.glob("./posts/notes/**/*.mdx", { eager: true })) as PostPage[])
+  .filter(x => !("wip" in x.frontmatter) || !x.frontmatter.wip)
+  .sort((a, b) => +new Date(b.frontmatter.pubDate) - +new Date(a.frontmatter.pubDate));
 ---
 
 <MainLayout isPostsPage={true}>

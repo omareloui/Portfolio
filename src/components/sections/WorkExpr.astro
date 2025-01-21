@@ -5,7 +5,17 @@ import ExternalIcon from "@components/ExternalIcon.astro";
 
 const { isOdd = false } = Astro.props;
 
-const workExprs = [
+type WorkExpr = {
+  from: string;
+  to: undefined;
+  title?: string;
+  desc: string;
+  company: string;
+  link?: string;
+  tech: string[];
+};
+
+const workExprs: WorkExpr[] = [
   {
     from: "Mar. 2023",
     to: undefined,
@@ -37,6 +47,14 @@ const workExprs = [
       "GitLab",
     ],
   },
+  {
+    from: "June 2024",
+    to: undefined,
+    title: "Full-Stack Software Engineer",
+    desc: "TODO",
+    company: "What's Cooking — USA",
+    tech: ["ExpressJs", "ReactJs", "TypeScript", "JavaScript", "Docker", "Prettier", "ESLint", "Git", "GitHub"],
+  },
 ];
 ---
 
@@ -52,10 +70,12 @@ const workExprs = [
           </div>
           <div class="work-expr__right">
             <div class="work-expr__company">
-              <a href={expr.link} target="_blank" class="gradient-text">
-                {expr.company}
-                <ExternalIcon size={16} color="var(--subtext1)" className="tablet-up" />
-              </a>
+              {(expr.link && (
+                <a href={expr.link} target="_blank" class="gradient-text">
+                  {expr.company}
+                  <ExternalIcon size={16} color="var(--subtext1)" className="tablet-up" />
+                </a>
+              )) || <span class="gradient-text"> {expr.company} </span>}
             </div>
             <div class="work-expr__title">{expr.title}</div>
             <div class="work-expr__desc">{expr.desc}</div>
@@ -93,7 +113,7 @@ const workExprs = [
       }
 
       &__company {
-        a {
+        > :where(a, span) {
           text-decoration: none;
           font-weight: bold;
           font-size: 1.4rem;
