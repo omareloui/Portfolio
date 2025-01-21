@@ -11,9 +11,13 @@ import type { MarkdownInstance } from "astro";
 
 type PostPage = MarkdownInstance<BlogProps["frontmatter"]>;
 
-const allPosts = (Object.values(import.meta.glob("./posts/notes/**/*.mdx", { eager: true })) as PostPage[])
-  .filter(x => !("wip" in x.frontmatter) || !x.frontmatter.wip)
-  .sort((a, b) => +new Date(b.frontmatter.pubDate) - +new Date(a.frontmatter.pubDate));
+let posts = (Object.values(import.meta.glob("./posts/**/*.mdx", { eager: true })) as PostPage[]).sort(
+  (a, b) => +new Date(b.frontmatter.pubDate) - +new Date(a.frontmatter.pubDate),
+);
+
+if (process.env.NODE_ENV !== "development") {
+  posts = posts.filter(x => x.frontmatter.wip !== true);
+}
 ---
 
 <MainLayout isPostsPage={true}>
@@ -23,7 +27,7 @@ const allPosts = (Object.values(import.meta.glob("./posts/notes/**/*.mdx", { eag
     <ul
       id="posts"
       data-posts={JSON.stringify(
-        allPosts.map(x => ({
+        posts.map(x => ({
           title: x.frontmatter.title,
           url: x.url,
           pubDate: x.frontmatter.pubDate,
@@ -32,7 +36,7 @@ const allPosts = (Object.values(import.meta.glob("./posts/notes/**/*.mdx", { eag
       )}
     >
       {
-        allPosts.map(post => (
+        posts.map(post => (
           <li>
             <DateTime date={post.frontmatter.pubDate as string} />
             <a href={post.url}>{post.frontmatter.title}</a>
