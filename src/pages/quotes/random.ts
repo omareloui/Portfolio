@@ -5,7 +5,7 @@ import type { APIRoute } from "astro";
 
 import type { Quote } from "@type";
 
-export const get: APIRoute = async function get() {
+export const GET: APIRoute = async function get() {
   let quotes: Quote[] = [];
 
   try {
@@ -17,10 +17,7 @@ export const get: APIRoute = async function get() {
 
   async function refetch() {
     const _quotes = await (await fetch("https://type.fit/api/quotes")).json();
-    await fs.writeFile(
-      "./public/quotes.json",
-      JSON.stringify({ quotes: _quotes }, null, 2)
-    );
+    await fs.writeFile("./public/quotes.json", JSON.stringify({ quotes: _quotes }, null, 2));
     quotes = _quotes;
   }
 

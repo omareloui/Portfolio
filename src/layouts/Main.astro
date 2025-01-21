@@ -6,8 +6,7 @@ import "@assets/styles/helper-classes.scss";
 
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
-import SEOTag from "@components/SEOTag.astro";
-import GTag from "@components/GTag.astro";
+import HeadingTags from "@components/HeadingTags.astro";
 
 import GalleryPreviewer from "@components/GalleryPreviewer.astro";
 import ScrollTop from "@components/ScrollTop.astro";
@@ -30,29 +29,7 @@ const description =
   <!-- @ts-ignore -->
   <html lang="en" theme="dark">
     <head>
-      <GTag />
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width" />
-      <meta name="generator" content={Astro.generator} />
-
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:ital,wght@0,300;0,400;0,700;1,400&display=swap"
-        rel="stylesheet"
-      />
-
-      <SEOTag title={title} description={description} />
-
-      <script>
-        import { theme } from "@utils";
-
-        theme.init();
-
-        if ("serviceWorker" in navigator) {
-          navigator.serviceWorker.register("/sw.js");
-        }
-      </script>
+      <HeadingTags title={title} description={description} />
     </head>
     <body>
       {includeGallery && <GalleryPreviewer />}
