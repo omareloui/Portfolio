@@ -1,14 +1,14 @@
 ---
-import fs from "node:fs/promises";
 import SectionWrapper from "@components/SectionWrapper.astro";
 import { createLinksLink } from "@utils";
 
 const { isOdd = false } = Astro.props;
 
-const RESUME_FILENAME = "Omar_Eloui_web_developer_resume.pdf";
+const RESUME_URL = "https://docs.google.com/document/d/1bnDG2nmA_nEA9bUAqrBCYPAzzlWZh_vcDr4ts7ZApQo/export?format=pdf";
 
-const stats = await fs.stat(`./public/${RESUME_FILENAME}`);
-const size = Math.round(stats.size / 1024);
+const resume = await fetch(RESUME_URL);
+const blob = await resume.blob();
+const size = Math.round(blob.size / 1024);
 ---
 
 <SectionWrapper title="About Me" shadowTitle="Know Me" id="aboutme" isOdd={isOdd}>
@@ -42,7 +42,7 @@ const size = Math.round(stats.size / 1024);
     </p>
   </div>
   <div class="aboutme-resume">
-    <a href={`/${RESUME_FILENAME}`} target="_blank">My Resume (pdf {size}kb)</a>
+    <a href={RESUME_URL} target="_blank">My Resume (pdf {size}kb)</a>
   </div>
 </SectionWrapper>
 
