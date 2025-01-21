@@ -68,7 +68,7 @@ const { frontmatter } = Astro.props;
       <Header notHomepage={true} postsPage={true} />
 
       <div class="content">
-        <Container class="metadata">
+        <Container class="posts-layout__metadata">
           <address>By: <a href={`mailto:${frontmatter.author.email}`}>{frontmatter.author.name}</a></address>
           <DateTime date={frontmatter.pubDate} />
         </Container>
@@ -96,7 +96,7 @@ const { frontmatter } = Astro.props;
     }
   }
 
-  :global(.metadata) {
+  :global(.posts-layout__metadata) {
     display: flex;
     flex-direction: row;
     justify-content: center;

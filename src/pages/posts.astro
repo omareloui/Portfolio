@@ -7,6 +7,8 @@ import "@assets/styles/posts.scss";
 import Container from "@components/Container.astro";
 import DateTime from "@components/DateTime.astro";
 import Input from "@components/Input.astro";
+import SectionTitle from "@components/SectionTitle.astro";
+
 import type { MarkdownInstance } from "astro";
 
 type PostPage = MarkdownInstance<BlogProps["frontmatter"]>;
@@ -22,7 +24,8 @@ if (process.env.NODE_ENV !== "development") {
 
 <MainLayout isPostsPage={true}>
   <Container tag="main">
-    <h1>Posts</h1>
+    <SectionTitle id="posts-section">Posts</SectionTitle>
+
     <Input id="query" placeholder="Search posts..." type="search" name="q" />
     <ul
       id="posts"
@@ -38,7 +41,10 @@ if (process.env.NODE_ENV !== "development") {
       {
         posts.map(post => (
           <li>
-            <DateTime date={post.frontmatter.pubDate as string} />
+            <span class="metadata">
+              {post.frontmatter.wip && <span class="wip">WIP</span>}
+              <DateTime date={post.frontmatter.pubDate} />
+            </span>
             <a href={post.url}>{post.frontmatter.title}</a>
           </li>
         ))
@@ -118,38 +124,43 @@ if (process.env.NODE_ENV !== "development") {
 
   ul {
     margin: 0;
+    list-style: none;
 
     li {
       margin-block: 3rem;
-      list-style: none;
       text-align: center;
-    }
 
-    a {
-      display: block;
+      a {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
 
-      font-size: 1.5rem;
-      text-decoration: none;
+        transition: scale ease-in 200ms;
 
-      transition: all ease-in 200ms;
+        @include animate-background-gradient($color: var(--gradient-primary), $increase-x-by: 1.5, $duration: 5s);
+        animation-play-state: paused;
 
-      background: var(--gradient-primary);
-      background-size: calc(150%) calc(100%);
-      background-position: 0 0;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
 
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+        &:hover {
+          scale: 1.01;
+          animation-play-state: running;
+        }
+      }
 
-      &:hover {
-        scale: 1.01;
+      .metadata {
+        display: flex;
+        flex-direction: column;
+        color: var(--subtext0);
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+
+        .wip {
+          color: var(--subtext1);
+          font-size: 0.8rem;
+        }
       }
     }
-  }
-
-  :global(ul > li > time) {
-    display: block;
-    font-size: 1rem;
-    color: var(--subtext1);
-    margin-bottom: 0.5rem;
   }
 </style>
