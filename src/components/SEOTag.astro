@@ -56,3 +56,31 @@ let { title, description, ogImage = "/images/heading.png" } = Astro.props;
     ],
   }}
 />
+
+<script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Omar Eloui",
+    "url": "https://omareloui.com",
+    "sameAs": ["https://github.com/omareloui", "https://linkedin.com/in/omareloui"],
+    "jobTitle": "Software Engineer",
+    "alumniOf": "Ain Shams University"
+    "knowsAbout": ["Software Development", "Web Development", "Cloud Computing"],
+    "birthDate": "1998-02-12",
+    "birthPlace": "Egypt, Cairo",
+    "telephone": "+201119447500",
+    "seeks": {
+      "@type": "Demand",
+      "name": "Software Development Projects",
+      "description": "Looking for freelance opportunities or projects involving web development, cloud computing, or scalable software solutions.",
+      "skills": [
+        "Web Development",
+        "Cloud Computing",
+        "Scalable Software Design"
+      ],
+      "areaServed": "Global",
+      "availabilityStarts": "2025-01-21"
+    }
+  }
+</script>
