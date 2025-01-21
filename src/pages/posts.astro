@@ -35,12 +35,13 @@ if (process.env.NODE_ENV !== "development") {
           url: x.url,
           pubDate: x.frontmatter.pubDate,
           tags: x.frontmatter.tags,
+          ...(x.frontmatter.wip ? { wip: true } : {}),
         })),
       )}
     >
       {
         posts.map(post => (
-          <li>
+          <li data-wip={post.frontmatter.wip}>
             <span class="metadata">
               {post.frontmatter.wip && <span class="wip">WIP</span>}
               <DateTime date={post.frontmatter.pubDate} />
@@ -54,7 +55,10 @@ if (process.env.NODE_ENV !== "development") {
 
   <template id="post">
     <li>
-      <DateTime />
+      <span class="metadata">
+        <span class="wip">WIP</span>
+        <DateTime />
+      </span>
       <a></a>
     </li>
   </template>
@@ -89,11 +93,13 @@ if (process.env.NODE_ENV !== "development") {
     });
   }
 
-  function addPost(post: { title: string; url: string; pubDate: string; tags: string[] }) {
+  function addPost(post: { title: string; url: string; pubDate: string; tags: string[]; wip?: boolean }) {
     const postEl = postTemplate.content.cloneNode(true) as HTMLTemplateElement;
 
     const anchor = postEl.querySelector("a") as HTMLAnchorElement;
+    const metadata = postEl.querySelector(".metadata") as HTMLTimeElement;
     const time = postEl.querySelector("time") as HTMLTimeElement;
+    const wip = postEl.querySelector(".wip") as HTMLSpanElement;
 
     anchor.href = post.url;
     anchor.textContent = post.title;
@@ -103,6 +109,10 @@ if (process.env.NODE_ENV !== "development") {
       day: "numeric",
       year: "numeric",
     });
+
+    if (!post.wip) {
+      metadata.removeChild(wip);
+    }
 
     postsEl.appendChild(postEl);
   }
