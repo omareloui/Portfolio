@@ -6,9 +6,14 @@ const { isOdd = false } = Astro.props;
 
 const RESUME_URL = "https://docs.google.com/document/d/1bnDG2nmA_nEA9bUAqrBCYPAzzlWZh_vcDr4ts7ZApQo/export?format=pdf";
 
-const resume = await fetch(RESUME_URL);
+const resume = await fetch(RESUME_URL, { redirect: "follow" });
+
 const blob = await resume.blob();
-const size = Math.round(blob.size / 1024);
+let size = 0;
+
+if (blob.type === "application/pdf") {
+  size = Math.round(blob.size / 1024);
+}
 ---
 
 <SectionWrapper title="About Me" shadowTitle="Know Me" id="aboutme" isOdd={isOdd}>
@@ -41,7 +46,7 @@ const size = Math.round(blob.size / 1024);
   </div>
 
   <div class="aboutme-resume">
-    <a href={RESUME_URL} target="_blank">My Resume (pdf {size}kb)</a>
+    <a href={RESUME_URL} target="_blank">My Resume {size > 0 && `(pdf ${size}kb)`}</a>
   </div>
 </SectionWrapper>
 
