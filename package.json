@@ -34,7 +34,6 @@
     "astro": "^5.1.7",
     "astro-expressive-code": "^0.40.1",
     "astro-seo": "^0.8.3",
-    "contentful": "^10.13.2",
     "isotope-layout": "^3.0.6",
     "open-simplex-noise": "^2.5.0",
     "three": "^0.162.0"

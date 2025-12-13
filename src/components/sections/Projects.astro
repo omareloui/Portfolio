@@ -2,46 +2,145 @@
 import PreviewProject from "@components/PreviewProject.astro";
 import SectionWrapper from "@components/SectionWrapper.astro";
 
-import contentful from "contentful";
-import type { Asset } from "contentful";
-
 const { isOdd = false } = Astro.props;
-
-const { createClient } = contentful;
-
-const client = createClient({
-  space: import.meta.env.CONTENTFUL_SPACE_ID!,
-  accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN!,
-});
 
 export interface Project {
   index: number;
   title: string;
   subtitle: string;
   description: string;
-  link: string;
+  link?: string;
+  design?: string;
   github: string;
-  design: string;
-  image: Asset;
   images: string[];
   technologies: string[];
   color: string;
-  archived: boolean;
 }
 
-const res = await client.getEntries<{ fields: Project; contentTypeId: string }>();
-
-const { items } = res;
-
-const projects = items
-  .filter(x => !x.fields.archived)
-  .map(x => {
-    const { fields } = x;
-    const images = (fields.images as Asset[])!.map(x => x.fields.file!.url as string);
-    (fields as Project).images = images;
-    return fields;
-  })
-  .sort((a, b) => (a.index as number) - (b.index as number));
+const projects: Project[] = [
+  {
+    index: 0,
+    title: "Alsun Yearbook",
+    subtitle: "Yearbook (web version) for my college",
+    description:
+      "I had this idea to create a place to gather all my university friends in one place to make it easy for us to reach each other after this era ends. So I made this Alsun Yearbook and added authentication system to make it only available to the people that the Yearbook includes.",
+    link: "https://links.omareloui.com/yearbook?s=portfolio",
+    github: "https://links.omareloui.com/yearbook-gh?s=portfolio",
+    design: "https://links.omareloui.com/yearbook-d?s=portfolio",
+    color: "linear-gradient(-45deg, hsl(20deg 90% 80% / 0.6), hsl(60deg 90% 80% / 0.6))",
+    images: [
+      "/images/projects/alsun/01.webp",
+      "/images/projects/alsun/02.webp",
+      "/images/projects/alsun/03.webp",
+      "/images/projects/alsun/04.webp",
+      "/images/projects/alsun/05.webp",
+      "/images/projects/alsun/06.webp",
+      "/images/projects/alsun/07.webp",
+    ],
+    technologies: [
+      "Nuxt",
+      "Vue",
+      "TypeScript",
+      "JavaScript",
+      "Sass",
+      "Node",
+      "MongoDB",
+      "RestAPI",
+      "JWT",
+      "Prettier",
+      "ESLint",
+      "Figma",
+      "Heroku",
+    ],
+  },
+  {
+    index: 10,
+    title: "Links",
+    subtitle: "Link shortener",
+    description:
+      "I needed a link shortener to track and shorten links, so I created my own personal one. Now, I have all the slugs available for me to use.",
+    link: "https://links.omareloui.com/links?s=portfolio",
+    github: "https://links.omareloui.com/links-gh?s=portfolio",
+    design: "https://links.omareloui.com/links-d?s=portfolio",
+    color: "linear-gradient(-45deg, hsl(277deg 91% 51% / 0.6) 0, hsl(259deg 81% 45% / 0.6) 30%)",
+    images: [
+      "/images/projects/links/01.webp",
+      "/images/projects/links/02.webp",
+      "/images/projects/links/03.webp",
+      "/images/projects/links/04.webp",
+    ],
+    technologies: ["Nuxt", "Vue", "TypeScript", "Sass", "Node", "MongoDB", "RestAPI", "Prettier", "ESLint", "Figma"],
+  },
+  {
+    index: 20,
+    title: "Image Processor",
+    subtitle: "An image processor api (with UI)",
+    description:
+      "An image processor to create a placeholder image or to change an already existing images' size, add filters, change the file type, and more...  I created it during my FWD's scholarship and found many uses for it since then.",
+    github: "https://links.omareloui.com/imageprocessor-gh?s=portfolio",
+    color: "hsl(0deg 0% 85% / 0.5)",
+    images: ["/images/projects/image_processor/01.webp", "/images/projects/image_processor/02.webp"],
+    technologies: [
+      "Node",
+      "TypeScript",
+      "ExpressJs",
+      "Sharp",
+      "RestAPI",
+      "EJS",
+      "AlpineJs",
+      "SkeletonCss",
+      "Jasmine",
+      "Prettier",
+      "ESLint",
+    ],
+  },
+  {
+    index: 30,
+    title: "Color Generator",
+    subtitle: "A random color generator",
+    description: "An application inspired by colorspark.app to generate random colors.",
+    link: "https://links.omareloui.com/colorgenerator?s=portfolio",
+    github: "https://links.omareloui.com/colorgenerator-gh?s=portfolio",
+    color: "linear-gradient(-45deg, hsl(348deg 83% 59% / 0.6), hsl(44deg 100% 87% / 0.6))",
+    images: ["/images/projects/color_generator/01.webp", "/images/projects/color_generator/02.webp"],
+    technologies: ["JavaScript", "Sass", "Html", "Prettier", "Netlify"],
+  },
+  {
+    index: 40,
+    title: "Music Utils",
+    subtitle: "Well, a music utilities!",
+    description:
+      "I like to keep my music organized. That's why I wrote this script to organize the music folder's file system according to the metadata. Then updated it to fetch lyrics and download high quality music files using Deezloader to download from Deezer and Spotify. I created an API version (with a script for Tampermonkey to work on open.spotify.com) and a CLI version.",
+    github: "https://links.omareloui.com/musicutils-gh?s=portfolio",
+    color: "linear-gradient(-45deg, hsl(200deg 4% 14% / 0.6), hsl(210deg 3% 26% / 0.6))",
+    images: ["/images/projects/music_utils/01.webp"],
+    technologies: ["Python", "JavaScript"],
+  },
+  {
+    index: 50,
+    title: "LemmeIn",
+    subtitle: "Account manager",
+    description:
+      "I have this problem that I keep forgetting which account I use to log into whichever site or application, specially if I used oauth (signing with third party application like Facebook or Google) to sign with. So I needed some way to keep track of this, and I couldn't find any password manager that tracks the signing method if I oauthed into an application. So I created LemmeIn an accounts manager. Where I can store the passwords like any other password manager and on top of this create the option to store the oauthed account with the account used to sign with.",
+    github: "https://links.omareloui.com/lemmein-gh?s=portfolio",
+    color: "linear-gradient(-45deg, hsl(225deg 29% 22% / 0.6), hsl(196deg 8% 56% / 0.6))",
+    images: ["/images/projects/lemmein/01.webp"],
+    technologies: [
+      "Deno",
+      "TypeScript",
+      "MongoDB",
+      "RestAPI",
+      "JWT",
+      "Nuxt",
+      "Vue",
+      "Sass",
+      "Html",
+      "Prettier",
+      "ESLint",
+      "Figma",
+    ],
+  },
+];
 ---
 
 <SectionWrapper id="projects" title="Projects" shadowTitle="Showcase" class="projects" isOdd={isOdd}>
