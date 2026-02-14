@@ -7,7 +7,7 @@ const { isOdd = false } = Astro.props;
 
 type WorkExpr = {
   from: string;
-  to: undefined;
+  to: string | undefined;
   title?: string;
   desc: string;
   company: string;
@@ -17,8 +17,35 @@ type WorkExpr = {
 
 const workExprs: WorkExpr[] = [
   {
-    from: "Mar. 2023",
+    from: "June 2025",
     to: undefined,
+    title: "Sr. Security Full-Stack Software Engineer",
+    desc: `Focused on building robust infrastructure and developer-centric solutions across the stack. My work centers
+on automating infrastructure provisioning with Ansible, containerizing applications with Docker, and managing PostgreSQL
+databases in production environments.
+I've integrated ElasticSearch for large-scale search functionality and built Python-based integrations with enterprise security systems to enhance threat detection capabilities.
+On the frontend, I've modernized legacy Angular codebases and optimized UI performance to deliver better user experiences.
+Currently, I'm developing internal tooling that helps other developers work more efficiently and effectively.`,
+    company: "Orange Cyberdefense",
+    link: "https://www.orangecyberdefense.com",
+    tech: [
+      "Python",
+      "Angular",
+      "Ansible",
+      "ElasticSearch",
+      "Docker",
+      "RSyslog",
+      "Microservices",
+      "TypeScript",
+      "JavaScript",
+      "LDAP",
+      "Git",
+      "GitLab",
+    ],
+  },
+  {
+    from: "March 2023",
+    to: "March 2025",
     title: "Back-End Developer",
     desc: "Build and maintain critical distributed systems for internal and public usage. Improve the development experience for other developers by building tools and setup systems and frameworks to be consistent and make it easier to communicate. Contribute in designing the architecture of a major project.",
     company: "Arab African International Bank",
@@ -50,7 +77,7 @@ const workExprs: WorkExpr[] = [
   },
   {
     from: "June 2024",
-    to: undefined,
+    to: "February 2025",
     title: "Full-Stack Software Engineer",
     link: "https://whatscookin.us",
     desc: `designed and implemented application enhancements, optimized SQL queries to improve performance, and developed secure data models with ComposeDB and DID-based authentication. Using React, I enhanced front-end interactivity and migrated a Python data pipeline into a microservice architecture for seamless, real-time data integration.`,
@@ -80,7 +107,9 @@ const workExprs: WorkExpr[] = [
         <div class="work-expr">
           <div class="work-expr__left">
             <p class="work-expr__duration">
-              <span class="from">{expr.from}</span>—<span class="to">{expr.to || "Present"}</span>
+              <span class="from">{expr.from}</span>—
+              <br />
+              <span class="to">{expr.to || "Present"}</span>
             </p>
           </div>
           <div class="work-expr__right">

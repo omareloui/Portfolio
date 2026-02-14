@@ -82,6 +82,11 @@ export const technologies: Technology[] = [
   { title: "PostgreSQL", category: "DataBase", stack: "Back-End" },
   { title: "MySQL", category: "DataBase", stack: "Back-End" },
 
+  { title: "Ansible", category: "Development Tool", stack: "DevOps" },
+
+  { title: "ElasticSearch", category: "Development Tool", stack: "Back-End" },
+  { title: "RSyslog", category: "Development Tool", stack: "Back-End" },
+
   { title: "Sharp", category: "Library", stack: "Back-End" },
 
   { title: "JWT", category: "Auth System", stack: "Back-End" },
