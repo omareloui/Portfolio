@@ -45,7 +45,7 @@ const filterOptions = ["backEnd", "frontEnd", "tools", "other" /*, "all" */] as 
 
   const filterFunctions = {
     all: (item: HTMLElement) => !!item,
-    tools: (item: HTMLElement) => !!getTitleEl(item).dataset.category?.match(/^(Design|Development) Tool$/),
+    tools: (item: HTMLElement) => !!(getTitleEl(item).dataset.stack === "Tool"),
     frontEnd: (item: HTMLElement) => !!getTitleEl(item).dataset.stack?.match(/^(Front-End|Front and Back Ends)$/),
     backEnd: (item: HTMLElement) => !!getTitleEl(item).dataset.stack?.match(/^(Back-End|Front and Back Ends)$/),
     other: (item: HTMLElement) => {

@@ -1,129 +1,106 @@
-type Category =
-  | "Development Tool"
-  | "Library"
-  | "Framework"
-  | "Language"
-  | "Preprocessor"
-  | "Message Broker"
-  | "Test Framework"
-  | "Version Control System"
-  | "VSC Cloud Hosting Service"
-  | "Run Time For JS"
-  | "Cloud Service"
-  | "Design Tool"
-  | "API"
-  | "Auth System"
-  | "DataBase"
-  | "Package Manger"
-  | "3D Development"
-  | "PWA"
-  | "Superset"
-  | "Build Tool"
-  | "Containerization Technology"
-  | "Template Engine"
-  | "Operating System"
-  | "Architure";
+export type Stack = "Front-End" | "Back-End" | "Front and Back Ends" | "Tool" | "DevOps" | "Other";
 
-export type Stack = "Front-End" | "Back-End" | "Front and Back Ends" | "DevOps" | "Other";
-
-type Technology = { title: string; category: Category; stack: Stack };
+type Technology = { title: string; stack: Stack };
 
 export const technologies: Technology[] = [
-  { title: "Go", category: "Language", stack: "Back-End" },
+  { title: "Go", stack: "Back-End" },
 
-  { title: "TypeScript", category: "Superset", stack: "Front and Back Ends" },
-  { title: "JavaScript", category: "Language", stack: "Front and Back Ends" },
+  { title: "TypeScript", stack: "Front and Back Ends" },
+  { title: "JavaScript", stack: "Front and Back Ends" },
 
-  { title: "Rust", category: "Language", stack: "Back-End" },
-  { title: "Lua", category: "Language", stack: "Back-End" },
-  { title: "Deno", category: "Run Time For JS", stack: "Back-End" },
-  { title: "Python", category: "Language", stack: "Back-End" },
+  { title: "Rust", stack: "Back-End" },
+  { title: "Lua", stack: "Back-End" },
+  { title: "Deno", stack: "Back-End" },
+  { title: "Python", stack: "Back-End" },
 
-  { title: "Html", category: "Language", stack: "Front-End" },
-  { title: "Css", category: "Language", stack: "Front-End" },
-  { title: "Sass", category: "Preprocessor", stack: "Front-End" },
+  { title: "Html", stack: "Front-End" },
+  { title: "Css", stack: "Front-End" },
+  { title: "Sass", stack: "Front-End" },
 
-  { title: "gRPC", category: "API", stack: "Back-End" },
-  { title: "Protobuf", category: "Language", stack: "Back-End" },
+  { title: "gRPC", stack: "Back-End" },
+  { title: "Protobuf", stack: "Back-End" },
 
-  { title: "Microservices", category: "Architure", stack: "Back-End" },
+  { title: "Nginx", stack: "Back-End" },
+  { title: "Traefik", stack: "Back-End" },
 
-  { title: "Pug", category: "Template Engine", stack: "Front-End" },
-  { title: "EJS", category: "Template Engine", stack: "Front-End" },
+  { title: "Microservices", stack: "Back-End" },
 
-  { title: "MJML", category: "Preprocessor", stack: "Front-End" },
+  { title: "Pug", stack: "Front-End" },
+  { title: "EJS", stack: "Front-End" },
 
-  { title: "MarkDown", category: "Language", stack: "Front-End" },
+  { title: "MJML", stack: "Front-End" },
 
-  { title: "Nuxt", category: "Framework", stack: "Front and Back Ends" },
-  { title: "Astro", category: "Framework", stack: "Front and Back Ends" },
-  { title: "Htmx", category: "Framework", stack: "Front-End" },
-  { title: "Vue", category: "Framework", stack: "Front-End" },
-  { title: "ReactJs", category: "Framework", stack: "Front-End" },
-  { title: "AlpineJs", category: "Framework", stack: "Front-End" },
-  { title: "Lit", category: "Framework", stack: "Front-End" },
+  { title: "MarkDown", stack: "Front-End" },
 
-  { title: "ThreeJs", category: "3D Development", stack: "Front-End" },
-  { title: "P5Js", category: "3D Development", stack: "Front-End" },
-  { title: "WebGL", category: "3D Development", stack: "Front-End" },
+  { title: "Nuxt", stack: "Front and Back Ends" },
+  { title: "Astro", stack: "Front and Back Ends" },
+  { title: "Htmx", stack: "Front-End" },
+  { title: "Vue", stack: "Front-End" },
+  { title: "ReactJs", stack: "Front-End" },
+  { title: "AlpineJs", stack: "Front-End" },
+  { title: "Lit", stack: "Front-End" },
 
-  { title: "TailWindCss", category: "Framework", stack: "Front-End" },
-  { title: "SkeletonCss", category: "Library", stack: "Front-End" },
+  { title: "ThreeJs", stack: "Front-End" },
+  { title: "P5Js", stack: "Front-End" },
+  { title: "WebGL", stack: "Front-End" },
 
-  { title: "Vite", category: "Build Tool", stack: "Front and Back Ends" },
-  { title: "PWA", category: "PWA", stack: "Front-End" },
+  { title: "TailWindCss", stack: "Front-End" },
+  { title: "SkeletonCss", stack: "Front-End" },
 
-  { title: "Node", category: "Run Time For JS", stack: "Back-End" },
-  { title: "ExpressJs", category: "Framework", stack: "Back-End" },
-  { title: "NestJS", category: "Framework", stack: "Back-End" },
+  { title: "Vite", stack: "Front and Back Ends" },
+  { title: "PWA", stack: "Front-End" },
 
-  { title: "RabbitMQ", category: "Message Broker", stack: "Back-End" },
-  { title: "MongoDB", category: "DataBase", stack: "Back-End" },
-  { title: "PostgreSQL", category: "DataBase", stack: "Back-End" },
-  { title: "MySQL", category: "DataBase", stack: "Back-End" },
+  { title: "Node", stack: "Back-End" },
+  { title: "ExpressJs", stack: "Back-End" },
+  { title: "NestJS", stack: "Back-End" },
 
-  { title: "Ansible", category: "Development Tool", stack: "DevOps" },
+  { title: "RabbitMQ", stack: "Back-End" },
+  { title: "MongoDB", stack: "Back-End" },
+  { title: "PostgreSQL", stack: "Back-End" },
+  { title: "MySQL", stack: "Back-End" },
 
-  { title: "ElasticSearch", category: "Development Tool", stack: "Back-End" },
-  { title: "RSyslog", category: "Development Tool", stack: "Back-End" },
+  { title: "Ansible", stack: "DevOps" },
 
-  { title: "Sharp", category: "Library", stack: "Back-End" },
+  { title: "ElasticSearch", stack: "Back-End" },
+  { title: "RSyslog", stack: "Back-End" },
 
-  { title: "JWT", category: "Auth System", stack: "Back-End" },
-  { title: "RestAPI", category: "Auth System", stack: "Back-End" },
-  { title: "GraphQL", category: "Auth System", stack: "Back-End" },
+  { title: "Sharp", stack: "Back-End" },
 
-  { title: "LDAP", category: "Auth System", stack: "Back-End" },
+  { title: "JWT", stack: "Back-End" },
+  { title: "RestAPI", stack: "Back-End" },
+  { title: "GraphQL", stack: "Back-End" },
 
-  { title: "Jasmine", category: "Test Framework", stack: "Front and Back Ends" },
-  { title: "Jest", category: "Test Framework", stack: "Front and Back Ends" },
+  { title: "LDAP", stack: "Back-End" },
 
-  { title: "Neovim", category: "Development Tool", stack: "Other" },
-  { title: "Vim", category: "Development Tool", stack: "Other" },
-  { title: "VSCode", category: "Development Tool", stack: "Other" },
+  { title: "Jasmine", stack: "Front and Back Ends" },
+  { title: "Jest", stack: "Front and Back Ends" },
 
-  { title: "Bazel", category: "Development Tool", stack: "Other" },
-  { title: "Makefile", category: "Development Tool", stack: "Other" },
+  { title: "Bazel", stack: "Other" },
+  { title: "Makefile", stack: "Other" },
 
-  { title: "Prettier", category: "Development Tool", stack: "Front and Back Ends" },
-  { title: "ESLint", category: "Development Tool", stack: "Front and Back Ends" },
+  { title: "Prettier", stack: "Front and Back Ends" },
+  { title: "ESLint", stack: "Front and Back Ends" },
 
-  { title: "Figma", category: "Design Tool", stack: "Other" },
-  { title: "Illustrator", category: "Design Tool", stack: "Other" },
+  { title: "Neovim", stack: "Tool" },
+  { title: "Vim", stack: "Tool" },
+  { title: "VSCode", stack: "Tool" },
 
-  { title: "Arch ~btw~", category: "Operating System", stack: "Other" },
-  { title: "Nix", category: "Operating System", stack: "Other" },
-  { title: "Linux", category: "Operating System", stack: "Other" },
-  { title: "Windows", category: "Operating System", stack: "Other" },
+  { title: "Figma", stack: "Tool" },
+  { title: "Illustrator", stack: "Tool" },
 
-  { title: "Git", category: "Version Control System", stack: "DevOps" },
-  { title: "GitHub", category: "VSC Cloud Hosting Service", stack: "DevOps" },
-  { title: "GitLab", category: "VSC Cloud Hosting Service", stack: "DevOps" },
-  { title: "NPM", category: "Package Manger", stack: "Other" },
-  { title: "PNPM", category: "Package Manger", stack: "Other" },
-  { title: "AWS", category: "Cloud Service", stack: "DevOps" },
-  { title: "DigitalOcean", category: "Cloud Service", stack: "DevOps" },
-  { title: "Netlify", category: "Cloud Service", stack: "DevOps" },
-  { title: "Heroku", category: "Cloud Service", stack: "DevOps" },
-  { title: "Docker", category: "Containerization Technology", stack: "DevOps" },
+  { title: "Arch ~btw~", stack: "Tool" },
+  { title: "Nix", stack: "Tool" },
+  { title: "Linux", stack: "Tool" },
+  { title: "Windows", stack: "Tool" },
+
+  { title: "Git", stack: "DevOps" },
+  { title: "GitHub", stack: "DevOps" },
+  { title: "GitLab", stack: "DevOps" },
+  { title: "NPM", stack: "Other" },
+  { title: "PNPM", stack: "Other" },
+  { title: "AWS", stack: "DevOps" },
+  { title: "DigitalOcean", stack: "DevOps" },
+  { title: "Netlify", stack: "DevOps" },
+  { title: "Heroku", stack: "DevOps" },
+  { title: "Docker", stack: "DevOps" },
 ];
