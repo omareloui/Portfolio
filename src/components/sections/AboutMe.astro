@@ -3,17 +3,6 @@ import SectionWrapper from "@components/SectionWrapper.astro";
 import { createLinksLink } from "@utils";
 
 const { isOdd = false } = Astro.props;
-
-const RESUME_URL = "https://docs.google.com/document/d/1bnDG2nmA_nEA9bUAqrBCYPAzzlWZh_vcDr4ts7ZApQo/export?format=pdf";
-
-const resume = await fetch(RESUME_URL, { redirect: "follow" });
-
-const blob = await resume.blob();
-let size = 0;
-
-if (blob.type === "application/pdf") {
-  size = Math.round(blob.size / 1024);
-}
 ---
 
 <SectionWrapper title="About Me" shadowTitle="Know Me" id="aboutme" isOdd={isOdd}>
@@ -46,15 +35,14 @@ if (blob.type === "application/pdf") {
   </div>
 
   <div class="aboutme-resume">
-    <a href={RESUME_URL} target="_blank">My Resume {size > 0 && `(pdf ${size}kb)`}</a>
+    <a href="/resume" target="_blank" class="resume-link">My Resume</a>
   </div>
 </SectionWrapper>
 
 <script>
   import { relativeTranslate } from "@utils";
-  const observer = new IntersectionObserver(onIntersection, {
-    threshold: 0.2,
-  });
+  const observer = new IntersectionObserver(onIntersection, { threshold: 0.2 });
+
   const elements = [
     ...document.querySelectorAll(".aboutme-title :is(.first-name, .last-name, .image)"),
   ] as HTMLElement[];
@@ -63,8 +51,6 @@ if (blob.type === "application/pdf") {
 
   function onIntersection(entries: IntersectionObserverEntry[]) {
     entries.forEach(e => {
-      // if (e.isIntersecting) show();
-      // else hide();
       if (!e.isIntersecting) return;
       show();
       observer.disconnect();
@@ -86,6 +72,25 @@ if (blob.type === "application/pdf") {
       el.style.translate = "0 0";
       el.style.opacity = "1";
     });
+  }
+
+  async function calculateResumeSize() {
+    const resumeLink = document.querySelector(".resume-link") as HTMLAnchorElement;
+    if (!resumeLink) return;
+
+    const resumeUrl = `${location.origin}${resumeLink.getAttribute("href")}`;
+
+    try {
+      const res = await fetch(resumeUrl, { redirect: "follow" });
+      const blob = await res.blob();
+
+      if (blob.type === "application/pdf") {
+        const size = Math.round(blob.size / 1024);
+        resumeLink.textContent = `My Resume (pdf ${size}kb)`;
+      }
+    } catch (error) {
+      console.error("Error fetching resume:", error);
+    }
   }
 
   relativeTranslate(
@@ -111,6 +116,8 @@ if (blob.type === "application/pdf") {
     ],
     elements[2] as HTMLElement,
   );
+
+  calculateResumeSize();
 </script>
 
 <style lang="scss">
@@ -206,12 +213,13 @@ if (blob.type === "application/pdf") {
     font-size: 1.2rem;
     text-align: center;
 
-    a {
+    a.resume-link {
       background: var(--gradient-primary);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-size: 200%;
       background-position: 50% 50%;
+      text-decoration: none;
     }
   }
 
